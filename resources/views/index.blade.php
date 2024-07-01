@@ -16,7 +16,7 @@
                 <img src="{{asset('/Imagenes/LOGO2.png')}}">
             </div>
                 <div class="button-container">
-                    <a href="#"><button class="bt-white">Ingresar</button></a>
+                    <a href="/login"><button class="bt-white">Ingresar</button></a>
                     <a href="#"><button class="bt-blue">Comienza a vender ahora</button></a>
                 </div>
         </header>
