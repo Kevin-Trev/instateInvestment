@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <div id="seccion1">
+    <div id="seccion1" class="">
         <header class="header">
             <div class="logo">
                 <img src="{{asset('/Imagenes/LOGO2.png')}}">
@@ -167,5 +167,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{asset('js/jquery1.js')}}"></script>
 </body>
 </html>
