@@ -25,10 +25,11 @@ margin-left: 3%;
     height: 1000px;
     background-size: contain;
     position: absolute;
-    background-position: -100px -100px;
+    background-position-y: -100px;
     background-repeat: no-repeat;
-    margin-left: 40%;
+    margin-left: 35%;
     opacity: .5;
+    z-index: -1;
 }
 
 .bt-white{
