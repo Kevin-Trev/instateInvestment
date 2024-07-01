@@ -20,17 +20,15 @@ margin-left: 3%;
 
 #seccion1::before{
     content: '';
-    background-image: url(/Imagenes/Fondo-seccion1.png);
-    width: 100%;
-    height: 100%;
+    background-image: url(../Imagenes/Fondo-seccion1.png);
+    width: 1000px;
+    height: 1000px;
     background-size: contain;
-    padding: 150px;
     position: absolute;
+    background-position: -100px -100px;
     background-repeat: no-repeat;
-    margin-left: 42%;
-    opacity: .6;
-    z-index: -1;
-
+    margin-left: 40%;
+    opacity: .5;
 }
 
 .bt-white{
@@ -103,7 +101,7 @@ input[type="radio"]:checked + label{
     margin-right: 79%;
 }
 
-.input-group{
+.input-groups{
     display: flex;
     align-items: center;
     margin-left: 10%;
@@ -111,7 +109,7 @@ input[type="radio"]:checked + label{
     margin-top: 10px;
 }
 
-.input-group input[type="text"]{
+.input-groups input[type="text"]{
     flex: 1;
     padding: 8px 16px;
     border: 1px solid #B7BEC0;
@@ -120,7 +118,7 @@ input[type="radio"]:checked + label{
     outline: none;
 }
 
-.input-group input[type="submit"]{
+.input-groups input[type="submit"]{
     background-color: #3370FF;
     color: #FFFFFF;
     border: none;
@@ -129,7 +127,7 @@ input[type="radio"]:checked + label{
     cursor: pointer;
 }
 
-.input-group input::placeholder{
+.input-groups input::placeholder{
     color: #B7BEC0;
 }
 
@@ -142,7 +140,7 @@ input[type="radio"]:checked + label{
 }
 
 #seccion2::before{
-    background-image: url(/Imagenes/Fondo-seccion2.png);
+    background-image: url(../Imagenes/Fondo-seccion2.png);
     background-color: #3370FF;
     height: 100%;
     width: 100%;
@@ -238,7 +236,7 @@ body {
 
 #seccion3::before{
     content: '';
-    background-image: url(/Imagenes/Fondo-seccion3.png);
+    background-image: url(../Imagenes/Fondo-seccion3.png);
     width: 100%;
     height: 100%;
     background-size: cover;
@@ -284,10 +282,11 @@ body {
 }
 
 .circle-container img{
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     color: #3370FF;
-    padding: 35px;
+    margin: 20px 25px;
+    padding: 5px;
 }
 
 #seccion3 p{
@@ -304,7 +303,7 @@ body {
 
 #seccion4::before{
     content: '';
-    background-image: url(/Imagenes/Fondo-seccion4.png);
+    background-image: url(../Imagenes/Fondo-seccion4.png);
     height: 1200px;
     width: 1600px;
     z-index: -1;
@@ -476,7 +475,7 @@ ul span{
     height: 300px;
     z-index: 1;
     position: absolute;
-    transform: translate(1350px, -150px);   
+    transform: translate(1380px, -150px);   
 }
 
 .container-info img{

@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instate Investment</title>
     <link rel="icon" href="{{asset('Imagenes/android-chrome-192x192.png')}}" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
 
-    <div id="seccion1" class="tablet">
+    <div id="seccion1">
         <header class="header">
             <div class="logo">
-                <img src="/Imagenes/LOGO2.png">
+                <img src="{{asset('/Imagenes/LOGO2.png')}}">
             </div>
                 <div class="button-container">
                     <a href="#"><button class="bt-white">Ingresar</button></a>
@@ -21,14 +22,14 @@
         </header>
         <div class="clearfix"></div>
         <div class="filtro">
-            <h2 class="basis-1/4"> Encuentra tu próxima oportunidad de <br>negocio en bienes raíces</h2>
+            <h2> Encuentra tu próxima oportunidad de <br>negocio en bienes raíces</h2>
             <div class="input-container">
                 <input type="radio" name="opcion" value="Venta" id="ip-venta" checked>
                 <label for="ip-venta" class="Custom-Radio">Venta</label>
                 <input type="radio" name="opcion" value="Renta" id="ip-renta">
                 <label for="ip-renta" class="Custom-Radio">Renta</label> 
             </div>
-            <div class="input-group">
+            <div class="input-groups">
                 <input type="text" placeholder="Buscar por ciudad..."><input type="submit"  value="🔍︎ Buscar">
             </div>
         </div>
@@ -37,9 +38,9 @@
     <div id="seccion2">
         <h2>Comienza a vender con nosotros y <br><span>00</span>obtén GRATIS un diagnóstico de <br> <span>000</span>posibilidades para tu propiedad</h2>
             <div class="img-container">
-                <img src="/Imagenes/Image 3.png" class="img1">
-                <img src="/Imagenes/Image 2.png" class="img2">
-                <img src="/Imagenes/Image 1.png" class="img3">
+                <img src="{{ asset('/Imagenes/Image 3.png') }}" class="img1">
+                <img src="{{ asset('/Imagenes/Image 2.png') }}" class="img2">
+                <img src="{{ asset('/Imagenes/Image 1.png') }}" class="img3">
             </div>
         <a href="#"><button class="bt-cian">Obtén tu diagnóstico gratis</button></a>
     </div>
@@ -48,17 +49,17 @@
         <h2>Comenzar tu próximo desarrollo inmobiliario es muy sencillo</h2>
         <div class="steps-container" style="margin-right: 30px;">
             <div class="circle-container">
-                <img src="/Imagenes/glass.png">
+                <img src="{{ asset('/Imagenes/glass.png')}}">
             </div>
         </div>
         <div class="steps-container" style="margin-right: 30px;">
             <div class="circle-container">
-                <img src="/Imagenes/dollar-currency-symbol.png">
+                <img src="{{ asset('/Imagenes/dollar-currency-symbol.png')}}">
             </div>
         </div>
         <div class="steps-container">
             <div class="circle-container">
-                <img src="/Imagenes/clipboard.png" >
+                <img src="{{ asset('/Imagenes/clipboard.png')}}" >
             </div>
         </div>
         <p><span>00</span> Busca propiedades en tu <br><span>00000000000</span>ciudad</p>
@@ -68,7 +69,7 @@
 
     <div id="seccion4">
         <div class="video">
-            <img src="/Imagenes/Video.png">
+            <img src="{{asset('/Imagenes/Video.png')}}">
         </div>
     </div>
 
@@ -85,12 +86,12 @@
                 <li><span>&#10003;</span>Proyecciones de rentabilidad para las opciones que te <br>propongo.</li>
             </ul>
             <div class="img-sp">
-                <span><img src="/Imagenes/PDF.png" alt="">PDF por correo electrónico</span>
-                <span><img src="/Imagenes/Reloj.png" alt="">Hasta 24 horas hábiles</span>
+                <span><img src="{{ asset('/Imagenes/PDF.png') }}" alt="">PDF por correo electrónico</span>
+                <span><img src="{{ asset('/Imagenes/Reloj.png') }}" alt="">Hasta 24 horas hábiles</span>
 
             </div>
             <footer class="container-foot">
-                <img src="/Imagenes/Image 1.png" >
+                <img src="{{ asset('/Imagenes/Image 1.png') }}" >
                 <button class="bt-cian">Obtener</button>
             </footer>
         </div>
@@ -105,12 +106,12 @@
                 <li><span>&#10003;</span>Proyecciones de rentabilidad para las opciones que te <br>propongo.</li>
             </ul>
             <div class="img-sp">
-                <span><img src="/Imagenes/PDF.png" alt="">PDF por correo electrónico</span>
-                <span><img src="/Imagenes/Reloj.png" alt="">Hasta 24 horas hábiles</span>
+                <span><img src="{{ asset('/Imagenes/PDF.png') }}">PDF por correo electrónico</span>
+                <span><img src="{{ asset('/Imagenes/Reloj.png') }}">Hasta 24 horas hábiles</span>
 
             </div>
             <footer class="container-foot">
-                <img src="/Imagenes/Image 1.png" >
+                <img src="{{ asset('/Imagenes/Image 1.png') }}" >
                 <button class="bt-cian">Obtener</button>
             </footer>
         </div>
@@ -125,21 +126,21 @@
                 <li><span>&#10003;</span>Proyecciones de rentabilidad para las opciones que te <br>propongo.</li>
             </ul>
             <div class="img-sp">
-                <span><img src="/Imagenes/PDF.png" alt="">PDF por correo electrónico</span>
-                <span><img src="/Imagenes/Reloj.png" alt="">Hasta 24 horas hábiles</span>
+                <span><img src="{{ asset('/Imagenes/PDF.png') }}">PDF por correo electrónico</span>
+                <span><img src="{{ asset('/Imagenes/Reloj.png') }}">Hasta 24 horas hábiles</span>
             </div>
             <footer class="container-foot">
-                <img src="/Imagenes/Image 1.png" >
+                <img src="{{ asset('/Imagenes/Image 1.png') }}" >
                 <button class="bt-cian">Obtener</button>
             </footer>
         </div>
     </div>
 
-    <img src="/Imagenes/Nosequesea.png" id="nosequesea">
+    <img src="{{ asset('/Imagenes/Nosequesea.png') }}" id="nosequesea">
 
     <footer id="page-footer">
         <div class="container-info">
-            <img src="/Imagenes/LOGO.png">
+            <img src="{{ asset('/Imagenes/LOGO.png') }}">
             <p>Instate es una marga registrada por <br>Instate Investments S.A de C.V. en <br>alianza con Design Construcciones.</p>
         </div>
         <div class="container-info">
