@@ -10,13 +10,51 @@
 </head>
 <body>
 
+    <div class="modal fade" id="ingresarModal" tabindex="-1" aria-labelledby="ingresarModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="employeeForm">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ingresarModalLabel">Agregar/Editar estudiantes</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" onclick="clearForm()">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="employeeId" name="id">
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="apellidos">Apellidos:</label>
+                            <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha_ingreso">Fecha de ingreso:</label>
+                            <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Telefono:</label>
+                            <input type="number" class="form-control" id="telefono" name="telefono" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div id="seccion1" class="">
         <header class="header">
             <div class="logo">
                 <img src="{{asset('/Imagenes/LOGO2.png')}}">
             </div>
                 <div class="button-container">
-                    <a href="#"><button class="bt-white">Ingresar</button></a>
+                    <button class="bt-white" type="button" data-toggle="modal" data-target="#ingresarModal">Ingresar</button>
                     <a href="#"><button class="bt-blue">Comienza a vender ahora</button></a>
                 </div>
         </header>
@@ -164,6 +202,7 @@
             <p>Nosotros <br><br>Misión <br><br>Visión</p>
         </div>
     </footer>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
