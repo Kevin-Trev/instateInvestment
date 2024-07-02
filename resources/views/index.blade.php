@@ -10,13 +10,38 @@
 </head>
 <body>
 
+    <div class="modal fade" id="ingresarModal" tabindex="-1" aria-labelledby="ingresarModalLabel" aria-hidden="true" style="margin-top: 50px">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="ingresarForm">
+                    @csrf
+                    <span data-dismiss="modal" class="cerrarModal">&times;</span><br>
+                    <h2 id="ingresarModalLabel">Iniciar sesión</h2>
+                    <label for="inputCorreo">Correo electrónico</label>
+                    <br>
+                    <input type="text" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
+                    <label for="inputContraseña">Contraseña</label>
+                    <br>
+                    <input type="password" placeholder= "Ingresa tu contraseña" id="inputContraseña">
+                    <button class="bt-blue">Ingresar</button>
+                    <p class="line-text">─────────  o también puedes  ─────────</p>
+                    <button class="bt-google"><img src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
+                    <div class="footer">
+                        <a href="#">Registrate</a>
+                        <p>Si aún no tienes cuenta</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div id="seccion1" class="">
         <header class="header">
             <div class="logo">
                 <img src="{{asset('/Imagenes/LOGO2.png')}}">
             </div>
                 <div class="button-container">
-                    <a href="/login"><button class="bt-white">Ingresar</button></a>
+                    <button type="button" data-toggle="modal" data-target="#ingresarModal" class="bt-white">Ingresar</button>
                     <a href="#"><button class="bt-blue">Comienza a vender ahora</button></a>
                 </div>
         </header>

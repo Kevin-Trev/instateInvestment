@@ -221,7 +221,7 @@ input[type="radio"]:checked + label{
 }
 
 html{
-    overflow-x: idden;
+    overflow-x: hidden;
 }
 
 body {
@@ -488,4 +488,85 @@ ul span{
 
 .container-info p{
     padding-top: 37px;
+}
+
+form h2{
+    padding-top: 50px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+form label{
+    color: #646E71;
+    font-size: 13px;
+    margin-left: 100px;
+    padding-top: 10px;
+}
+
+form input{
+    width: 300px;
+    height: 30px;
+    margin-left: 100px;
+    border-radius: 5px;
+    border: 1px solid #B7BEC0;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+form input::placeholder{
+    text-align: left;
+    color: #B7BEC0;
+}
+
+form .bt-blue{
+    width: 300px;
+    margin-left: 100px;
+}
+
+.line-text{
+    color: #646E71;
+    text-align: center;
+    margin: 10px 0 20px 0;
+}
+
+.bt-google{
+    border: none;
+    color: #646E71;
+    background-color: #FFFFFF;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    
+}
+
+form .bt-google{
+    width: 300px;
+    margin: 0 0 50px 100px;
+}
+
+.bt-google img{
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+}
+
+.footer{
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.cerrarModal{
+    float: right;
+    font-size: 30px;
+    cursor: pointer;
+    margin: 10px 20px 0 0;
+    color: #646E71;
+}
+
+.cerrarModal:hover{
+    color: #1D2021;
+    cursor: pointer;
+    transition: .3s;
 }
