@@ -22,5 +22,5 @@ Route::get('/login', function () {
 });
 
 Route::get('/registrarse', function(){
-    return view('registrarse3');
+    return view('registrarse');
 });

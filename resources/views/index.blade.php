@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instate Investment</title>
-    <link rel="icon" href="{{asset('Imagenes/iconito.png')}}" type="image/x-icon">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+@extends('layout.layout')
+
+@section('title', 'Instate Investment')
+
+@section('style')
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
+@endsection
+
+@section('body')
 
     {{-- MODALES --}}
 
@@ -21,12 +19,12 @@
                     <h2>Iniciar sesión</h2>
                     <div class="form-group">
                         <label for="inputCorreo">Correo electrónico</label>
-                        <input type="text" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
+                        <input type="text" class="form-control" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
                     </div>
                     <br>
-                    <div class="form-control">
+                    <div class="form-groupl">
                         <label for="inputContraseña">Contraseña</label>
-                        <input type="password" placeholder= "Ingresa tu contraseña" id="inputContraseña">
+                        <input type="password" class="form-control" placeholder= "Ingresa tu contraseña" id="inputContraseña">
                     </div>
                     <br>
                     <button class="bt-blue">Ingresar</button>
@@ -197,9 +195,5 @@
             <p>Nosotros <br><br>Misión <br><br>Visión</p>
         </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="{{asset('js/jquery1.js')}}"></script>
-</body>
-</html>
+
+@endsection
