@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function () {
-    return view('iniciar-sesión');
+    return view('login');
 });
