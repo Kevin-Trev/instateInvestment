@@ -1,0 +1,132 @@
+*{
+    font-size: 12px;
+    font-family: 'Source Sans Pro', 'Inter';
+    margin: 0;
+    padding: 0;
+}
+
+.line-text{
+    color: #646E71;
+    text-align: center;
+    margin: 10px 0 20px 0;
+}
+
+.bt-google{
+    border: none;
+    color: #646E71;
+    background-color: #FFFFFF;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+form .bt-google{
+    width: 300px;
+    margin-bottom: 80px;
+}
+
+.bt-google img{
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+}
+
+.footer{
+    text-align: center;
+    padding-bottom: 10px;
+    color: #646E71;
+    margin-bottom: 10px;
+}
+
+.footer a{
+    color: #3370FF;
+}
+
+.cerrarModal{
+    float: right;
+    font-size: 30px;
+    cursor: pointer;
+    margin: 10px 20px 0 0;
+    color: #646E71;
+}
+
+.cerrarModal:hover{
+    color: #1D2021;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.modalIniciarSesion{
+    background-color: #FFFFFF;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+    width: 30%;
+    height: 50%;
+    border-radius: 8px;
+    margin-left: 525px;
+    margin-top: 80px;
+}
+
+.modalIniciarSesion .footer{
+    padding-bottom: 50px;
+}
+
+.modalIniciarSesion h2{
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.modalRegistrate{
+    background-color: #FFFFFF;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+    width: 30%;
+    height: 50%;
+    border-radius: 8px;
+    margin-left: 525px;
+    margin-top: 80px;
+}
+
+form{
+    text-align: center;
+}
+
+.small{
+    font-size: 9px;
+    padding-bottom: 20px;
+    color: #646E71;
+}
+
+.small a{
+    font-size: 9px;
+    color: #3370FF;
+}
+
+.small p{
+    font-size: 9px;
+}
+
+.modalRegistrate2{
+    background-color: #FFFFFF;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+    width: 30%;
+    height: 50%;
+    border-radius: 8px;
+    margin-left: 525px;
+    margin-top: 80px;
+}
+
+.modalRegistrate2 button{
+    margin-bottom: 250px;
+}
+
+.bt-blue{
+    color: white;
+    background-color: #3370FF;
+    border: 1.3px solid #3370FF;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    margin: 15px;
+    padding: 10px;
+}

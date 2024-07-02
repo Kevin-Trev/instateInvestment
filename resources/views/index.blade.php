@@ -18,13 +18,16 @@
                 <form id="ingresarForm">
                     @csrf
                     <span data-dismiss="modal" class="cerrarModal">&times;</span><br>
-                    <h2 id="iniciarModalLabel">Iniciar sesión</h2>
-                    <label for="inputCorreo">Correo electrónico</label>
+                    <h2>Iniciar sesión</h2>
+                    <div class="form-group">
+                        <label for="inputCorreo">Correo electrónico</label>
+                        <input type="text" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
+                    </div>
                     <br>
-                    <input type="text" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
-                    <br>
-                    <label for="inputContraseña">Contraseña</label>
-                    <input type="password" placeholder= "Ingresa tu contraseña" id="inputContraseña">
+                    <div class="form-control">
+                        <label for="inputContraseña">Contraseña</label>
+                        <input type="password" placeholder= "Ingresa tu contraseña" id="inputContraseña">
+                    </div>
                     <br>
                     <button class="bt-blue">Ingresar</button>
                     <p class="line-text">─────────  o también puedes  ─────────</p>

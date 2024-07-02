@@ -571,54 +571,6 @@ form .bt-google{
     transition: .3s;
 }
 
-.modalIniciarSesion{
-    background-color: #FFFFFF;
-    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
-    width: 30%;
-    height: 50%;
-    border-radius: 8px;
-    margin-left: 525px;
-    margin-top: 80px;
-}
-
-.modalIniciarSesion .footer{
-    padding-bottom: 50px;
-}
-
-.modalIniciarSesion h2{
-    font-size: 25px;
-    margin-bottom: 10px;
-}
-
-.modalRegistrate{
-    background-color: #FFFFFF;
-    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
-    width: 30%;
-    height: 50%;
-    border-radius: 8px;
-    margin-left: 525px;
-    margin-top: 80px;
-}
-
 form{
     text-align: center;
-}
-
-.small{
-    font-size: 9px;
-    padding-bottom: 20px;
-    color: #646E71;
-}
-
-.small a{
-    font-size: 9px;
-    color: #3370FF;
-}
-
-.small p{
-    font-size: 9px;
-}
-
-.modalRegistrate button{
-
 }
