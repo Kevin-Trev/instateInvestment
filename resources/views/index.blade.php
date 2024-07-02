@@ -60,6 +60,7 @@
     </div>
 
     {{-- FIN DE MODALES --}}
+    
     <div id="seccion1" class="">
         <header class="header">
             <div class="logo">
