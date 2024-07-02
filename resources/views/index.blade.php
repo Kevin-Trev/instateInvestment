@@ -10,13 +10,15 @@
 </head>
 <body>
 
-    <div class="modal fade" id="ingresarModal" tabindex="-1" aria-labelledby="ingresarModalLabel" aria-hidden="true" style="margin-top: 50px">
+    {{-- MODALES --}}
+
+    <div class="modal fade" id="iniciarModal" tabindex="-1" aria-labelledby="iniciarModalLabel" aria-hidden="true" style="margin-top: 50px">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form id="ingresarForm">
                     @csrf
                     <span data-dismiss="modal" class="cerrarModal">&times;</span><br>
-                    <h2 id="ingresarModalLabel">Iniciar sesión</h2>
+                    <h2 id="iniciarModalLabel">Iniciar sesión</h2>
                     <label for="inputCorreo">Correo electrónico</label>
                     <br>
                     <input type="text" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
@@ -35,14 +37,37 @@
         </div>
     </div>
 
+    <div class="modal fade" id="ingresarModal" tabindex="-1" aria-labelledby="ingresarModalLabel" aria-hidden="true" style="margin-top: 50px">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="ingresarForm">
+                    @csrf
+                    <span data-dismiss="modal" class="cerrarModal">&times;</span><br>
+                    <h2 id="ingresarModalLabel">Regístrate</h2>
+                    <label for="inputCorreo">Correo electrónico</label>
+                    <br>
+                    <input type="text" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
+                    <button class="bt-blue">Regístrate</button>
+                    <p class="line-text">─────────  o también puedes  ─────────</p>
+                    <button class="bt-google"><img src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
+                    <div class="footer">
+                        <a href="/login">Inicia sesión</a>
+                        <p>Si ya tienes una cuenta</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{-- FIN DE MODALES --}}
     <div id="seccion1" class="">
         <header class="header">
             <div class="logo">
                 <img src="{{asset('/Imagenes/LOGO2.png')}}">
             </div>
                 <div class="button-container">
-                    <button type="button" data-toggle="modal" data-target="#ingresarModal" class="bt-white">Ingresar</button>
-                    <a href="#"><button class="bt-blue">Comienza a vender ahora</button></a>
+                    <button class="bt-white" type="button" data-toggle="modal" data-target="#ingresarModal">Ingresar</button>
+                    <button class="bt-blue" type="button" data-toggle="modal" data-target="#iniciarModal">Comienza a vender ahora</button>
                 </div>
         </header>
         <div class="clearfix"></div>
