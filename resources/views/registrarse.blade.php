@@ -6,15 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Registrarse</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="icon" href="{{asset('Imagenes/iconito.png')}}" type="image/x-icon">
 </head>
 <body>
     <div class="modalRegistrate">
-        <form id="ingresarForm">
+        <form id="registrateForm">
             @csrf
             <h2 id="iniciarModalLabel">Regístrate</h2>
             <label for="inputCorreo">Correo electrónico</label>
             <br>
-            <input type="text" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
+            <input type="text" placeholder="Ingresa tu correo electrónico" id="inputCorreo" name="email">
             <br>
             <button type="submit" class="bt-blue">Registrate</button>
             <p class="line-text">─────────  o también puedes  ─────────</p>
