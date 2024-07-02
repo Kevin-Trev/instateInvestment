@@ -8,27 +8,26 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-
-    <div class="modalIniciarSesion">
+    <div class="modalRegistrate">
         <form id="ingresarForm">
             @csrf
-            <h2 id="iniciarModalLabel">Iniciar sesión</h2>
+            <h2 id="iniciarModalLabel">Regístrate</h2>
             <label for="inputCorreo">Correo electrónico</label>
             <br>
             <input type="text" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
             <br>
-            <label for="inputContraseña">Contraseña</label>
-            <br>
-            <input type="password" placeholder= "Ingresa tu contraseña" id="inputContraseña">
-            <button class="bt-blue">Ingresar</button>
+            <button type="submit" class="bt-blue">Registrate</button>
             <p class="line-text">─────────  o también puedes  ─────────</p>
             <button class="bt-google"><img src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
             <div class="footer">
-                <a href="/registrarse">Registrate</a>
-                <p>Si aún no tienes cuenta</p>
+                <a href="/login">Inicia sesión</a>
+                <p>Si ya tienes una cuenta</p>
+            </div>
+            <div class="small">
+                <p>Al continuar estás aceptando los</p>
+                <a href="">Términos y condiciones</a> y <a href="">Aviso de privacidad</a>
             </div>
         </form>
     </div>
-    
 </body>
 </html>

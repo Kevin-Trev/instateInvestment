@@ -12,7 +12,7 @@
 
     {{-- MODALES --}}
 
-    <div class="modal fade" id="iniciarModal" tabindex="-1" aria-labelledby="iniciarModalLabel" aria-hidden="true" style="margin-top: 50px">
+    <div class="modal fade" id="iniciarModal" tabindex="-1" aria-labelledby="iniciarModalLabel" aria-hidden="true" style="margin-top: 50px; border-radius: 8px;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form id="ingresarForm">
@@ -22,37 +22,16 @@
                     <label for="inputCorreo">Correo electrónico</label>
                     <br>
                     <input type="text" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
-                    <label for="inputContraseña">Contraseña</label>
                     <br>
+                    <label for="inputContraseña">Contraseña</label>
                     <input type="password" placeholder= "Ingresa tu contraseña" id="inputContraseña">
+                    <br>
                     <button class="bt-blue">Ingresar</button>
                     <p class="line-text">─────────  o también puedes  ─────────</p>
                     <button class="bt-google"><img src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
                     <div class="footer">
-                        <a href="#">Registrate</a>
+                        <a href="/registrarse">Registrate</a>
                         <p>Si aún no tienes cuenta</p>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="ingresarModal" tabindex="-1" aria-labelledby="ingresarModalLabel" aria-hidden="true" style="margin-top: 50px">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form id="ingresarForm">
-                    @csrf
-                    <span data-dismiss="modal" class="cerrarModal">&times;</span><br>
-                    <h2 id="ingresarModalLabel">Regístrate</h2>
-                    <label for="inputCorreo">Correo electrónico</label>
-                    <br>
-                    <input type="text" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
-                    <button class="bt-blue">Regístrate</button>
-                    <p class="line-text">─────────  o también puedes  ─────────</p>
-                    <button class="bt-google"><img src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
-                    <div class="footer">
-                        <a href="/login">Inicia sesión</a>
-                        <p>Si ya tienes una cuenta</p>
                     </div>
                 </form>
             </div>
@@ -67,7 +46,7 @@
                 <img src="{{asset('/Imagenes/LOGO2.png')}}">
             </div>
                 <div class="button-container">
-                    <button class="bt-white" type="button" data-toggle="modal" data-target="#ingresarModal">Ingresar</button>
+                    <button class="bt-white" onclick="location.href='/registrarse'">Ingresar</button>
                     <button class="bt-blue" type="button" data-toggle="modal" data-target="#iniciarModal">Comienza a vender ahora</button>
                 </div>
         </header>
