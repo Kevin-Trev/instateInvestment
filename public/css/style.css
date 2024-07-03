@@ -221,7 +221,7 @@ input[type="radio"]:checked + label{
 }
 
 html{
-    overflow-x: hidden;
+    overflow-x: idden;
 }
 
 body {
@@ -451,24 +451,25 @@ ul span{
 #page-footer {
     background-color: #004CFF;
     position: relative;
+    padding-bottom: 15px;
 }
 
 .container-info{
-    margin-top: 80px;
-    padding-bottom: 50px;
+    margin-top: 20px;
     display: inline-block;
     margin-left: 120px;
     color: #FFFFFF;
+    margin-bottom: 50px;
 }
 
 .container-info h2{
     font-size: 28px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .container-info hr{
     margin-right: 56%;
-    border: 2px solid #FFFFFF;
+    border: 1.5px solid #FFFFFF;
 }
 
 #nosequesea{
@@ -482,17 +483,23 @@ ul span{
 .container-info img{
     width: 200px;
     height: 200px;
-    transform: translateY(-150px);
+    transform: translateY(-5px);
     position: absolute;
 }
 
 .container-info p{
-    padding-top: 37px;
+    margin-top: 150px;
+    transform: translateY(50px);
 }
+
+.container-info a{
+    color: #FFFFFF;
+}
+
 
 form h2{
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
 }
 
 form label{
@@ -573,4 +580,15 @@ form .bt-google{
 
 form{
     text-align: center;
+}
+
+.container-social{
+    width: 30px;
+    display: inline-block;
+}
+
+.container-social img{
+    width: 23px;
+    height: 23px;
+    margin-right: 10px;
 }

@@ -174,25 +174,38 @@
             <img src="{{ asset('/Imagenes/LOGO.png') }}">
             <p>Instate es una marga registrada por <br>Instate Investments S.A de C.V. en <br>alianza con Design Construcciones.</p>
         </div>
+
         <div class="container-info">
             <h2>Contacto</h2>
             <hr>
-            <b>
-                <p>MINA 330 INT. 5 COL.CENTRO <br>MONTERREY, NUEVO LEÓN. MÉXICO <br>812-433-1672</p><br><br>
-            </b>
-            <div class="container-social">
+            <b>MINA 330 INT. 5 COL.CENTRO <br>MONTERREY, NUEVO LEÓN. MÉXICO <br>812-433-1672</b>
 
+            <div class="container-social">
+                <a href="">
+                    <img src="{{ asset('Imagenes/iconoFacebook.png')}}">
+                </a>
             </div>
+            <div class="container-social">
+                <a href="">
+                    <img src="{{ asset('Imagenes/iconoTwitter.png')}}">
+                </a>
+            </div>
+            <div class="container-social">
+                <a href="">
+                    <img src="{{ asset('Imagenes/iconoInstagram.png')}}">
+                </a>
+            </div>
+
         </div>
         <div class="container-info">
             <h2>Legal</h2>
             <hr>
-            <p>Aviso legal <br><br>Politica de privacidad <br><br>Politica de cookies</p>
+            <a href="/legal">Aviso legal</a><br><br><a href="/privacidad">Politica de privacidad </a><br><br><a href="/privacidad">Politica de cookies</a>
         </div>
         <div class="container-info">
             <h2>Sobre Instate</h2>
             <hr>
-            <p>Nosotros <br><br>Misión <br><br>Visión</p>
+            <a href="/nosotros">Nosotros</a><br><br><a href="/mision">Misión</a> <br><br><a href="/vision">Visión</a>
         </div>
     </footer>
 

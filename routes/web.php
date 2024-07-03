@@ -18,9 +18,17 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function () {
-    return view('iniciar-sesión');
+    return view('Login-Register.iniciar-sesión');
 });
 
 Route::get('/registrarse', function(){
-    return view('registrarse');
+    return view('Login-Register.registrarse');
+});
+
+Route::get('/privacidad', function(){
+    return view('info.politicaDePrivacidad');
+});
+
+Route::get('/legal', function(){
+    return view('info.avisoLegal');
 });
