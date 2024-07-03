@@ -195,7 +195,7 @@
                     <img src="{{ asset('Imagenes/iconoInstagram.png')}}">
                 </a>
             </div>
-
+            
         </div>
         <div class="container-info">
             <h2>Legal</h2>

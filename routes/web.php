@@ -22,7 +22,7 @@ Route::get('/login', function () {
 });
 
 Route::get('/registrarse', function(){
-    return view('Login-Register.registrarse');
+    return view('Login-Register.registrarse4');
 });
 
 Route::get('/privacidad', function(){

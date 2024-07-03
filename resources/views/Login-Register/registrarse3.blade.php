@@ -2,8 +2,12 @@
 
 @section('title', 'Crear cuenta')
 
+@section('style')
+<link rel="stylesheet" href="{{ asset('css/styleDialogs.css') }}">    
+@endsection
+
 @section('body')
-    
+
 <div class="modalRegistrate2">
     <form id="nuevoRegistrateForm">
         @csrf
