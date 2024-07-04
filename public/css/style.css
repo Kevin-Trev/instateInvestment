@@ -1,6 +1,5 @@
 *{
-    font-size: 12px;
-    font-family: 'Source Sans Pro', 'Inter';
+    font-family: 'Roboto';
     margin: 0;
     padding: 0;
 }
@@ -32,28 +31,6 @@ margin-left: 3%;
     z-index: -1;
 }
 
-.bt-white{
-    color: #3370FF;
-    background-color: white;
-    border: 1.3px solid #3370FF;
-    border-radius: 8px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    margin: 15px;
-    padding: 10px;
-}
-
-.bt-blue{
-    color: white;
-    background-color: #3370FF;
-    border: 1.3px solid #3370FF;
-    border-radius: 8px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    margin: 15px;
-    padding: 10px;
-}
-
 .button-container{
     float: right;
     margin: 10px 20px;
@@ -70,7 +47,58 @@ margin-left: 3%;
 .clearfix{
     clear:both;
 }
+.bt-blue {
+    background-color: #3370FF;
+    color: #FFFFFF;
+    padding: 8px 100px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+.bt-blue:hover{
+    background-color: #002E99;
+    transition: .5s;
+}
+.bt-white{
+color: #3370FF;
+background-color: white;
+border: 1.3px solid #3370FF;
+border-radius: 8px;
+box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+cursor: pointer;
+margin: 15px;
+padding: 10px;
+}
 
+.bt-cian{
+color: #3370FF;
+background-color: #01FFFF;
+border:none;
+border-radius: 8px;
+cursor: pointer;
+transition: 0.3s;
+border-top: 2px solid rgba(255,255, 255, 0.7);
+font-size: 15px;
+}
+.bt-cian:hover{
+box-shadow: 0 0 20px rgb(3, 162, 255);
+}
+.bt-google{
+border: none;
+color: #646E71;
+background-color: #FFFFFF;
+box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+cursor: pointer;
+padding: 8px;
+border-radius: 8px;
+text-align: center;
+}
+.bt-google img{
+width: 20px;
+height: 20px;
+margin: 5px;
+}
 .filtro .bt-blue{
     padding: 3px;
 }
@@ -100,6 +128,10 @@ input[type="radio"]:checked + label{
     margin-left: 10%;
     border-radius: 5px;
     margin-right: 79%;
+}
+
+.button-container .bt-blue{
+    padding: 10px 50px;
 }
 
 .input-groups{
@@ -197,17 +229,6 @@ input[type="radio"]:checked + label{
     position: absolute;
 }
 
-.bt-cian{
-    color: #3370FF;
-    background-color: #01FFFF;
-    border:none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-    border-top: 2px solid rgba(255,255, 255, 0.7);
-    font-size: 15px;
-}
-
 #seccion2 .bt-cian{
     padding: 10px;
     margin-top: 200px;
@@ -216,9 +237,7 @@ input[type="radio"]:checked + label{
     position: absolute;
 }
 
-.bt-cian:hover{
-    box-shadow: 0 0 20px rgb(3, 162, 255);
-}
+
 
 html{
     overflow-x: idden;
@@ -531,27 +550,12 @@ form .bt-blue{
     margin: 10px 0 20px 0;
 }
 
-.bt-google{
-    border: none;
-    color: #646E71;
-    background-color: #FFFFFF;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 8px;
-    text-align: center;
-}
-
 form .bt-google{
     width: 300px;
     margin-bottom: 80px;
 }
 
-.bt-google img{
-    width: 20px;
-    height: 20px;
-    margin: 5px;
-}
+
 
 .footer{
     text-align: center;

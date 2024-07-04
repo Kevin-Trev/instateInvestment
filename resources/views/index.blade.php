@@ -10,7 +10,7 @@
 
     {{-- MODALES --}}
 
-    <div class="modal fade" id="iniciarModal" tabindex="-1" aria-labelledby="iniciarModalLabel" aria-hidden="true" style="margin-top: 50px; border-radius: 8px;">
+    <div class="modal fade" id="iniciarModal" tabindex="-1" aria-labelledby="iniciarModalLabel" aria-hidden="true" style="margin-top: 10px; border-radius: 8px;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form id="ingresarForm">
