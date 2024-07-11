@@ -3,7 +3,7 @@
 @section('title', 'Instate Investment')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/styleDialogs.css') }}"> 
+
     <link rel="stylesheet" href="{{ asset('css/styleInfo.css')}}">   
 @endsection
 

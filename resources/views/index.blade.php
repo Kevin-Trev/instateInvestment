@@ -41,7 +41,7 @@
 
     {{-- FIN DE MODALES --}}
     
-    <div id="seccion1" class="">
+    <div id="seccion1">
         <header class="header">
             <div class="logo">
                 <img src="{{asset('/Imagenes/LOGO2.png')}}">
