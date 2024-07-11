@@ -32,3 +32,7 @@ Route::get('/privacidad', function(){
 Route::get('/legal', function(){
     return view('info.avisoLegal');
 });
+
+Route::get('/perfil', function () {
+    return view('perfil');
+});
