@@ -12,4 +12,9 @@ class Propiedad_Controller extends Controller
         $propiedades = PROPIEDAD::All();
         return response()->json($propiedades);
     }
+
+    public function propiedad($id){
+        $propiedad = PROPIEDAD::find($id);
+        return response()->json($propiedad);
+    }
 }
