@@ -52,7 +52,7 @@
                   <h5 class="card-title">Foto de perfil</h5>
                 </div>
                 <div class="col-md-3 text-right">
-                  <img src="{{asset('Imagenes/LOGO2.png')}}"alt="Foto de perfil" class="profile-img">
+                  <img src="{{asset('Imagenes/logo32.png')}}"alt="Foto de perfil" class="profile-img">
                 </div>
               </div>
               <div class="row">
