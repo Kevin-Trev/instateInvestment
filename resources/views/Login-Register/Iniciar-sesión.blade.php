@@ -21,7 +21,7 @@
             <input type="password" placeholder= "Ingresa tu contraseña" id="inputContraseña" name="password">
             <button class="bt-blue">Ingresar</button>
             <p class="line-text">─────────  o también puedes  ─────────</p>
-            <button class="bt-google"><img src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
+            <button class="bt-google"><iphpmg src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
             <div class="footer">
                 <a href="/registrarse">Registrate</a>
                 <p>Si aún no tienes cuenta</p>

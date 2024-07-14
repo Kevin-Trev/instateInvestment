@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\viewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +18,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/login', function () {
-    return view('Login-Register.iniciar-sesión');
-});
+Route::get('/registrarse', [viewsController::class, 'registrar'])->name('registrarse');
 
-Route::get('/registrarse', function(){
-    return view('paginaFiltro');
-});
 
 Route::get('/privacidad', function(){
     return view('info.politicaDePrivacidad');
