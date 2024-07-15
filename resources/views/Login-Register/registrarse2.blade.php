@@ -75,7 +75,7 @@
             <button type="submit" class="bt-blue">Registrate</button>
         </div>
         <div class="terms">
-            <p>Al continuar estás aceptando los <br><a href="">Términos y condiciones</a> y <a href="">Aviso de privacidad</a></p>
+            <p>Al continuar estás aceptando los <br><a href="{{route('terminosCondiciones')}}">Términos y condiciones</a> y <a href="{{route('avisoPrivacidad')}}">Aviso de privacidad</a></p>
         </div>
     </form>
 </div>

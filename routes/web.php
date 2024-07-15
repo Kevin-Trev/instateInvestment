@@ -21,5 +21,8 @@ Route::get('/', function () {
 Route::get('/registro', [viewsController::class, 'nuevoEmail'])->name('nuevoEmail');
 Route::get('/registro/contraseña', [viewsController::class, 'nuevoContraseña'])->name('nuevoContraseña');
 Route::get('/registro/datos', [viewsController::class, 'nuevoDatos'])->name('nuevoDatos');
+Route::get('/registro/finalizado', [viewsController::class, 'finalizar'])->name('finalizar');
+Route::get('/terminos', [viewsController::class, 'terminosCondiciones'])->name('terminosCondiciones');
+Route::get('/avisoPrivacidad', [viewsController::class, 'avisoPrivacidad'])->name('avisoPrivacidad');
 
 Route::get('/nuevoRegistro', [viewsController::class, 'contraseña']);

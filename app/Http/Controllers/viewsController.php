@@ -17,4 +17,16 @@ class viewsController extends Controller
     public function nuevoDatos(){
         return view('Login-Register.registrarse3');
     }
+
+    public function finalizar(){
+        return view('Login-Register.registrarse4');
+    }
+    
+    public function avisoPrivacidad(){
+        return view('info.avisoPrivacidad');
+    }
+
+    public function terminosCondiciones(){
+        return view('info.terminosCondiciones');
+    }
 }

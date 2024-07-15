@@ -4,9 +4,12 @@
 
 @section('style')
 <style> 
+        body{
+            overflow-y: hidden;
+        }
        .container {
             max-width: 500px;
-            margin: 40px auto;
+            margin: 25px auto;
             padding: 30px;
             background-color: #fff;
             border: 1px solid #ddd;
@@ -25,7 +28,7 @@
         }
         
        .form-group input[type="text"],.form-group input[type="tel"],.form-group select {
-            width: 80%;
+            width: 86%;
             padding: 6px;
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -39,6 +42,16 @@
         h2{
             font-size: 30px;
             text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group button[type="submit"]{
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background-color: #004CFF;
+            border: none;
+            padding: 10px;
+            color: #FFFFFF;
+            width: 86%;
         }
 </style> 
 @endsection
@@ -46,8 +59,9 @@
 @section('body')
     
 <div class="container">
-    <form>
+    <form action="{{route('finalizar')}}" method="GET">
         @csrf
+        <h2>Regístrate</h2>
         <div class="form-group">
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre" name="nombre">
@@ -73,8 +87,8 @@
         </div>
         <div class="form-group">
             <button type="submit" class="btn-blue">Finalizar</button>
-            <p class="terms">Al continuar, estas aceptando los <br><a href="#">Términos y condiciones</a> y el <a href="#">Aviso de Privacidad</a>.</p>
         </div>
+        <p class="terms">Al continuar, estas aceptando los <br><a href="{{route('terminosCondiciones')}}">Términos y condiciones</a> y el <a href="{{route('avisoPrivacidad')}}">Aviso de Privacidad</a>.</p>
     </form>
 </div>
 
