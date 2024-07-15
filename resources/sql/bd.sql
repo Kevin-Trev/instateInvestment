@@ -4,7 +4,7 @@ USE INTEGRADOR;
 
 CREATE TABLE Datos_Usuario
 (
-  ID_U INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro*/
+  ID_U INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro */
   user INT NOT NULL, /* LLAVE FORANEA DE Users (id) (TABLA DEFAULT DE LARAVEL)*/
   Nombre NVARCHAR(45) NOT NULL,
   Apellido NVARCHAR(45) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE Datos_Usuario
 
 CREATE TABLE Suscripcion_VIP
 (
-   ID_S INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro*/
+   ID_S INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro */
    Costo DOUBLE NOT NULL,
    Fecha_Inicio DATE NOT NULL,
    Fecha_Fin DATE NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE Servicio
 
 CREATE TABLE Propiedad
 (
-  ID_P INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro*/
+  ID_P INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro */
   Precio FLOAT,
   Recamaras INT, /* de string a entero */
   Disponibilidad NVARCHAR(45),
@@ -115,7 +115,7 @@ CREATE TABLE Agenda_Visita
 
 CREATE TABLE Cotizacion
 (
-  ID_C INT PRIMARY KEY NOT NULL,
+  ID_C INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro */
   Monto DOUBLE NOT NULL,
   Periodo NVARCHAR(45),
   Fecha_Inicio VARCHAR(45),
