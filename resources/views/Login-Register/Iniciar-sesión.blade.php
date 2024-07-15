@@ -9,7 +9,7 @@
 @section('body')
 
     <div class="modalIniciarSesion">
-        <form id="iniciarForm">
+        <form action="/login" method="POST" id="iniciarForm">
             @csrf
             <h2>Iniciar sesión</h2>
             <label for="inputCorreo">Correo electrónico</label>
@@ -19,7 +19,7 @@
             <label for="inputContraseña">Contraseña</label>
             <br>
             <input type="password" placeholder= "Ingresa tu contraseña" id="inputContraseña" name="password">
-            <button class="bt-blue">Ingresar</button>
+            <button type="submit" class="bt-blue">Ingresar</button>
             <p class="line-text">─────────  o también puedes  ─────────</p>
             <button class="bt-google"><iphpmg src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
             <div class="footer">

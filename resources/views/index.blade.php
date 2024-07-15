@@ -31,7 +31,7 @@
                     <p class="line-text">─────────  o también puedes  ─────────</p>
                     <button class="bt-google"><img src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
                     <div class="footer">
-                        <a href="/registrarse">Registrate</a>
+                        <a href="/registro">Registrate</a>
                         <p>Si aún no tienes cuenta</p>
                     </div>
                 </form>
@@ -44,7 +44,9 @@
     <div id="seccion1">
         <header class="header">
             <div class="logo">
-                <img src="{{asset('/Imagenes/LOGO2.png')}}">
+                <a href="">
+                    <img src="{{asset('/Imagenes/LOGO2.png')}}">
+                </a>
             </div>
                 <div class="button-container">
                     <a href="{{route('nuevoEmail')}}"><button class="bt-white">Ingresar</button></a>

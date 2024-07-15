@@ -99,7 +99,7 @@
             <button class="bt-google"><img src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
         </div>
         <footer>
-            <a href="/login">Inicia sesión</a>
+            <a href="/view/login">Inicia sesión</a>
             <p>Si ya tienes una cuenta</p>
         </footer>
         <div class="terms">
