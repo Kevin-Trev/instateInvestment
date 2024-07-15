@@ -2,19 +2,22 @@ CREATE DATABASE INTEGRADOR;
 
 USE INTEGRADOR;
 
-CREATE TABLE Usuario
+CREATE TABLE Datos_Usuario
 (
-  ID_U INT PRIMARY KEY NOT NULL,
+  ID_U INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro*/
+  user INT NOT NULL, /* LLAVE FORANEA DE Users (id) (TABLA DEFAULT DE LARAVEL)*/
   Nombre NVARCHAR(45) NOT NULL,
   Apellido NVARCHAR(45) NOT NULL,
   Correo NVARCHAR(45) NOT NULL,
   Telefono VARCHAR(10) NOT NULL,
   Calificacion FLOAT NOT NULL
+  CONSTRAINT FK_User_Datos_Usuario FOREIGN KEY (users)
+  REFERENCES User (id)                              
 );
 
 CREATE TABLE Suscripcion_VIP
 (
-   ID_S INT PRIMARY KEY NOT NULL,
+   ID_S INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro*/
    Costo DOUBLE NOT NULL,
    Fecha_Inicio DATE NOT NULL,
    Fecha_Fin DATE NOT NULL,
@@ -43,14 +46,14 @@ CREATE TABLE Servicio
 
 CREATE TABLE Propiedad
 (
-  ID_P INT PRIMARY KEY NOT NULL,
+  ID_P INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro*/
   Precio FLOAT,
-  Recamaras NVARCHAR(100),
+  Recamaras INT, /* de string a entero */
   Disponibilidad NVARCHAR(45),
   Direccion VARCHAR(45),
   Area VARCHAR(45),
-  Frente VARCHAR(45),
-  Fondo VARCHAR(45),
+  Frente FLOAT, /* de String a Double */
+  Fondo FLOAT, /* de String a Double */
   Rentable BIT NOT NULL,
   Vendible BIT NOT NULL,
   Usuario_Id INT NOT NULL,
@@ -62,6 +65,15 @@ CREATE TABLE Propiedad
   Verificacion_id INT NOT NULL,
   CONSTRAINT FK_Verificacion FOREIGN KEY (Verificacion_id)
   REFERENCES Verificacion (ID_V)
+);
+
+CREATE TABLE IMAGENES_PROPIEDAD  /* Agregue tabla de imagenes para la propiedad */
+(
+  reg INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  propiedad_id INT NOT NULL,
+  src_image TEXT NULL,
+  CONSTRAINT FK_IMAGENES_PROPIEDAD FOREIGN KEY (propiedad_id)
+  REFERENCES Propiedad(ID_P)
 );
 
 CREATE TABLE Propiedad_Servicio
@@ -77,7 +89,7 @@ CREATE TABLE Propiedad_Servicio
 
 CREATE TABLE Comentario
 (
-  ID_COM INT PRIMARY KEY NOT NULL,
+  ID_COM INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro */
   Comentario NVARCHAR(100) NOT NULL,
   Fecha DATE NOT NULL,
   Usuario_id INT NOT NULL,
@@ -90,7 +102,7 @@ CREATE TABLE Comentario
 
 CREATE TABLE Agenda_Visita
 (
-  ID_AV INT PRIMARY KEY NOT NULL,
+  ID_AV INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro */
   Fecha DATE NOT NULL,
   Hora DOUBLE NOT NULL,
   Usuario_id INT NOT NULL,
