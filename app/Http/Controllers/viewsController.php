@@ -33,4 +33,8 @@ class viewsController extends Controller
     public function inicio(){
         return view('paginaFiltro');
     }
+
+    public function login(){
+        return view('Login-Register.Iniciar-sesión');
+    }
 }

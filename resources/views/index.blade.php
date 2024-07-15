@@ -31,7 +31,7 @@
                     <p class="line-text">─────────  o también puedes  ─────────</p>
                     <button class="bt-google"><img src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
                     <div class="footer">
-                        <a href="/registrarse">Registrate</a>
+                        <a href="/registro">Registrate</a>
                         <p>Si aún no tienes cuenta</p>
                     </div>
                 </form>
