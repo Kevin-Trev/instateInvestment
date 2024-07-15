@@ -29,4 +29,8 @@ class viewsController extends Controller
     public function terminosCondiciones(){
         return view('info.terminosCondiciones');
     }
+
+    public function inicio(){
+        return view('paginaFiltro');
+    }
 }

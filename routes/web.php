@@ -24,5 +24,6 @@ Route::get('/registro/datos', [viewsController::class, 'nuevoDatos'])->name('nue
 Route::get('/registro/finalizado', [viewsController::class, 'finalizar'])->name('finalizar');
 Route::get('/terminos', [viewsController::class, 'terminosCondiciones'])->name('terminosCondiciones');
 Route::get('/avisoPrivacidad', [viewsController::class, 'avisoPrivacidad'])->name('avisoPrivacidad');
+Route::get('/inicio', [viewsController::class, 'inicio'])->name('inicio');
 
 Route::get('/nuevoRegistro', [viewsController::class, 'contraseña']);

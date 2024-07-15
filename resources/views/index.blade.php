@@ -44,7 +44,9 @@
     <div id="seccion1">
         <header class="header">
             <div class="logo">
-                <img src="{{asset('/Imagenes/LOGO2.png')}}">
+                <a href="">
+                    <img src="{{asset('/Imagenes/LOGO2.png')}}">
+                </a>
             </div>
                 <div class="button-container">
                     <a href="{{route('nuevoEmail')}}"><button class="bt-white">Ingresar</button></a>
