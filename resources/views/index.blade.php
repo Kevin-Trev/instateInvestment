@@ -47,7 +47,7 @@
                 <img src="{{asset('/Imagenes/LOGO2.png')}}">
             </div>
                 <div class="button-container">
-                    <button class="bt-white" onclick="{{route('registrarse')}}">Ingresar</button>
+                    <a href="{{route('nuevoEmail')}}"><button class="bt-white">Ingresar</button></a>
                     <button class="bt-blue" type="button" data-toggle="modal" data-target="#iniciarModal">Comienza a vender ahora</button>
                 </div>
         </header>

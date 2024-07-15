@@ -18,17 +18,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/registrarse', [viewsController::class, 'registrar'])->name('registrarse');
+Route::get('/registro', [viewsController::class, 'nuevoEmail'])->name('nuevoEmail');
+Route::get('/registro/contraseña', [viewsController::class, 'nuevoContraseña'])->name('nuevoContraseña');
+Route::get('/registro/datos', [viewsController::class, 'nuevoDatos'])->name('nuevoDatos');
 
-
-Route::get('/privacidad', function(){
-    return view('info.politicaDePrivacidad');
-});
-
-Route::get('/legal', function(){
-    return view('info.avisoLegal');
-});
-
-Route::get('/perfil', function () {
-    return view('perfil');
-});
+Route::get('/nuevoRegistro', [viewsController::class, 'contraseña']);
