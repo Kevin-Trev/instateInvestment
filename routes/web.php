@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/filtros',[viewsController::class, 'filtros'])->name('filtro');
 Route::get('/view/login',[viewsController::class, 'login'])->name('login');
 Route::get('/registro', [viewsController::class, 'nuevoEmail'])->name('nuevoEmail');
 Route::get('/registro/contraseña', [viewsController::class, 'nuevoContraseña'])->name('nuevoContraseña');

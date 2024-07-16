@@ -142,7 +142,7 @@
           <div class="filter-group">
             <label class="filter-label" for="bedrooms">Recámaras:</label>
             <select class="filter-select" id="bedrooms">
-              <option value="todo">Todo</option>
+              <option hidden value="todo">-#-</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
