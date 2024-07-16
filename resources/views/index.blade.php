@@ -15,24 +15,26 @@
             <div class="modal-content">
                 <form id="ingresarForm">
                     @csrf
-                    <span data-dismiss="modal" class="cerrarModal">&times;</span><br>
-                    <h2>Iniciar sesión</h2>
-                    <div class="form-group">
-                        <label for="inputCorreo">Correo electrónico</label>
-                        <input type="text" class="form-control" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
-                    </div>
-                    <br>
-                    <div class="form-groupl">
-                        <label for="inputContraseña">Contraseña</label>
-                        <input type="password" class="form-control" placeholder= "Ingresa tu contraseña" id="inputContraseña">
-                    </div>
-                    <br>
-                    <button class="bt-blue">Ingresar</button>
-                    <p class="line-text">─────────  o también puedes  ─────────</p>
-                    <button class="bt-google"><img src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
-                    <div class="footer">
-                        <a href="/registro">Registrate</a>
-                        <p>Si aún no tienes cuenta</p>
+                    <div class="container-md" style="max-width: 400px">
+                        <span data-dismiss="modal" class="cerrarModal">&times;</span><br>
+                        <h2>Iniciar sesión</h2>
+                        <div class="form-group">
+                            <label for="inputCorreo">Correo electrónico</label>
+                            <input type="text" class="form-control" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
+                        </div>
+                        <br>
+                        <div class="form-groupl">
+                            <label for="inputContraseña">Contraseña</label>
+                            <input type="password" class="form-control" placeholder= "Ingresa tu contraseña" id="inputContraseña">
+                        </div>
+                        <br>
+                        <button class="bt-blue">Ingresar</button>
+                        <p class="line-text">─────────  o también puedes  ─────────</p>
+                        <button class="bt-google"><img src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
+                        <div class="footer">
+                            <a href="/registro">Registrate</a>
+                            <p>Si aún no tienes cuenta</p>
+                        </div>    
                     </div>
                 </form>
             </div>
