@@ -51,8 +51,13 @@
                 </a>
             </div>
                 <div class="button-container">
-                    <a href="{{route('nuevoEmail')}}"><button class="bt-white">Ingresar</button></a>
-                    <button class="bt-blue" type="button" data-toggle="modal" data-target="#iniciarModal">Comienza a vender ahora</button>
+                    @guest
+                        <a href="{{route('nuevoEmail')}}"><button class="bt-white">Ingresar</button></a>
+                        <button class="bt-blue" type="button" data-toggle="modal" data-target="#iniciarModal">Comienza a vender ahora</button>
+                    @endguest
+                    @auth
+                        <button class="btn btn-secondary"> USER_PRUEBA</button>
+                    @endauth
                 </div>
         </header>
         <div class="clearfix"></div>
