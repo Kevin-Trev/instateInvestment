@@ -1,6 +1,6 @@
-CREATE DATABASE INTEGRADOR;
+CREATE DATABASE instate_investment;
 
-USE INTEGRADOR;
+USE instate_investment;
 
 CREATE TABLE Datos_Usuario
 (
