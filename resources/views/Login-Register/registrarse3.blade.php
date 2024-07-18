@@ -67,6 +67,10 @@
             <input type="text" id="nombre" name="nombre">
         </div>
         <div class="form-group">
+            <label for="nombre">Apellido</label>
+            <input type="text" id="apellido" name="apellido">
+        </div>
+        <div class="form-group">
             <label for="tipo_usuario">Tipo de usuario</label>
             <select id="tipo_usuario" name="tipo_usuario">
                 <option value="vendedor">Vendedor</option>
@@ -75,7 +79,7 @@
         </div>
         <div class="form-group">
             <label for="fecha_nacimiento">Fecha de nacimiento</label>
-            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
+            <input class="form-control" style="width: 333.67px" type="date" id="fecha_nacimiento" name="fecha_nacimiento">
         </div>
         <div class="form-group">
             <label for="ciudad_residencia">Ciudad de residencia</label>
