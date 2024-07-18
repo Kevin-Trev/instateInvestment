@@ -13,22 +13,22 @@
     <div class="modal fade" id="iniciarModal" tabindex="-1" aria-labelledby="iniciarModalLabel" aria-hidden="true" style="margin-top: 10px; border-radius: 8px;">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="ingresarForm">
+                <form action="/login" method="POST" id="ingresarForm">
                     @csrf
                     <div class="container-md" style="max-width: 400px">
                         <span data-dismiss="modal" class="cerrarModal">&times;</span><br>
                         <h2>Iniciar sesión</h2>
                         <div class="form-group">
                             <label for="inputCorreo">Correo electrónico</label>
-                            <input type="text" class="form-control" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
+                            <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
                         </div>
                         <br>
                         <div class="form-groupl">
                             <label for="inputContraseña">Contraseña</label>
-                            <input type="password" class="form-control" placeholder= "Ingresa tu contraseña" id="inputContraseña">
+                            <input type="password" name="password" class="form-control" placeholder= "Ingresa tu contraseña" id="inputContraseña">
                         </div>
                         <br>
-                        <button class="bt-blue">Ingresar</button>
+                        <button class="bt-blue" type="submit">Ingresar</button>
                         <p class="line-text">─────────  o también puedes  ─────────</p>
                         <button class="bt-google"><img src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
                         <div class="footer">
@@ -53,10 +53,24 @@
                 <div class="button-container">
                     @guest
                         <a href="{{route('nuevoEmail')}}"><button class="bt-white">Ingresar</button></a>
-                        <button class="bt-blue" type="button" data-toggle="modal" data-target="#iniciarModal">Comienza a vender ahora</button>
+                        <button class="bt-blue" type="button" data-bs-toggle="modal" data-bs-target="#iniciarModal">Comienza a vender ahora</button>
                     @endguest
                     @auth
-                        <button class="btn btn-secondary"> USER_PRUEBA</button>
+                        <div class="dropdown-center">
+                            <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 20px">
+                            {{Auth::user()->name}}
+                            </button>
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                            <li><a class="dropdown-item" href="#">Mis Publicaciones</a></li>
+                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <form style="display: inline" action="/logout" method="POST">
+                                @csrf
+                                <li><a class="dropdown-item" href="#" onclick="this.closest('form').submit()">Cerrar Sesión</a></li>
+                            </form>    
+                            </ul>
+                        </div>
                     @endauth
                 </div>
         </header>

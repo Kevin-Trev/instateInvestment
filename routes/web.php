@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\viewsController;
+use App\Http\Controllers\usuariosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,6 @@ Route::get('/avisoPrivacidad', [viewsController::class, 'avisoPrivacidad'])->nam
 Route::get('/inicio', [viewsController::class, 'inicio'])->name('inicio');
 
 Route::get('/nuevoRegistro', [viewsController::class, 'contraseña']);
+
+Route::post('/login', [usuariosController::class, 'login']);
+Route::post('/logout',[usuariosController::class,'logout']);

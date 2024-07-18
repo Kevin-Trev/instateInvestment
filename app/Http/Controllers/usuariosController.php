@@ -14,4 +14,23 @@ class UsuariosController extends Controller
             'email' => $request->input('email')
         ]);
     }
+
+    public function login () {
+        $credenciales = request()->only('email','password');
+
+        if(Auth::attempt($credenciales)){
+            request()->session()->regenerate();
+            return redirect('/');
+        }
+        else{
+            return redirect('/')->with('error_login','E-mail o contraseña Incorrecta');
+        }
+    }
+
+    public function logout () {
+
+        Auth::logout();
+        return redirect('/');
+    }
+
 }
