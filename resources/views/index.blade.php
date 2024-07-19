@@ -52,7 +52,7 @@
             </div>
                 <div class="button-container">
                     <a href="{{route('nuevoEmail')}}"><button class="bt-white">Ingresar</button></a>
-                    <button class="bt-blue" type="button" data-toggle="modal" data-target="#iniciarModal">Comienza a vender ahora</button>
+                    <button class="bt-blue" type="button" data-bs-toggle="modal" data-bs-target="#iniciarModal">Comienza a vender ahora</button>
                 </div>
         </header>
         <div class="clearfix"></div>
