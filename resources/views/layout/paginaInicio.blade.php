@@ -13,7 +13,8 @@
         margin: 0;
         padding: 0;
     }
-        .navbar {
+
+    .navbar {
     background-color: #CCDBFF;
     padding: 1rem;
     display: flex;
@@ -21,8 +22,12 @@
     align-items: center;
     }
 
+    .btn-outline-primary{
+        border-radius: 25px;
+        border: 0.1mm solid;
+    }
 
-.nav-links {
+    .nav-links {
     list-style: none;
     display: flex;
     justify-content: space-between;
@@ -34,7 +39,7 @@
     }
 
 .nav-links a {
-    color: #fff;
+    color: #4970f3;
     text-decoration: none;
     }
 
@@ -74,6 +79,18 @@
             <li><a href="/">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
+            <li>
+                <div class="dropdown-center">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    USUARIO_AQUI
+                    </button>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Mis Publicaciones</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+            </li>
         </ul>
         <div class="burger">
             <div class="line1"></div>

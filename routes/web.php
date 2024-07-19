@@ -19,8 +19,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/perfil', function (){
-    return view ('perfil') ;
+Route::get('/perfil', function () {
+    return view('perfil');
 });
 
 Route::get('/filtros',[viewsController::class, 'filtros'])->name('filtro');
