@@ -10,15 +10,17 @@
     <style>
     *{
         font-family: 'Roboto';
-        margin: 0;
-        padding: 0;
+        margin: 0 auto;
     }
+
     </style>
     @yield('style')
 </head>
 
 <body>
-    @yield('body')
+        <div class="col-12">
+            @yield('body')
+        </div>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

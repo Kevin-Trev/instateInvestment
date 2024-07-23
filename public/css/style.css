@@ -1,5 +1,5 @@
 
-.header .logo{
+.header .logo a img{
 height: 50px;
 margin-top: 20px;
 float: left;
@@ -15,11 +15,11 @@ margin-left: 3%;
 #seccion1::before{
     content: '';
     background-image: url(../Imagenes/Fondo-seccion1.png);
-    width: 1000px;
-    height: 1000px;
+    width: 100%;
+    height: 700px;
     background-size: contain;
     position: absolute;
-    background-position-y: -100px;
+    background-position: 0 -100px;
     background-repeat: no-repeat;
     margin-left: 35%;
     opacity: .5;
@@ -135,6 +135,7 @@ input[type="radio"]:checked + label{
     margin-left: 10%;
     margin-right: 60%;
     margin-top: 10px;
+    float: right;
 }
 
 .input-groups input[type="text"]{
@@ -165,6 +166,7 @@ input[type="radio"]:checked + label{
     padding-top: 30px;
     padding-bottom: 320px;
     background: linear-gradient(to right, #3370FF, #3370ffe8, #80ffffb5);
+    background-size: cover;
 }
 
 #seccion2::before{
@@ -177,6 +179,7 @@ input[type="radio"]:checked + label{
     top: 0;
     left: 0;
     content: '';
+    background-size: contain;
 }
 
 #seccion2 h2{
@@ -320,7 +323,7 @@ body {
     content: '';
     background-image: url(../Imagenes/Fondo-seccion4.png);
     height: 1200px;
-    width: 1600px;
+    width: 100%;
     z-index: -1;
     background-size: contain;
     background-repeat: no-repeat;
@@ -508,6 +511,7 @@ ul span{
 
 .container-info a{
     color: #FFFFFF;
+    text-decoration: none;
 }
 
 
