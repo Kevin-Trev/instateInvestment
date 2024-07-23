@@ -2,14 +2,14 @@ CREATE DATABASE instate_investment;
 
 USE instate_investment;
 
-CREATE TABLE Datos_Usuario
+CREATE TABLE Persona
 (
-  ID_U INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro */
+  ID_P INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro */
   user INT NOT NULL, /* LLAVE FORANEA DE Users (id) (TABLA DEFAULT DE LARAVEL)*/
   Nombre NVARCHAR(45) NOT NULL,
   Apellido NVARCHAR(45) NOT NULL,
-  Correo NVARCHAR(250) NOT NULL,
-  Telefono VARCHAR(10) NOT NULL,
+  Telefono VARCHAR(10) NOT NULL,  /* removi Correo porque viene de la tabla User (de laravel) */
+  Fecha_Nacimiento DATE NOT NULL,
   Calificacion FLOAT NOT NULL
   CONSTRAINT FK_User_Datos_Usuario FOREIGN KEY (users)
   REFERENCES User (id)                              
