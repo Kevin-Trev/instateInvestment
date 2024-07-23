@@ -52,27 +52,29 @@
                     </a>
                 </div>
                     <div class="button-container">
-                    @guest
-                            <a href="{{route('nuevoEmail')}}"><button class="bt-white">Registrate</button></a>
-                            <button class="bt-blue" type="button" data-bs-toggle="modal" data-bs-target="#iniciarModal">Iniciar Sesión</button>
-                    @endguest
-                    @auth
-                        <div class="dropdown-center">
-                            <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 20px">
-                            {{Auth::user()->name}}
-                            </button>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
-                            <li><a class="dropdown-item" href="#">Mis Publicaciones</a></li>
-                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <form style="display: inline" action="/logout" method="POST">
-                                @csrf
-                                <li><a class="dropdown-item" href="#" onclick="this.closest('form').submit()">Cerrar Sesión</a></li>
-                            </form>    
-                            </ul>
-                        </div>
-                    @endauth
+                        @guest
+                                <a href="{{route('nuevoEmail')}}"><button class="bt-white">Registrate</button></a>
+                                <button class="bt-blue" type="button" data-bs-toggle="modal" data-bs-target="#iniciarModal">Iniciar Sesión</button>
+                        @endguest
+                        @auth
+                            <div class="button-container">
+                                <div class="dropdown-center">
+                                    <button class="btn btn-outline-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 10px">
+                                    {{Auth::user()->name}}
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                                    <li><a class="dropdown-item" href="#">Mis Publicaciones</a></li>
+                                    <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <form style="display: inline" action="/logout" method="POST">
+                                        @csrf
+                                        <li><a class="dropdown-item" href="#" onclick="this.closest('form').submit()">Cerrar Sesión</a></li>
+                                    </form>    
+                                    </ul>
+                                </div>     
+                            </div>
+                        @endauth
                     </div>
             </header>
             <div class="clearfix"></div>
