@@ -43,17 +43,18 @@
 
     {{-- FIN DE MODALES --}}
     
-    <div id="seccion1">
-        <header class="header">
-            <div class="logo">
-                <a href="">
-                    <img src="{{asset('/Imagenes/LOGO2.png')}}">
-                </a>
-            </div>
-                <div class="button-container">
+    <div class="row">
+        <div id="seccion1">
+            <header class="header">
+                <div class="logo">
+                    <a href="">
+                        <img src="{{asset('/Imagenes/LOGO2.png')}}">
+                    </a>
+                </div>
+                    <div class="button-container">
                     @guest
-                        <a href="{{route('nuevoEmail')}}"><button class="bt-white">Ingresar</button></a>
-                        <button class="bt-blue" type="button" data-bs-toggle="modal" data-bs-target="#iniciarModal">Comienza a vender ahora</button>
+                            <a href="{{route('nuevoEmail')}}"><button class="bt-white">Registrate</button></a>
+                            <button class="bt-blue" type="button" data-bs-toggle="modal" data-bs-target="#iniciarModal">Iniciar Sesión</button>
                     @endguest
                     @auth
                         <div class="dropdown-center">
@@ -72,19 +73,20 @@
                             </ul>
                         </div>
                     @endauth
+                    </div>
+            </header>
+            <div class="clearfix"></div>
+            <div class="filtro">
+                <h2> Encuentra tu próxima oportunidad de <br>negocio en bienes raíces</h2>
+                <div class="input-container">
+                    <input type="radio" name="opcion" value="Venta" id="ip-venta" checked>
+                    <label for="ip-venta" class="Custom-Radio">Venta</label>
+                    <input type="radio" name="opcion" value="Renta" id="ip-renta">
+                    <label for="ip-renta" class="Custom-Radio">Renta</label> 
                 </div>
-        </header>
-        <div class="clearfix"></div>
-        <div class="filtro">
-            <h2> Encuentra tu próxima oportunidad de <br>negocio en bienes raíces</h2>
-            <div class="input-container">
-                <input type="radio" name="opcion" value="Venta" id="ip-venta" checked>
-                <label for="ip-venta" class="Custom-Radio">Venta</label>
-                <input type="radio" name="opcion" value="Renta" id="ip-renta">
-                <label for="ip-renta" class="Custom-Radio">Renta</label> 
-            </div>
-            <div class="input-groups">
-                <input type="text" placeholder="Buscar por ciudad..."><input type="submit"  value="🔍︎ Buscar">
+                <div class="input-groups">
+                    <input type="text" placeholder="Buscar por ciudad..."><input type="submit"  value="🔍︎ Buscar">
+                </div>
             </div>
         </div>
     </div>
