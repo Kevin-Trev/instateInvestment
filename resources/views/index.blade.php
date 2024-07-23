@@ -16,7 +16,7 @@
                 <form method="POST" action="">
                     @csrf
                     <div >
-                        <span data-dismiss="modal" class="cerrarModal">&times;</span><br>
+                        <span data-bs-dismiss="modal" class="cerrarModal">&times;</span><br>
                         <h2>Iniciar sesión</h2>
                         <div class="form-group">
                             <label for="inputCorreo">Correo electrónico</label>
