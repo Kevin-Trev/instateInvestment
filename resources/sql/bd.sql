@@ -1,29 +1,34 @@
-CREATE DATABASE instate_investment;
+CREATE DATABASE instateInvestment;
 
-USE instate_investment;
+USE instateInvestment;
 
-CREATE TABLE Persona
-(
-  ID_P INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro */
-  user INT NOT NULL, /* LLAVE FORANEA DE Users (id) (TABLA DEFAULT DE LARAVEL)*/
+CREATE TABLE `users` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   Nombre NVARCHAR(45) NOT NULL,
   Apellido NVARCHAR(45) NOT NULL,
-  Telefono VARCHAR(10) NOT NULL,  /* removi Correo porque viene de la tabla User (de laravel) */
+  Telefono VARCHAR(10) NOT NULL,
   Fecha_Nacimiento DATE NOT NULL,
-  Calificacion FLOAT NOT NULL
-  CONSTRAINT FK_User_Datos_Usuario FOREIGN KEY (users)
-  REFERENCES User (id)                              
-);
+  Calificacion FLOAT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE Suscripcion_VIP
 (
-   ID_S INT PRIMARY KEY NOT NULL AUTO_INCREMENT, /* agregar autoincremento de PK para registro */
+   ID_S INT AUTO_INCREMENT PRIMARY KEY NOT NULL, /* agregar autoincremento de PK para registro */
    Costo DOUBLE NOT NULL,
    Fecha_Inicio DATE NOT NULL,
    Fecha_Fin DATE NOT NULL,
-   Usuario_Id INT NOT NULL,
-   CONSTRAINT FK_Usuario_Suscripcion FOREIGN KEY (Usuario_Id)
-   REFERENCES Usuario (ID_U)
+   users_id BIGINT unsigned NOT NULL,
+   CONSTRAINT FK_Usuario_Suscripcion FOREIGN KEY (users_id)
+   REFERENCES users (id)
 );
 
 CREATE TABLE Verificacion
@@ -206,17 +211,4 @@ CREATE TABLE `sessions` (
   PRIMARY KEY (`id`),
   KEY `sessions_user_id_index` (`user_id`),
   KEY `sessions_last_activity_index` (`last_activity`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE `users` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
