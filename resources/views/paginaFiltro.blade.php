@@ -112,6 +112,7 @@
 @section('body')
   <main>
     <div class="container">
+      <!-- FILTROS -->
       <div class="filters">
         <div class="filter-group">
           <label class="filter-label" for="type">Tipo de oferta:</label>
@@ -154,75 +155,13 @@
         <button class="filter-button"><img class="filtro" src="{{asset('Imagenes/filtroIcono.png')}}">Más filtros</button>
       </div>
 
-      
-
+      <!-- ETIQUETA DE CANTIDAD DE MUEBLES -->
       <div class="main-content">
         <h2>Venta</h2>
         <h3>413,447 Inmuebles en Venta</h3>
 
-        <div class="property-list">
-          <div class="property-card">
-            <img src="https://via.placeholder.com/300x200" alt="Property Image" class="property-image">
-            <h3 class="property-title">Agatha Monolith Torre C</h3>
-            <p class="property-price">Desde $ 3,193,842 MXN</p>
-            <div class="property-details">
-              <div class="property-detail">
-                <i class="fas fa-bed property-detail-icon"></i>
-                <span>1-3 Recámaras</span>
-              </div>
-              <div class="property-detail">
-                <i class="fas fa-bath property-detail-icon"></i>
-                <span>1-2 Baños</span>
-              </div>
-              <div class="property-detail">
-                <i class="fas fa-ruler-combined property-detail-icon"></i>
-                <span>62-94 m² construidos</span>
-              </div>
-            </div>
-            <button class="property-button">Ver más info</button>
-          </div>
-
-          <div class="property-card">
-            <img src="https://via.placeholder.com/300x200" alt="Property Image" class="property-image">
-            <h3 class="property-title">Valparaíso</h3>
-            <p class="property-price">$ 2,500,000 MXN</p>
-            <div class="property-details">
-              <div class="property-detail">
-                <i class="fas fa-bed property-detail-icon"></i>
-                <span>3 Recámaras</span>
-              </div>
-              <div class="property-detail">
-                <i class="fas fa-bath property-detail-icon"></i>
-                <span>2 Baños</span>
-              </div>
-              <div class="property-detail">
-                <i class="fas fa-ruler-combined property-detail-icon"></i>
-                <span>150 m² construidos</span>
-              </div>
-            </div>
-            <button class="property-button">Ver más info</button>
-          </div>
-
-          <div class="property-card">
-            <img src="https://via.placeholder.com/300x200" alt="Property Image" class="property-image">
-            <h3 class="property-title">Residencial Jardines</h3>
-            <p class="property-price">$ 1,800,000 MXN</p>
-            <div class="property-details">
-              <div class="property-detail">
-                <i class="fas fa-bed property-detail-icon"></i>
-                <span>2 Recámaras</span>
-              </div>
-              <div class="property-detail">
-                <i class="fas fa-bath property-detail-icon"></i>
-                <span>1 Baños</span>
-              </div>
-              <div class="property-detail">
-                <i class="fas fa-ruler-combined property-detail-icon"></i>
-                <span>100 m² construidos</span>
-              </div>
-            </div>
-            <button class="property-button">Ver más info</button>
-          </div>
+        <!-- LISTA DE PROPIEDADES -->
+        <div id = "pl" class="property-list">
         </div>
       </div>
     </div>
@@ -230,5 +169,82 @@
 @endsection
 
 @section('js')
-    
+    <!-- EJEMPLO DE FUNCION PARA AGREGAR LAS TARJETAS DE PROPIEDADES() -->
+<script>
+  var propiedades = [
+    { titulo: "Agatha Monolith Torre A", price: "$ 3,193,840 MXN" , Recamaras: "1", Baños: "7", MtsCuadrados: "50m²"},
+    { titulo: "Agatha Monolith Torre B", price: "$ 3,193,841 MXN" , Recamaras: "2", Baños: "6", MtsCuadrados: "51m²" },
+    { titulo: "Agatha Monolith Torre C", price: "$ 3,193,842 MXN" , Recamaras: "3", Baños: "5", MtsCuadrados: "52m²" },
+    { titulo: "Agatha Monolith Torre D", price: "$ 3,193,843 MXN" , Recamaras: "4", Baños: "4", MtsCuadrados: "53m²" },
+    { titulo: "Agatha Monolith Torre E", price: "$ 3,193,844 MXN" , Recamaras: "5", Baños: "3", MtsCuadrados: "54m²" },
+    { titulo: "Agatha Monolith Torre F", price: "$ 3,193,845 MXN" , Recamaras: "6", Baños: "2", MtsCuadrados: "55m²" },
+    { titulo: "Agatha Monolith Torre F", price: "$ 3,193,845 MXN" , Recamaras: "6", Baños: "2", MtsCuadrados: "55m²" },
+    { titulo: "Agatha Monolith Torre G", price: "$ 3,193,846 MXN" , Recamaras: "7", Baños: "1", MtsCuadrados: "56m²" }
+  ];
+
+  function ej_crearcartasdepropiedades(filtrados = null){
+    var listapropiedades = document.getElementById('pl');
+    listapropiedades.innerHTML = '';
+
+    var division = null;
+
+    (filtrados || propiedades).forEach(function(propiedad, index) {
+      // 
+        division = document.createElement('div');
+        division.className = 'property-list';
+        listapropiedades.appendChild(division);
+
+      // DATOS DE LA TARJETA PROPIEDAD
+      var div = document.createElement('div');
+      div.className = "property-card";
+      div.style.marginTop = "5px";
+
+      var imagen = document.createElement('img');
+      imagen.src = "https://via.placeholder.com/300x200";
+      imagen.alt = "Property Image";
+      imagen.className = "property-image";
+
+      var titulo = document.createElement('h3');
+      titulo.textContent = propiedad.titulo;
+
+      var precio = document.createElement('p');
+      precio.textContent = propiedad.price;
+
+      var detalles = document.createElement('div');
+      detalles.className = "property-details";
+
+      var detalleRecamaras = document.createElement('div');
+      detalleRecamaras.className = "property-detail";
+      detalleRecamaras.innerHTML = '<i class="fas fa-bed property-detail-icon"></i><span>' + propiedad.Recamaras + ' Recámaras</span>';
+
+      var detalleBaños = document.createElement('div');
+      detalleBaños.className = "property-detail";
+      detalleBaños.innerHTML = '<i class="fas fa-bath property-detail-icon"></i><span>' + propiedad.Baños + ' Baños</span>';
+
+      var detalleMtsCuadrados = document.createElement('div');
+      detalleMtsCuadrados.className = "property-detail";
+      detalleMtsCuadrados.innerHTML = '<i class="fas fa-ruler-combined property-detail-icon"></i><span>' + propiedad.MtsCuadrados + ' construidos</span>';
+
+      detalles.appendChild(detalleRecamaras);
+      detalles.appendChild(detalleBaños);
+      detalles.appendChild(detalleMtsCuadrados);
+
+      var boton = document.createElement('button');
+      boton.className = "property-button";
+      boton.textContent = "Ver más info";
+
+      div.appendChild(imagen);
+      div.appendChild(titulo);
+      div.appendChild(precio);
+      div.appendChild(detalles);
+      div.appendChild(boton);
+      division.appendChild(div);
+    });
+  }
+
+  // LLAMA A LA FUNCION
+  ej_crearcartasdepropiedades();
+</script>
+
+
 @endsection
