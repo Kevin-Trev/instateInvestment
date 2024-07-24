@@ -35,6 +35,11 @@
             margin-top: 0;
         }
 
+        .dropdown-menu-center {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
         .nav-links {
         list-style: none;
         display: flex;
@@ -92,7 +97,7 @@
                     <button class="btn btn-outline-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     USUARIO_AQUI
                     </button>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu dropdown-menu-center">
                     <li><a class="dropdown-item" href="#">Mis Publicaciones</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
