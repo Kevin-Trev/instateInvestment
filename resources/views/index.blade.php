@@ -19,7 +19,7 @@
                         <span data-bs-dismiss="modal" class="cerrarModal">&times;</span><br>
                         <h2>Iniciar sesión</h2>
                         @if (Session::has('error_login'))
-                            <div class="alert alert-danger" role="alert">{{ Session::get('error_login') }}</div>
+                            <div class="alert alert-danger" id="errorLogin" role="alert">{{ Session::get('error_login') }}</div>
                         @endif
                         <div class="form-group">
                             <label for="inputCorreo">Correo electrónico</label>
@@ -252,6 +252,10 @@
             var modalInicio = new bootstrap.Modal(document.getElementById('iniciarModal'));
             modalInicio.show();
         @endif
+
+        $('#iniciarModal').on('hidden.bs.modal', function () {
+            $('#errorLogin').text('').hide();
+        });
     });
 </script>
 @endsection
