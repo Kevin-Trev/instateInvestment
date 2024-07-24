@@ -8,66 +8,66 @@
     <link rel="icon" href="{{asset('Imagenes/iconito.png')}}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-    *{
-        font-family: 'Roboto';
-        margin: 0;
-        padding: 0;
-    }
+        *{
+            font-family: 'Roboto';
+            margin: 0;
+            padding: 0;
+        }
 
-    .navbar {
-    background-color: #CCDBFF;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    }
+        .navbar {
+        background-color: #CCDBFF;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        }
 
-    .btn-outline-primary{
-        border-radius: 25px;
-        border: 0.1mm solid;
-    }
+        .btn-outline-primary{
+            border-radius: 15px;
+            border: 0.1mm solid;
+        }
 
-    .nav-links {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    }
+        .nav-links {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        }
 
-.nav-links li {
-    margin-right: 20px;
-    }
+        .nav-links li {
+            margin-right: 20px;
+        }
 
-.nav-links a {
-    color: #4970f3;
-    text-decoration: none;
-    }
+        .nav-links a {
+            color: #4970f3;
+            text-decoration: none;
+        }
 
-.burger {
-    display: none;
-    }
+        .burger {
+            display: none;
+        }
 
-.burger div {
-    width: 30px;
-    height: 3px;
-    background-color: #fff;
-    margin: 5px;
-    }
+        .burger div {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px;
+        }
 
-    .logo{
-        width: 350px;
-        height: auto;
-    }
+        .logo{
+            width: 350px;
+            height: auto;
+        }
 
-@media (max-width: 768px) {
-   .nav-links {
-        display: none;
-    }
+        @media (max-width: 768px) {
+            .nav-links {
+                    display: none;
+            }
 
-   .burger {
-        display: block;
-    }
-}
+            .burger {
+                    display: block;
+            }
+        }
     </style>
     @yield('style')
 </head>
@@ -81,7 +81,7 @@
             <li><a href="#">Contact</a></li>
             <li>
                 <div class="dropdown-center">
-                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-outline-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     USUARIO_AQUI
                     </button>
                     <ul class="dropdown-menu">

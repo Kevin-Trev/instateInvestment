@@ -10,9 +10,10 @@
     <style>
     *{
         font-family: 'Roboto';
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
     }
+
     </style>
     @yield('style')
 </head>
