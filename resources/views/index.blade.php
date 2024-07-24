@@ -20,7 +20,7 @@
                         <h2>Iniciar sesión</h2>
                         <div class="form-group">
                             <label for="inputCorreo">Correo electrónico</label>
-                            <input type="text" class="form-control" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
+                            <input type="text" class="form-control" placeholder="Ingresa tu correo electrónico" id="inputCorreo" name="">
                         </div>
                         <br>
                         <div class="form-group">

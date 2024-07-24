@@ -377,10 +377,6 @@ input[type="radio"]:checked + label{
         margin-left: 10%;
         margin-bottom: 50px
     }
-
-    .steps-container p{
-        
-    }
     
     .circle-container{
         width: 120px;
@@ -727,7 +723,9 @@ input[type="radio"]:checked + label{
     }
 
     body{
-        width: 3100px;
+        width: 3100vw;
+        margin: 0;
+
     }
     
     .filtro{
