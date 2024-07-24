@@ -53,8 +53,8 @@
                 </div>
                     <div class="button-container">
                         @guest
-                                <a href="{{route('nuevoEmail')}}"><button class="bt-white">Registrate</button></a>
-                                <button class="bt-blue" type="button" data-bs-toggle="modal" data-bs-target="#iniciarModal">Iniciar Sesión</button>
+                            <a href="{{route('nuevoEmail')}}"><button class="bt-white">Registrate</button></a>
+                            <button class="bt-blue" type="button" data-bs-toggle="modal" data-bs-target="#iniciarModal">Iniciar Sesión</button>
                         @endguest
                         @auth
                             <div class="button-container">
