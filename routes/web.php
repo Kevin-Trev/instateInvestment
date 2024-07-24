@@ -19,9 +19,9 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/perfil', function () {
-    return view('perfil');
-});
+Route::get('/hubs/perfil', function () { return view('hubs.perfil'); });
+
+Route::get('/hubs/perfi/seguridad', function () { return view('hubs.seguridad'); });
 
 Route::get('/filtros',[viewsController::class, 'filtros'])->name('filtro');
 Route::get('/view/login',[viewsController::class, 'login'])->name('login');
