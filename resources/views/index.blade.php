@@ -43,7 +43,6 @@
 
     {{-- FIN DE MODALES --}}
     
-    <div class="row">
         <div id="seccion1">
             <header class="header">
                 <div class="logo">
@@ -70,11 +69,9 @@
                 </div>
             </div>
         </div>
-    </div>
 
-<div class="row">
-    <div id="seccion2" class="col-12">
-        <h2>Comienza a vender con nosotros y <br><span>00</span>obtén GRATIS un diagnóstico de <br> <span>000</span>posibilidades para tu propiedad</h2>
+    <div id="seccion2">
+        <b><h2>Comienza a vender con nosotros y <br><span>0</span>obtén GRATIS un diagnóstico de <br> <span>0</span>posibilidades para tu propiedad</h2></b>
             <div class="img-container">
                 <img src="{{ asset('/Imagenes/Image 3.png') }}" class="img1">
                 <img src="{{ asset('/Imagenes/Image 2.png') }}" class="img2">
@@ -82,28 +79,27 @@
             </div>
         <a href="#"><button class="bt-cian">Obtén tu diagnóstico gratis</button></a>
     </div>
-</div>
 
-<div id="seccion3" class="col-xs-8 col-sm-12 col-lg-12">
+<div id="seccion3">
     <h2>Comenzar tu próximo desarrollo inmobiliario es muy sencillo</h2>
     <div class="steps-container" style="margin-right: 30px;">
         <div class="circle-container">
             <img src="{{ asset('/Imagenes/glass.png')}}">
         </div>
+        <p> Busca propiedades en tu <br>ciudad</p>
     </div>
     <div class="steps-container" style="margin-right: 30px;">
         <div class="circle-container">
             <img src="{{ asset('/Imagenes/dollar-currency-symbol.png')}}">
         </div>
+        <p> Conoce el potencial de la <br>propiedad de tu agrado</p>
     </div>
     <div class="steps-container">
         <div class="circle-container">
             <img src="{{ asset('/Imagenes/clipboard.png')}}" >
         </div>
+        <p>Comienza a planear tu próximo <br>desarrollo inmobiliario</p>
     </div>
-    <p><span>00</span> Busca propiedades en tu <br><span>00000000000</span>ciudad</p>
-    <p><span>0</span> Conoce el potencial de la <br><span>00</span>propiedad de tu agrado</p>
-    <p>Comienza a planear tu próximo <br><span>0000</span>desarrollo inmobiliario</p>
 </div>
 
 <div id="seccion4">
@@ -120,29 +116,12 @@
         <h1>$57 USD</h1>
         <p class="pe">Incluye:</p>
         <ul>
-            <li><span>&#10003;</span>Posibilidades de uso de suelo de un terreno específico de <br> acuerdo a la reglamentación del IMPLAN correspondiente.</li>
-            <li><span>&#10003;</span>Hasta 4 opciones de desarrollo con mayor rentabilidad<br>(Si, te digo si te conviene desarrollar una casa, una plaza <br>comercial o una torre de departamentos, por ejemplo).</li>
-            <li><span>&#10003;</span>Proyecciones de rentabilidad para las opciones que te <br>propongo.</li>
-        </ul>
-        <div class="img-sp">
-            <span><img src="{{ asset('/Imagenes/PDF.png') }}" alt="">PDF por correo electrónico</span>
-            <span><img src="{{ asset('/Imagenes/Reloj.png') }}" alt="">Hasta 24 horas hábiles</span>
-
-        </div>
-        <footer class="container-foot">
-            <img src="{{ asset('/Imagenes/Image 1.png') }}" >
-            <button class="bt-cian">Obtener</button>
-        </footer>
-    </div>
-    <div class="membership-container">
-        <h3>DIAGNÓSTICO</h3>
-        <p>De uso de sueldo y oportunidades de negocio</p>
-        <h1>$57 USD</h1>
-        <p class="pe">Incluye:</p>
-        <ul>
-            <li><span>&#10003;</span>Posibilidades de uso de suelo de un terreno específico de <br>acuerdo a la reglamentación del IMPLAN correspondiente.</li>
-            <li><span>&#10003;</span>Hasta 4 opciones de desarrollo con mayor rentabilidad<br>(Si, te digo si te conviene desarrollar una casa, una plaza <br>comercial o una torre de departamentos, por ejemplo).</li>
-            <li><span>&#10003;</span>Proyecciones de rentabilidad para las opciones que te <br>propongo.</li>
+            <li><span>&#10003;</span>Posibilidades de uso de suelo de un terreno específico de acuerdo a la reglamentación del IMPLAN correspondiente.</li>
+            <br>
+            <li><span>&#10003;</span>Hasta 4 opciones de desarrollo con mayor rentabilidad (Si, te digo si te conviene desarrollar una casa, una plaza comercial o una torre de departamentos, por ejemplo).</li>
+            <br>
+            <li><span>&#10003;</span>Proyecciones de rentabilidad para las opciones que te propongo.</li>
+            <br>
         </ul>
         <div class="img-sp">
             <span><img src="{{ asset('/Imagenes/PDF.png') }}">PDF por correo electrónico</span>
@@ -160,9 +139,35 @@
         <h1>$57 USD</h1>
         <p class="pe">Incluye:</p>
         <ul>
-            <li><span>&#10003;</span>Posibilidades de uso de suelo de un terreno específico de <br>acuerdo a la reglamentación del IMPLAN correspondiente.</li>
-            <li><span>&#10003;</span>Hasta 4 opciones de desarrollo con mayor rentabilidad<br>(Si, te digo si te conviene desarrollar una casa, una plaza <br>comercial o una torre de departamentos, por ejemplo).</li>
-            <li><span>&#10003;</span>Proyecciones de rentabilidad para las opciones que te <br>propongo.</li>
+            <li><span>&#10003;</span>Posibilidades de uso de suelo de un terreno específico de acuerdo a la reglamentación del IMPLAN correspondiente.</li>
+            <br>
+            <li><span>&#10003;</span>Hasta 4 opciones de desarrollo con mayor rentabilidad (Si, te digo si te conviene desarrollar una casa, una plaza comercial o una torre de departamentos, por ejemplo).</li>
+            <br>
+            <li><span>&#10003;</span>Proyecciones de rentabilidad para las opciones que te propongo.</li>
+            <br>
+        </ul>
+        <div class="img-sp">
+            <span><img src="{{ asset('/Imagenes/PDF.png') }}">PDF por correo electrónico</span>
+            <span><img src="{{ asset('/Imagenes/Reloj.png') }}">Hasta 24 horas hábiles</span>
+
+        </div>
+        <footer class="container-foot">
+            <img src="{{ asset('/Imagenes/Image 1.png') }}" >
+            <button class="bt-cian">Obtener</button>
+        </footer>
+    </div>
+    <div class="membership-container">
+        <h3>DIAGNÓSTICO</h3>
+        <p>De uso de sueldo y oportunidades de negocio</p>
+        <h1>$57 USD</h1>
+        <p class="pe">Incluye:</p>
+        <ul>
+            <li><span>&#10003;</span>Posibilidades de uso de suelo de un terreno específico de acuerdo a la reglamentación del IMPLAN correspondiente.</li>
+            <br>
+            <li><span>&#10003;</span>Hasta 4 opciones de desarrollo con mayor rentabilidad (Si, te digo si te conviene desarrollar una casa, una plaza comercial o una torre de departamentos, por ejemplo).</li>
+            <br>
+            <li><span>&#10003;</span>Proyecciones de rentabilidad para las opciones que te propongo.</li>
+            <br>
         </ul>
         <div class="img-sp">
             <span><img src="{{ asset('/Imagenes/PDF.png') }}">PDF por correo electrónico</span>
@@ -177,8 +182,7 @@
 
 <img src="{{ asset('/Imagenes/Nosequesea.png') }}" id="nosequesea">
 
-<div class="row">
-    <footer id="page-footer" class="col-md-12">
+    <footer id="page-footer">
         <div class="container-info">
             <img src="{{ asset('/Imagenes/LOGO.png') }}">
             <p>Instate es una marga registrada por <br>Instate Investments S.A de C.V. en <br>alianza con Design Construcciones.</p>
@@ -188,7 +192,9 @@
             <h2>Contacto</h2>
             <hr>
             <b>MINA 330 INT. 5 COL.CENTRO <br>MONTERREY, NUEVO LEÓN. MÉXICO <br>812-433-1672</b>
-    
+            
+            <br>
+
             <div class="container-social">
                 <a href="">
                     <img src="{{ asset('Imagenes/iconoFacebook.png')}}">
@@ -217,6 +223,5 @@
             <a href="/nosotros">Nosotros</a><br><br><a href="/mision">Misión</a> <br><br><a href="/vision">Visión</a>
         </div>
     </footer>
-</div>
 
 @endsection
