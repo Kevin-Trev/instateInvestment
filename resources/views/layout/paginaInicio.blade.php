@@ -23,8 +23,7 @@
         }
 
         .btn-outline-primary{
-            border-radius: 15px;
-            border: 0.1mm solid;
+            border-radius: 5px;
         }
 
         .nav-links {
@@ -81,7 +80,7 @@
             <li><a href="#">Contact</a></li>
             <li>
                 <div class="dropdown-center">
-                    <button class="btn btn-outline-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     USUARIO_AQUI
                     </button>
                     <ul class="dropdown-menu">
