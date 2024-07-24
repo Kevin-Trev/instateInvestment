@@ -11,6 +11,7 @@
     *{
         font-family: 'Roboto';
         margin: 0 auto;
+        padding: 0;
     }
 
     </style>
@@ -18,9 +19,7 @@
 </head>
 
 <body>
-        <div class="col-12">
-            @yield('body')
-        </div>
+    @yield('body')
 </body>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
