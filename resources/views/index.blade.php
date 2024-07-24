@@ -63,7 +63,7 @@
                                     {{Auth::user()->name}}
                                     </button>
                                     <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                                    <li><a class="dropdown-item" href="/perfil">Mi Perfil</a></li>
                                     <li><a class="dropdown-item" href="#">Mis Publicaciones</a></li>
                                     <li><a class="dropdown-item" href="#">Dashboard</a></li>
                                     <li><hr class="dropdown-divider"></li>

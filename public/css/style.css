@@ -96,6 +96,7 @@ margin: 5px;
 }
 .btn-outline-primary{
     width: 100px;
+    border-radius: 15px;
 }
 .filtro .bt-blue{
     padding: 3px;
