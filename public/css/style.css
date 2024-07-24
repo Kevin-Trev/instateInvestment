@@ -96,13 +96,7 @@ margin: 5px;
 }
 .btn-outline-primary{
     width: 100px;
-    border-radius: 15px;
-}
-.dropdown-center:hover .dropdown-menu {
-    display: block;
-}
-.dropdown-menu {
-    margin-top: 0;
+    border-radius: 5px;
 }
 .filtro .bt-blue{
     padding: 3px;

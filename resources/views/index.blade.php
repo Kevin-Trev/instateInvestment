@@ -15,9 +15,12 @@
             <div class="modal-content">
                 <form action="/login" method="POST" id="ingresarForm">
                     @csrf
-                    <div >
+                    <div>
                         <span data-bs-dismiss="modal" class="cerrarModal">&times;</span><br>
                         <h2>Iniciar sesión</h2>
+                        @if (Session::has('error_login'))
+                            <div class="alert alert-danger" role="alert">{{ Session::get('error_login') }}</div>
+                        @endif
                         <div class="form-group">
                             <label for="inputCorreo">Correo electrónico</label>
                             <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo electrónico" id="inputCorreo">
@@ -59,10 +62,10 @@
                         @auth
                             <div class="button-container">
                                 <div class="dropdown-center">
-                                    <button class="btn btn-outline-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 10px">
+                                    <button class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" type="button" style="margin: 10px">
                                     {{Auth::user()->name}}
                                     </button>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu dropdown-menu-center">
                                     <li><a class="dropdown-item" href="/perfil">Mi Perfil</a></li>
                                     <li><a class="dropdown-item" href="#">Mis Publicaciones</a></li>
                                     <li><a class="dropdown-item" href="#">Dashboard</a></li>
@@ -240,4 +243,15 @@
     </footer>
 </div>
 
+@endsection
+
+@section('js')
+<script>
+    $(document).ready(function() {
+        @if (Session::has('error_login'))
+            var modalInicio = new bootstrap.Modal(document.getElementById('iniciarModal'));
+            modalInicio.show();
+        @endif
+    });
+</script>
 @endsection
