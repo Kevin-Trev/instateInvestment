@@ -41,7 +41,7 @@ class UsuariosController extends Controller
         }
         catch(\Exception $e){
             DB::rollBack();
-            return redirect('/')->with('error','Registro incorrecto');
+            return redirect('/registro')->with('error','Registro incorrecto');
         }
 
     }
