@@ -125,7 +125,7 @@
 
 @section('body')
 
-    <form action="" method="POST">
+    <form action="/registrar" method="POST">
         @csrf
         <div class="container" id="nuevoEmail">
             <h2>Regístrate</h2>
@@ -168,12 +168,20 @@
         <div class="container" id="nuevoUsuario">
             <h2>Regístrate</h2>
                 <div class="form-group">
+                    <label for="nombreUsuario">Nombre de Usuario</label>
+                    <input type="text" class="form-control" id="nombreUsuario" name="name">
+                </div>
+                <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" id="nombre" name="Nombre">
                 </div>
                 <div class="form-group">
+                    <label for="nombre">Apellidos</label>
+                    <input type="text" class="form-control" id="apellido" name="Apellido">
+                </div>
+                <div class="form-group">
                     <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                    <input type="date" class="form-control" id="Fecha_nacimiento" name="Fecha_nacimiento">
+                    <input type="date" class="form-control" id="Fecha_nacimiento" name="Fecha_Nacimiento">
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono</label>

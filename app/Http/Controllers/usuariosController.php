@@ -36,7 +36,7 @@ class UsuariosController extends Controller
             if($user->save()){
                 DB::commit();
                 Auth::login($user);
-                return redirect('/');
+                return redirect('/registro/finalizado');
             }
         }
         catch(\Exception $e){

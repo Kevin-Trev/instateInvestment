@@ -61,7 +61,7 @@
 <div class="container">
     <img src="{{asset('Imagenes/Palomita.png')}}">
     <h2 class="title">¡Registro exitoso!</h2>
-    <p>¡Gracias <span id="username"></span> por formar parte de Instate!</p>
+    <p>¡Gracias <span id="username">{{Auth::user()->Nombre}}</span> por formar parte de Instate!</p>
     <button class="bt-blue">Publicar propiedad</button>
     <br>
     <button class="bt-transparent">Continuar a Mi Perfil</button>
