@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\viewsController;
+use App\Http\Controllers\usuariosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +19,10 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/hubs/perfil', function () { return view('hubs.perfil'); });
+Route::post('/login', [usuariosController::class, 'login']);
+Route::post('/registrar', [usuariosController::class, 'nuevoUsuario']);
 
+Route::get('/hubs/perfil', function () { return view('hubs.perfil'); });
 Route::get('/hubs/perfi/seguridad', function () { return view('hubs.seguridad'); });
 
 Route::get('/filtros',[viewsController::class, 'filtros'])->name('filtro');

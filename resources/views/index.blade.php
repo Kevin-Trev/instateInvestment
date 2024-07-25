@@ -13,22 +13,22 @@
     <div class="modal fade" id="iniciarModal" tabindex="-1" aria-labelledby="iniciarModalLabel" aria-hidden="true" style="margin-top: 10px; border-radius: 8px;">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="POST" action="">
+                <form method="POST" action="/login">
                     @csrf
-                    <div >
+                    <div>
                         <span data-bs-dismiss="modal" class="cerrarModal">&times;</span><br>
                         <h2>Iniciar sesión</h2>
                         <div class="form-group">
                             <label for="inputCorreo">Correo electrónico</label>
-                            <input type="text" class="form-control" placeholder="Ingresa tu correo electrónico" id="inputCorreo" name="">
+                            <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo electrónico" id="inputCorreo" name="">
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="inputContraseña">Contraseña</label>
-                            <input type="password" class="form-control" placeholder= "Ingresa tu contraseña" id="inputContraseña">
+                            <input type="password" class="form-control" name="password" placeholder= "Ingresa tu contraseña" id="inputContraseña">
                         </div>
                         <br>
-                        <button class="bt-blue">Ingresar</button>
+                        <button type="submit" class="bt-blue">Ingresar</button>
                         <p class="line-text">─────────  o también puedes  ─────────</p>
                         <button class="bt-google"><img src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
                         <div class="footer">
@@ -51,8 +51,17 @@
                     </a>
                 </div>
                     <div class="button-container">
-                        <a href="{{route('nuevoEmail')}}"><button class="bt-white">Registrate</button></a>
-                        <button class="bt-blue" type="button" data-bs-toggle="modal" data-bs-target="#iniciarModal">Iniciar Sesión</button>
+                        @guest
+                            <a href="{{route('nuevoEmail')}}"><button class="bt-white">Registrate</button></a>
+                            <button class="bt-blue" type="button" data-bs-toggle="modal" data-bs-target="#iniciarModal">Iniciar Sesión</button>
+                        @endguest
+                        @auth
+                            <button class="bt-blue" type="button">{{Auth::user()->Nombre}}</button>
+                            <form style="display: inline" action="/logout" method="POST">
+                                @csrf
+                                <a href="#" onclick="this.closest('form').submit()" class="btn btn-outline-danger">Log Out</a>
+                            </form>    
+                        @endauth
                     </div>
             </header>
             <div class="clearfix"></div>
