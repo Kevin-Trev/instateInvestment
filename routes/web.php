@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::post('/login', [usuariosController::class, 'login']);
+Route::post('/logout', [usuariosController::class, 'logout']);
 Route::post('/registrar', [usuariosController::class, 'nuevoUsuario']);
 
 Route::get('/hubs/perfil', function () { return view('hubs.perfil'); });
