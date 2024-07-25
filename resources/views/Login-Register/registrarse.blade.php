@@ -103,7 +103,7 @@
         }
 
         #nuevoDatos .terms{
-            padding-top: 190px
+            padding-top: 80px
         }
 
         #button3, #button4{
@@ -119,7 +119,15 @@
         #Fecha_nacimiento, #tipo_usuario, #telefono, #inputContraseña{
             width: 88%; 
         }
+        
+        .condicion h6{
+            font-size: 15px; 
+        }
 
+        #condicion1, #condicion2, #condicion3{
+            font-size: 12px;
+            color: red;
+        }
     </style>
 @endsection
 
@@ -152,8 +160,14 @@
         <div class="container" id="nuevoDatos">
             <h2>Regístrate</h2>
                 <div class="form-group">
-                    <label for="inputCorreo">Contraseña:</label>
-                    <p class="error">Ingresa una contraseña válido</p>
+                    <div class="condicion">
+                        <h6>La contraseña debe de contener:</h6>
+                        <p id="condicion1">X Un carácter especial</p>
+                        <p id="condicion2">X 8 carácteres minímos</p>
+                        <p id="condicion3">X Un número</p>
+                    </div>
+                    <label for="inputContraseña">Contraseña:</label>
+                    <p class="error">Ingresa una contraseña válida</p>
                     <input type="password" class="form-control" placeholder="Crea una contraseña" id="inputContraseña" name="password">
                 </div>
                 <div class="center">
@@ -206,11 +220,14 @@
             var error = $('.error');
             var patron = /.+@gmail\.com/;
             var patronContraseña = /^(?=.*[0-9])(?=.*[!@#$%^&*.])[a-zA-Z0-9!@#$%^&*.,]+$/;
+            var patronNumero = /^(?=.*[0-9])$/;
+            var patronCaracter = /(?=.*[!@#$%^&*.])/;
 
             $('#button1').on('click', function(){
                 if(patron.test($('#inputCorreo').val())){
                     datosContenedor.css("display", "block");
                     emailContenedor.css("display", "none");
+                    error.css("display", "none")
                 }
                 else{
                     error.css("display", "block");
@@ -221,20 +238,70 @@
                 if(patronContraseña.test($('#inputContraseña').val())){
                     datosContenedor.css("display", "none");
                     usuarioContenedor.css("display", "block");
+                    error.css("display", "none")
                 }
                 else{
                     error.css("display", "block");
                 }
-            })
+            }),
 
             $('#button3').on('click', function(){
                 datosContenedor.css("display", "none");
                 emailContenedor.css("display", "block");
-            })
+                error.css("display", "none")
+            });
 
             $('#button4').on('click', function(){
                 usuarioContenedor.css("display", "none");
                 datosContenedor.css("display", "block");
+            });
+
+            $('#inputContraseña').on('keyup', function(event){
+                var valorContraseña = $(this).val();
+                var condicionCaracter = $('#condicion1');
+                var condicionOcho = $('#condicion2');
+                var condicionNumero = $('#condicion3');
+
+                // Condicion para que la contraseña tenga un número
+
+                if(valorContraseña === ''){
+                    condicionNumero.text("X Un número");
+                    condicionNumero.css("color", "red");
+                }
+                else if(patronNumero.test(valorContraseña)){
+                condicionNumero.text(" Un número");
+                condicionNumero.css("color", "green");
+                }
+                else{
+                    condicionNumero.text("X Un número");
+                    condicionNumero.css("color", "red");
+                }
+
+                // Condicion para el caracter especial
+
+                if(valorContraseña === ''){
+                    condicionCaracter.text("X Un carácter especial");
+                    condicionCaracter.css("color", "red");
+                }
+                else if(patronCaracter.test(valorContraseña)){
+                    condicionCaracter.text(" Un carácter especial");
+                    condicionCaracter.css("color", "green");
+                }
+                else{
+                    condicionCaracter.text("X Un carácter especial");
+                    condicionCaracter.css("color", "red");
+                }
+
+                // Condicion para que la contraseña tenga una longitud minima de 8 carácteres
+
+                if(valorContraseña.length >= 8){
+                    condicionOcho.text(" 8 carácteres minímos");
+                    condicionOcho.css("color", "green");
+                }
+                else{
+                    condicionOcho.text("X 8 carácteres minímos");
+                    condicionOcho.css("color", "red");
+                }
             })
         });
 
