@@ -197,7 +197,7 @@
             var usuarioContenedor = $('#nuevoUsuario');
             var error = $('.error');
             var patron = /.+@gmail\.com/;
-            var patronContraseña = /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]+$/;
+            var patronContraseña = /^(?=.*[0-9])(?=.*[!@#$%^&*.])[a-zA-Z0-9!@#$%^&*.,]+$/;
 
             $('#button1').on('click', function(){
                 if(patron.test($('#inputCorreo').val())){
