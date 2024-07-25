@@ -116,8 +116,8 @@
             width: 150px;
         }
 
-        #Fecha_nacimiento, #tipo_usuario, #telefono{
-            width: 88%;
+        #Fecha_nacimiento, #tipo_usuario, #telefono, #inputContraseña{
+            width: 88%; 
         }
 
     </style>
@@ -153,7 +153,8 @@
             <h2>Regístrate</h2>
                 <div class="form-group">
                     <label for="inputCorreo">Contraseña:</label>
-                    <input type="text" class="form-control" placeholder="Crea una contraseña" id="inputContraseña" name="password">
+                    <p class="error">Ingresa una contraseña válido</p>
+                    <input type="password" class="form-control" placeholder="Crea una contraseña" id="inputContraseña" name="password">
                 </div>
                 <div class="center">
                     <button type="button" id="button2" class="bt-blue">Siguiente</button>
@@ -196,6 +197,7 @@
             var usuarioContenedor = $('#nuevoUsuario');
             var error = $('.error');
             var patron = /.+@gmail\.com/;
+            var patronContraseña = /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]+$/;
 
             $('#button1').on('click', function(){
                 if(patron.test($('#inputCorreo').val())){
@@ -208,12 +210,12 @@
             });
 
             $('#button2').on('click', function(){
-                if(){
+                if(patronContraseña.test($('#inputContraseña').val())){
                     datosContenedor.css("display", "none");
                     usuarioContenedor.css("display", "block");
                 }
                 else{
-
+                    error.css("display", "block");
                 }
             })
 
