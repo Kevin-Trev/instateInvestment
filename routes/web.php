@@ -25,8 +25,6 @@ Route::get('/hubs/perfi/seguridad', function () { return view('hubs.seguridad');
 Route::get('/filtros',[viewsController::class, 'filtros'])->name('filtro');
 Route::get('/view/login',[viewsController::class, 'login'])->name('login');
 Route::get('/registro', [viewsController::class, 'nuevoEmail'])->name('nuevoEmail');
-Route::get('/registro/contraseña', [viewsController::class, 'nuevoContraseña'])->name('nuevoContraseña');
-Route::get('/registro/datos', [viewsController::class, 'nuevoDatos'])->name('nuevoDatos');
 Route::get('/registro/finalizado', [viewsController::class, 'finalizar'])->name('finalizar');
 Route::get('/terminos', [viewsController::class, 'terminosCondiciones'])->name('terminosCondiciones');
 Route::get('/avisoPrivacidad', [viewsController::class, 'avisoPrivacidad'])->name('avisoPrivacidad');

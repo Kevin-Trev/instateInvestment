@@ -10,16 +10,8 @@ class viewsController extends Controller
         return view('Login-Register.registrarse');
     }
 
-    public function nuevoContraseña(){
-        return view('Login-Register.registrarse2');
-    }
-
-    public function nuevoDatos(){
-        return view('Login-Register.registrarse3');
-    }
-
     public function finalizar(){
-        return view('Login-Register.registrarse4');
+        return view('Login-Register.registrarseExito');
     }
     
     public function avisoPrivacidad(){

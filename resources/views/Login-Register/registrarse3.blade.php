@@ -61,34 +61,7 @@
 <div class="container">
     <form action="{{route('finalizar')}}" method="GET">
         @csrf
-        <h2>Regístrate</h2>
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre">
-        </div>
-        <div class="form-group">
-            <label for="tipo_usuario">Tipo de usuario</label>
-            <select id="tipo_usuario" name="tipo_usuario">
-                <option value="vendedor">Vendedor</option>
-                <option value="comprador">Comprador</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="fecha_nacimiento">Fecha de nacimiento</label>
-            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
-        </div>
-        <div class="form-group">
-            <label for="ciudad_residencia">Ciudad de residencia</label>
-            <input type="text" id="ciudad_residencia" name="ciudad_residencia">
-        </div>
-        <div class="form-group">
-            <label for="telefono">Teléfono</label>
-            <input type="tel" id="telefono" name="telefono" placeholder="+52">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn-blue">Finalizar</button>
-        </div>
-        <p class="terms">Al continuar, estas aceptando los <br><a href="{{route('terminosCondiciones')}}">Términos y condiciones</a> y el <a href="{{route('avisoPrivacidad')}}">Aviso de Privacidad</a>.</p>
+        
     </form>
 </div>
 

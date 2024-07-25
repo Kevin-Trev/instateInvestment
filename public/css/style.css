@@ -723,9 +723,7 @@ input[type="radio"]:checked + label{
     }
 
     body{
-        width: 3100vw;
-        margin: 0;
-
+        border: 1px solid black;
     }
     
     .filtro{
