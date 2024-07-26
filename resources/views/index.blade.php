@@ -74,13 +74,13 @@
                     <label for="ip-renta" class="Custom-Radio">Renta</label> 
                 </div>
                 <div class="input-groups">
-                    <input type="text" placeholder="Buscar por ciudad..."><input type="submit"  value="🔍︎ Buscar">
+                    <input type="text" placeholder="Buscar por ciudad..."><input type="submit"  value=" Buscar">
                 </div>
             </div>
         </div>
 
     <div id="seccion2">
-        <b><h2>Comienza a vender con nosotros y <br><span>0</span>obtén GRATIS un diagnóstico de <br> <span>0</span>posibilidades para tu propiedad</h2></b>
+        <h2>Comienza a vender con nosotros y <br><span>0</span>obtén GRATIS un diagnóstico de <br> <span>0</span>posibilidades para tu propiedad</h2>
             <div class="img-container">
                 <img src="{{ asset('/Imagenes/Image 3.png') }}" class="img1">
                 <img src="{{ asset('/Imagenes/Image 2.png') }}" class="img2">
@@ -89,27 +89,27 @@
         <a href="#"><button class="bt-cian">Obtén tu diagnóstico gratis</button></a>
     </div>
 
-<div id="seccion3">
-    <h2>Comenzar tu próximo desarrollo inmobiliario es muy sencillo</h2>
-    <div class="steps-container" style="margin-right: 30px;">
-        <div class="circle-container">
-            <img src="{{ asset('/Imagenes/glass.png')}}">
+    <div id="seccion3">
+        <h2>Comenzar tu próximo desarrollo inmobiliario es muy sencillo</h2>
+        <div class="steps-container" style="margin-right: 30px;">
+            <div class="circle-container">
+                <img src="/Imagenes/glass.png">
+            </div>
         </div>
-        <p> Busca propiedades en tu <br>ciudad</p>
-    </div>
-    <div class="steps-container" style="margin-right: 30px;">
-        <div class="circle-container">
-            <img src="{{ asset('/Imagenes/dollar-currency-symbol.png')}}">
+        <div class="steps-container" style="margin-right: 30px;">
+            <div class="circle-container">
+                <img src="/Imagenes/dollar-currency-symbol.png">
+            </div>
         </div>
-        <p> Conoce el potencial de la <br>propiedad de tu agrado</p>
-    </div>
-    <div class="steps-container">
-        <div class="circle-container">
-            <img src="{{ asset('/Imagenes/clipboard.png')}}" >
+        <div class="steps-container">
+            <div class="circle-container">
+                <img src="/Imagenes/clipboard.png" >
+            </div>
         </div>
-        <p>Comienza a planear tu próximo <br>desarrollo inmobiliario</p>
+        <p><span>00</span> Busca propiedades en tu <br><span>00000000000</span>ciudad</p>
+        <p><span>0</span> Conoce el potencial de la <br><span>00</span>propiedad de tu agrado</p>
+        <p>Comienza a planear tu próximo <br><span>0000</span>desarrollo inmobiliario</p>
     </div>
-</div>
 
 <div id="seccion4">
     <div class="video">

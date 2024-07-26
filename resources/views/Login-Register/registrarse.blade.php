@@ -133,7 +133,7 @@
 
 @section('body')
 
-    <form action="/registrar" method="POST">
+    <form action="/registrar" method="POST" id="formularioRegistro">
         @csrf
         <div class="container" id="nuevoEmail">
             <h2>Regístrate</h2>
@@ -183,26 +183,26 @@
             <h2>Regístrate</h2>
                 <div class="form-group">
                     <label for="nombreUsuario">Nombre de Usuario</label>
-                    <input type="text" class="form-control" id="nombreUsuario" name="name">
+                    <input type="text" class="form-control" id="nombreUsuario" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="Nombre">
+                    <input type="text" class="form-control" id="nombre" name="Nombre" required>
                 </div>
                 <div class="form-group">
                     <label for="nombre">Apellidos</label>
-                    <input type="text" class="form-control" id="apellido" name="Apellido">
+                    <input type="text" class="form-control" id="apellido" name="Apellido" required>
                 </div>
                 <div class="form-group">
                     <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                    <input type="date" class="form-control" id="Fecha_nacimiento" name="Fecha_Nacimiento">
+                    <input type="date" class="form-control" id="Fecha_nacimiento" name="Fecha_Nacimiento" required>
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono</label>
-                    <input type="tel" id="telefono" class="form-control" name="Telefono" placeholder="+52">
+                    <input type="tel" id="telefono" class="form-control" name="Telefono" placeholder="+52" required>
                 </div>
                 <div class="center">
-                    <button type="submit" class="btn-blue">Finalizar</button>
+                    <button type="submit" id="button5" class="btn-blue">Finalizar</button>
                     <button type="button" id="button4">Atrás</button>
                 </div>
             <p class="terms">Al continuar, estas aceptando los <br><a href="{{route('terminosCondiciones')}}">Términos y condiciones</a> y el <a href="{{route('avisoPrivacidad')}}">Aviso de Privacidad</a>.</p>
@@ -219,8 +219,8 @@
             var usuarioContenedor = $('#nuevoUsuario');
             var error = $('.error');
             var patron = /.+@gmail\.com/;
-            var patronContraseña = /^(?=.*[0-9])(?=.*[!@#$%^&*.])[a-zA-Z0-9!@#$%^&*.,]+$/;
-            var patronNumero = /^(?=.*[0-9])$/;
+            var patronContraseña = /^(?=.*[0-9])(?=.*[!@#$%^&*.])[a-zA-Z0-9!@#$%^&*.]+$/;
+            var patronNumero = /(?=.*[0-9])/;
             var patronCaracter = /(?=.*[!@#$%^&*.])/;
 
             $('#button1').on('click', function(){
@@ -235,7 +235,9 @@
             });
 
             $('#button2').on('click', function(){
-                if(patronContraseña.test($('#inputContraseña').val())){
+                var valorContraseña = $('#inputContraseña').val();
+
+                if(patronContraseña.test(valorContraseña) && valorContraseña.length >= 8){
                     datosContenedor.css("display", "none");
                     usuarioContenedor.css("display", "block");
                     error.css("display", "none")
@@ -269,7 +271,7 @@
                     condicionNumero.css("color", "red");
                 }
                 else if(patronNumero.test(valorContraseña)){
-                condicionNumero.text(" Un número");
+                condicionNumero.text("✔ Un número");
                 condicionNumero.css("color", "green");
                 }
                 else{
@@ -284,7 +286,7 @@
                     condicionCaracter.css("color", "red");
                 }
                 else if(patronCaracter.test(valorContraseña)){
-                    condicionCaracter.text(" Un carácter especial");
+                    condicionCaracter.text("✔ Un carácter especial");
                     condicionCaracter.css("color", "green");
                 }
                 else{
@@ -295,12 +297,28 @@
                 // Condicion para que la contraseña tenga una longitud minima de 8 carácteres
 
                 if(valorContraseña.length >= 8){
-                    condicionOcho.text(" 8 carácteres minímos");
+                    condicionOcho.text("✔ 8 carácteres minímos");
                     condicionOcho.css("color", "green");
                 }
                 else{
                     condicionOcho.text("X 8 carácteres minímos");
                     condicionOcho.css("color", "red");
+                }
+            })
+
+            $('#formularioRegistro').on('keydown', function (event){
+                if (event.keyCode === 13){
+                    event.preventDefault();
+                    if(emailContenedor.is(':visible')){
+                        $('#button1').click();
+                        console.log("ss")
+                    }
+                    else if(datosContenedor.is(':visible')){
+                        $('#button2').click();
+                    }
+                    else if(usuarioContenedor.is(':visible')){
+                        $('#button5').click();
+                    }
                 }
             })
         });
