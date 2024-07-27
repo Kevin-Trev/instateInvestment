@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class propiedad extends Model
+class propiedades extends Model
 {
     use HasFactory;
 
     protected $filiable=[
-        'id_p', 'precio', 'recamaras', 'disponibilidad', 'direccion','codigo_postal', 'num_exterior','num_interior', 'colonia',
+        'id_p','titulo', 'precio', 'recamaras','baños', 'disponibilidad', 'direccion','codigo_postal', 'num_exterior','num_interior', 'colonia',
         'calle','ciudad','estado','area', 'frente', 'fondo', 'rentable', 'vendible',
         'users_id', 'Tipo_Propiedad_id', 'verificacion'
     ];

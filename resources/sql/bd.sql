@@ -46,16 +46,18 @@ CREATE TABLE Servicio
   Servicio NVARCHAR(60) NOT NULL,
 );
 
-CREATE TABLE Propiedad
+CREATE TABLE Propiedades
 (
   ID_P INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  Titulo NVARCHAR(60) NOT NULL, /* Titulo de la publicacion de la propiedad */
   Precio FLOAT NOT NULL,
-  Recamaras INT NOT NULL, 
+  Recamaras INT NOT NULL,
+  Baños INT NOT NULL, 
   Disponibilidad BIT NOT NULL,
   Codigo_Postal CHAR(5) NOT NULL,
-  num_exterior char(5),
-  num_interior char(5),
-  Colonia NVARCHAR(45) Not NULL,
+  num_exterior char(5) DEFAULT 'S/N',
+  num_interior char(5) DEFAULT 'S/N',
+  Colonia NVARCHAR(45) NOT NULL,
   Calle NVARCHAR(45) NOT NULL, 
   Ciudad NVARCHAR(45) NOT NULL,
   Estado NVARCHAR(45) NOT NULL,

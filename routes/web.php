@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\viewsController;
 use App\Http\Controllers\usuariosController;
+use App\Http\Controllers\propiedadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,9 @@ Route::get('/', function () {
 Route::post('/login', [usuariosController::class, 'login']);
 Route::post('/logout', [usuariosController::class, 'logout']);
 Route::post('/registrar', [usuariosController::class, 'nuevoUsuario']);
+
+Route::get('/get/properties',[propiedadController::class, 'index']);
+Route::get('/get/property', [propiedadController::class, 'getProperty']);
 
 Route::get('/hubs/perfil', function () { return view('hubs.perfil'); });
 Route::get('/hubs/perfi/seguridad', function () { return view('hubs.seguridad'); });

@@ -171,6 +171,42 @@
 @section('js')
     <!-- EJEMPLO DE FUNCION PARA AGREGAR LAS TARJETAS DE PROPIEDADES() -->
 <script>
+
+//  obtener los registros de propiedades desde BD  //
+  $(document).ready(function(){
+    cargarPropiedades(); // agregalo como comentario en caso de diseño front //
+  });
+
+  function cargarPropiedades() {
+    $.ajax({
+      url: `/get/properties`,
+      method: `GET`,
+      success: function(data) {
+          console.log(data);
+          const listaPropiedades = $('#pl');
+          listaPropiedades.empty();
+          console.log(data);
+          data.forEach(propety => {
+          const propiedad =
+              `<div class="property-list" id="pl">
+                  <div class="property-card" style="margin-top: 5px;">
+                    <img src="https://via.placeholder.com/300x200" alt="Propety Image" class="property-image">
+                    <h3>${propety.Titulo}</h3>
+                    <p>$ ${propety.Precio}</p>
+                    <div class="property-details">
+                      <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>${propety.Recamaras} Recámaras</span></div>
+                      <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>${propety.Baños} Baños</span></div>
+                      <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${propety.Area} M² construidos</span></div>
+                    </div>
+                    <button class="property-button" onclick="infoPropety(${propety.id})">Ver Mas</button>
+                  </div>
+               </div>`
+            listaPropiedades.append(propiedad);
+          });
+      }
+    });
+  }
+
   var propiedades = [
     { titulo: "Agatha Monolith Torre A", price: "$ 3,193,840 MXN" , Recamaras: "1", Baños: "7", MtsCuadrados: "50m²"},
     { titulo: "Agatha Monolith Torre B", price: "$ 3,193,841 MXN" , Recamaras: "2", Baños: "6", MtsCuadrados: "51m²" },
