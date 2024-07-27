@@ -91,24 +91,24 @@
 
     <div id="seccion3">
         <h2>Comenzar tu próximo desarrollo inmobiliario es muy sencillo</h2>
-        <div class="steps-container" style="margin-right: 30px;">
+        <div class="steps-container" >
             <div class="circle-container">
                 <img src="/Imagenes/glass.png">
             </div>
+            <p>Busca propiedades en <br>tu ciudad</p>
         </div>
-        <div class="steps-container" style="margin-right: 30px;">
+        <div class="steps-container" >
             <div class="circle-container">
                 <img src="/Imagenes/dollar-currency-symbol.png">
             </div>
+            <p> Conoce el potencial de la propiedad de tu agrado</p>
         </div>
         <div class="steps-container">
             <div class="circle-container">
                 <img src="/Imagenes/clipboard.png" >
             </div>
+            <p>Comienza a planear tu próximo desarrollo inmobiliario</p>
         </div>
-        <p><span>00</span> Busca propiedades en tu <br><span>00000000000</span>ciudad</p>
-        <p><span>0</span> Conoce el potencial de la <br><span>00</span>propiedad de tu agrado</p>
-        <p>Comienza a planear tu próximo <br><span>0000</span>desarrollo inmobiliario</p>
     </div>
 
 <div id="seccion4">
@@ -197,39 +197,41 @@
             <p>Instate es una marga registrada por <br>Instate Investments S.A de C.V. en <br>alianza con Design Construcciones.</p>
         </div>
     
-        <div class="container-info">
-            <h2>Contacto</h2>
-            <hr>
-            <b>MINA 330 INT. 5 COL.CENTRO <br>MONTERREY, NUEVO LEÓN. MÉXICO <br>812-433-1672</b>
-            
-            <br>
-
-            <div class="container-social">
-                <a href="">
-                    <img src="{{ asset('Imagenes/iconoFacebook.png')}}">
-                </a>
-            </div>
-            <div class="container-social">
-                <a href="">
-                    <img src="{{ asset('Imagenes/iconoTwitter.png')}}">
-                </a>
-            </div>
-            <div class="container-social">
-                <a href="">
-                    <img src="{{ asset('Imagenes/iconoInstagram.png')}}">
-                </a>
-            </div>
+        <div class="juntos">
+            <div class="container-info">
+                <h2>Contacto</h2>
+                <hr>
+                <b>MINA 330 INT. 5 COL.CENTRO <br>MONTERREY, NUEVO LEÓN. MÉXICO <br>812-433-1672</b>
+                
+                <br>
+    
+                <div class="container-social">
+                    <a href="">
+                        <img src="{{ asset('Imagenes/iconoFacebook.png')}}">
+                    </a>
+                </div>
+                <div class="container-social">
+                    <a href="">
+                        <img src="{{ asset('Imagenes/iconoTwitter.png')}}">
+                    </a>
+                </div>
+                <div class="container-social">
+                    <a href="">
+                        <img src="{{ asset('Imagenes/iconoInstagram.png')}}">
+                    </a>
+                </div>
+        </div>
             
         </div>
-        <div class="container-info">
+        <div class="container-info2">
             <h2>Legal</h2>
             <hr>
             <a href="/legal">Aviso legal</a><br><br><a href="/privacidad">Politica de privacidad </a><br><br><a href="/privacidad">Politica de cookies</a>
         </div>
-        <div class="container-info">
+        <div class="container-info2">
             <h2>Sobre Instate</h2>
             <hr>
-            <a href="/nosotros">Nosotros</a><br><br><a href="/mision">Misión</a> <br><br><a href="/vision">Visión</a>
+            <a href="/nosotros">Nosotros</a><br><br><a href="/mision">Misión</a><br><br><a href="/vision">Visión</a>
         </div>
     </footer>
 
