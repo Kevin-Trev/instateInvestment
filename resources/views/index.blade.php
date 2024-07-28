@@ -7,41 +7,6 @@
 @endsection
 
 @section('body')
-
-    {{-- MODALES --}}
-
-    <div class="modal fade" id="iniciarModal" tabindex="-1" aria-labelledby="iniciarModalLabel" aria-hidden="true" style="margin-top: 10px; border-radius: 8px;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form method="POST" action="/login">
-                    @csrf
-                    <div>
-                        <span data-bs-dismiss="modal" class="cerrarModal">&times;</span><br>
-                        <h2>Iniciar sesión</h2>
-                        <div class="form-group">
-                            <label for="inputCorreo">Correo electrónico</label>
-                            <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo electrónico" id="inputCorreo" name="">
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label for="inputContraseña">Contraseña</label>
-                            <input type="password" class="form-control" name="password" placeholder= "Ingresa tu contraseña" id="inputContraseña">
-                        </div>
-                        <br>
-                        <button type="submit" class="bt-blue">Ingresar</button>
-                        <p class="line-text">─────────  o también puedes  ─────────</p>
-                        <button class="bt-google"><img src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
-                        <div class="footer">
-                            <a href="/registro">Registrate</a>
-                            <p>Si aún no tienes cuenta</p>
-                        </div>    
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    {{-- FIN DE MODALES --}}
     
         <div id="seccion1">
             <header class="header">
@@ -53,7 +18,7 @@
                     <div class="button-container">
                         @guest
                             <a href="{{route('nuevoEmail')}}"><button class="bt-white">Registrate</button></a>
-                            <button class="bt-blue" type="button" data-bs-toggle="modal" data-bs-target="#iniciarModal">Iniciar Sesión</button>
+                            <a href="{{route('login')}}"><button class="bt-blue" type="button">Iniciar Sesión</button></a>
                         @endguest
                         @auth
                             <button class="bt-blue" type="button">{{Auth::user()->Nombre}}</button>
@@ -95,13 +60,13 @@
             <div class="circle-container">
                 <img src="/Imagenes/glass.png">
             </div>
-            <p>Busca propiedades en <br>tu ciudad</p>
+            <p>Busca propiedades cercanas de tu ubicación</p>
         </div>
         <div class="steps-container" >
             <div class="circle-container">
                 <img src="/Imagenes/dollar-currency-symbol.png">
             </div>
-            <p> Conoce el potencial de la propiedad de tu agrado</p>
+            <p>Conoce el potencial de la propiedad de tu agrado</p>
         </div>
         <div class="steps-container">
             <div class="circle-container">
@@ -134,6 +99,7 @@
         </ul>
         <div class="img-sp">
             <span><img src="{{ asset('/Imagenes/PDF.png') }}">PDF por correo electrónico</span>
+            <br>
             <span><img src="{{ asset('/Imagenes/Reloj.png') }}">Hasta 24 horas hábiles</span>
 
         </div>
@@ -157,8 +123,8 @@
         </ul>
         <div class="img-sp">
             <span><img src="{{ asset('/Imagenes/PDF.png') }}">PDF por correo electrónico</span>
+            <br>
             <span><img src="{{ asset('/Imagenes/Reloj.png') }}">Hasta 24 horas hábiles</span>
-
         </div>
         <footer class="container-foot">
             <img src="{{ asset('/Imagenes/Image 1.png') }}" >
@@ -180,6 +146,7 @@
         </ul>
         <div class="img-sp">
             <span><img src="{{ asset('/Imagenes/PDF.png') }}">PDF por correo electrónico</span>
+            <br>
             <span><img src="{{ asset('/Imagenes/Reloj.png') }}">Hasta 24 horas hábiles</span>
         </div>
         <footer class="container-foot">
@@ -220,19 +187,19 @@
                         <img src="{{ asset('Imagenes/iconoInstagram.png')}}">
                     </a>
                 </div>
+            </div>
+            <div class="container-info2">
+                <h2>Legal</h2>
+                <hr>
+                <a href="/legal">Aviso legal</a><br><br><a href="/privacidad">Politica de privacidad </a><br><br><a href="/privacidad">Politica de cookies</a>
+            </div>
+            <div class="container-info2">
+                <h2>Sobre</h2>
+                <hr>
+                <a href="/nosotros">Nosotros</a><br><br><a href="/mision">Misión</a><br><br><a href="/vision">Visión</a>
+            </div>
         </div>
-            
-        </div>
-        <div class="container-info2">
-            <h2>Legal</h2>
-            <hr>
-            <a href="/legal">Aviso legal</a><br><br><a href="/privacidad">Politica de privacidad </a><br><br><a href="/privacidad">Politica de cookies</a>
-        </div>
-        <div class="container-info2">
-            <h2>Sobre Instate</h2>
-            <hr>
-            <a href="/nosotros">Nosotros</a><br><br><a href="/mision">Misión</a><br><br><a href="/vision">Visión</a>
-        </div>
+        
     </footer>
 
 @endsection

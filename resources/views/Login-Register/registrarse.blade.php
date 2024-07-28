@@ -45,23 +45,7 @@
             text-align: center;
             margin-bottom: 50px;
         }
-        .bt-google{
-        border: none;
-        color: #646E71;
-        background-color: #FFFFFF;
-        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
-        cursor: pointer;
-        padding: 8px;
-        border-radius: 8px;
-        text-align: center;
-        width: 78%;
-        }
-        .bt-google img{
-        width: 20px;
-        height: 20px;
-        margin: 5px;
-        }
-
+        
         .center{
             text-align: center;
         }
@@ -145,8 +129,6 @@
             </div>
             <div class="center">
                 <button type="button" id="button1" class="bt-blue">Siguiente</button>
-                <p>─────────  o también puedes  ─────────</p>
-                <button class="bt-google"><img src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
             </div>
             <footer>
                 <a href="/view/login">Inicia sesión</a>

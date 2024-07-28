@@ -3,25 +3,66 @@
 @section('title', 'Iniciar Sesión')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/styleDialogs.css') }}">    
+    <style>
+        .container {
+        width: 500px;
+        margin: 100px auto;
+        padding: 30px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        transform: translateY(20px);
+        }
+
+        .bt-blue {
+        background-color: #3370FF;
+        color: #FFFFFF;
+        padding: 8px 100px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    h2{
+        text-align: center;
+        padding-bottom: 30px;
+    }
+
+    input{
+        margin-bottom: 15px;
+    }
+
+    .footer{
+        text-align: center;
+        font-size: 14px;
+    }
+
+    button[type="submit"]{
+        margin-bottom: 25px;
+    }
+    </style>    
 @endsection
 
 @section('body')
 
-    <div class="modalIniciarSesion">
+    <div class="container">
         <form action="/login" method="POST" id="iniciarForm">
             @csrf
             <h2>Iniciar sesión</h2>
-            <label for="inputCorreo">Correo electrónico</label>
+            <div class="form-group">
+                <label for="inputCorreo">Correo electrónico</label>
+                <input type="text" class="form-control" placeholder="Ingresa tu correo electrónico" id="inputCorreo" name="email">
+            </div>
+        
+            <div class="form-group">
+                <label for="inputContraseña">Contraseña</label>
+                <input type="password" class="form-control" placeholder= "Ingresa tu contraseña" id="inputContraseña" name="password">
+            </div>
             <br>
-            <input type="text" placeholder="Ingresa tu correo electrónico" id="inputCorreo" name="email">
-            <br>
-            <label for="inputContraseña">Contraseña</label>
-            <br>
-            <input type="password" placeholder= "Ingresa tu contraseña" id="inputContraseña" name="password">
             <button type="submit" class="bt-blue">Ingresar</button>
-            <p class="line-text">─────────  o también puedes  ─────────</p>
-            <button class="bt-google"><iphpmg src="{{asset('/Imagenes/Logo-google.png')}}">Continuar con Google</button>
             <div class="footer">
                 <a href="/registrarse">Registrate</a>
                 <p>Si aún no tienes cuenta</p>
