@@ -9,13 +9,17 @@ class propiedades extends Model
 {
     use HasFactory;
 
-    protected $filiable=[
-        'id_p','titulo', 'precio', 'recamaras','baños', 'disponibilidad', 'direccion','codigo_postal', 'num_exterior','num_interior', 'colonia',
+    protected $table = 'propiedades';
+    protected $primaryKey = 'ID_P';
+    public $timestamps = false;
+
+    protected $fillable=[
+        'titulo', 'precio', 'recamaras','baños', 'disponibilidad', 'direccion','codigo_postal', 'num_exterior','num_interior', 'colonia',
         'calle','ciudad','estado','area', 'frente', 'fondo', 'rentable', 'vendible',
         'users_id', 'Tipo_Propiedad_id', 'verificacion'
     ];
     public function tipo_propiedad(){
-        return $this->belongsToMany(tipo_propiedad::class, 'id_t', 'Tipo_Propiedad_id');
+        return $this->belongsTo(tipo_propiedad::class,'Tipo_Propiedad_id');
     }
     public function users(){
         return $this->belongsToMany(users::class, 'id', 'users_id');

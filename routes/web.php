@@ -23,9 +23,12 @@ Route::get('/', function () {
 Route::post('/login', [usuariosController::class, 'login']);
 Route::post('/logout', [usuariosController::class, 'logout']);
 Route::post('/registrar', [usuariosController::class, 'nuevoUsuario']);
+Route::post('/useredit', [usuariosController::class, 'editarUsuario']);
+Route::delete('/userdel', [usuariosController::class, 'eliminarUsuario']);
 
 Route::get('/get/properties',[propiedadController::class, 'index']);
-Route::get('/get/property', [propiedadController::class, 'getProperty']);
+Route::get('/get/property/{id}', [propiedadController::class, 'getProperty']);
+Route::get('/post/propiedad', [propiedadController::class, 'newProperty']); /* cambiar de GET a POST */
 
 Route::get('/hubs/perfil', function () { return view('hubs.perfil'); });
 Route::get('/hubs/perfi/seguridad', function () { return view('hubs.seguridad'); });
