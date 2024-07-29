@@ -33,4 +33,8 @@ class viewsController extends Controller
     public function filtros() {
         return view ('paginaFiltro');
     }
+
+    public function agregarPropiedad(){
+        return view('agregarPropiedad');
+    }
 }
