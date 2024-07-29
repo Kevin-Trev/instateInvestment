@@ -17,7 +17,7 @@ CREATE TABLE `users` (
   Apellido NVARCHAR(45) NOT NULL,
   Telefono VARCHAR(10) NOT NULL, 
   Fecha_Nacimiento DATE NOT NULL,
-  Calificacion FLOAT NOT NULL /* agrgar restriccion de 0-5*/
+  Calificacion ENUM('1', '2', '3', '4', '5') 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE Suscripcion_VIP
@@ -37,19 +37,19 @@ CREATE TABLE Suscripcion_VIP
 CREATE TABLE Tipo_Propiedad
 (
    ID_T INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-   Tipo NVARCHAR(45) NOT NULL,
+   Tipo NVARCHAR(45) NOT NULL
 );
 
 CREATE TABLE Servicio
 (
   ID_SERV INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  Servicio NVARCHAR(60) NOT NULL,
+  Servicio NVARCHAR(60) NOT NULL
 );
 
 CREATE TABLE Propiedades
 (
   ID_P INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  Titulo NVARCHAR(60) NOT NULL, /* Titulo de la publicacion de la propiedad */
+  Titulo NVARCHAR(60) NOT NULL, 
   Precio FLOAT NOT NULL,
   Recamaras INT NOT NULL,
   Baños INT NOT NULL, 
@@ -72,7 +72,7 @@ CREATE TABLE Propiedades
   REFERENCES users(id),
   Tipo_Propiedad_id INT NOT NULL,
   CONSTRAINT FK_Tipo_Propiedad FOREIGN KEY (Tipo_Propiedad_id)
-  REFERENCES Tipo_Propiedad (ID_T),
+  REFERENCES Tipo_Propiedad (ID_T)
  
 );
 
@@ -82,7 +82,7 @@ CREATE TABLE IMAGENES_PROPIEDAD
   propiedad_id INT NOT NULL,
   src_image TEXT NULL,
   CONSTRAINT FK_IMAGENES_PROPIEDAD FOREIGN KEY (propiedad_id)
-  REFERENCES Propiedad(ID_P)
+  REFERENCES Propiedades (ID_P)
 );
 
 CREATE TABLE Propiedad_Servicio
@@ -90,7 +90,7 @@ CREATE TABLE Propiedad_Servicio
   ID_PS INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   Propiedad_id INT NOT NULL,
   CONSTRAINT FK_Propiedad_Servicio FOREIGN KEY (Propiedad_id)
-  REFERENCES Propiedad (ID_P),
+  REFERENCES Propiedades (ID_P),
   Servicio_id INT NOT NULL,
   CONSTRAINT FK_Servicio FOREIGN KEY (Servicio_id)
   REFERENCES Servicio(ID_SERV)
@@ -106,7 +106,7 @@ CREATE TABLE Comentario
   REFERENCES users (id),
   Propiedad_id INT NOT NULL,
   CONSTRAINT FK_Propiedad_Comentario FOREIGN KEY (Propiedad_id)
-  REFERENCES Propiedad(ID_P)
+  REFERENCES Propiedades(ID_P)
 );
 
 CREATE TABLE Agenda_Visita
@@ -119,7 +119,7 @@ CREATE TABLE Agenda_Visita
   REFERENCES users(id),
   Propiedad_id INT NOT NULL,
   CONSTRAINT FK_Propiedad_Agenda FOREIGN KEY (Propiedad_id)
-  REFERENCES Propiedad(ID_P)
+  REFERENCES Propiedades(ID_P)
 );
 
 CREATE TABLE Cotizacion
@@ -133,7 +133,7 @@ CREATE TABLE Cotizacion
   REFERENCES users (id),
   Propiedad_id INT NOT NULL,
   CONSTRAINT FK_Propiedad_Cotizacion FOREIGN KEY (Propiedad_id)
-  REFERENCES Propiedad(ID_P)
+  REFERENCES Propiedades(ID_P)
 );
 
 /* Tablas que necesita Laravel para Funcionar */
@@ -215,4 +215,3 @@ CREATE TABLE `sessions` (
   KEY `sessions_user_id_index` (`user_id`),
   KEY `sessions_last_activity_index` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
