@@ -8,10 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class tipo_propiedad extends Model
 {
     use HasFactory;
+
+    protected $table = 'tipo_propiedad';
+    protected $primaryKey = 'ID_T';
+
     protected $filiable=[ 
-        'id_t', 'tipo'
+        'tipo'
     ];
+    
     public function propiedad(){
-        return $this->hasOne(suscripcion_vip::class, 'Tipo_Propiedad_id', 'id_t');
+        return $this->hasOne(propiedades::class, 'ID_T');
     }
 }

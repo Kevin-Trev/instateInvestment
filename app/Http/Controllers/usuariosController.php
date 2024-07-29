@@ -16,9 +16,9 @@ class UsuariosController extends Controller
 
     public function nuevoUsuario(Request $request) {
 
+        DB::beginTransaction();
+
         try{     
-            
-            DB::beginTransaction();
             
             $user = new User();
 
@@ -60,6 +60,13 @@ class UsuariosController extends Controller
 
     public function logout () {
 
+        Auth::logout();
+        return redirect('/');
+    }
+
+    public function eliminarUsuario () {
+        $user = Auth::user();
+        $user->delete();
         Auth::logout();
         return redirect('/');
     }
