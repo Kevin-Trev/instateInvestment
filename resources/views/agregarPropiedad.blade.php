@@ -5,23 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{asset('Imagenes/iconito.png')}}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    
-    <title>Publicar Propiedad</title>
+    <title>Instate Investment</title>
 <style>
     body {
         font-family: 'Roboto';
         margin: 0;
         padding: 0;
 }
-    .container-ori {
-       padding-left: 250px;       
+    .container {
+       padding-left: 12%;       
 }
 
-    .container-ori h1{
+    .container h1{
         font-size: 2vw;
-        font-weight: bold;
 }
 
-    .container-ori p{
+    .container p{
         font-size: 1vw;
         color: #889396;
 }
@@ -62,13 +61,12 @@
         float: right;
 }
 
-    .logo  img{
-        height: 50px;
-        margin-top: 20px;
-        margin-left: 10%;
-        font-size: 35px;
-        color: #3370FF;
-        margin-bottom: 20px;
+.logo img{
+    height: 40px;
+    margin-top: 20px;
+    margin-left: 1%;
+
+    margin-bottom: 5px;
 }
 
 .circle-container {
@@ -76,6 +74,7 @@
   justify-content: center;
   align-items: center;
   padding: 15px;
+  height: 60px;
 }
 
 .circle {
@@ -110,6 +109,20 @@
     text-align: center;
     margin-left: 38%;
 }
+
+.section-title{
+    display: flex;
+}
+
+.section-title h3{
+    padding-top: 6px;
+}
+
+.section-title .circle.blue{
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-right: 15px;
+}
     </style>
 </head>
 <body>
@@ -118,10 +131,9 @@
     </div>
 
     <form action="" enctype="multipart/form-data">
-        <div class="container-ori" id="primerPaso">
+        <div class="container" id="primerPaso">
             <h1>Publica una nueva propiedad</h1>
             <p>Sigue los siguientes pasos para publicar tu propiedad</p>
-            <div class="container">
                 <div class="card">
                     <div class="circle-container">
                         <div class="circle-circle-container">
@@ -154,17 +166,16 @@
                     <br><br>
 
                     <div class="section-title">
-                        <div class="circle blue">1</div>
-                        <h2 class="next">Ubicación</h2>
+                        <div class="circle blue">1</div><h3>Ubicación</h2>
                     </div>
     
-                    <div class="form-group">
-                        <label for="Ciudad">Ciudad:</label>
-                        <input type="text" class="form-control" name="Ciudad" id="Ciudad" placeholder="Ingrese la ciudad en la que se ubica su propiedad" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="Estado">Estado:</label>
-                        <input type="text" class="form-control" name="Estado" id="Estado" placeholder="Ingrese el estado en el que se ubica su propiedad" required>
+                    <div class="contenedorDatos">
+                        <div class="form-group">
+                            <label for="Ciudad">Ciudad:</label>
+                            <input type="text" class="form-control" name="Ciudad" id="Ciudad" placeholder="Ingrese la ciudad en la que se ubica su propiedad" required>
+                            <label for="Estado">Estado:</label>
+                            <input type="text" class="form-control" name="Estado" id="Estado" placeholder="Ingrese el estado en el que se ubica su propiedad" required>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="calle">Calle:</label>
@@ -189,13 +200,11 @@
                     
                     <button type="button">Continuar</button>
                 </div>
-            </div>
         </div>
 
-        <div class="container-ori" id="segundoPaso">
+        <div class="container" id="segundoPaso">
             <h1>Publica una nueva propiedad</h1>
             <p>Sigue los siguientes pasos para publicar tu propiedad</p>
-            <div class="container">
                 <div class="card">
                     <div class="circle-container">
 
@@ -229,7 +238,7 @@
                     <br><br>
                       
                     <div class="section-title">
-                        <div class="circle blue">1</div><h2>Caracteristicas</h2>
+                        <div class="circle blue">2</div><h3>Caracteristicas</h3>
                     </div>
     
                     <div class="form-group">
@@ -260,16 +269,13 @@
                     </div>
                     <button type="button">Continuar</button>
                 </div>
-            </div>
         </div>
 
-        <div class="container-ori" id="tercerPaso">
+        <div class="container" id="tercerPaso">
             <h1>Publica una nueva propiedad</h1>
             <p>Sigue los siguientes pasos para publicar tu propiedad</p>
-            <div class="container">
                 <div class="card">
                     <div class="circle-container">
-
                         <div>
                             <div class="circle blue">1</div>
                             <div class="transparent">0</div>
@@ -286,7 +292,7 @@
 
                         <div class="circle-circle-container">
                             <div class="circle blue">3</div>
-                            <div class="text">Detalles de la propiedad</div>
+                            <div class="text">Detalles de la publicación</div>
                         </div>
                         
                         <div class="line"></div>
@@ -300,7 +306,7 @@
                     <br><br>
 
                     <div class="section-title">
-                        <div class="circle blue">1</div><h2>Caracteristicas</h2>
+                        <div class="circle blue">3</div><h3>Descripción</h3>
                     </div>
     
                     <div class="form-group">
@@ -329,13 +335,11 @@
                     
                     <button type="button">Continuar</button>
                 </div>
-            </div>
         </div>
 
-        <div class="container-ori" id="cuartoPaso">
+        <div class="container" id="cuartoPaso">
             <h1>Publica una nueva propiedad</h1>
             <p>Sigue los siguientes pasos para publicar tu propiedad</p>
-            <div class="container">
                 <div class="card">
                     <div class="circle-container">
                         <div>
@@ -368,7 +372,7 @@
                     <br><br>
 
                     <div class="section-title">
-                        <div class="circle blue">1</div><h2>Caracteristicas</h2>
+                        <div class="circle blue">4</div><h2>Finalización</h2>
                     </div>
     
                     <div class="form-group">
@@ -401,7 +405,6 @@
                     
                     <button type="button">Continuar</button>
                 </div>
-            </div>
         </div>
     </form>
     
