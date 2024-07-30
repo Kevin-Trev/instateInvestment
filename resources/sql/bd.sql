@@ -4,33 +4,23 @@ USE instateInvestment;
 
 CREATE TABLE `users` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL UNIQUE,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL UNIQUE,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`) ,
-  Nombre NVARCHAR(45) NOT NULL,
-  Apellido NVARCHAR(45) NOT NULL,
-  Telefono VARCHAR(10) NOT NULL, 
-  Fecha_Nacimiento DATE NOT NULL,
-  Calificacion ENUM('1', '2', '3', '4', '5') 
+  `Nombre` NVARCHAR(45) NOT NULL,
+  `Apellido` NVARCHAR(45) NOT NULL,
+  `Telefono` VARCHAR(10) NOT NULL UNIQUE, 
+  `Fecha_Nacimiento` DATE NOT NULL,
+  `Calificacion` ENUM('1', '2', '3', '4', '5'),
+  `Foto` TEXT,
+  `administrador` bit,
+  `activo` bit
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE Suscripcion_VIP
-(
-   ID_S INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-   Costo DOUBLE NOT NULL,
-   Fecha_Inicio DATE NOT NULL,
-   Fecha_Fin DATE NOT NULL,
-   users_Id bigint unsigned NOT NULL,
-   CONSTRAINT FK_users_Suscripcion FOREIGN KEY (users_Id)
-   REFERENCES users (id)
-);
-
 
 
 
@@ -43,7 +33,7 @@ CREATE TABLE Tipo_Propiedad
 CREATE TABLE Servicio
 (
   ID_SERV INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  Servicio NVARCHAR(60) NOT NULL
+  Servicio ENUM ('agua', 'luz', 'gas', 'internet', 'cable')
 );
 
 CREATE TABLE Propiedades
@@ -51,8 +41,8 @@ CREATE TABLE Propiedades
   ID_P INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   Titulo NVARCHAR(60) NOT NULL, 
   Precio FLOAT NOT NULL,
-  Recamaras INT NOT NULL,
-  Baños INT NOT NULL, 
+  Recamaras INT ,
+  Baños INT, 
   Disponibilidad BIT NOT NULL,
   Codigo_Postal CHAR(5) NOT NULL,
   num_exterior char(5) DEFAULT 'S/N',
@@ -61,8 +51,8 @@ CREATE TABLE Propiedades
   Calle NVARCHAR(45) NOT NULL, 
   Ciudad NVARCHAR(45) NOT NULL,
   Estado NVARCHAR(45) NOT NULL,
-  Area VARCHAR(45) NOT NULL,
-  Frente FLOAT NOT NULL, 
+  Area VARCHAR(45) ,
+  Frente FLOAT, 
   Fondo FLOAT, 
   Verificacion BIT NOT NULL,
   Rentable BIT NOT NULL,
@@ -109,18 +99,6 @@ CREATE TABLE Comentario
   REFERENCES Propiedades(ID_P)
 );
 
-CREATE TABLE Agenda_Visita
-(
-  ID_AV INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
-  Fecha DATE NOT NULL,
-  Hora DOUBLE NOT NULL,
-  users_id bigint unsigned NOT NULL,
-  CONSTRAINT FK_users_Agenda FOREIGN KEY(users_id)
-  REFERENCES users(id),
-  Propiedad_id INT NOT NULL,
-  CONSTRAINT FK_Propiedad_Agenda FOREIGN KEY (Propiedad_id)
-  REFERENCES Propiedades(ID_P)
-);
 
 CREATE TABLE Cotizacion
 (
@@ -135,6 +113,29 @@ CREATE TABLE Cotizacion
   CONSTRAINT FK_Propiedad_Cotizacion FOREIGN KEY (Propiedad_id)
   REFERENCES Propiedades(ID_P)
 );
+
+CREATE TABLE reportes(
+id_r INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+ users_id bigint unsigned NOT NULL,
+ comentarios text,
+  CONSTRAINT FK_users_reportes FOREIGN KEY(users_id)
+  REFERENCES users (id),
+  Propiedad_id INT NOT NULL,
+  CONSTRAINT FK_Propiedad_reportes FOREIGN KEY (Propiedad_id)
+  REFERENCES Propiedades(ID_P)
+);
+
+CREATE TABLE notificacion(
+id_noti INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+users_id bigint unsigned NOT NULL,
+  CONSTRAINT FK_users_not FOREIGN KEY(users_id)
+  REFERENCES users (id),
+  mensaje TEXT,
+  fecha_creacion DATE NOT NULL,
+  reportes_id int  NOT NULL,
+  CONSTRAINT FK_reportes_not FOREIGN KEY(reportes_id)
+  REFERENCES reportes (id_r)
+  );
 
 /* Tablas que necesita Laravel para Funcionar */
 
