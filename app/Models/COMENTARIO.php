@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class comentario extends Model
 {
     use HasFactory;
-
+    protected $table = 'coemntario';
+    protected $primaryKey = 'id_com';
     protected $filiable=[
-        'id_com', 'comentario', 'fecha', 'users_id', 'propiedad_id'
+         'comentario', 'fecha', 'users_id', 'propiedad_id'
     ];
     public function users(){
         return $this->belongsToMany(users::class, 'id', 'users_id');

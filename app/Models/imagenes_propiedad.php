@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class imagenes_propiedad extends Model
 {
     use HasFactory;
+    protected $table = 'imagenes_propiedad';
+    protected $primaryKey = 'reg';
     protected $filiable=[
-        'reg', 'propiedad_id', 'src_image'
+        'propiedad_id', 'src_image'
 ];
 public function propiedad(){
     return $this->belongsToMany(propiedad::class, 'id_p', 'propiedad_id');

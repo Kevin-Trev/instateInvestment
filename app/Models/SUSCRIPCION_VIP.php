@@ -9,8 +9,10 @@ class suscripcion_vip extends Model
 {
     use HasFactory;
 
+ protected $table = 'suscripcion_vip';
+    protected $primaryKey = 'id_s';
     protected $filiable=[
-           'id_s', 'costo', 'fecha_inicio', 'fecha_fin', 'users_Id' 
+            'costo', 'fecha_inicio', 'fecha_fin', 'users_Id' 
     ];
 
     public function users(){

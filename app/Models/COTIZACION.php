@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class cotizacion extends Model
 {
     use HasFactory;
-
+    protected $table = 'cotizacion';
+    protected $primaryKey = 'id_c';
     protected $filiable=[
-        'id_c', 'monto', 'periodo', 'fecha', 'metodopago',
+        'monto', 'periodo', 'fecha', 'metodopago',
         'users_id', 'propiedad_id'
     ];
 

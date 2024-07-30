@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class agenda_visita extends Model
 {
     use HasFactory;
-
+    protected $table = 'agenada_visita';
+    protected $primaryKey = 'id_av';
     protected $filiable=[
-        'id_av', 'fecha', 'hora', 'estado', 
+       'fecha', 'hora', 'estado', 
         'users_id', 'propiedad_id'
     ];
     public function users(){
