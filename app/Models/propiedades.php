@@ -40,4 +40,7 @@ class propiedades extends Model
     public function imagenes_propiedad(){
         return $this->hasOne(imagenes_propiedad::class, 'propiedad_id', 'id_p'); 
     }
+    public function reportes(){
+        return $this->hasOne(reportes::class, 'propiedad_id', 'id_p'); 
+    }
 }

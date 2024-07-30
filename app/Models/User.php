@@ -43,6 +43,9 @@ class User extends Authenticatable
     public function agenda_visita(){
         return $this->hasOne(agenda_visita::class, 'users_id', 'id');
     }
+    public function reportes(){
+        return $this->hasOne(reportes::class, 'users_id', 'id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
