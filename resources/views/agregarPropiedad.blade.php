@@ -117,7 +117,7 @@
         <img src="{{asset('/Imagenes/LOGO2.png')}}">
     </div>
 
-    <form action="">
+    <form action="" enctype="multipart/form-data">
         <div class="container-ori" id="primerPaso">
             <h1>Publica una nueva propiedad</h1>
             <p>Sigue los siguientes pasos para publicar tu propiedad</p>
@@ -393,6 +393,10 @@
                         <label>¿Propiedad en renta?</label>
                         <input type="radio" value="1" name="Rentable"> Si
                         <input type="radio" value="0" name="Rentable"> No
+                    </div>
+                    <div class="form-group">
+                        <label>Muestra tu propiedad:</label>
+                        <input type="file">
                     </div>
                     
                     <button type="button">Continuar</button>
