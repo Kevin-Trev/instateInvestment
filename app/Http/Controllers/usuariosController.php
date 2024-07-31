@@ -54,7 +54,7 @@ class UsuariosController extends Controller
             return redirect('/');
         }
         else{
-            return redirect('/')->with('error_login','E-mail o contraseña Incorrecta');
+            return redirect('/view/login')->with('error_login','Correo Electronico y/o Contraseña Invalida');
         }
     }
 

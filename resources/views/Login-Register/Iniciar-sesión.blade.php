@@ -52,6 +52,11 @@
         <form action="/login" method="POST" id="iniciarForm">
             @csrf
             <h2>Iniciar sesión</h2>
+
+            @if (Session::has('error_login'))
+            <div class="alert alert-danger text-center" role="alert">{{ Session::get('error_login') }}</div>
+            @endif
+
             <div class="form-group">
                 <label for="inputCorreo">Correo electrónico</label>
                 <input type="text" class="form-control" placeholder="Ingresa tu correo electrónico" id="inputCorreo" name="email">
