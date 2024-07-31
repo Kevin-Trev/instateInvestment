@@ -2,170 +2,235 @@
 
 @section('style')
 <style>
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
+    .input-groups{
+        display: flex;
+        align-items: center;
+        margin-left: 50px;
+    }
+    
+    .input-groups input[type="text"]{
+        padding: 8px 10px;
+        border: 1px solid #B7BEC0;
+        border-radius: 5px 0 0 5px;
+        color: #1D2021;
+        outline: none;
+        width: 250px;
+    }
+    
+    .input-groups input[type="submit"]{
+        background-color: #3370FF;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        padding: 9px 16px;
+        width: 120px;
+        cursor: pointer;
+    }
+    
+    .input-groups input::placeholder{
+        color: #B7BEC0;
     }
 
-    .filters {
-      display: inline-block;
-      align-items: center;
+    .form-group{
+      width: 100px;
+      height: 42px;
+      margin-left: 50px;
     }
 
-    .filter-group {
-      display: inline-block;
-      align-items: center;
-    }
-
-    .filter-label {
+    #filtroBusqueda{
+      display: flex;
       margin-right: 10px;
     }
 
-    .filter-select {
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 14px;
+    .form-group input[type="number"]{
+      width: 200px;
+      height: 42px;
     }
 
-    .filter-button {
-      padding: 8px 16px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .sidebar {
-      width: 25%;
-      padding: 20px;
-      border-right: 1px solid #ddd;
-    }
-
-    .property-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-
-    .property-card {
-      border: 1px solid #ddd;
-      padding: 15px;
+    .card{
+      width: 300px;
+      height: auto;
       border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      float: left;
+      margin-right: 40px;
     }
 
-    .property-image {
+    .image-card{
+      width: 100%;
+      height: 150px;
+    }
+
+    .image-card img{
       width: 100%;
       height: 200px;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 6px 6px 0 0;
     }
 
-    .property-title {
-      font-size: 18px;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    .property-price {
-      font-size: 16px;
-      color: #007bff;
-      margin-bottom: 10px;
-    }
-
-    .property-details {
+    .disponible{
+      margin-top: 15px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      padding: 10px;
     }
 
-    .property-detail {
-      display: flex;
-      align-items: center;
+    h3, .text{
+      margin-left: 10px;
     }
 
-    .property-detail-icon {
-      margin-right: 5px;
+    h3{
+      color: #3370FF;
     }
 
-    .property-button {
-      padding: 8px 16px;
-      background-color: #007bff;
-      color: #fff;
+    .disponible button{
+      margin-right: 10px;
+      padding: 2px;
+    }
+
+    .disponible .btn-white{
+      width: 60px;
+    }
+
+    .btn-white{
+      color: #3370FF;
+      background-color: #FFFFFF;
+      border: 1px solid #3370FF;
+      border-radius: 6px;
+      cursor: default;
+    }
+
+    .btn-blue{
+      color: #FFFFFF;
+      background-color: #3370FF;
       border: none;
-      border-radius: 4px;
-      cursor: pointer;
+      border-radius: 6px;
+      cursor: default;
     }
 
-    .property-button:hover {
-      background-color: #0069d9;
+    .footer{
+      display: flex;
+      justify-content: flex-end;
+      padding-bottom: 15px;
     }
 
-    .filtro{
-        width: 18px;
-        height: auto;
+    .footer button{
+      margin-right: 15px;
+      padding: 6px;
     }
+
+    .text{
+      color: #898e90;
+      font-size: 14px;
+    }
+
+    .caracteristicas{
+      display: flex;
+      margin-left: 10px;
+    }
+
+    .roomsContainer{
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+    }
+
+    .roomsContainer img{
+      width: 25px;
+    }
+
+    .number{
+      margin-left: 10px;
+      color: #9ea4a5;
+      align-items: center;
+    }
+   
   </style>
 @endsection
 
 @section('body')
-  <main>
-    <div class="container">
-      <!-- FILTROS -->
-      <div class="filters">
-        <div class="filter-group">
-          <label class="filter-label" for="type">Tipo de oferta:</label>
-          <select class="filter-select" id="type">
-            <option value="venta">En venta</option>
-            <option value="alquiler">En alquiler</option>
-          </select>
-          <div class="filter-group">
-            <label class="filter-label" for="location">Ubicación:</label>
-            <input type="text" class="filter-select" id="location" placeholder="Busca por ubicación">
-          </div>
-          <div class="filter-group">
-            <label class="filter-label" for="property-type">Tipo de propiedad:</label>
-            <select class="filter-select" id="property-type">
-              <option value="cualquiera">Cualquiera</option>
-              <option value="casa">Casa</option>
-              <option value="departamento">Departamento</option>
-              <option value="terreno">Terreno</option>
-            </select>
-          </div>
-  
-          <div class="filter-group">
-            <label class="filter-label" for="min-price">Precio:</label>
-            <input type="number" class="filter-select" id="min-price" placeholder="Mínimo">
-            <input type="number" class="filter-select" id="max-price" placeholder="Máximo">
-          </div>
-  
-          <div class="filter-group">
-            <label class="filter-label" for="bedrooms">Recámaras:</label>
-            <select class="filter-select" id="bedrooms">
-              <option hidden value="todo">-#-</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4+</option>
-            </select>
-          </div>
-        </div>
 
-        <button class="filter-button"><img class="filtro" src="{{asset('Imagenes/filtroIcono.png')}}">Más filtros</button>
+{{-- Fila de filtros --}}
+
+<div id="filtroBusqueda">
+  <div class="form-group">
+    <select class="form-select">
+      <option selected value="Venta">Venta</option>
+      <option value="Renta">Renta</option>
+    </select>
+  </div>
+  <div class="input-groups">
+    <input type="text" placeholder="Buscar por ciudad..."><input type="submit" value="Buscar">
+  </div>
+  <div class="form-group">
+    <input type="number" class="form-control" placeholder="Precio MXN">
+  </div>
+</div>
+
+<br>
+
+{{-- Vista de catalogo --}}
+
+<div class="container">
+  <h2> Inmuebles en venta en </h2> {{--Agregar al principio de esta etiqueta el número de registros que se encontraron cerca y tambien la ciudad al lado derecho--}}
+  <p class="text"> Estas son las propiedades que encontramos para ti</p>
+  <div id="cards-container">
+    <div class="card">
+      <div class="image-card">
+        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
       </div>
-
-      <!-- ETIQUETA DE CANTIDAD DE MUEBLES -->
-      <div class="main-content">
-        <h2>Venta</h2>
-        <h3>413,447 Inmuebles en Venta</h3>
-
-        <!-- LISTA DE PROPIEDADES -->
-        <div id = "pl" class="property-list">
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <div class="caracteristicas">
+        <div class="roomsContainer">
+          <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
+          <span class="number">2</span>
         </div>
+        <div class="roomsContainer">
+          <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
+          <span class="number">2</span>
+        </div>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
       </div>
     </div>
-  </main>
+  </div>
+
+  <div class="card">
+    <div class="image-card">
+      <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
+    </div>
+    <div class="disponible">
+      <button class="btn-white">Venta</button>
+      <button class="btn-white">Renta</button>
+    </div>
+    <div class="caracteristicas">
+      <div class="roomsContainer">
+        <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
+        <span class="number">2</span>
+      </div>
+      <div class="roomsContainer">
+        <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
+        <span class="number">2</span>
+      </div>
+    </div>
+    <h3> Precio de la propiedad </h3>
+    <p class="text">Direccion de la propiedad</p>
+    <div class="footer">
+      <button class="btn-white">Contacto</button>
+      <button class="btn-blue">Ver más detalles</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
 @endsection
 
 @section('js')

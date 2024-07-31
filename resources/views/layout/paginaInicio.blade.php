@@ -14,17 +14,11 @@
             padding: 0;
         }
 
-        .navbar {
-        background-color: #CCDBFF;
-        padding: 1rem;
+        .navbar{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        }
-
-        .btn-outline-primary{
-            border-radius: 15px;
-            border: 0.1mm solid;
+        height: 80px;
         }
 
         .nav-links {
@@ -35,39 +29,42 @@
         }
 
         .nav-links li {
-            margin-right: 20px;
-        }
-
-        .nav-links a {
-            color: #4970f3;
-            text-decoration: none;
-        }
-
-        .burger {
-            display: none;
-        }
-
-        .burger div {
-            width: 30px;
-            height: 3px;
-            background-color: #fff;
-            margin: 5px;
+            margin: 10px 30px 10px 0;
         }
 
         .logo{
-            width: 350px;
+            width: 320px;
             height: auto;
+            transform: translate(5px, -12px);
         }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                    display: none;
-            }
-
-            .burger {
-                    display: block;
-            }
+        .perfilContainer{
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 80%;
+            cursor: pointer;
+            border: transparent;
+            width: 50px;
+            height: 50px;
         }
+        .dropdown-item{
+            margin-bottom: 5px;
+        }
+
+        .dropdown-menu .dropdown-item:hover{
+            color: black;
+            background-color: transparent;
+            transition: .3s;
+        }
+
+        .dropdown-menu{
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-menu a{
+            color: rgb(78, 78, 78);
+        }
+
     </style>
     @yield('style')
 </head>
@@ -76,27 +73,20 @@
     <nav class="navbar">
         <img src="{{asset('Imagenes/LOGO2.png')}}" class="logo">
         <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
             <li>
-                <div class="dropdown-center">
-                    <button class="btn btn-outline-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    USUARIO_AQUI
-                    </button>
+                <div class="dropdown-center dropstart">
+                    <div class="perfilContainer" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{-- Agregar la imagen del usuario --}}
+                    </div>
                     <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Mis Publicaciones</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+                        <li><a class="dropdown-item" href="#">Mi perfil</a></li>
+                        <li><a class="dropdown-item" href="#">Catálogo</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
                     </ul>
                 </div>
             </li>
         </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
     </nav>
     @yield('body')
 </body>
