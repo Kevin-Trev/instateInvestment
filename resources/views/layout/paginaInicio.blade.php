@@ -65,6 +65,113 @@
             color: rgb(78, 78, 78);
         }
 
+        .simboloContainer img{
+            width: 30px;
+            height: 30px;
+            margin: 12px 40px 0 0;
+            cursor: pointer;
+        }
+
+        .nav-links .dropdown-center{
+            display: flex;
+            margin-right: 15px;
+        }
+
+        #page-footer {
+        background-color: #004CFF;
+        width: 100%;
+        margin-top: 200px;
+    }
+    
+    .container-info{
+        margin-top: 20px;
+        display: inline-block;
+        margin-left: 120px;
+        color: #FFFFFF;
+        margin-bottom: 50px;
+    }
+
+    .container-info2{
+        margin-top: 20px;
+        display: inline-block;
+        margin-left: 120px;
+        color: #FFFFFF;
+        margin-bottom: 50px;
+    }
+    
+    .container-info h2{
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+    
+    .container-info hr{
+        margin-right: 56%;
+        border: 2px solid #FFFFFF;
+    }
+
+    .container-info2 h2{
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+    
+    .container-info2 hr{
+        margin-right: 56%;
+        border: 2px solid #FFFFFF;
+    }
+    
+    .container-info img{
+        width: 200px;
+        height: 200px;
+        transform: translateY(-5px);
+        position: absolute;
+    }
+    
+    .container-info p{
+        margin-top: 150px;
+        transform: translate(-20px, 50px);
+    }
+    
+    .container-info a{
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+
+    .container-info2 p{
+        margin-top: 150px;
+        transform: translate(-20px, 50px);
+    }
+    
+    .container-info2 a{
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+
+    .container-social{
+        width: 30px;
+        display: inline-block;
+    }
+    
+    .container-social img{
+        width: 23px;
+        height: 23px;
+        margin-right: 10px;
+    }
+
+    .btn-white{
+      color: #3370FF;
+      background-color: #FFFFFF;
+      border: 1px solid #3370FF;
+      border-radius: 6px;
+      cursor: default;
+    }
+
+    .btn-blue{
+      color: #FFFFFF;
+      background-color: #3370FF;
+      border: none;
+      border-radius: 6px;
+      cursor: default;
+    }
     </style>
     @yield('style')
 </head>
@@ -75,6 +182,12 @@
         <ul class="nav-links">
             <li>
                 <div class="dropdown-center dropstart">
+                    <div class="simboloContainer" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{asset('Imagenes/notificacionSimbolo.png')}}">
+                    </div>
+                    <ul class="dropdown-menu" id="notificaciones">
+
+                    </ul>
                     <div class="perfilContainer" data-bs-toggle="dropdown" aria-expanded="false">
                         {{-- Agregar la imagen del usuario --}}
                     </div>

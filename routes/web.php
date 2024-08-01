@@ -41,5 +41,6 @@ Route::get('/terminos', [viewsController::class, 'terminosCondiciones'])->name('
 Route::get('/avisoPrivacidad', [viewsController::class, 'avisoPrivacidad'])->name('avisoPrivacidad');
 Route::get('/inicio', [viewsController::class, 'inicio'])->name('inicio');
 Route::get('/agregar/propiedad', [viewsController::class, 'agregarPropiedad'])->name('agregarPropiedad');
+Route::get('/detalles/propiedad', [viewsController::class, 'detallePropiedad'])->name('detallesPropiedad');
 
 Route::get('/nuevoRegistro', [viewsController::class, 'contraseña']);

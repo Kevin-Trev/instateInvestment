@@ -54,6 +54,7 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       float: left;
       margin-right: 40px;
+      margin-bottom: 50px;
     }
 
     .image-card{
@@ -69,7 +70,7 @@
     }
 
     .disponible{
-      margin-top: 15px;
+      margin-top: 35px;
       display: flex;
       padding: 10px;
     }
@@ -89,22 +90,6 @@
 
     .disponible .btn-white{
       width: 60px;
-    }
-
-    .btn-white{
-      color: #3370FF;
-      background-color: #FFFFFF;
-      border: 1px solid #3370FF;
-      border-radius: 6px;
-      cursor: default;
-    }
-
-    .btn-blue{
-      color: #FFFFFF;
-      background-color: #3370FF;
-      border: none;
-      border-radius: 6px;
-      cursor: default;
     }
 
     .footer{
@@ -143,6 +128,17 @@
       color: #9ea4a5;
       align-items: center;
     }
+
+    .container{
+      border: 1px solid black;
+      display: block;
+    }
+
+    #cards-container{
+      border: 1px solid black;
+    }
+
+
    
   </style>
 @endsection
@@ -175,6 +171,82 @@
   <p class="text"> Estas son las propiedades que encontramos para ti</p>
   <div id="cards-container">
     <div class="card">
+        <div class="image-card">
+          <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
+        </div>
+        <div class="disponible">
+          <button class="btn-white">Venta</button>
+          <button class="btn-white">Renta</button>
+        </div>
+        <div class="caracteristicas">
+          <div class="roomsContainer">
+            <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
+            <span class="number">2</span>
+          </div>
+          <div class="roomsContainer">
+            <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
+            <span class="number">2</span>
+          </div>
+        </div>
+        <h3> Precio de la propiedad </h3>
+        <p class="text">Direccion de la propiedad</p>
+        <div class="footer">
+          <button class="btn-white">Contacto</button>
+          <button class="btn-blue">Ver más detalles</button>
+        </div>
+    </div>
+
+    <div class="card">
+      <div class="image-card">
+        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
+      </div>
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <div class="caracteristicas">
+        <div class="roomsContainer">
+          <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
+          <span class="number">2</span>
+        </div>
+        <div class="roomsContainer">
+          <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
+          <span class="number">2</span>
+        </div>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="image-card">
+        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
+      </div>
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <div class="caracteristicas">
+        <div class="roomsContainer">
+          <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
+          <span class="number">2</span>
+        </div>
+        <div class="roomsContainer">
+          <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
+          <span class="number">2</span>
+        </div>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
+      </div>
+    </div>
+    <div class="card">
       <div class="image-card">
         <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
       </div>
@@ -200,36 +272,51 @@
       </div>
     </div>
   </div>
+</div>
 
-  <div class="card">
-    <div class="image-card">
-      <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
-    </div>
-    <div class="disponible">
-      <button class="btn-white">Venta</button>
-      <button class="btn-white">Renta</button>
-    </div>
-    <div class="caracteristicas">
-      <div class="roomsContainer">
-        <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
-        <span class="number">2</span>
-      </div>
-      <div class="roomsContainer">
-        <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
-        <span class="number">2</span>
-      </div>
-    </div>
-    <h3> Precio de la propiedad </h3>
-    <p class="text">Direccion de la propiedad</p>
-    <div class="footer">
-      <button class="btn-white">Contacto</button>
-      <button class="btn-blue">Ver más detalles</button>
-    </div>
+{{-- <footer id="page-footer">
+  <div class="container-info">
+      <img src="{{ asset('/Imagenes/LOGO.png') }}">
+      <p>Instate es una marga registrada por <br>Instate Investments S.A de C.V. en <br>alianza con Design Construcciones.</p>
   </div>
-</div>
-</div>
 
+  <br>
 
+      <div class="container-info">
+          <h2>Contacto</h2>
+          <hr>
+          <b>MINA 330 INT. 5 COL.CENTRO <br>MONTERREY, NUEVO LEÓN. MÉXICO <br>812-433-1672</b>
+          
+          <br>
+
+          <div class="container-social">
+              <a href="">
+                  <img src="{{ asset('Imagenes/iconoFacebook.png')}}">
+              </a>
+          </div>
+          <div class="container-social">
+              <a href="">
+                  <img src="{{ asset('Imagenes/iconoTwitter.png')}}">
+              </a>
+          </div>
+          <div class="container-social">
+              <a href="">
+                  <img src="{{ asset('Imagenes/iconoInstagram.png')}}">
+              </a>
+          </div>
+      </div>
+      <div class="container-info2">
+          <h2>Legal</h2>
+          <hr>
+          <a href="/legal">Aviso legal</a><br><br><a href="/privacidad">Politica de privacidad </a><br><br><a href="/privacidad">Politica de cookies</a>
+      </div>
+      <div class="container-info2">
+          <h2>Sobre</h2>
+          <hr>
+          <a href="/nosotros">Nosotros</a><br><br><a href="/mision">Misión</a><br><br><a href="/vision">Visión</a>
+      </div>
+
+</footer> --}}
 
 @endsection
 

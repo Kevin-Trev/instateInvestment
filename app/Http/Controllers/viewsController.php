@@ -37,4 +37,8 @@ class viewsController extends Controller
     public function agregarPropiedad(){
         return view('agregarPropiedad');
     }
+
+    public function detallePropiedad(){
+        return view('detallesPropiedad');
+    }
 }
