@@ -27,7 +27,7 @@ CREATE TABLE `users` (
 CREATE TABLE Tipo_Propiedad
 (
    ID_T INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-   Tipo NVARCHAR(45) NOT NULL
+   Tipo ENUM('casa', 'departamento', 'quinta','terreno','bodega')
 );
 
 CREATE TABLE Servicio

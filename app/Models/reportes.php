@@ -22,4 +22,8 @@ class reportes extends Model
     public function propiedad(){
         return $this->belongsToMany(propiedad::class, 'id_p', 'propiedad_id');
     }
+    public function notificaciones()
+    {
+        return $this->hasMany(Notificacion::class, 'id_r','reportes_id');
+    }
 }
