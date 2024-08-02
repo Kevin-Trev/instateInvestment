@@ -30,6 +30,8 @@ class UsuariosController extends Controller
             $user->Telefono = $request->Telefono;
             $user->Fecha_Nacimiento = $request->Fecha_Nacimiento;
             $user->Calificacion = 0;
+            $user->administrador = 0;
+            $user->activo = 1;
             $user->email_verified_at = now();
             $user->remember_token = Str::random(10);
            
@@ -50,8 +52,14 @@ class UsuariosController extends Controller
         $credenciales = request()->only('email','password');
 
         if(Auth::attempt($credenciales)){
-            request()->session()->regenerate();
-            return redirect('/');
+            if(Auth::user()->activo) {
+                request()->session()->regenerate();
+                return redirect('/');
+            }
+            else {
+                Auth::logout();
+                return redirect('/view/login')->with('suspendido','Esta cuenta esta suspendida.<br> Ponte en contacto con el administrador del sitio web');
+            }
         }
         else{
             return redirect('/view/login')->with('error_login','Correo Electronico y/o Contraseña Invalida');

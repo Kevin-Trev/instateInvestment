@@ -25,7 +25,9 @@ class User extends Authenticatable
         'Apellido',
         'Telefono',
         'Fecha_Nacimiento',
-        'Calificacion'
+        'Calificacion',
+        'administrador',
+        'activo'
        
     ];
     public function suscripciones(){

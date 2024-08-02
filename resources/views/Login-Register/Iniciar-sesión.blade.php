@@ -54,7 +54,11 @@
             <h2>Iniciar sesión</h2>
 
             @if (Session::has('error_login'))
-            <div class="alert alert-danger text-center" role="alert">{{ Session::get('error_login') }}</div>
+            <div class="alert alert-warning text-center" role="alert">{{ Session::get('error_login') }}</div>
+            @endif
+
+            @if (Session::has('suspendido'))
+            <div class="alert alert-danger text-center" role="alert">{!! session('suspendido') !!}</div>  
             @endif
 
             <div class="form-group">
@@ -69,7 +73,7 @@
             <br>
             <button type="submit" class="bt-blue">Ingresar</button>
             <div class="footer">
-                <a href="/registrarse">Registrate</a>
+                <a href="/views/registro">Registrate</a>
                 <p>Si aún no tienes cuenta</p>
             </div>
         </form>
