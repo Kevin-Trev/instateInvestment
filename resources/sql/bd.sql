@@ -27,13 +27,13 @@ CREATE TABLE `users` (
 CREATE TABLE Tipo_Propiedad
 (
    ID_T INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-   Tipo ENUM('CASA', 'DEPARTAMENTO', 'QUINTA','TERRENO','BODEGA')
+   Tipo ENUM('Casa', 'Departamento', 'Quinta','Terreno','Bodega')
 );
 
 CREATE TABLE Servicio
 (
   ID_SERV INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  Servicio ENUM ('AGUA', 'LUZ', 'GAS', 'INTERNET', 'CABLE')
+  Servicio ENUM ('Agua', 'Luz', 'Gas', 'Internet', 'Cable')
 );
 
 CREATE TABLE Propiedades
@@ -105,7 +105,7 @@ CREATE TABLE Cotizacion
   ID_C INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
   Monto DOUBLE NOT NULL,
   Fecha DATE NOT NULL,
-  MetodoPago ENUM ('CREDITO', 'CREDITO INFONAVIT', 'CONTADO', 'A PLAZOS'),
+  MetodoPago ENUM ('Credito', 'Credito Infonavit', 'Contado', 'A Plazos'),
   users_id bigint unsigned NOT NULL,
   CONSTRAINT FK_users_Cotizacion FOREIGN KEY(users_id)
   REFERENCES users (id),
