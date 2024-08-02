@@ -256,7 +256,6 @@
             gap: 20px;
             padding-top: 20px;
         }
-
     </style>
 @endsection
 
