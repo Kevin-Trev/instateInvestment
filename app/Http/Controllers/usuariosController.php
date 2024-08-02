@@ -29,7 +29,7 @@ class UsuariosController extends Controller
             $user->Apellido = $request->Apellido;
             $user->Telefono = $request->Telefono;
             $user->Fecha_Nacimiento = $request->Fecha_Nacimiento;
-            $user->Calificacion = 0;
+            $user->Calificacion = 1;
             $user->administrador = 0;
             $user->activo = 1;
             $user->email_verified_at = now();
