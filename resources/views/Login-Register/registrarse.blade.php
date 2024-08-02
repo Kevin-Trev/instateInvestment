@@ -200,7 +200,7 @@
             var emailContenedor = $('#nuevoEmail');
             var usuarioContenedor = $('#nuevoUsuario');
             var error = $('.error');
-            var patron = /.+@gmail\.com/;
+            var patron = /.+@(gmail\.com|uttcampus\.edu\.mx|hotmail\.com|outlook\.com)/;
             var patronContraseña = /^(?=.*[0-9])(?=.*[!@#$%^&*.])[a-zA-Z0-9!@#$%^&*.]+$/;
             var patronNumero = /(?=.*[0-9])/;
             var patronCaracter = /(?=.*[!@#$%^&*.])/;

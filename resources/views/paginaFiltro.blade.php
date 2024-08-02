@@ -48,13 +48,12 @@
     }
 
     .card{
-      width: 300px;
+      width: 25%;
       height: auto;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       float: left;
-      margin-right: 40px;
-      margin-bottom: 50px;
+      margin: 20px 0 60px 6.5%;
     }
 
     .image-card{
@@ -129,13 +128,9 @@
       align-items: center;
     }
 
-    .container{
-      border: 1px solid black;
-      display: block;
-    }
-
     #cards-container{
-      border: 1px solid black;
+      display: flex;
+      flex-wrap: wrap;
     }
 
 
@@ -171,31 +166,30 @@
   <p class="text"> Estas son las propiedades que encontramos para ti</p>
   <div id="cards-container">
     <div class="card">
-        <div class="image-card">
-          <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
+      <div class="image-card">
+        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
+      </div>
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <div class="caracteristicas">
+        <div class="roomsContainer">
+          <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
+          <span class="number">2</span>
         </div>
-        <div class="disponible">
-          <button class="btn-white">Venta</button>
-          <button class="btn-white">Renta</button>
+        <div class="roomsContainer">
+          <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
+          <span class="number">2</span>
         </div>
-        <div class="caracteristicas">
-          <div class="roomsContainer">
-            <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
-            <span class="number">2</span>
-          </div>
-          <div class="roomsContainer">
-            <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
-            <span class="number">2</span>
-          </div>
-        </div>
-        <h3> Precio de la propiedad </h3>
-        <p class="text">Direccion de la propiedad</p>
-        <div class="footer">
-          <button class="btn-white">Contacto</button>
-          <button class="btn-blue">Ver más detalles</button>
-        </div>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
+      </div>
     </div>
-
     <div class="card">
       <div class="image-card">
         <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
