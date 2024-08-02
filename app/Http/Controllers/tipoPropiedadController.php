@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TIPO_PROPIEDAD;
 
-class TipoPropiedad_Controller extends Controller
+class TipoPropiedadController extends Controller
 {
-    public function index () {
+    public function index() {
         $tipos = TIPO_PROPIEDAD::All();
         return response()->json($tipos);
     }

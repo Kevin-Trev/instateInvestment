@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SERVICIO;
 
-class Servicio_Controller extends Controller
+class servicioController extends Controller
 {
     public function index () {
         $servicios = SERVICIO::All();
