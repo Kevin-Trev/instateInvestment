@@ -186,7 +186,6 @@
         #comentariosContainer{
             border-radius: 8px;
             margin-top: 30px;
-
             height: auto;
             padding-bottom: 5px;
         }
