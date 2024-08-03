@@ -133,8 +133,11 @@
       flex-wrap: wrap;
     }
 
-
-   
+    #page-footer{
+      display: flex;
+      gap: 20px;
+      padding: 20px 0 20px 0;
+    }
   </style>
 @endsection
 
@@ -268,7 +271,7 @@
   </div>
 </div>
 
-{{-- <footer id="page-footer">
+<footer id="page-footer">
   <div class="container-info">
       <img src="{{ asset('/Imagenes/LOGO.png') }}">
       <p>Instate es una marga registrada por <br>Instate Investments S.A de C.V. en <br>alianza con Design Construcciones.</p>
@@ -310,7 +313,7 @@
           <a href="/nosotros">Nosotros</a><br><br><a href="/mision">Misión</a><br><br><a href="/vision">Visión</a>
       </div>
 
-</footer> --}}
+</footer>
 
 @endsection
 

@@ -446,15 +446,16 @@
             <img src="{{ asset('/Imagenes/LOGO.png') }}">
             <p>Instate es una marga registrada por <br>Instate Investments S.A de C.V. en <br>alianza con Design Construcciones.</p>
         </div>
-    
-        <div class="juntos">
+      
+        <br>
+      
             <div class="container-info">
                 <h2>Contacto</h2>
                 <hr>
                 <b>MINA 330 INT. 5 COL.CENTRO <br>MONTERREY, NUEVO LEÓN. MÉXICO <br>812-433-1672</b>
                 
                 <br>
-    
+      
                 <div class="container-social">
                     <a href="">
                         <img src="{{ asset('Imagenes/iconoFacebook.png')}}">
@@ -481,8 +482,8 @@
                 <hr>
                 <a href="/nosotros">Nosotros</a><br><br><a href="/mision">Misión</a><br><br><a href="/vision">Visión</a>
             </div>
-        </div>
-    </footer>
+      
+      </footer>
 @endsection
 
 @section('js')

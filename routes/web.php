@@ -6,6 +6,7 @@ use App\Http\Controllers\usuariosController;
 use App\Http\Controllers\propiedadController;
 use App\Http\Controllers\TipoPropiedadController;
 use App\Http\Controllers\servicioController;
+use App\Http\Controllers\propiedadServicioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,11 +31,13 @@ Route::delete('/userdel', [usuariosController::class, 'eliminarUsuario']);
 
 Route::get('/get/properties',[propiedadController::class, 'index']);
 Route::get('/get/property/{id}', [propiedadController::class, 'getProperty']);
-Route::get('/post/propiedad', [propiedadController::class, 'newProperty']); /* cambiar de GET a POST */
+Route::post('/post/propiedad', [propiedadController::class, 'newProperty']); /* cambiar de GET a POST */
 
 Route::get('/get/typeProperties', [TipoPropiedadController::class, 'index']);
 
 Route::get('/get/servicios', [servicioController::class, 'index']);
+
+Route::post('/add/propiedadServicio', [propiedadServicioController::class, 'store']);
 
 Route::get('/hubs/perfil', function () { return view('hubs.perfil'); });
 Route::get('/hubs/perfi/seguridad', function () { return view('hubs.seguridad'); });
