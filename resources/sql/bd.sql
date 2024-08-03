@@ -18,8 +18,8 @@ CREATE TABLE `users` (
   `Fecha_Nacimiento` DATE NOT NULL,
   `Calificacion` ENUM('1', '2', '3', '4', '5'),
   `Foto` TEXT,
-  `administrador` bit,
-  `activo` bit
+  `administrador` TINYINT(1),
+  `activo` TINYINT(1)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -43,7 +43,7 @@ CREATE TABLE Propiedades
   Precio FLOAT NOT NULL,
   Recamaras INT ,
   Baños INT, 
-  Disponibilidad BIT NOT NULL,
+  Disponibilidad TINYINT(1) NOT NULL,
   Codigo_Postal CHAR(5) NOT NULL,
   num_exterior char(5) DEFAULT 'S/N',
   num_interior char(5) DEFAULT 'S/N',
@@ -54,9 +54,9 @@ CREATE TABLE Propiedades
   Area VARCHAR(45) ,
   Frente FLOAT, 
   Fondo FLOAT, 
-  Verificacion BIT NOT NULL,
-  Rentable BIT NOT NULL,
-  Vendible BIT NOT NULL,
+  Verificacion TINYINT(1) NOT NULL,
+  Rentable TINYINT(1) NOT NULL,
+  Vendible TINYINT(1) NOT NULL,
   users_Id bigint unsigned NOT NULL,
   CONSTRAINT FK_users_Propiedad FOREIGN KEY (users_Id)
   REFERENCES users(id),

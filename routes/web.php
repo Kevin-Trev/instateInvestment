@@ -49,4 +49,14 @@ Route::get('/inicio', [viewsController::class, 'inicio'])->name('inicio');
 Route::get('/agregar/propiedad', [viewsController::class, 'agregarPropiedad'])->name('agregarPropiedad');
 Route::get('/detalles/propiedad', [viewsController::class, 'detallePropiedad'])->name('detallesPropiedad');
 
+
+
+
 Route::get('/nuevoRegistro', [viewsController::class, 'contraseña']);
+
+
+// Ruta para mostrar el perfil del usuario
+Route::get('/usuarios/{usuario}', [UsuariosController::class, 'mostrarPerfil'])->name('admin.perfilAd');
+
+// Ruta para suspender un usuario (debe ser POST si el formulario usa POST)
+Route::post('/usuarios/{usuario}/suspender', [UsuariosController::class, 'suspender'])->name('usuarios.suspender');
