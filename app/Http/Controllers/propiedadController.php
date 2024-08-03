@@ -47,7 +47,7 @@ class PropiedadController extends Controller
         return response()->json($response);
     }
 
-    public function newProperty () {    /* agregar request en caso de formulario */
+    public function newProperty (Request $request) {    /* agregar request en caso de formulario */
 
         DB::beginTransaction();
 
@@ -55,34 +55,34 @@ class PropiedadController extends Controller
 
             $propiedad = new propiedades();
 
-            $propiedad->Titulo = 'Casa de Campaña de 2 pisos';
-            $propiedad->Precio = 250000;
-            $propiedad->Recamaras = 2;
-            $propiedad->Baños = 1;
-            $propiedad->Disponibilidad = 1;
-            $propiedad->Codigo_Postal = '27200';
-            // $propiedad->num_exterior = 1546;     'S/N'   Sin Numero
-            // $propiedad->num_interior = 2B;     'S/N'   Sin Numero
-            $propiedad->Calle = 'Amazonas';
-            $propiedad->Colonia = 'Laguna Seca';
-            $propiedad->Ciudad = 'Torreón';
-            $propiedad->Estado = 'Coahuila';
-            $propiedad->Frente = 15;
-            $propiedad->Fondo = 20;
-            $propiedad->Area = $propiedad->Frente * $propiedad->Fondo;
-            $propiedad->Verificacion = 1;
-            $propiedad->Rentable = 1;
-            $propiedad->Vendible = 0;
-            $propiedad->users_Id = 1;
-            $propiedad->Tipo_Propiedad_id = 1;
+            $propiedad->Titulo = $request->input('Titulo');
+            $propiedad->Precio = $request->input('Precio');
+            $propiedad->Recamaras = $request->input('Recamaras');
+            $propiedad->Baños = $request->input('Baños');
+            $propiedad->Disponibilidad = $request->input('Disponibilidad');
+            $propiedad->Codigo_Postal = $request->input('Codigo_Postal');
+            $propiedad->num_exterior = $request->input('num_exterior');
+            $propiedad->num_interior = $request->input('num_interior');
+            $propiedad->Calle = $request->input('calle');
+            $propiedad->Colonia = $request->input('Colonia');
+            $propiedad->Ciudad = $request->input('Ciudad');
+            $propiedad->Estado = $request->input('Estado');
+            $propiedad->Frente = $request->input('Frente');
+            $propiedad->Fondo = $request->input('Fondo');
+            $propiedad->Area = $request->input('Area');
+            $propiedad->Verificacion = 0;
+            $propiedad->Rentable = $request->input('Rentable');
+            $propiedad->Vendible = $request->input('Vendible');
+            $propiedad->users_Id = 1; // cambiar 1 por 'auth()->id();'
+            $propiedad->Tipo_Propiedad_id = $request->input('Tipo_Propiedad_id');
 
             if($propiedad->save()){
                 DB::commit();
-                return redirect ('/inicio');
             }
         }
         catch(\Exception $e){
-            return response()->json(['error' => 'Registro incorrecto revirtiendo acciones']);
+            return response()->json(['Error al crear registro: ' . $e->getMessage()], 500);
+
         }
     }
 }

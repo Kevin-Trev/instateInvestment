@@ -198,12 +198,30 @@
         display: flex;
         gap: 60%;
     }
+
+    #Frente, #Fondo{
+        width: 220px;
+        border-radius: 6px;
+    }
+
+    .error{
+        display: none;
+        color: red;
+        font-size: 12px;
+    }
+
+    /* #segundoPaso, #tercerPaso, #cuartoPaso, #quintoPaso{
+        display: none;
+    } */
         </style>
 @endsection
 
 @section('body')
-<form action="" enctype="multipart/form-data">
+
+<form action='/post/propiedad' method="POST" enctype="multipart/form-data" id="formPropiedad">
+    @csrf
     <div class="container" id="primerPaso">
+        <input type="hidden" id="propiedadId" name="ID_P">
         <h1>Publica una nueva propiedad</h1>
         <p>Sigue los siguientes pasos para publicar tu propiedad</p>
             <div class="card">
@@ -261,7 +279,7 @@
                 <div class="contenedorDatos">
                     <div class="form-group">
                         <label for="calle">Calle:</label>
-                        <input type="text" class="form-control" name="calle" id="calle" placeholder="Ingresa la calle">
+                        <input type="text" class="form-control" name="calle" id="Calle" placeholder="Ingresa la calle">
                     </div>
                     <div class="form-group">
                         <label for="Colonia">Colonia:</label>
@@ -271,20 +289,20 @@
                 <div class="contenedorDatos">
                     <div class="form-group">
                         <label for="num_interior">Núm. interior (opcional):</label>
-                        <input type="text" class="form-control" name="num_interior" id="num_interior" placeholder="Ingresa la calle">
+                        <input type="text" class="form-control" name="num_interior" id="Num_interior" placeholder="Ingresa la calle">
                     </div>
                     <div class="form-group">
                         <label for="num_exterior">Núm. exterior (opcional):</label>
-                        <input type="text" class="form-control" name="num_exterior" id="num_exterior" placeholder="Ingresa la calle">
+                        <input type="text" class="form-control" name="num_exterior" id="Num_exterior" placeholder="Ingresa la calle">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="zip">Codigo postal:</label>
-                    <input type="number" class="form-control" name="Codigo_Postal" placeholder="Ingrese el código postal">
+                    <label for="Codigo_Postal">Codigo postal:</label>
+                    <input type="number" class="form-control" id="Codigo_Postal" name="Codigo_Postal" placeholder="Ingrese el código postal">
                 </div>
-                
+                <h6 class="error">Completa los campos necesarios para continuar</h6>
                 <div class="buttonContainer">
-                    <button type="button" class="btn-blue">Continuar</button>
+                    <button type="button" id="button1" class="btn-blue">Continuar</button>
                 </div>
             </div>
     </div>
@@ -294,7 +312,6 @@
         <p>Sigue los siguientes pasos para publicar tu propiedad</p>
             <div class="card">
                 <div class="circle-container">
-
                     <div>
                         <div class="circle blue">1</div>
                         <div class="transparent">0</div>
@@ -342,7 +359,7 @@
                     </select>
                 </div>
                 <div class="contenedorCaracteristicas">
-                    <div class="form-group">
+                    <div class="form-group" id="Recamaras-group">
                         <label for="Recamaras">Recamaras:</label>
                         <div class="numeros">
                             <button class="btn-menos" id="button-minus">-</button>
@@ -350,7 +367,7 @@
                             <button class="btn-mas" id="button-plus">+</button>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="Baños-group">
                         <label for="Baños">Baños:</label>
                         <div class="numeros">
                             <button class="btn-menos" id="button-minus2">-</button>
@@ -358,24 +375,25 @@
                             <button class="btn-mas" id="button-plus2">+</button>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="Area-group">
                         <label for="Area">Area:</label>
                         <input type="text" class="form-control" id="Area" name="Area" placeholder="Ingrese el area de su terreno">
                     </div>
                 </div>
                 <div class="contenedorCaracteristicas">
-                    <div class="form-group">
+                    <div class="form-group" id="Frente-group">
                         <label for="frente">Frente:</label>
-                        <input type="number" class="form-control" id="frente" name="frente" placeholder="Ingrese el frente del terreno">
+                        <input type="number" class="form-control" id="Frente" name="Frente" placeholder="Ingrese el frente del terreno">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="Fondo-group">
                         <label for="Fondo">Fondo:</label>
                         <input type="number" class="form-control" id="Fondo" name="Fondo" placeholder="Ingrese el fondo del terreno">
                     </div>
                 </div>
+                <h6 class="error">Completa los campos necesarios para continuar</h6>
                 <div class="buttonContainer">
-                    <button type="button" class="btn-white">Regresar</button>
-                    <button type="button" class="btn-blue">Continuar</button>
+                    <button type="button" id="button2" class="btn-white">Regresar</button>
+                    <button type="button" id="button3" class="btn-blue">Continuar</button>
                 </div>
             </div>
     </div>
@@ -407,7 +425,7 @@
                     <div class="line"></div>
 
                     <div class="circle-circle-container">
-                        <div class="circle blue">4</div>
+                        <div class="circle">4</div>
                         <div class="transparent">0</div>
                     </div>
 
@@ -424,19 +442,18 @@
                 <div class="section-title">
                     <div class="circle blue">3</div><h3>Servicios</h3>
                 </div>
-
-                <div class="serviciosContainer">
-                    <div id="servicio" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-
+                    <div class="serviciosContainer">
+                        <div id="servicio" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+    
+                        </div>
                     </div>
-                </div>
-                
-                <br>
-                
-                <div class="buttonContainer">
-                    <button type="button" class="btn-white">Regresar</button>
-                    <button type="button" class="btn-blue">Continuar</button>
-                </div>
+                    
+                    <br>
+                    
+                    <div class="buttonContainer">
+                        <button type="button" id="button4" class="btn-white">Regresar</button>
+                        <button type="button" id="button5" class="btn-blue">Continuar</button>
+                    </div>
             </div>
     </div>
 
@@ -510,12 +527,14 @@
                 </div>
                 <div class="form-group">
                     <label>Muestra tu propiedad:</label>
-                    <input type="file">
+                    <input type="file" id="Imagen">
                 </div>
                 
+                <h6 class="error">Completa los campos necesarios para continuar</h6>
+
                 <div class="buttonContainer">
-                    <button type="button" class="btn-white">Regresar</button>
-                    <button type="button" class="btn-blue">Continuar</button>
+                    <button type="button" id="button6" class="btn-white">Regresar</button>
+                    <button type="button" id="button7" class="btn-blue">Continuar</button>
                 </div>
             </div>
         </div>
@@ -566,10 +585,10 @@
                     </div>
                     
                     <div class="buttonContainer">
-                        <button type="button" class="btn-white">Regresar</button>
+                        <button type="button" id="button8" class="btn-white">Regresar</button>
                         <button type="submit" class="btn-blue">Finalizar</button>
                     </div>
-                </div>
+            </div>
     </div>
 </form>
 @endsection
@@ -595,16 +614,153 @@
                 serviciosCheck.empty();
                 servicios.forEach(servicio => {
                     serviciosCheck.append(`
-                        <input type="checkbox" class="btn-check" name="${servicio.Servicio_id}" value="${servicio.ID_SERV}" id="${servicio.ID_SERV}" autocomplete="off">
+                        <input type="checkbox" class="btn-check" value="${servicio.ID_SERV}" id="${servicio.ID_SERV}" autocomplete="off">
                         <label class="btn btn-outline-primary" for="${servicio.ID_SERV}">${servicio.Servicio}</label>
                     `);
                 });
             });
         }
 
+        function enviarForm(){
+            var propiedad = $('#propiedadId').val();
+            var servicios = $('#tipoPropiedad').val();
+
+            $.ajax({
+                url: '/add/propiedadServicio',
+                method: 'POST',
+                data: {Propiedad_id: propiedad, Servicio_id: servicios},
+                success: function(response){
+                    return view('hubs.perfil');
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            });
+        }
+
         $(document).ready(function(){
+            var uno = $('#primerPaso');
+            var dos = $('#segundoPaso');
+            var tres = $('#tercerPaso');
+            var cuatro = $('#cuartoPaso');
+            var cinco = $('#quintoPaso');
+            var error = $('.error');
+
+            $('#button1').on('click', function(){
+                var ciudad = $('#Ciudad').val();
+                var estado = $('#Estado').val();
+                var calle = $('#Calle').val();
+                var colonia = $('#Colonia').val();
+                var codigo = $('#Codigo_Postal').val();
+
+                if(ciudad && estado && calle && colonia && codigo){
+                    uno.css("display", "none");
+                    dos.css("display", "block");
+                    error.css("display", "none");
+                }
+                else{
+                    error.css("display", "block");
+                }
+            });
+
+            $('#button2').on('click', function(){
+                dos.css("display", "none");
+                uno.css("display", "block");
+                error.css("display", "none");
+            });
+
+            $('#button3').on('click', function(){
+                dos.css("display", "none");
+                tres.css("display", "block");
+            });
+
+            $('#button4').on('click', function(){
+                tres.css("display", "none");
+                dos.css("display", "block");
+                error.css("display", "none");
+            });
+
+            $('#button5').on('click', function(){
+                tres.css("display", "none");
+                cuatro.css("display", "block");
+            });
+
+            $('#button6').on('click', function(){
+                cuatro.css("display", "none");
+                tres.css("display", "block");
+            });
+
+            $('#button7').on('click', function(){
+                var titulo = $('#Titulo').val();
+                var precio = $('#Precio').val();
+                var imagen = $('#Imagen').val();
+
+                if(titulo && precio){ //agregar la variable imagen para cuando se implemente el subir imagenes al proyecto
+                    cuatro.css("display", "none");
+                    cinco.css("display", "block");
+                    error.css("display", "none");
+                }
+                else{
+                    error.css("display", "block");
+                }
+            });
+
+            $('#button8').on('click', function(){
+                cinco.css("display", "none");
+                cuatro.css("display", "block");
+                error.css("display", "none");
+            });
+
+            //Aparecer o desaparecer inputs dependiendo de la propiedad seleccionada
+
+            $('#tipoPropiedad').on('change', function(){
+                var Tipo = $(this).find('option:selected').text();
+
+                if(Tipo === "Departamento"){
+                    $('#Frente-group').css("display", "none");
+                    $('#Fondo-group').css("display", "none");
+                    $('#Baños-group').css("display", "inline-block");
+                    $('#Recamaras-group').css("display", "inline-block");
+                    $('#Areas-group').css("display", "inline-block");
+                }
+                else if(Tipo === "Quinta"){
+                    $('#Frente-group').css("display", "inline-block");
+                    $('#Fondo-group').css("display", "inline-block");
+                    $('#Baños-group').css("display", "inline-block");
+                    $('#Recamaras-group').css("display", "none");
+                    $('#Areas-group').css("display", "inline-block");
+                }
+                else if(Tipo === "Terreno"){
+                    $('#Frente-group').css("display", "none");
+                    $('#Fondo-group').css("display", "none");
+                    $('#Baños-group').css("display", "none");
+                    $('#Recamaras-group').css("display", "none");
+                    $('#Areas-group').css("display", "inline-block");
+                }
+                else if(Tipo === "Bodega"){
+                    $('#Frente-group').css("display", "none");
+                    $('#Fondo-group').css("display", "none");
+                    $('#Baños-group').css("display", "none");
+                    $('#Recamaras-group').css("display", "none");
+                    $('#Areas-group').css("display", "inline-block");
+                }
+                else{
+                    $('#Frente-group').css("display", "inline-block");
+                    $('#Fondo-group').css("display", "inline-block");
+                    $('#Baños-group').css("display", "inline-block");
+                    $('#Recamaras-group').css("display", "inline-block");
+                    $('#Areas-group').css("display", "inline-block");
+                }
+            });
+
+            // Envia el formulario de propiedad y consiguiente el formulario de propiedadServicio
+
+            // $('#formPropiedad').on('submit', function(){
+            //     enviarForm();
+            // })
+
             fetchTipoPropiedad();
             fetchServicios();
-        })
+        });
     </script>
 @endsection
