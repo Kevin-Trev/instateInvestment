@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{{asset('css/app.css')}}">
 <style>
     body {
-        overflow-y: hidden;
+        border: 1px solid black;
         text-align: center;
     }
    .container {
@@ -50,9 +50,22 @@
     color: #004CFF;
     outline: none;
     box-shadow: none;
-    padding: 8px 120px;
+    padding: 8px 100px;
     cursor: pointer;
     margin-bottom: 120px; 
+}
+
+@media(max-width: 391px){
+    .container{
+        border: none;
+        box-shadow: none;
+        background-color: #FFFFFF;
+        transform: translateY(-20px);
+    }
+
+    .bt-transparent, .bt-blue{
+        width: 90vw;
+    }
 }
 </style>
 @endsection
