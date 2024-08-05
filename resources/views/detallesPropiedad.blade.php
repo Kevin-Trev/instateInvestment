@@ -93,7 +93,6 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            margin-left: ;
             height: auto;
         }
 
@@ -104,7 +103,6 @@
         }
 
         .moreHouses{
-
             display: flex;
             padding: 25px 0 40px 30px;
             flex-wrap: wrap;
@@ -255,6 +253,144 @@
             gap: 20px;
             padding-top: 20px;
         }
+
+        @media(max-width: 391px){
+            /* Inicio */
+            .retroceder h6{
+                font-size: 3.5vw;
+            }
+
+            .container h2{
+                font-size: 6.5vw;
+            }
+
+            .container p{
+                font-size: 4vw;
+            }
+
+            .propiedadContainer{
+                width: 90vw;
+                display: block;
+                height: 120vh;
+                margin-left: 8px;
+            }
+
+            #carouselExample{
+                width: 100%;
+                height: 50vw;
+                
+            }
+
+            .carrousel-img{
+            width: 100%;
+            height: 56vw;
+
+            }
+
+            .propiedadContainer .carousel{
+            padding: 0;
+            }
+
+            .disponible{
+                padding: 0 0 0 5vw;
+            }
+
+            .propiedadContainer .wasa{
+                transform: translate(35vw, 2vh);
+            }
+
+            /* Seccion de comentarios */
+
+            #comentariosContainer h3{
+                font-size: 22px;
+                padding: 0;
+            }
+
+            .agregarComentario .btn-blue{
+            font-size: 3vw;
+            padding: 8px;
+            }
+
+            .comentario{
+            width: 80vw;
+            margin: 0 0 20px 6vw;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .comentario img{
+            width: 9vw;
+            height: 9vw;
+            border-radius: 100%;
+            margin: 10px 0 10px 10px;
+            }
+
+            .comentario .user .date{
+            margin-left: 10vw;
+            font-size: 3.5vw;
+            }
+
+            .user p{
+            font-size: 3.4vw;
+            }
+
+            .comentario .textContainer{
+                font-size: 3.2vw;
+            }
+
+            /* Explorar mas propiedades seccion */
+
+            .card{
+                width: 42vw;
+            }
+
+            .moreHouses{
+                padding: 10px 0 0 10px;
+            }
+
+            .recamaras{
+                width: 6vw;
+            }
+
+            .datos h4{
+                font-size: 6.5vw;
+            }
+
+            .datos p{
+                font-size: 3vw;
+            }
+
+            .datos .wasa{
+            padding: 2px;
+            font-size: 2.5vw;
+            }
+
+            .datos .wasa img{
+            width: 5vw;
+            height: 5vw;
+            }
+
+            .btn{
+            margin-left: 0;
+            gap: 1vw;
+            }
+
+            .btn button{
+                font-size: 2.5vw;
+            }
+
+            /* footer */
+
+            #page-footer{
+                width: 100%;
+            }
+
+            .container-info img{
+                width: 120px;
+                height: 120px;
+                transform: translate(-150px, -20px);
+            }
+        }
     </style>
 @endsection
 
@@ -292,10 +428,10 @@
                 </div>
             <div class="disponible">
                 @if ($propiedad->Vendible)  {{-- SI ES VENDIBLE APARECE ETIQUETA --}}
-                    <button class="btn-white">Venta</button>
+                    <button class="btn-blue">Venta</button>
                 @endif
                 @if ($propiedad->Rentable)  {{-- SI ES RENTABLE APARECE ETIQUETA --}}
-                    <button class="btn-white">Renta</button> 
+                    <button class="btn-blue">Renta</button> 
                 @endif
                 <h4>$ {{number_format($propiedad->Precio, 0, '.', ',')}} MXN</h4>
                 <div class="roomsContainer">
@@ -316,7 +452,7 @@
         <div id="comentariosContainer">
             <h3>Comentarios</h3>
             <div class="agregarComentario">
-            <img src="https://picsum.photos/300/200">
+                <img src="https://picsum.photos/300/200">
                 <form action="">
                     <div class="input-group">
                         <textarea name="" id="" cols="100" rows="1" class="form-control"></textarea>

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PROPIEDAD_SERVICIO extends Model
 {
     use HasFactory;
-    protected $table = 'propiedade_servicio';
+    protected $table = 'propiedad_servicio';
     protected $primaryKey = 'id_ps';
     protected $filiable=[
               'propiedad_id', 'servicio_id'

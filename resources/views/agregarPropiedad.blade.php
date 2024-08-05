@@ -596,8 +596,8 @@
 @section('js')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
-        function fetchTipoPropiedad(){
-            $.get('/get/typeProperties', function (tipos){
+        async function fetchTipoPropiedad(){
+            await $.get('/get/typeProperties', function (tipos){
                 var selectTipo = $('#tipoPropiedad');
                 selectTipo.empty();
                 tipos.forEach(tipo => {
@@ -608,36 +608,32 @@
             });
         }
 
-        function fetchServicios(){
-            $.get('/get/servicios', function(servicios){
+        async function fetchServicios(){
+            console.log('entre primero')
+            await $.get('/get/servicios', function(servicios){
                 var serviciosCheck = $('#servicio');
                 serviciosCheck.empty();
                 servicios.forEach(servicio => {
                     serviciosCheck.append(`
-                        <input type="checkbox" class="btn-check" name="Servicio_id[]" value="${servicio.ID_SERV}" id="${servicio.ID_SERV}" autocomplete="off">
+                        <input type="checkbox" class="btn-check" name="servicio_id" value="${servicio.ID_SERV}" id="${servicio.ID_SERV}" autocomplete="off">
                         <label class="btn btn-outline-primary" for="${servicio.ID_SERV}">${servicio.Servicio}</label>
                     `);
                 });
             });
         }
 
-        function enviarForm(){
-            var propiedad = $('#propiedadId').val();
-            var servicios = [];
+        let servicios = [];
 
-            $('input[name="Servicio_id"]:checked').each(function(){
-                servicios.push($(this).val());
-                console.log("si");
-            });
-
+        function enviarForm(){    
             $.ajax({
                 url: '/add/propiedadServicio',
                 headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 method: 'POST',
-                data: {Propiedad_id: propiedad, Servicio_id: servicios},
+                data: {Propiedad_id: 1, Servicio_id: 1},
                 success: function(response){
+                    console.log(servicios);
                     // window.location.href = '{{route("filtro")}}'; //cambiar a la ruta del perfil usuario
                 },
                 error: function(error){
@@ -646,7 +642,9 @@
             });
         }
 
-        $(document).ready(function(){
+        $(document).ready(async function(){
+            await fetchTipoPropiedad();
+            await fetchServicios();
             var uno = $('#primerPaso');
             var dos = $('#segundoPaso');
             var tres = $('#tercerPaso');
@@ -654,11 +652,16 @@
             var cinco = $('#quintoPaso');
             var error = $('.error');
 
-            var servicios = [];
-
-            $('input[name="servicio"]:checked').each(function(){
-                servicios.push($(this).val());
-                console.log("si");
+            $('input[type="checkbox"]').on('click', function(){
+                if($(this).is(':checked')){
+                    servicios.push($(this).val());
+                }
+                else{
+                    // La casilla ya no está marcada
+                    const valueToRemove = $(this).val();
+                    servicios = servicios.filter(item => item !== valueToRemove);
+                }
+                console.log(servicios); 
             });
 
             $('#button1').on('click', function(){
@@ -775,9 +778,7 @@
                 event.preventDefault();
                 enviarForm();
             })
-
-            fetchTipoPropiedad();
-            fetchServicios();
+            
         });
     </script>
 @endsection

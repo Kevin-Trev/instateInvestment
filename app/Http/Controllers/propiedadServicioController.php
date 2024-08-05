@@ -10,12 +10,28 @@ use Exception;
 class propiedadServicioController extends Controller
 {
     public function store(Request $request){
+       
         DB::beginTransaction();
 
         try{
             $propiedad = new PROPIEDAD_SERVICIO();
-            $propiedad->Servicio_id = $request->input('servicios');
-            $propiedad->Propiedad_id = $request->input('propiedad');
+            $propiedad->Servicio_id = 1;
+            $propiedad->Propiedad_id = 2;
+
+            
+            // foreach ($request['servicios'] as $key => $value) {
+            //     $servicios = Servicios::find($key);
+            // }
+
+            
+
+            // foreach ($request['servicios'] as $key => $value) {
+            //     $servicio = new PROPIEDAD_SERVICIO();
+            //     $servicio->Propiedad_id = $key;
+            //     $servicio->Servicio_id = $value;
+            //     $servicio->save();
+            // }
+
             if($propiedad->save()){
                 DB::Commit();
                 return alert('Se ha creado con éxito');

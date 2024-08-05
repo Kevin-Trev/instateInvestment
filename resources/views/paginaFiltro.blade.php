@@ -138,6 +138,100 @@
       gap: 20px;
       padding: 20px 0 20px 0;
     }
+
+    @media(max-width: 391px){
+      /* Filtros */
+      #filtroBusqueda{
+        transform: translateX(-12vw);
+      }
+
+      #filtroBusqueda select{
+        width: 22vw;
+        font-size: 3.5vw;
+      }
+
+      #filtroBusqueda input[type="text"]{
+        font-size: 2.8vw;
+        width: 30vw;
+      }
+
+      #filtroBusqueda input[type="submit"]{
+        font-size: 2.8vw;
+        width: 16vw;
+      }
+
+      #filtroBusqueda .input-groups{
+        transform: translate(-20vw, -1vw);
+      }
+
+      #filtroBusqueda input[type="number"]{
+        font-size: 2.8vw;
+        width: 22vw;
+        height: 35px;
+        transform: translateX(-10vw);
+      }
+
+      /* Header de las cartas */
+
+      .container h2{
+        font-size: 5.5vw;
+      }
+
+      .container .text{
+        font-size: 3vw;
+      }
+
+      /* Cartas */
+
+      .card{
+        width: 38vw;
+        margin-bottom: 5px;
+      }
+
+      .card .image-card{
+        height: 80px;
+      }
+
+      #cards-container{
+        transform: translateX(-1.5vw);
+      }
+
+      .card .image-card img{
+        width: 100%;
+        height: 30vw;
+      }
+
+      .disponible button{
+        font-size: 2.5vw;
+      }
+
+      .roomsContainer img{
+        width: 4vw;
+      }
+
+      .number{
+        font-size: 3vw;
+      }
+
+      .card .footer button{
+        font-size: 1.8vw;
+        margin-left: 0;
+      }
+
+      .footer button{
+        margin-right: 5px;
+      }
+
+      .card h3{
+        margin-top: 5px;
+        font-size: 5vw;
+      }
+
+      /* footer */
+
+      
+      
+    }
   </style>
 @endsection
 
@@ -152,11 +246,11 @@
       <option value="Renta">Renta</option>
     </select>
   </div>
-  <div class="input-groups">
-    <input type="text" placeholder="Buscar por ciudad..."><input type="submit" value="Buscar">
-  </div>
   <div class="form-group">
     <input type="number" class="form-control" placeholder="Precio MXN">
+  </div>
+  <div class="input-groups">
+    <input type="text" placeholder="Buscar por ciudad..."><input type="submit" value="Buscar">
   </div>
 </div>
 
