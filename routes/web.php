@@ -57,9 +57,8 @@ Route::get('/detalles/propiedad', [viewsController::class, 'detallePropiedad'])-
 
 Route::get('/nuevoRegistro', [viewsController::class, 'contraseña']);
 
-
-// Ruta para mostrar el perfil del usuario
-Route::get('/usuarios/{usuario}', [UsuariosController::class, 'mostrarPerfil'])->name('admin.perfilAd');
-
-// Ruta para suspender un usuario (debe ser POST si el formulario usa POST)
-Route::post('/usuarios/{usuario}/suspender', [UsuariosController::class, 'suspender'])->name('usuarios.suspender');
+// Ruta para mostrar el perfil del administrador sin funcionalidad operativa
+Route::get('/perfil-administrador', function () {
+    $usuario = auth()->user(); 
+    return view('admin.perfilAd', compact('usuario'));
+})->name('admin.perfilAd');

@@ -81,17 +81,7 @@ class UsuariosController extends Controller
 
 
 
-
-    public function suspender(Request $request, User $usuario)
-    {
-        $usuario->update(['activo' => 0]); // Cambia 'estado' a 'activo'
-    
-        return redirect()->back()->with('exito', 'Usuario suspendido con éxito.');
-    }
-public function mostrarPerfil(User $usuario)
-{
-    return view('usuarios.perfilAd', compact('usuario'));
-}
+   
 }
 
 
