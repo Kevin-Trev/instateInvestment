@@ -37,6 +37,7 @@ Route::post('/logout', [usuariosController::class, 'logout']);
 Route::post('/registrar', [usuariosController::class, 'nuevoUsuario']);
 Route::post('/useredit', [usuariosController::class, 'editarUsuario']);
 Route::delete('/userdel', [usuariosController::class, 'eliminarUsuario']);
+Route::get('get/user/{id}', [usuariosController::class, 'datosUsuario']);
 
 Route::get('/get/properties',[propiedadController::class, 'index']);
 Route::get('/get/property/{id}', [propiedadController::class, 'getProperty']);

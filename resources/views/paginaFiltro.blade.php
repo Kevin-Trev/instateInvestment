@@ -332,104 +332,44 @@
       method: `GET`,
       success: function(data) {
           console.log(data);
-          const listaPropiedades = $('#pl');
+
+          const listaPropiedades = $('#cards-container'); 
           listaPropiedades.empty();
-          console.log(data);
-          data.forEach(propety => {
+
+          data.forEach(property => {
+          var stockImg = 'stock.png'; /* En caso de no tener ninguna imagen carga la de stock */
+          var precioFormateado = property.Precio.toLocaleString('es-MX') /* Dar Formato al Precio */;
+
           const propiedad =
-              `<div class="property-list" id="pl">
-                  <div class="property-card" style="margin-top: 5px;">
-                    <img src="https://via.placeholder.com/300x200" alt="Propety Image" class="property-image">
-                    <h3>${propety.Titulo}</h3>
-                    <p>$ ${propety.Precio}</p>
-                    <div class="property-details">
-                      <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>${propety.Recamaras} Recámaras</span></div>
-                      <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>${propety.Baños} Baños</span></div>
-                      <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${propety.Area} M² construidos</span></div>
-                    </div>
-                    <button class="property-button" onclick="infoPropety(${propety.id})">Ver Mas</button>
+              `<div class="card">
+                  <div class="image-card">
+                    <img src="{{asset('ImagesPublished/${property.main_image ? property.main_image.src_image : stockImg}')}}" alt="propiedad ${property.ID_P}">
                   </div>
-               </div>`
+                  <div class="disponible">
+                    ${property.Vendible === 1 ? '<button class="btn-white">Venta</button>' : ''}
+                    ${property.Rentable === 1 ? '<button class="btn-white">Renta</button>' : ''}
+                  </div>
+                  <div class="caracteristicas">
+                    <div class="roomsContainer">
+                      <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
+                      <span class="number">${property.Baños}</span>
+                    </div>
+                    <div class="roomsContainer">
+                      <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
+                      <span class="number">${property.Recamaras}</span>
+                    </div>
+                  </div>
+                  <h3 class="precio">$ ${precioFormateado} MXN</h3>
+                  <p class="text">${property.Calle} #${property.num_exterior}, ${property.Colonia}</p>
+                  <div class="footer">
+                    <button class="btn-white">Contacto</button>
+                    <button href="" class="btn-blue"><a class="nav-link" href="/get/property/${property.ID_P}">Ver más detalles</a></button>
+                  </div>
+                </div>`
             listaPropiedades.append(propiedad);
           });
       }
     });
   }
-
-  var propiedades = [
-    { titulo: "Agatha Monolith Torre A", price: "$ 3,193,840 MXN" , Recamaras: "1", Baños: "7", MtsCuadrados: "50m²"},
-    { titulo: "Agatha Monolith Torre B", price: "$ 3,193,841 MXN" , Recamaras: "2", Baños: "6", MtsCuadrados: "51m²" },
-    { titulo: "Agatha Monolith Torre C", price: "$ 3,193,842 MXN" , Recamaras: "3", Baños: "5", MtsCuadrados: "52m²" },
-    { titulo: "Agatha Monolith Torre D", price: "$ 3,193,843 MXN" , Recamaras: "4", Baños: "4", MtsCuadrados: "53m²" },
-    { titulo: "Agatha Monolith Torre E", price: "$ 3,193,844 MXN" , Recamaras: "5", Baños: "3", MtsCuadrados: "54m²" },
-    { titulo: "Agatha Monolith Torre F", price: "$ 3,193,845 MXN" , Recamaras: "6", Baños: "2", MtsCuadrados: "55m²" },
-    { titulo: "Agatha Monolith Torre F", price: "$ 3,193,845 MXN" , Recamaras: "6", Baños: "2", MtsCuadrados: "55m²" },
-    { titulo: "Agatha Monolith Torre G", price: "$ 3,193,846 MXN" , Recamaras: "7", Baños: "1", MtsCuadrados: "56m²" }
-  ];
-
-  function ej_crearcartasdepropiedades(filtrados = null){
-    var listapropiedades = document.getElementById('pl');
-    listapropiedades.innerHTML = '';
-
-    var division = null;
-
-    (filtrados || propiedades).forEach(function(propiedad, index) {
-      // 
-        division = document.createElement('div');
-        division.className = 'property-list';
-        listapropiedades.appendChild(division);
-
-      // DATOS DE LA TARJETA PROPIEDAD
-      var div = document.createElement('div');
-      div.className = "property-card";
-      div.style.marginTop = "5px";
-
-      var imagen = document.createElement('img');
-      imagen.src = "https://via.placeholder.com/300x200";
-      imagen.alt = "Property Image";
-      imagen.className = "property-image";
-
-      var titulo = document.createElement('h3');
-      titulo.textContent = propiedad.titulo;
-
-      var precio = document.createElement('p');
-      precio.textContent = propiedad.price;
-
-      var detalles = document.createElement('div');
-      detalles.className = "property-details";
-
-      var detalleRecamaras = document.createElement('div');
-      detalleRecamaras.className = "property-detail";
-      detalleRecamaras.innerHTML = '<i class="fas fa-bed property-detail-icon"></i><span>' + propiedad.Recamaras + ' Recámaras</span>';
-
-      var detalleBaños = document.createElement('div');
-      detalleBaños.className = "property-detail";
-      detalleBaños.innerHTML = '<i class="fas fa-bath property-detail-icon"></i><span>' + propiedad.Baños + ' Baños</span>';
-
-      var detalleMtsCuadrados = document.createElement('div');
-      detalleMtsCuadrados.className = "property-detail";
-      detalleMtsCuadrados.innerHTML = '<i class="fas fa-ruler-combined property-detail-icon"></i><span>' + propiedad.MtsCuadrados + ' construidos</span>';
-
-      detalles.appendChild(detalleRecamaras);
-      detalles.appendChild(detalleBaños);
-      detalles.appendChild(detalleMtsCuadrados);
-
-      var boton = document.createElement('button');
-      boton.className = "property-button";
-      boton.textContent = "Ver más info";
-
-      div.appendChild(imagen);
-      div.appendChild(titulo);
-      div.appendChild(precio);
-      div.appendChild(detalles);
-      div.appendChild(boton);
-      division.appendChild(div);
-    });
-  }
-
-  // LLAMA A LA FUNCION
-  ej_crearcartasdepropiedades();
 </script>
-
-
 @endsection
