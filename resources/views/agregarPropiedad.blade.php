@@ -217,7 +217,7 @@
 @endsection
 
 @section('body')
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <form action='/post/propiedad' method="POST" enctype="multipart/form-data" id="formPropiedad">
     @csrf
     <div class="container" id="primerPaso">
@@ -583,7 +583,7 @@
                     <div class="section-title">
                         <div class="circle blue">5</div><h2>Terminar</h2>
                     </div>
-                    
+
                     <div class="buttonContainer">
                         <button type="button" id="button8" class="btn-white">Regresar</button>
                         <button type="submit" class="btn-blue">Finalizar</button>
@@ -614,7 +614,7 @@
                 serviciosCheck.empty();
                 servicios.forEach(servicio => {
                     serviciosCheck.append(`
-                        <input type="checkbox" class="btn-check" value="${servicio.ID_SERV}" id="${servicio.ID_SERV}" autocomplete="off">
+                        <input type="checkbox" class="btn-check" name="Servicio_id[]" value="${servicio.ID_SERV}" id="${servicio.ID_SERV}" autocomplete="off">
                         <label class="btn btn-outline-primary" for="${servicio.ID_SERV}">${servicio.Servicio}</label>
                     `);
                 });
@@ -623,14 +623,22 @@
 
         function enviarForm(){
             var propiedad = $('#propiedadId').val();
-            var servicios = $('#tipoPropiedad').val();
+            var servicios = [];
+
+            $('input[name="Servicio_id"]:checked').each(function(){
+                servicios.push($(this).val());
+                console.log("si");
+            });
 
             $.ajax({
                 url: '/add/propiedadServicio',
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 method: 'POST',
                 data: {Propiedad_id: propiedad, Servicio_id: servicios},
                 success: function(response){
-                    return view('hubs.perfil');
+                    // window.location.href = '{{route("filtro")}}'; //cambiar a la ruta del perfil usuario
                 },
                 error: function(error){
                     console.log(error);
@@ -645,6 +653,13 @@
             var cuatro = $('#cuartoPaso');
             var cinco = $('#quintoPaso');
             var error = $('.error');
+
+            var servicios = [];
+
+            $('input[name="servicio"]:checked').each(function(){
+                servicios.push($(this).val());
+                console.log("si");
+            });
 
             $('#button1').on('click', function(){
                 var ciudad = $('#Ciudad').val();
@@ -722,6 +737,7 @@
                     $('#Baños-group').css("display", "inline-block");
                     $('#Recamaras-group').css("display", "inline-block");
                     $('#Areas-group').css("display", "inline-block");
+                    console.log(servicios);
                 }
                 else if(Tipo === "Quinta"){
                     $('#Frente-group').css("display", "inline-block");
@@ -755,9 +771,10 @@
 
             // Envia el formulario de propiedad y consiguiente el formulario de propiedadServicio
 
-            // $('#formPropiedad').on('submit', function(){
-            //     enviarForm();
-            // })
+            $('#formPropiedad').on('submit', function(event){
+                event.preventDefault();
+                enviarForm();
+            })
 
             fetchTipoPropiedad();
             fetchServicios();

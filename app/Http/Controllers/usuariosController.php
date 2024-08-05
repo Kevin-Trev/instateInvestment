@@ -14,6 +14,14 @@ use Exception;
 class UsuariosController extends Controller
 {
 
+    public function datosUsuario($id) { //datos usuario para perfil //
+        $datos = User::find($id)
+                      ->select('name','Nombre','Apellido','Fecha_Nacimiento','Telefono','Foto','email')
+                      ->get();
+        
+        return response()->json($datos);
+    }
+
     public function nuevoUsuario(Request $request) {
 
         DB::beginTransaction();
@@ -67,7 +75,6 @@ class UsuariosController extends Controller
     }
 
     public function logout () {
-
         Auth::logout();
         return redirect('/');
     }
@@ -79,9 +86,5 @@ class UsuariosController extends Controller
         return redirect('/');
     }
 
-
-
-   
 }
-
 

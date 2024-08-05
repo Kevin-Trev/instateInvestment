@@ -112,6 +112,100 @@
             font-size: 12px;
             color: red;
         }
+
+        @media(min-width: 576px){
+            
+            #nuevoDatos{
+                transform: translateY(2vh);
+            }
+
+            #nuevoUsuario{
+                transform: translateY(2vh);
+            }
+
+        }
+
+        @media(max-width: 576px){
+            body{
+                overflow-y: scroll;
+            }
+
+            .container{
+                width: 80vw;
+            }
+
+            .form-group label{
+                transform: translateX(-5vw);
+            }
+            
+            #telefono, #Fecha_nacimiento, #inputContraseña, #nombreUsuario, #nombre, #apellido{
+                transform: translateX(-5vw);
+                width: 95%;
+            }
+
+            #inputCorreo{
+                width: 95%;
+                transform: translateX(-5vw);
+            }
+
+            #nuevoEmail{
+                transform: translateY(6vh);
+            }
+
+            #nuevoDatos{
+                transform: translateY(4px);
+            }
+
+            #nuevoUsuario{
+                transform: translateY(5px);
+            }
+
+            .condicion{
+                transform: translateX(-5vw);
+            }
+        }
+
+        @media(max-width: 391px){
+            body{
+                overflow-y: scroll;
+            }
+
+            .container{
+                width: 80vw;
+            }
+
+            .form-group label{
+                transform: translateX(-5vw);
+            }
+
+            #telefono, #Fecha_nacimiento, #inputContraseña, #nombreUsuario, #nombre, #apellido{
+                transform: translateX(-5vw);
+                width: 95%;
+            }
+
+            #inputCorreo{
+                width: 95%;
+                transform: translateX(-5vw);
+            }
+            
+            #nuevoDatos{
+                border: 1px solid #ddd;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                transform: translateY(-60px);
+            }
+
+            #nuevoEmail{
+                transform: translateY(-60px);
+            }
+
+            #nuevoUsuario{
+                transform: translateY(-60px);
+            }
+
+            .condicion{
+                transform: translateX(-5vw);
+            }
+        }
     </style>
 @endsection
 

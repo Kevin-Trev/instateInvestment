@@ -14,6 +14,6 @@ class imagenes_propiedad extends Model
         'propiedad_id', 'src_image'
 ];
 public function propiedad(){
-    return $this->belongsToMany(propiedad::class, 'id_p', 'propiedad_id');
+    return $this->belongsTo(propiedad::class, 'id_p');
 }
 }

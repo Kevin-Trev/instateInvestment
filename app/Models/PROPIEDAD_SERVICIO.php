@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class propiedad_servicio extends Model
+class PROPIEDAD_SERVICIO extends Model
 {
     use HasFactory;
     protected $table = 'propiedade_servicio';

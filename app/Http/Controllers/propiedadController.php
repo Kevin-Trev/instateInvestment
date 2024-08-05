@@ -11,40 +11,23 @@ use Exception;
 class PropiedadController extends Controller
 {
     public function index () {
-        $propiedades = propiedades::select('ID_P','Titulo','Precio','Recamaras','Baños','Area')
-                                    ->where('verificacion','=','1')
-                                    ->get();
+        $propiedades = propiedades::select('ID_P','Calle','num_exterior','Colonia','Precio','Recamaras','Baños','Area','Vendible','Rentable')
+                                    ->with(['imagenes_propiedad' => function($query) {
+                                        $query->select('reg','propiedad_id','src_image');
+                                    }])
+                                    ->get()
+                                    ->map(function($propiedad) {
+                                        $propiedad->main_image = $propiedad->imagenes_propiedad->first() ?: null;
+                                        return $propiedad;
+                                    });
         return response()->json($propiedades);
     }
 
     public function getProperty($id){
-        $propiedad = propiedades::with("tipo_propiedad:ID_T,Tipo")->find($id);
 
-        $response = [
-            'ID_P' => $propiedad->ID_P,
-            'Titulo' => $propiedad->Titulo,
-            'Precio' => $propiedad->Precio,
-            'Recamaras' => $propiedad->Recamaras,
-            'Baños' => $propiedad->Baños,
-            'Disponibilidad' => $propiedad->Disponibilidad,
-            'Codigo_Postal' => $propiedad->Codigo_Postal,
-            'num_exterior' => $propiedad->num_exterior,
-            'num_interior' => $propiedad->num_interior,
-            'Colonia' => $propiedad->Colonia,
-            'Calle' => $propiedad->Calle,
-            'Ciudad' => $propiedad->Ciudad,
-            'Estado' => $propiedad->Estado,
-            'Area' => $propiedad->Area,
-            'Frente' => $propiedad->Frente,
-            'Fondo' => $propiedad->Fondo,
-            'Verificacion' => $propiedad->Verificacion,
-            'Rentable' => $propiedad->Rentable,
-            'Vendible' => $propiedad->Vendible,
-            'users_Id' => $propiedad->users_Id,
-            'Tipo_Propiedad_id' => $propiedad->tipo_propiedad->Tipo,
-        ];
+        $propiedad = propiedades::with("tipo_propiedad:ID_T,Tipo", "users:id,Telefono", "imagenes_propiedad:reg,propiedad_id,src_image")->find($id);
 
-        return response()->json($response);
+        return view('detallesPropiedad', compact('propiedad'));
     }
 
     public function newProperty (Request $request) {    /* agregar request en caso de formulario */

@@ -14,6 +14,9 @@
             padding: 0;
         }
 
+        body{
+            border: 1px solid black;
+        }
         .navbar{
         display: flex;
         justify-content: space-between;
@@ -171,6 +174,36 @@
       border: none;
       border-radius: 6px;
       cursor: default;
+    }
+
+    @media(max-width: 391px){
+        .navbar{
+            
+        }
+
+        .logo{
+            width: 200px;
+        }
+
+        .perfilContainer{
+            width: 40px;
+            height: 40px;
+            transform: translate(5vw, -5px);
+        }
+
+        .simboloContainer img{
+            width: 25px;
+            height: 25px;
+            transform: translate(10vw, -8px);
+        }
+
+        .dropdown-menu{
+            transform: translate(38vw, -5px);
+        }
+
+        .dropdown-menu a{
+            font-size: 3vw;
+        }
     }
     </style>
     @yield('style')

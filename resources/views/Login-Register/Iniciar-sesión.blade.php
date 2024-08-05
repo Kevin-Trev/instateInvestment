@@ -4,15 +4,16 @@
 
 @section('style')
     <style>
+
         .container {
         width: 500px;
         margin: 100px auto;
         padding: 30px;
         background-color: #fff;
         border: 1px solid #ddd;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         border-radius: 8px;
         transform: translateY(20px);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         .bt-blue {
@@ -42,6 +43,25 @@
 
     button[type="submit"]{
         margin-bottom: 25px;
+    }
+
+    
+    @media(max-width: 576px){
+        .container{
+            width: 80vw;
+            margin-top: 20vw;
+            transform: translateY(15vw);
+        }
+    }
+
+    @media (max-width: 391px){
+        .container{
+            width: 80vw;
+            height: 60vw;
+            border: none;
+            box-shadow: none;
+            transform: translateY(-25vw);
+        }
     }
     </style>    
 @endsection

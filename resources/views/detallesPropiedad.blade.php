@@ -263,45 +263,52 @@
         <div class="retroceder" onclick="history.back()">
             <h6>↩ Regresar a la navegación</h6>
         </div>
-        <h2>Domicilio de la propiedad</h2>
-        <p>Ubicacion (ciudad) de la propiedad</p>
+        <h2>{{$propiedad->Calle}} #{{$propiedad->num_exterior}}</h2> {{-- Domicilio de la Propiedad --}}
+        <p>Ubicacion : {{$propiedad->Ciudad}} , {{$propiedad->Estado}}</p> {{-- Ciudad , Estado --}}
         <div class="propiedadContainer">
                 <div id="carouselExample" class="carousel carousel-fade">
                     <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" class="carrousel-img" alt="...">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="{{asset('Imagenes/juanGuarnizo.png')}}" class="carrousel-img" alt="...">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="{{asset('Imagenes/juanGuarnizo.png')}}" class="carrousel-img" alt="...">
-                      </div>
+                        @if ($propiedad->imagenes_propiedad->isEmpty()) {{-- Si la Propiedad No tiene Imagen Coloca una de stock--}}
+                            <div class="carousel-item active">
+                                <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" class="carrousel-img" alt="...">
+                            </div>    
+                        @endif
+                        @foreach ($propiedad->imagenes_propiedad as $item => $image) {{-- Carga todas las imagenes de la propiedad --}}
+                            <div class="carousel-item {{$item === 0 ? 'active' : ''}}">
+                                <img src="{{asset('ImagesPublished/'.$image->src_image)}}" class="carrousel-img" alt="...">
+                            </div>    
+                        @endforeach
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
+                    @if ($propiedad->imagenes_propiedad->count() > 1)  {{-- SI HAY MAS DE UNA IMAGEN APARECEN LOS BOTONES --}}
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    @endif
                 </div>
             <div class="disponible">
-                <button class="btn-white">Venta</button>
-                <button class="btn-white">Renta</button>
-                <h4>Precio de la propiedad</h4>
+                @if ($propiedad->Vendible)  {{-- SI ES VENDIBLE APARECE ETIQUETA --}}
+                    <button class="btn-white">Venta</button>
+                @endif
+                @if ($propiedad->Rentable)  {{-- SI ES RENTABLE APARECE ETIQUETA --}}
+                    <button class="btn-white">Renta</button> 
+                @endif
+                <h4>$ {{number_format($propiedad->Precio, 0, '.', ',')}} MXN</h4>
                 <div class="roomsContainer">
                     <img src="{{asset('Imagenes/bañeraSimbolo-black.png')}}">
-                    <span>1 Baños</span>
+                    <span>{{$propiedad->Baños}} Baños</span>
                 </div>
                 <div class="roomsContainer">
                     <img src="{{asset('Imagenes/juanGuarnizo-black.png')}}">
-                    <span>2 Recámaras</span>
+                    <span>{{$propiedad->Recamaras}} Recámaras</span>
                 </div>
-                <p class="text">Ubicacion más exacta de la propiedad</p>
+                <p class="text">C. {{$propiedad->Calle}} #Ext. {{$propiedad->num_exterior ?: 'S/N'}} #Int. {{$propiedad->num_interior ?: 'S/N'}} Col. {{$propiedad->Colonia}} CP. {{$propiedad->Codigo_Postal}}</p>
                 <footer>
-                    <a href=""><button class="wasa"><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</button></a>
+                    <a href="https://wa.me/+52{{$propiedad->users->Telefono}}"><button class="wasa"><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</button></a>
                 </footer>
             </div>
         </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\propiedadController;
 use App\Http\Controllers\TipoPropiedadController;
 use App\Http\Controllers\servicioController;
 use App\Http\Controllers\propiedadServicioController;
+use App\Http\Controllers\perfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +24,20 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/eje', function () {
+    return view('hubs.EJEMPLO');
+});
+
+// 
+Route::get('/tuspropiedades', [perfilController::class, 'tuspropiedades'])->name('propiedades.index');
+// 
+
 Route::post('/login', [usuariosController::class, 'login']);
 Route::post('/logout', [usuariosController::class, 'logout']);
 Route::post('/registrar', [usuariosController::class, 'nuevoUsuario']);
 Route::post('/useredit', [usuariosController::class, 'editarUsuario']);
 Route::delete('/userdel', [usuariosController::class, 'eliminarUsuario']);
+Route::get('get/user/{id}', [usuariosController::class, 'datosUsuario']);
 
 Route::get('/get/properties',[propiedadController::class, 'index']);
 Route::get('/get/property/{id}', [propiedadController::class, 'getProperty']);
