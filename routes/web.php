@@ -66,8 +66,8 @@ Route::get('/detalles/propiedad', [viewsController::class, 'detallePropiedad'])-
 
 
 Route::get('/nuevoRegistro', [viewsController::class, 'contraseña']);
-
-// Ruta para mostrar el perfil del administrador sin funcionalidad operativa
+ 
+// vista perfil del admin en la carpeta admin/perfilAd para que Brandon no este ch...
 Route::get('/perfil-administrador', function () {
     $usuario = auth()->user(); 
     return view('admin.perfilAd', compact('usuario'));
