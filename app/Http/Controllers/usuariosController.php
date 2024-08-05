@@ -14,6 +14,14 @@ use Exception;
 class UsuariosController extends Controller
 {
 
+    public function datosUsuario($id) { //datos usuario para perfil //
+        $datos = User::find($id)
+                      ->select('name','Nombre','Apellido','Fecha_Nacimiento','Telefono','Foto','email')
+                      ->get();
+        
+        return response()->json($datos);
+    }
+
     public function nuevoUsuario(Request $request) {
 
         DB::beginTransaction();
@@ -67,7 +75,6 @@ class UsuariosController extends Controller
     }
 
     public function logout () {
-
         Auth::logout();
         return redirect('/');
     }
@@ -79,18 +86,16 @@ class UsuariosController extends Controller
         return redirect('/');
     }
 
-
-
-
     public function suspender(Request $request, User $usuario)
     {
         $usuario->update(['activo' => 0]); // Cambia 'estado' a 'activo'
     
         return redirect()->back()->with('exito', 'Usuario suspendido con éxito.');
     }
-public function mostrarPerfil(User $usuario)
-{
-    return view('usuarios.perfilAd', compact('usuario'));
+    
+    public function mostrarPerfil(User $usuario)
+    {
+        return view('usuarios.perfilAd', compact('usuario'));
 }
 }
 

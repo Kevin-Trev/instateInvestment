@@ -16,13 +16,17 @@ class propiedades extends Model
     protected $fillable=[
         'titulo', 'precio', 'recamaras','baños', 'disponibilidad', 'direccion','codigo_postal', 'num_exterior','num_interior', 'colonia',
         'calle','ciudad','estado','area', 'frente', 'fondo', 'rentable', 'vendible',
-        'users_id', 'Tipo_Propiedad_id', 'verificacion'
+        'users_Id', 'Tipo_Propiedad_id', 'verificacion'
     ];
+
     public function tipo_propiedad(){
         return $this->belongsTo(tipo_propiedad::class,'Tipo_Propiedad_id');
     }
+    public function imagenes_propiedad(){
+        return $this->hasMany(imagenes_propiedad::class, 'propiedad_id'); 
+    }
     public function users(){
-        return $this->belongsToMany(users::class, 'id', 'users_id');
+        return $this->belongsTo(User::class, 'users_Id');
     }
     public function propiedad_serv(){
         return $this->hasOne(propiedad_servicio::class, 'propiedad_id', 'id_p'); 
@@ -36,9 +40,6 @@ class propiedades extends Model
     }
     public function agenda_visita(){
         return $this->hasOne(agenda_visita::class, 'propiedad_id', 'id_p'); 
-    }
-    public function imagenes_propiedad(){
-        return $this->hasOne(imagenes_propiedad::class, 'propiedad_id', 'id_p'); 
     }
     public function reportes(){
         return $this->hasOne(reportes::class, 'propiedad_id', 'id_p'); 
