@@ -71,4 +71,10 @@ Route::get('/nuevoRegistro', [viewsController::class, 'contraseña']);
 Route::get('/perfil-administrador', function () {
     $usuario = auth()->user(); 
     return view('admin.perfilAd', compact('usuario'));
-})->name('admin.perfilAd');
+});
+
+// vista catalogo del admin en la carpeta admin/catalogo para que Brandon no este ch...
+
+Route::get('catalogo-administrador', function () {
+    return view('admin.catalogo');
+});

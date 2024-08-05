@@ -113,8 +113,7 @@
                 <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${property.Area} M² construidos</span></div>
               </div>
               <!-- X este btn nos va a mandar a la vista de dettalles propiedades -->
-              <button class="property-button btn btn-primary"  onclick="alert('esto nos mandara a detalles propiedad, para revisar los detalles, obviamente, 
-              'ten paciencia por favor, no somos genios como elon musk que se desbolquea de twitter para seguir peleando con maudro .');">REVISAR</button>
+              <button class="property-button btn btn-primary"  onclick="alert('esto nos mandara a detalles propiedad, para revisar los detalles, obviamente, ten paciencia por favor, no somos genios como elon musk que se desbolquea de twitter para seguir peleando con maudro .');">REVISAR</button>
             </div>
           </div>
 
@@ -131,7 +130,9 @@
                 <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>${property.Baños} Baños</span></div>
                 <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${property.Area} M² construidos</span></div>
               </div>
-              <button class="property-button btn btn-primary" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">COTIZAR</button>
+      <!-- X este btn nos va a mandar a la vista de dettalles propiedades -->
+      <button class="property-button btn btn-primary"  onclick="alert('esto nos mandara a detalles propiedad, para revisar los detalles, obviamente, ten paciencia por favor, no somos genios como elon musk que se desbolquea de twitter para seguir peleando con maudro .');"
+      >REVISAR</button>
             </div>
           </div>
         </div>
