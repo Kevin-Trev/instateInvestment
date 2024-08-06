@@ -623,16 +623,16 @@
 
 <div id="filtroBusqueda">
   <div class="form-group">
-    <select class="form-select">
-      <option selected value="Venta">Venta</option>
-      <option value="Renta">Renta</option>
+    <select class="form-select" id="transaccion">
+      <option selected value="Vendible">Venta</option>
+      <option value="Rentable">Renta</option>
     </select>
   </div>
   <div class="form-group">
     <input type="number" class="form-control" placeholder="Precio MXN">
   </div>
   <div class="input-groups">
-    <input type="text" placeholder="Buscar por ciudad..."><input type="submit" value="Buscar">
+    <input id="ciudad" type="text" placeholder="Buscar por ciudad..."><input type="submit" id="buscar" value="Buscar">
   </div>
 </div>
 
@@ -756,7 +756,7 @@
       <div class="container-info2">
           <h2>Legal</h2>
           <hr>
-          <a href="/legal">Aviso legal</a><br><br><a href="/privacidad">Politica de privacidad </a><br><br><a href="/privacidad">Politica de cookies</a>
+          <a href="/legal">Aviso legal</a><br><br><a href="{{route('avisoPrivacidad')}}">Politica de privacidad </a><br><br><a href="/privacidad">Politica de cookies</a>
       </div>
       <div class="container-info2">
           <h2>Sobre</h2>
@@ -773,8 +773,77 @@
 
 //  obtener los registros de propiedades desde BD  //
   $(document).ready(function(){
-    cargarPropiedades(); // agregalo como comentario en caso de diseño front //
+    var transaccion = localStorage.getItem('opcion')
+    var ciudad = localStorage.getItem('ciudad')
+
+    if(transaccion && ciudad) {
+      $('#transaccion').val(transaccion);
+      $('#ciudad').val(ciudad);
+      resultadoBusqueda(transaccion, ciudad);
+      console.log("Buscando Propiedades " + transaccion + "s en " + ciudad);
+
+      localStorage.removeItem('opcion');
+      localStorage.removeItem('ciudad');
+    }
+    else{
+      cargarPropiedades(); // agregalo como comentario en caso de diseño front //
+    }
+
+    $('#buscar').on('click', function() {
+      var opcion = $('#transaccion').val();
+      var ciudad = $('#ciudad').val();
+
+      resultadoBusqueda(opcion, ciudad);
+    })
+
+
   });
+
+  function resultadoBusqueda(transaccion, ciudad){
+    $.ajax({
+      url: `/get/results/propeties/${transaccion}/${ciudad}`,
+      method: `GET`,
+      success: function (data) {
+        console.log(data);
+
+        const listaPropiedades = $('#cards-container'); 
+          listaPropiedades.empty();
+
+          data.forEach(property => {
+          var stockImg = 'stock.png'; /* En caso de no tener ninguna imagen carga la de stock */
+          var precioFormateado = property.Precio.toLocaleString('es-MX') /* Dar Formato al Precio */;
+
+          const propiedad =
+              `<div class="card">
+                  <div class="image-card">
+                    <img src="{{asset('ImagesPublished/${property.main_image ? property.main_image.src_image : stockImg}')}}" alt="propiedad ${property.ID_P}">
+                  </div>
+                  <div class="disponible">
+                    ${property.Vendible === 1 ? '<button class="btn-blue">Venta</button>' : '<button class="btn-white">Venta</button>'}
+                    ${property.Rentable === 1 ? '<button class="btn-blue">Renta</button>' : '<button class="btn-white">Renta</button>'}
+                  </div>
+                  <div class="caracteristicas">
+                    <div class="roomsContainer">
+                      <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
+                      <span class="number">${property.Baños}</span>
+                    </div>
+                    <div class="roomsContainer">
+                      <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
+                      <span class="number">${property.Recamaras}</span>
+                    </div>
+                  </div>
+                  <h3 class="precio">$ ${precioFormateado} MXN</h3>
+                  <p class="text">${property.Calle} #${property.num_exterior}, ${property.Colonia}</p>
+                  <div class="footer">
+                    <button class="btn-white">Contacto</button>
+                    <button href="" class="btn-blue"><a class="nav-link" href="/get/property/${property.ID_P}">Ver más detalles</a></button>
+                  </div>
+                </div>`
+            listaPropiedades.append(propiedad);
+          });
+      }
+    })
+  }
 
   function cargarPropiedades() {
     $.ajax({

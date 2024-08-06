@@ -93,7 +93,7 @@
             <br>
             <button type="submit" class="bt-blue">Ingresar</button>
             <div class="footer">
-                <a href="/views/registro">Registrate</a>
+                <a href="{{route('registro')}}">Registrate</a>
                 <p>Si aún no tienes cuenta</p>
             </div>
         </form>

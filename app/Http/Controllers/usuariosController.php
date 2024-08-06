@@ -48,12 +48,12 @@ class UsuariosController extends Controller
             if($user->save()){
                 DB::commit();
                 Auth::login($user);
-                return redirect('/registro/finalizado');
+                return redirect('/views/registro/finalizado');
             }
         }
         catch(\Exception $e){
             DB::rollBack();
-            return redirect('/registro')->with('error','Registro incorrecto');
+            return redirect('/views/registro')->with('error','Registro incorrecto');
         }
 
     }
@@ -64,15 +64,15 @@ class UsuariosController extends Controller
         if(Auth::attempt($credenciales)){
             if(Auth::user()->activo) {
                 request()->session()->regenerate();
-                return redirect('/');
+                return redirect('/views/catalogo');
             }
             else {
                 Auth::logout();
-                return redirect('/view/login')->with('suspendido','Esta cuenta esta suspendida.<br> Ponte en contacto con el administrador del sitio web');
+                return redirect('/views/login')->with('suspendido','Esta cuenta esta suspendida.<br> Ponte en contacto con el administrador del sitio web');
             }
         }
         else{
-            return redirect('/view/login')->with('error_login','Correo Electronico y/o Contraseña Invalida');
+            return redirect('/views/login')->with('error_login','Correo Electronico y/o Contraseña Invalida');
         }
     }
 

@@ -75,8 +75,8 @@
     <img src="{{asset('Imagenes/Palomita.png')}}">
     <h2 class="title">¡Registro exitoso!</h2>
     <p>¡Gracias <span id="username">{{Auth::user()->Nombre}}</span> por formar parte de Instate!</p>
-    <button class="bt-blue">Publicar propiedad</button>
+    <button class="bt-blue"><a class="nav-link" href="{{Route('agregarPropiedad')}}">Publicar propiedad</a></button>
     <br>
-    <button class="bt-transparent">Continuar a Mi Perfil</button>
+    <button class="bt-transparent"><a href="{{route('perfil')}}">Continuar a Mi Perfil</a></button>
 </div>
 @endsection

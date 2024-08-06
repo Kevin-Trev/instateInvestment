@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 class viewsController extends Controller
 {
-    public function nuevoEmail(){
+    public function registro(){
         return view('Login-Register.registrarse');
     }
 
-    public function finalizar(){
+    public function registro_Finalizar(){
         return view('Login-Register.registrarseExito');
     }
     
@@ -22,20 +22,16 @@ class viewsController extends Controller
         return view('info.terminosCondiciones');
     }
 
-    public function inicio(){
-        return view('paginaFiltro');
-    }
-
     public function login(){
         return view('Login-Register.Iniciar-sesión');
     }
 
-    public function filtros() {
-        return view ('paginaFiltro');
-    }
-
     public function agregarPropiedad(){
         return view('agregarPropiedad');
+    }
+
+    public function catalogoPropiedades() {
+        return view('paginaFiltro');
     }
 
     public function detallePropiedad(){

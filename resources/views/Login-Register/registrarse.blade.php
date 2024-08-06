@@ -225,7 +225,7 @@
                 <button type="button" id="button1" class="bt-blue">Siguiente</button>
             </div>
             <footer>
-                <a href="/view/login">Inicia sesión</a>
+                <a href="{{route('login')}}">Inicia sesión</a>
                 <p>Si ya tienes una cuenta</p>
             </footer>
             <div class="terms">

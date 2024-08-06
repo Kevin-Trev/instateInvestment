@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\propiedades;
+use App\Models\imagenes_propiedad;
 use Exception;
 
 class PropiedadController extends Controller
@@ -21,6 +22,22 @@ class PropiedadController extends Controller
                                         return $propiedad;
                                     });
         return response()->json($propiedades);
+    }
+
+    public function propiedadesResultados($transaccion, $ciudad){
+        $propiedades = propiedades::select('ID_P','Calle','num_exterior','Colonia','Precio','Recamaras','Baños','Area','Vendible','Rentable')
+                                    ->with(['imagenes_propiedad' => function($query) {
+                                        $query->select('reg','propiedad_id','src_image');
+                                    }])
+                                    ->where($transaccion,'=','1')
+                                    ->where('Ciudad','like',$ciudad . '%')
+                                    ->get()
+                                    ->map(function($propiedad) {
+                                        $propiedad->main_image = $propiedad->imagenes_propiedad->first() ?: null;
+                                        return $propiedad;
+                                    });
+        return response()->json($propiedades);
+
     }
 
     public function getProperty($id){
@@ -59,13 +76,34 @@ class PropiedadController extends Controller
             $propiedad->users_Id = 1; // cambiar 1 por 'auth()->id();'
             $propiedad->Tipo_Propiedad_id = $request->input('Tipo_Propiedad_id');
 
-            if($propiedad->save()){
+            if($propiedad->save()){    
+                
+                uploadImagesProperty($request, $propiedad->ID_P);
                 DB::commit();
             }
         }
         catch(\Exception $e){
+            DB::rollback();
             return response()->json(['Error al crear registro: ' . $e->getMessage()], 500);
 
+        }
+    }
+
+    private function uploadImagesProperty (Request $request , $id) {
+        
+        if($request->hasFile('imagenes')) {
+
+            foreach ($request->file('imagenes') as $file) {
+                $fileName = Str::random(20 . '.' . $file->getClientOriginalExtension());
+                $file->move(public_path('ImagesPublished'), $fileName);
+
+                imagenes_propiedad::create([
+                    'propiedad_id' => $id,
+                    'src_image' => $fileName,
+                ]);
+
+
+            }
         }
     }
 }

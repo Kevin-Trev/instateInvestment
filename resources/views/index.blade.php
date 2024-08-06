@@ -11,13 +11,13 @@
         <div id="seccion1">
             <header class="header">
                 <div class="logo">
-                    <a href="">
+                    <a href="{{route('inicio')}}">
                         <img src="{{asset('/Imagenes/LOGO2.png')}}">
                     </a>
                 </div>
                     <div class="button-container">
                         @guest
-                            <a href="{{route('nuevoEmail')}}"><button class="bt-white">Registrate</button></a>
+                            <a href="{{route('registro')}}"><button class="bt-white">Registrate</button></a>
                             <a href="{{route('login')}}"><button class="bt-blue" type="button">Iniciar Sesión</button></a>
                         @endguest
                         @auth
@@ -33,13 +33,13 @@
             <div class="filtro">
                 <h2> Encuentra tu próxima oportunidad de <br>negocio en bienes raíces</h2>
                 <div class="input-container">
-                    <input type="radio" name="opcion" value="Venta" id="ip-venta" checked>
+                    <input type="radio" name="opcion" value="Vendible" id="ip-venta" checked>
                     <label for="ip-venta" class="Custom-Radio">Venta</label>
-                    <input type="radio" name="opcion" value="Renta" id="ip-renta">
+                    <input type="radio" name="opcion" value="Rentable" id="ip-renta">
                     <label for="ip-renta" class="Custom-Radio">Renta</label> 
                 </div>
                 <div class="input-groups">
-                    <input type="text" placeholder="Buscar por ciudad..."><input type="submit"  value=" Buscar">
+                    <input type="text" id="ciudad" placeholder="Buscar por ciudad..."><input type="submit" id="buscar" value=" Buscar">
                 </div>
             </div>
         </div>
@@ -199,7 +199,22 @@
                 <a href="/nosotros">Nosotros</a><br><br><a href="/mision">Misión</a><br><br><a href="/vision">Visión</a>
             </div>
         </div>
-        
     </footer>
+@endsection
 
+@section('js')
+<script>
+    $(document).ready(function() {
+        $('#buscar').on('click', function(){
+            var transaccion = $('input[name=opcion]:checked').val();
+            var ciudad = $('#ciudad').val();
+
+            localStorage.setItem('opcion' , transaccion);
+            localStorage.setItem('ciudad' , ciudad);
+
+            window.location.href = '/views/catalogo';
+        });
+    });
+</script>
+    
 @endsection
