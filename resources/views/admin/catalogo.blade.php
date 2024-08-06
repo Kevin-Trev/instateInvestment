@@ -2,17 +2,18 @@
 
 @section('style')
 <style>
-    .input-groups{
+    /* Estilos específicos para la sección de propiedades */
+    #properties-section .input-groups {
         display: flex;
         align-items: center;
         margin-left: 50px;
     }
 
-    body{
-      border: 2px solid red
+    #properties-section body {
+        border: 2px solid red;
     }
-    
-    .input-groups input[type="text"]{
+
+    #properties-section .input-groups input[type="text"] {
         padding: 8px 10px;
         border: 1px solid #B7BEC0;
         border-radius: 5px 0 0 5px;
@@ -20,8 +21,8 @@
         outline: none;
         width: 250px;
     }
-    
-    .input-groups input[type="submit"]{
+
+    #properties-section .input-groups input[type="submit"] {
         background-color: #3370FF;
         color: #FFFFFF;
         border: none;
@@ -30,591 +31,140 @@
         width: 120px;
         cursor: pointer;
     }
-    
-    .input-groups input::placeholder{
+
+    #properties-section .input-groups input::placeholder {
         color: #B7BEC0;
     }
 
-    .form-group{
-      width: 100px;
-      height: 42px;
-      margin-left: 50px;
+    #properties-section .form-group {
+        width: 100px;
+        height: 42px;
+        margin-left: 50px;
     }
 
-    
-
-    #filtroBusqueda{
-      display: flex;
-      margin-right: 10px;
+    #properties-section #filtroBusqueda {
+        display: flex;
+        margin-right: 10px;
     }
 
-    .form-group input[type="number"]{
-      width: 200px;
-      height: 42px;
+    #properties-section .form-group input[type="number"] {
+        width: 200px;
+        height: 42px;
     }
 
-    .card{
-      width: 25%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      float: left;
-      margin: 20px 0 60px 6.5%;
+    /* Estilos para vista en lista */
+    #properties-section .card {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        margin: 20px auto;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
     }
 
-    .image-card{
-      width: 100%;
-      height: 150px;
+    #properties-section .image-card {
+        width: 30%;
+        min-width: 150px;
+        max-width: 200px;
+        margin-right: 15px;
     }
 
-    .image-card img{
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 6px 6px 0 0;
+    #properties-section .image-card img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 6px;
     }
 
-    .disponible{
-      margin-top: 35px;
-      display: flex;
-      padding: 10px;
+    #properties-section .card-details {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
-    h3, .text{
-      margin-left: 10px;
-    }
-
-    h3{
-      color: #3370FF;
-    }
-
-    .disponible button{
-      margin-right: 10px;
-      padding: 2px;
-    }
-
-    .disponible .btn-white{
-      width: 40px;
-    }
-
-    .disponible .btn-blue{
-      width: 40px;
-    }
-
-    .footer{
-      display: flex;
-      justify-content: flex-end;
-      padding-bottom: 15px;
-    }
-
-    .footer button{
-      margin-right: 15px;
-      padding: 6px;
-    }
-
-    .text{
-      color: #898e90;
-      font-size: 14px;
-    }
-
-    .caracteristicas{
-      display: flex;
-      margin-left: 10px;
-    }
-
-    .roomsContainer{
-      display: flex;
-      align-items: center;
-      margin-right: 20px;
-    }
-
-    .roomsContainer img{
-      width: 25px;
-    }
-
-    .number{
-      margin-left: 10px;
-      color: #9ea4a5;
-      align-items: center;
-    }
-
-    #cards-container{
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    #page-footer{
-      display: flex;
-      gap: 20px;
-      padding: 20px 0 20px 0;
-    }
-
-    @media(max-width: 992px){
-      /* Filtros */
-      #filtroBusqueda{
-        transform: translateX(-4vw);
-      }
-
-      #filtroBusqueda select{
-        width: 14vw;
-        font-size: 2vw;
-        height: 60px;
-        transform: translateY(-4px);
-      }
-
-      #filtroBusqueda input[type="text"]{
-        font-size: 2vw;
-        height: 60px;
-        width: 30vw;
-      }
-
-      #filtroBusqueda input[type="submit"]{
-        font-size: 2vw;
-        height: 60px;
-        width: 14vw;
-      }
-
-      #filtroBusqueda .input-groups{
-        transform: translate(7.5vw, -0.5vw);
-      }
-
-      #filtroBusqueda input[type="number"]{
-        font-size: 2vw;
-        width: 20vw;
-        height: 60px;
-        transform: translate(1vw, -4.5px);
-      }
-
-      /* Header de las cartas */
-
-      .container{
-        margin: 1vw;
-      }
-
-      .container h2{
-        font-size: 4.5vw;
-      }
-
-      .container .text{
-        font-size: 2.5vw;
-      }
-
-      /* Cartas */
-
-      .card{
-        width: 35vw;
+    #properties-section .caracteristicas {
+        display: flex;
+        margin-top: 10px;
         margin-bottom: 10px;
-      }
-
-      .card .image-card{
-        height: 80px;
-      }
-
-      #cards-container{
-        transform: translateX(3vw);
-        width: 100vw;
-      }
-
-      .card .text{
-        font-size: 2vw;
-      }
-
-      .card .image-card img{
-        width: 100%;
-        height: 25vw;
-      }
-
-      .disponible button{
-        margin-top: 120px;
-        font-size: 2vw;
-      }
-
-      .disponible .btn-blue, .disponible .btn-white{
-        width: 10vw;
-      }
-
-      .roomsContainer img{
-        width: 3vw;
-      }
-
-      .number{
-        font-size: 2vw;
-      }
-
-      .card .footer button{
-        font-size: 2vw;
-        margin-left: 0;
-      }
-
-      .footer button{
-        margin-right: 8px;
-      }
-
-      .card h3{
-        margin-top: 5px;
-        font-size: 3.5vw;
-      }
-
-      /* footer */
-
-      #page-footer{
-        margin-top: 80px;
-        width: 100%;
-        gap: 0;
-        padding: 0 0 10px 0;
-        display: block;
-      }
-
-      .container-info img{
-        width: 30vw;
-        height: 30vw;
-        transform: translate(-80px, 280px);
-      }
-
-      .container-info p{
-        font-size: 2.8vw;
-        transform: translate(300px, 230px)
-      }
-
-      .container-info b{
-        font-size: 2.5vw;
-      }
-
-      .container-info h2{
-        font-size: 6vw;
-      }
-
-      .container-info .container-social img{
-        width: 4vw;
-        height: 4vw;
-        gap: 50px;
-        transform: translate(0);
-      }
-
-      .container-info{
-        margin-top: -500px;
-      }
-
-      #este{
-        margin: 0 0 10px 55vw;
-        transform: translateY(38vw);
-      }
-
-      .container-info2 h2{
-       font-size: 6vw;
-      }
-
-      .container-info2 a{
-        font-size: 2.5vw;
-      }
-
-      .container-info2{
-        display: block;
-      }
+        justify-content: space-between;
     }
 
-    @media(max-width: 576px){
-      /* Filtros */
-      #filtroBusqueda{
-        transform: translateX(-8vw);
-      }
-
-      #filtroBusqueda select{
-        width: 20vw;
-        font-size: 2.5vw;
-        height: 40px;
-        transform: translateY(-4px);
-      }
-
-      #filtroBusqueda input[type="text"]{
-        font-size: 2.5vw;
-        width: 30vw;
-      }
-
-      #filtroBusqueda input[type="submit"]{
-        font-size: 2.5vw;
-        width: 14vw;
-      }
-
-      #filtroBusqueda .input-groups{
-        transform: translate(-10vw, -1vw);
-      }
-
-      #filtroBusqueda input[type="number"]{
-        font-size: 2.5vw;
-        width: 22vw;
-        height: 40px;
-        transform: translate(-6vw, -4.5px);
-      }
-
-      /* Header de las cartas */
-
-      .container h2{
-        font-size: 5.4vw;
-      }
-
-      .container .text{
-        font-size: 2.8vw;
-      }
-
-      /* Cartas */
-
-      .card{
-        width: 40vw;
-        margin-bottom: 5px;
-      }
-
-      .card .image-card{
-        height: 70px;
-      }
-
-      #cards-container{
-        transform: translateX(-1.5vw);
-      }
-
-      .card .text{
-        font-size: 2vw;
-      }
-
-      .card .image-card img{
-        width: 100%;
-        height: 25vw;
-      }
-
-      .disponible button{
-        margin-top: 25px;
-        font-size: 2vw;
-      }
-
-      .roomsContainer img{
-        width: 3.2vw;
-      }
-
-      .number{
-        font-size: 2.5vw;
-      }
-
-      .card .footer button{
-        font-size: 2vw;
-        margin-left: 0;
-      }
-
-      .footer button{
-        margin-right: 8px;
-      }
-
-      .card h3{
-        margin-top: 5px;
-        font-size: 3.5vw;
-      }
-
-      /* footer */
-
-      #page-footer{
-        margin-top: 80px;
-        width: 100%;
-        gap: 0;
-        padding: 0 0 10px 0;
-        display: block;
-      }
-
-      .container-info img{
-        width: 30vw;
-        height: 30vw;
-        transform: translate(-80px, 210px);
-      }
-
-      .container-info p{
-        font-size: 2.8vw;
-        transform: translate(-110px, 230px)
-      }
-
-      .container-info b{
-        font-size: 2.5vw;
-      }
-
-      .container-info h2{
-        font-size: 6vw;
-      }
-
-      .container-social img{
-        width: 5vw;
-        height: 5vw;
-        transform: translate(0);
-      }
-
-      .container-info{
-        margin-top: -500px;
-      }
-
-      #este{
-        margin: 0 0 10px 55vw;
-        transform: translateY(-10vw);
-      }
-
-      .container-info2 h2{
-       font-size: 6vw;
-      }
-
-      .container-info2 a{
-        font-size: 2.5vw;
-      }
-
-      .container-info2{
-        display: none;
-      }
+    #properties-section .roomsContainer {
+        display: flex;
+        align-items: center;
     }
 
-    @media(max-width: 391px){
-      /* Filtros */
-      #filtroBusqueda{
-        transform: translateX(-12vw);
-      }
-
-      #filtroBusqueda select{
-        width: 22vw;
-        font-size: 3.5vw;
-      }
-
-      #filtroBusqueda input[type="text"]{
-        font-size: 2.8vw;
-        width: 30vw;
-      }
-
-      #filtroBusqueda input[type="submit"]{
-        font-size: 2.8vw;
-        width: 16vw;
-      }
-
-      #filtroBusqueda .input-groups{
-        transform: translate(-20vw, -1vw);
-      }
-
-      #filtroBusqueda input[type="number"]{
-        font-size: 2.8vw;
-        width: 22vw;
-        height: 35px;
-        transform: translateX(-10vw);
-      }
-
-      /* Header de las cartas */
-
-      .container h2{
-        font-size: 5.5vw;
-      }
-
-      .container .text{
-        font-size: 3vw;
-      }
-
-      /* Cartas */
-
-      .card{
-        width: 38vw;
-        margin-bottom: 5px;
-      }
-
-      .card .image-card{
-        height: 80px;
-      }
-
-      #cards-container{
-        transform: translateX(-1.5vw);
-      }
-
-      .card .image-card img{
-        width: 100%;
-        height: 30vw;
-      }
-
-      .disponible button{
-        font-size: 2.5vw;
-      }
-
-      .roomsContainer img{
-        width: 3.5vw;
-      }
-
-      .number{
-        font-size: 3vw;
-      }
-
-      .card .footer button{
-        font-size: 1.8vw;
-        margin-left: 0;
-      }
-
-      .footer button{
+    #properties-section .roomsContainer img {
+        width: 25px;
         margin-right: 5px;
-      }
-
-      .card h3{
-        margin-top: 5px;
-        font-size: 4vw;
-      }
-
-      .card p .text{
-        font-size: 1vw;
-      }
-
-      /* footer */
-
-      #page-footer{
-        margin-top: 80px;
-        width: 100%;
-        gap: 0;
-        padding: 0 0 10px 0;
-        display: block;
-      }
-
-      .container-info img{
-        width: 30vw;
-        height: 30vw;
-        transform: translate(-80px, 210px);
-      }
-
-      .container-info p{
-        font-size: 2.8vw;
-        transform: translate(-110px, 200px)
-      }
-
-      .container-info b{
-        font-size: 3vw;
-      }
-
-      .container-info h2{
-        font-size: 6vw;
-      }
-
-      .container-social img{
-        width: 6vw;
-        height: 6vw;
-        transform: translate(0);
-      }
-
-      .container-info{
-        margin-top: -500px;
-      }
-
-      #este{
-        margin: 0 0 10px 55vw;
-        transform: translateY(-13vw);
-      }
-
-      .container-info2 h2{
-       font-size: 6.5vw;
-      }
-
-      .container-info2 a{
-        font-size: 2.5vw;
-      }
-
-      .container-info2{
-        display: none;
-      }
-      
     }
-  </style>
+
+    #properties-section .number {
+        color: #9ea4a5;
+    }
+
+    #properties-section h3 {
+        color: #3370FF;
+        margin: 10px 0;
+    }
+
+    #properties-section .text {
+        color: #898e90;
+        font-size: 14px;
+    }
+
+    #properties-section .footer {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+
+    #properties-section .footer button {
+        margin-right: 15px;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    #properties-section .btn-white {
+        background-color: #fff;
+        color: #000;
+        border: 1px solid #ddd;
+    }
+
+    #properties-section .btn-blue {
+        background-color: #3370FF;
+        color: #fff;
+        border: none;
+    }
+
+    #properties-section #cards-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @media(max-width: 992px) {
+        #properties-section .card {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #properties-section .image-card {
+            width: 100%;
+            max-width: none;
+            margin-bottom: 15px;
+        }
+
+        #properties-section .card-details {
+            width: 100%;
+        }
+    }
+</style>
 @endsection
 
 @section('body')
@@ -622,54 +172,40 @@
 {{-- Fila de filtros --}}
 
 <div id="filtroBusqueda">
-  <div class="form-group">
-    <select class="form-select">
-      <option selected value="Venta">Venta</option>
-      <option value="Renta">Renta</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <input type="number" class="form-control" placeholder="Precio MXN">
-  </div>
-  <div class="input-groups">
-    <input type="text" placeholder="Buscar por ciudad..."><input type="submit" value="Buscar">
-  </div>
-</div>
+  
 
 <br>
 
-{{-- Vista de catalogo --}}
-
-<div class="container">
-  <h2> Propiedades no verificadas </h2> {{--Agregar al principio de esta etiqueta el número de registros que se encontraron cerca y tambien la ciudad al lado derecho--}}
-  <p class="text"> Estas son las propiedades no verificadas que encontramos para ti</p>
-  <div id="cards-container">
-    <div class="card">
-      <div class="image-card">
-        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
-      </div>
-      <div class="disponible">
-
-      </div>
-      <div class="caracteristicas">
-        <div class="roomsContainer">
-          <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
-          <span class="number">2</span>
+{{-- Sección de propiedades no verificadas --}}
+<div id="properties-section" class="container">
+    <h2> Propiedades no verificadas </h2>
+    <p class="text"> Estas son las propiedades no verificadas que encontramos para ti</p>
+    <div id="cards-container">
+        <div class="card">
+            <div class="image-card">
+                <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" alt="Imagen de propiedad">
+            </div>
+            <div class="card-details">
+                <div class="caracteristicas">
+                    <div class="roomsContainer">
+                        <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
+                        <span class="number">2</span>
+                    </div>
+                    <div class="roomsContainer">
+                        <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
+                        <span class="number">2</span>
+                    </div>
+                </div>
+                <h3> Precio de la propiedad </h3>
+                <p class="text">Direccion de la propiedad</p>
+                <div class="footer">
+                    <button class="btn-white">Eliminar</button>
+                    <button class="btn-blue">Verificar</button>
+                    <button class="btn-white">Suspender</button>
+                </div>
+            </div>
         </div>
-        <div class="roomsContainer">
-          <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
-          <span class="number">2</span>
-        </div>
-      </div>
-      <h3> Precio de la propiedad </h3>
-      <p class="text">Direccion de la propiedad</p>
-      <div class="footer">
-        <button class="btn-white">Eliminar</button>
-        <button class="btn-blue">Verificar</button>
-        <button class="btn-white">Suspender</button>
-      </div>
     </div>
-  </div>
 </div>
 
 <footer id="page-footer">
@@ -718,12 +254,9 @@
 @endsection
 
 @section('js')
-    <!-- EJEMPLO DE FUNCION PARA AGREGAR LAS TARJETAS DE PROPIEDADES() -->
 <script>
-
-//  obtener los registros de propiedades desde BD  //
-  $(document).ready(function(){
-    cargarPropiedades(); // agregalo como comentario en caso de diseño front //
+  $(document).ready(function() {
+    cargarPropiedades();
   });
 
   function cargarPropiedades() {
@@ -731,23 +264,20 @@
       url: `/get/properties`,
       method: `GET`,
       success: function(data) {
-          console.log(data);
+        console.log(data);
+        const listaPropiedades = $('#cards-container');
+        listaPropiedades.empty();
 
-          const listaPropiedades = $('#cards-container'); 
-          listaPropiedades.empty();
-
-          data.forEach(property => {
-          var stockImg = 'stock.png'; /* En caso de no tener ninguna imagen carga la de stock */
-          var precioFormateado = property.Precio.toLocaleString('es-MX') /* Dar Formato al Precio */;
+        data.forEach(property => {
+          var stockImg = 'stock.png';
+          var precioFormateado = property.Precio.toLocaleString('es-MX');
 
           const propiedad =
-              `<div class="card">
-                  <div class="image-card">
-                    <img src="{{asset('ImagesPublished/${property.main_image ? property.main_image.src_image : stockImg}')}}" alt="propiedad ${property.ID_P}">
-                  </div>
-                  <div class="disponible">
-
-                  </div>
+            `<div class="card">
+                <div class="image-card">
+                  <img src="{{asset('ImagesPublished/${property.main_image ? property.main_image.src_image : stockImg}')}}" alt="propiedad ${property.ID_P}">
+                </div>
+                <div class="card-details">
                   <div class="caracteristicas">
                     <div class="roomsContainer">
                       <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
@@ -763,11 +293,12 @@
                   <div class="footer">
                     <button class="btn-white">Eliminar</button>
                     <button href="" class="btn-blue">Verificar</button>
-                     <button class="btn-white">Suspender</button>
+                    <button class="btn-white">Suspender</button>
                   </div>
-                </div>`
-            listaPropiedades.append(propiedad);
-          });
+                </div>
+              </div>`;
+          listaPropiedades.append(propiedad);
+        });
       }
     });
   }
