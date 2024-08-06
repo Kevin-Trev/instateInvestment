@@ -55,10 +55,7 @@ Route::post('/add/propiedadServicio', [propiedadServicioController::class, 'stor
 Route::get('/hubs/perfil', function () { return view('hubs.perfil'); });
 Route::get('/hubs/perfi/seguridad', function () { return view('hubs.seguridad'); });
 
-Route::get('/enviar/correo', function(){
-    Mail::to('kevin134foca@gmail.com')->send(new CorreosMailable());
-    return "yes";
-});
+Route::get('/enviar/correo/{destinatario}', [correoController::class, 'enviarCorreo']);
 
 Route::get('/filtros',[viewsController::class, 'filtros'])->name('filtro');
 Route::get('/view/login',[viewsController::class, 'login'])->name('login');

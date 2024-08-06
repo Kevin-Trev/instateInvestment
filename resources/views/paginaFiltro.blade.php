@@ -669,6 +669,56 @@
         <button class="btn-blue">Ver más detalles</button>
       </div>
     </div>
+    <div class="card">
+      <div class="image-card">
+        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
+      </div>
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <div class="caracteristicas">
+        <div class="roomsContainer">
+          <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
+          <span class="number">2</span>
+        </div>
+        <div class="roomsContainer">
+          <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
+          <span class="number">2</span>
+        </div>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="image-card">
+        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
+      </div>
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <div class="caracteristicas">
+        <div class="roomsContainer">
+          <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
+          <span class="number">2</span>
+        </div>
+        <div class="roomsContainer">
+          <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
+          <span class="number">2</span>
+        </div>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
+      </div>
+    </div>
   </div>
 </div>
 
