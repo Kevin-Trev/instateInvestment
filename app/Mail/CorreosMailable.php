@@ -8,19 +8,22 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\User;
 
 class CorreosMailable extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct(User $user)
     {
-        $this->user = $user;
+        $this->User = $user;
     }
 
     /**
@@ -30,8 +33,10 @@ class CorreosMailable extends Mailable
      */
     public function envelope()
     {
-        return $this->from(env('MAIL_USERNAME'))->to('kevin134foca@gmail.com')
-        ->subject('holi')->view('correo.avisosGeneral');
+        return $this->view('correo.avisosGeneral')->with([
+            'titulo' => $this->User->name,
+            'cuerpo' => $this->User->Apellido,
+        ]);
     }
 
     /**

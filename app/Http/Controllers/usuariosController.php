@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Mail\CorreosMailable;
+use Illuminate\Support\Facades\Mail;
 use Exception;
 
 
