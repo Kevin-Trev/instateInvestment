@@ -7,6 +7,10 @@
         align-items: center;
         margin-left: 50px;
     }
+
+    body{
+      border: 2px solid red
+    }
     
     .input-groups input[type="text"]{
         padding: 8px 10px;
@@ -36,6 +40,8 @@
       height: 42px;
       margin-left: 50px;
     }
+
+    
 
     #filtroBusqueda{
       display: flex;
@@ -88,7 +94,11 @@
     }
 
     .disponible .btn-white{
-      width: 60px;
+      width: 40px;
+    }
+
+    .disponible .btn-blue{
+      width: 40px;
     }
 
     .footer{
@@ -137,6 +147,322 @@
       display: flex;
       gap: 20px;
       padding: 20px 0 20px 0;
+    }
+
+    @media(max-width: 992px){
+      /* Filtros */
+      #filtroBusqueda{
+        transform: translateX(-4vw);
+      }
+
+      #filtroBusqueda select{
+        width: 14vw;
+        font-size: 2vw;
+        height: 60px;
+        transform: translateY(-4px);
+      }
+
+      #filtroBusqueda input[type="text"]{
+        font-size: 2vw;
+        height: 60px;
+        width: 30vw;
+      }
+
+      #filtroBusqueda input[type="submit"]{
+        font-size: 2vw;
+        height: 60px;
+        width: 14vw;
+      }
+
+      #filtroBusqueda .input-groups{
+        transform: translate(7.5vw, -0.5vw);
+      }
+
+      #filtroBusqueda input[type="number"]{
+        font-size: 2vw;
+        width: 20vw;
+        height: 60px;
+        transform: translate(1vw, -4.5px);
+      }
+
+      /* Header de las cartas */
+
+      .container{
+        margin: 1vw;
+      }
+
+      .container h2{
+        font-size: 4.5vw;
+      }
+
+      .container .text{
+        font-size: 2.5vw;
+      }
+
+      /* Cartas */
+
+      .card{
+        width: 35vw;
+        margin-bottom: 10px;
+      }
+
+      .card .image-card{
+        height: 80px;
+      }
+
+      #cards-container{
+        transform: translateX(3vw);
+        width: 100vw;
+      }
+
+      .card .text{
+        font-size: 2vw;
+      }
+
+      .card .image-card img{
+        width: 100%;
+        height: 25vw;
+      }
+
+      .disponible button{
+        margin-top: 120px;
+        font-size: 2vw;
+      }
+
+      .disponible .btn-blue, .disponible .btn-white{
+        width: 10vw;
+      }
+
+      .roomsContainer img{
+        width: 3vw;
+      }
+
+      .number{
+        font-size: 2vw;
+      }
+
+      .card .footer button{
+        font-size: 2vw;
+        margin-left: 0;
+      }
+
+      .footer button{
+        margin-right: 8px;
+      }
+
+      .card h3{
+        margin-top: 5px;
+        font-size: 3.5vw;
+      }
+
+      /* footer */
+
+      #page-footer{
+        margin-top: 80px;
+        width: 100%;
+        gap: 0;
+        padding: 0 0 10px 0;
+        display: block;
+      }
+
+      .container-info img{
+        width: 30vw;
+        height: 30vw;
+        transform: translate(-80px, 280px);
+      }
+
+      .container-info p{
+        font-size: 2.8vw;
+        transform: translate(300px, 230px)
+      }
+
+      .container-info b{
+        font-size: 2.5vw;
+      }
+
+      .container-info h2{
+        font-size: 6vw;
+      }
+
+      .container-info .container-social img{
+        width: 4vw;
+        height: 4vw;
+        gap: 50px;
+        transform: translate(0);
+      }
+
+      .container-info{
+        margin-top: -500px;
+      }
+
+      #este{
+        margin: 0 0 10px 55vw;
+        transform: translateY(38vw);
+      }
+
+      .container-info2 h2{
+       font-size: 6vw;
+      }
+
+      .container-info2 a{
+        font-size: 2.5vw;
+      }
+
+      .container-info2{
+        display: block;
+      }
+    }
+
+    @media(max-width: 576px){
+      /* Filtros */
+      #filtroBusqueda{
+        transform: translateX(-8vw);
+      }
+
+      #filtroBusqueda select{
+        width: 20vw;
+        font-size: 2.5vw;
+        height: 40px;
+        transform: translateY(-4px);
+      }
+
+      #filtroBusqueda input[type="text"]{
+        font-size: 2.5vw;
+        width: 30vw;
+      }
+
+      #filtroBusqueda input[type="submit"]{
+        font-size: 2.5vw;
+        width: 14vw;
+      }
+
+      #filtroBusqueda .input-groups{
+        transform: translate(-10vw, -1vw);
+      }
+
+      #filtroBusqueda input[type="number"]{
+        font-size: 2.5vw;
+        width: 22vw;
+        height: 40px;
+        transform: translate(-6vw, -4.5px);
+      }
+
+      /* Header de las cartas */
+
+      .container h2{
+        font-size: 5.4vw;
+      }
+
+      .container .text{
+        font-size: 2.8vw;
+      }
+
+      /* Cartas */
+
+      .card{
+        width: 40vw;
+        margin-bottom: 5px;
+      }
+
+      .card .image-card{
+        height: 70px;
+      }
+
+      #cards-container{
+        transform: translateX(-1.5vw);
+      }
+
+      .card .text{
+        font-size: 2vw;
+      }
+
+      .card .image-card img{
+        width: 100%;
+        height: 25vw;
+      }
+
+      .disponible button{
+        margin-top: 25px;
+        font-size: 2vw;
+      }
+
+      .roomsContainer img{
+        width: 3.2vw;
+      }
+
+      .number{
+        font-size: 2.5vw;
+      }
+
+      .card .footer button{
+        font-size: 2vw;
+        margin-left: 0;
+      }
+
+      .footer button{
+        margin-right: 8px;
+      }
+
+      .card h3{
+        margin-top: 5px;
+        font-size: 3.5vw;
+      }
+
+      /* footer */
+
+      #page-footer{
+        margin-top: 80px;
+        width: 100%;
+        gap: 0;
+        padding: 0 0 10px 0;
+        display: block;
+      }
+
+      .container-info img{
+        width: 30vw;
+        height: 30vw;
+        transform: translate(-80px, 210px);
+      }
+
+      .container-info p{
+        font-size: 2.8vw;
+        transform: translate(-110px, 230px)
+      }
+
+      .container-info b{
+        font-size: 2.5vw;
+      }
+
+      .container-info h2{
+        font-size: 6vw;
+      }
+
+      .container-social img{
+        width: 5vw;
+        height: 5vw;
+        transform: translate(0);
+      }
+
+      .container-info{
+        margin-top: -500px;
+      }
+
+      #este{
+        margin: 0 0 10px 55vw;
+        transform: translateY(-10vw);
+      }
+
+      .container-info2 h2{
+       font-size: 6vw;
+      }
+
+      .container-info2 a{
+        font-size: 2.5vw;
+      }
+
+      .container-info2{
+        display: none;
+      }
     }
 
     @media(max-width: 391px){
@@ -206,7 +532,7 @@
       }
 
       .roomsContainer img{
-        width: 4vw;
+        width: 3.5vw;
       }
 
       .number{
@@ -224,12 +550,68 @@
 
       .card h3{
         margin-top: 5px;
-        font-size: 5vw;
+        font-size: 4vw;
+      }
+
+      .card p .text{
+        font-size: 1vw;
       }
 
       /* footer */
 
-      
+      #page-footer{
+        margin-top: 80px;
+        width: 100%;
+        gap: 0;
+        padding: 0 0 10px 0;
+        display: block;
+      }
+
+      .container-info img{
+        width: 30vw;
+        height: 30vw;
+        transform: translate(-80px, 210px);
+      }
+
+      .container-info p{
+        font-size: 2.8vw;
+        transform: translate(-110px, 200px)
+      }
+
+      .container-info b{
+        font-size: 3vw;
+      }
+
+      .container-info h2{
+        font-size: 6vw;
+      }
+
+      .container-social img{
+        width: 6vw;
+        height: 6vw;
+        transform: translate(0);
+      }
+
+      .container-info{
+        margin-top: -500px;
+      }
+
+      #este{
+        margin: 0 0 10px 55vw;
+        transform: translateY(-13vw);
+      }
+
+      .container-info2 h2{
+       font-size: 6.5vw;
+      }
+
+      .container-info2 a{
+        font-size: 2.5vw;
+      }
+
+      .container-info2{
+        display: none;
+      }
       
     }
   </style>
@@ -287,115 +669,40 @@
         <button class="btn-blue">Ver más detalles</button>
       </div>
     </div>
-    <div class="card">
-      <div class="image-card">
-        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
-      </div>
-      <div class="disponible">
-        <button class="btn-white">Venta</button>
-        <button class="btn-white">Renta</button>
-      </div>
-      <div class="caracteristicas">
-        <div class="roomsContainer">
-          <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
-          <span class="number">2</span>
-        </div>
-        <div class="roomsContainer">
-          <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
-          <span class="number">2</span>
-        </div>
-      </div>
-      <h3> Precio de la propiedad </h3>
-      <p class="text">Direccion de la propiedad</p>
-      <div class="footer">
-        <button class="btn-white">Contacto</button>
-        <button class="btn-blue">Ver más detalles</button>
-      </div>
-    </div>
-    <div class="card">
-      <div class="image-card">
-        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
-      </div>
-      <div class="disponible">
-        <button class="btn-white">Venta</button>
-        <button class="btn-white">Renta</button>
-      </div>
-      <div class="caracteristicas">
-        <div class="roomsContainer">
-          <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
-          <span class="number">2</span>
-        </div>
-        <div class="roomsContainer">
-          <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
-          <span class="number">2</span>
-        </div>
-      </div>
-      <h3> Precio de la propiedad </h3>
-      <p class="text">Direccion de la propiedad</p>
-      <div class="footer">
-        <button class="btn-white">Contacto</button>
-        <button class="btn-blue">Ver más detalles</button>
-      </div>
-    </div>
-    <div class="card">
-      <div class="image-card">
-        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
-      </div>
-      <div class="disponible">
-        <button class="btn-white">Venta</button>
-        <button class="btn-white">Renta</button>
-      </div>
-      <div class="caracteristicas">
-        <div class="roomsContainer">
-          <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
-          <span class="number">2</span>
-        </div>
-        <div class="roomsContainer">
-          <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
-          <span class="number">2</span>
-        </div>
-      </div>
-      <h3> Precio de la propiedad </h3>
-      <p class="text">Direccion de la propiedad</p>
-      <div class="footer">
-        <button class="btn-white">Contacto</button>
-        <button class="btn-blue">Ver más detalles</button>
-      </div>
-    </div>
   </div>
 </div>
 
 <footer id="page-footer">
   <div class="container-info">
       <img src="{{ asset('/Imagenes/LOGO.png') }}">
-      <p>Instate es una marga registrada por <br>Instate Investments S.A de C.V. en <br>alianza con Design Construcciones.</p>
+      <p>Instate es una marca registrada por <br>Instate Investments S.A de C.V. en <br>alianza con Design Construcciones.</p>
   </div>
 
   <br>
 
-      <div class="container-info">
-          <h2>Contacto</h2>
-          <hr>
-          <b>MINA 330 INT. 5 COL.CENTRO <br>MONTERREY, NUEVO LEÓN. MÉXICO <br>812-433-1672</b>
+  <div class="container-info" id="este">
+      <h2>Contacto</h2>
+      <hr>
+      <b>MINA 330 INT. 5 COL.CENTRO <br>MONTERREY, NUEVO LEÓN. MÉXICO <br>812-433-1672</b>
           
-          <br>
+      <br>
 
-          <div class="container-social">
-              <a href="">
-                  <img src="{{ asset('Imagenes/iconoFacebook.png')}}">
-              </a>
-          </div>
-          <div class="container-social">
-              <a href="">
-                  <img src="{{ asset('Imagenes/iconoTwitter.png')}}">
-              </a>
-          </div>
-          <div class="container-social">
-              <a href="">
-                  <img src="{{ asset('Imagenes/iconoInstagram.png')}}">
-              </a>
-          </div>
-      </div>
+        <div class="container-social">
+            <a href="">
+                <img src="{{ asset('Imagenes/iconoFacebook.png')}}">
+            </a>
+        </div>
+        <div class="container-social">
+            <a href="">
+                <img src="{{ asset('Imagenes/iconoTwitter.png')}}">
+            </a>
+        </div>
+        <div class="container-social">
+            <a href="">
+                <img src="{{ asset('Imagenes/iconoInstagram.png')}}">
+            </a>
+        </div>
+  </div>
       <div class="container-info2">
           <h2>Legal</h2>
           <hr>
@@ -406,7 +713,6 @@
           <hr>
           <a href="/nosotros">Nosotros</a><br><br><a href="/mision">Misión</a><br><br><a href="/vision">Visión</a>
       </div>
-
 </footer>
 
 @endsection
@@ -440,8 +746,8 @@
                     <img src="{{asset('ImagesPublished/${property.main_image ? property.main_image.src_image : stockImg}')}}" alt="propiedad ${property.ID_P}">
                   </div>
                   <div class="disponible">
-                    ${property.Vendible === 1 ? '<button class="btn-white">Venta</button>' : ''}
-                    ${property.Rentable === 1 ? '<button class="btn-white">Renta</button>' : ''}
+                    ${property.Vendible === 1 ? '<button class="btn-blue">Venta</button>' : '<button class="btn-white">Venta</button>'}
+                    ${property.Rentable === 1 ? '<button class="btn-blue">Renta</button>' : '<button class="btn-white">Renta</button>'}
                   </div>
                   <div class="caracteristicas">
                     <div class="roomsContainer">

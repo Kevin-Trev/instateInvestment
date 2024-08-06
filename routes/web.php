@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\viewsController;
 use App\Http\Controllers\usuariosController;
 use App\Http\Controllers\propiedadController;
@@ -8,6 +9,8 @@ use App\Http\Controllers\TipoPropiedadController;
 use App\Http\Controllers\servicioController;
 use App\Http\Controllers\propiedadServicioController;
 use App\Http\Controllers\perfilController;
+use App\Http\Controllers\correoController;
+use App\Mail\CorreosMailable;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +54,11 @@ Route::post('/add/propiedadServicio', [propiedadServicioController::class, 'stor
 
 Route::get('/hubs/perfil', function () { return view('hubs.perfil'); });
 Route::get('/hubs/perfi/seguridad', function () { return view('hubs.seguridad'); });
+
+Route::get('/enviar/correo', function(){
+    Mail::to('kevin134foca@gmail.com')->send(new CorreosMailable());
+    return "yes";
+});
 
 Route::get('/filtros',[viewsController::class, 'filtros'])->name('filtro');
 Route::get('/view/login',[viewsController::class, 'login'])->name('login');

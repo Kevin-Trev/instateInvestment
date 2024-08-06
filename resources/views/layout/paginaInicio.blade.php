@@ -109,7 +109,7 @@
     
     .container-info hr{
         margin-right: 56%;
-        border: 2px solid #FFFFFF;
+        border: 2px solid #ffffff;
     }
 
     .container-info2 h2{
@@ -151,6 +151,7 @@
 
     .container-social{
         width: 30px;
+        margin-right: 20px;
         display: inline-block;
     }
     
