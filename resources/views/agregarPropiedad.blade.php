@@ -146,7 +146,6 @@
       width: 410px;
     }
     
-    
     .contenedorCaracteristicas .form-group{
         display: inline-block;
         margin-right: 100px;

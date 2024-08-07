@@ -144,7 +144,7 @@
             }
 
             #inputCorreo{
-                width: 95%;
+                width: 90%;
                 transform: translateX(-5vw);
             }
 
@@ -219,7 +219,7 @@
             <div class="form-group">
                 <label for="inputCorreo">Correo electrónico</label>
                 <p class="error">Ingresa un correo electrónico válido</p>
-                <input type="text" class="form-control" placeholder="Ingresa tu correo electrónico" id="inputCorreo" name="email" required>
+                <input type="email" class="form-control" placeholder="Ingresa tu correo electrónico" id="inputCorreo" name="email" required>
             </div>
             <div class="center">
                 <button type="button" id="button1" class="bt-blue">Siguiente</button>
@@ -294,7 +294,7 @@
             var emailContenedor = $('#nuevoEmail');
             var usuarioContenedor = $('#nuevoUsuario');
             var error = $('.error');
-            var patron = /.+@(gmail\.com|uttcampus\.edu\.mx|hotmail\.com|outlook\.com)/;
+            var patron = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             var patronContraseña = /^(?=.*[0-9])(?=.*[!@#$%^&*.])[a-zA-Z0-9!@#$%^&*.]+$/;
             var patronNumero = /(?=.*[0-9])/;
             var patronCaracter = /(?=.*[!@#$%^&*.])/;

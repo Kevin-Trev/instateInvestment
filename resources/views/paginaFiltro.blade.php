@@ -374,6 +374,12 @@
         margin-bottom: 10px;
       }
 
+      .propiedad{
+        width: 18vw;
+        font-size: 2.5vw;
+        transform: translate(20vw, -1.5vw);
+      }
+
       .card .image-card{
         height: 80px;
       }
@@ -534,6 +540,12 @@
         margin-bottom: 20px;
       }
 
+      .propiedad{
+        width: 20vw;
+        font-size: 3vw;
+        transform: translate(22vw, -1.5vw);
+      }
+
       .card .image-card{
         height: 70px;
       }
@@ -686,6 +698,12 @@
       .card{
         width: 40vw;
         margin-bottom: 5px;
+      }
+
+      .propiedad{
+        width: 20vw;
+        font-size: 3vw;
+        transform: translate(22vw, -1.5vw);
       }
 
       .card .image-card{
@@ -846,6 +864,12 @@
         height: 80px;
       }
 
+      .propiedad{
+        width: 18vw;
+        font-size: 2.5vw;
+        transform: translate(22vw, -1.5vw);
+      }
+
       #cards-container{
         margin-left: -2.2vw;
       }
@@ -990,7 +1014,7 @@
       </div>
     </div>
     <div class="card">
-      <button class="propiedad">Tipo</button>
+      <button class="propiedad">Departamento</button>
       <div class="image-card">
         <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
       </div>
