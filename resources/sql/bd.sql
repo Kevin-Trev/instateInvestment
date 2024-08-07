@@ -14,7 +14,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   `Nombre` NVARCHAR(45) NOT NULL,
   `Apellido` NVARCHAR(45) NOT NULL,
-  `Telefono` VARCHAR(10) NOT NULL UNIQUE, 
+  `Telefono` CHAR(13) NOT NULL UNIQUE, 
   `Fecha_Nacimiento` DATE NOT NULL,
   `Calificacion` ENUM('1', '2', '3', '4', '5'),
   `Foto` TEXT,

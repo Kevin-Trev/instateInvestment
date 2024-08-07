@@ -116,11 +116,11 @@
         @media(min-width: 576px){
             
             #nuevoDatos{
-                transform: translateY(2vh);
+                transform: translateY(-2vw);
             }
 
             #nuevoUsuario{
-                transform: translateY(2vh);
+                transform: translateY(-5vw);
             }
 
         }
@@ -275,10 +275,11 @@
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono</label>
-                    <input type="tel" id="telefono" class="form-control" name="Telefono" placeholder="+52" required>
+                    <input type="number" id="telefono" class="form-control" name="Telefono" placeholder="Ingresa tu telefono" value="+52" required>
                 </div>
+                <p class="error">Ingresa una contraseña válida</p>
                 <div class="center">
-                    <button type="submit" id="button5" class="btn-blue">Finalizar</button>
+                    <button type="button" id="button5" class="btn-blue">Finalizar</button>
                     <button type="button" id="button4">Atrás</button>
                 </div>
             <p class="terms">Al continuar, estas aceptando los <br><a href="{{route('terminosCondiciones')}}">Términos y condiciones</a> y el <a href="{{route('avisoPrivacidad')}}">Aviso de Privacidad</a>.</p>
@@ -332,7 +333,20 @@
             $('#button4').on('click', function(){
                 usuarioContenedor.css("display", "none");
                 datosContenedor.css("display", "block");
+                error.css("display", "none");
             });
+
+            $('#button5').on('click', function(){
+                var inputTelefono = $('#telefono').val();
+                
+                if(inputTelefono.length === 10){
+                    $('#formularioRegistro').submit();
+                    error.css("display", "none");
+                }
+                else{
+                    error.css("display", "block");
+                }
+            })
 
             $('#inputContraseña').on('keyup', function(event){
                 var valorContraseña = $(this).val();

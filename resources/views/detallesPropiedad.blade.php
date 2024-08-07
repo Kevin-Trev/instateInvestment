@@ -277,8 +277,7 @@
 
             #carouselExample{
                 width: 100%;
-                height: 50vw;
-                
+                height: 50vw;   
             }
 
             .carrousel-img{
