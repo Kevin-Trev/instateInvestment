@@ -4,6 +4,7 @@
 @section('style')
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+
 @endsection
 
 @section('body')    
@@ -48,6 +49,32 @@
     .calendario .dia:hover {
       background-color: #f2f2f2;
     }
+
+    .image-card{
+      width: 100%;
+      height: 150px;
+    }
+
+    .image-card img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      margin-left: 10px;
+    }
+
+    .bt-blue {
+    background-color: #3370FF;
+    color: #FFFFFF;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    }
+    .bt-blue:hover{
+    background-color: #002E99;
+    transition: .5s;
+    }
   </style>
   
 </head>
@@ -85,11 +112,12 @@
         </div>
         <!-- EDITAR -->
         <div class="mb-3">
-        <button class="property-button btn btn-primary" onclick="infoProperty(${property.id})">EDITAR</button>
+          <button class="property-button btn btn-primary" onclick="infoProperty(${property.id})">EDITAR</button>
         </div>
       </div>
-      <!-- MENU DE ACCIONES -->
+      
       <main class="col-md-9 ml-sm-auto col-lg-9 px-md-4">
+        <!-- MENU DE ACCIONES -->
         <ul class="nav nav-tabs">
           <li class="nav-item">
             <a class="nav-link active" id="publicaciones-tab" aria-current="page" href="#">Publicaciones</a>
@@ -104,78 +132,185 @@
         <!-- LISTA DE PROPIEDADES -->
         <div class="property-list" id="pl">
           <!-- PROPIEDAD 1 -->
-          <div class="property-card row" style="margin-top: 5px;">
-            <div class="col-md-4">
-              <img src="https://via.placeholder.com/300x200" alt="Property Image" class="property-image img-fluid">
-            </div>
-            <div class="col-md-8">
-              <h3>${property.Titulo}</h3>
-              <p>$ ${property.Precio}</p>
-              <div class="property-details">
-                <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>${property.Recamaras} Recámaras</span></div>
-                <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>${property.Baños} Baños</span></div>
-                <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${property.Area} M² construidos</span></div>
+          <div class="card" style="margin-top: 5px;">
+            <div class="row">
+              <div class="image-card col-md-3">
+                <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
               </div>
-              <button class="property-button btn btn-primary" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">COTIZAR</button>
+
+              <div class="col-md-7">
+                <h3>${property.Titulo}</h3>
+                <p>$ ${property.Precio}</p>
+                <div class="property-details">
+                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>${property.Recamaras} Recámaras</span></div>
+                  <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>${property.Baños} Baños</span></div>
+                  <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${property.Area} M² construidos</span></div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Editar</button>
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Pausar</button>
+              </div>
             </div>
           </div>
 
           <!-- PROPIEDAD 2 -->
-          <div class="property-card row" style="margin-top: 5px;">
-            <div class="col-md-4">
-              <img src="https://via.placeholder.com/300x200" alt="Property Image" class="property-image img-fluid">
-            </div>
-            <div class="col-md-8">
-              <h3>${property.Titulo}</h3>
-              <p>$ ${property.Precio}</p>
-              <div class="property-details">
-                <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>${property.Recamaras} Recámaras</span></div>
-                <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>${property.Baños} Baños</span></div>
-                <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${property.Area} M² construidos</span></div>
+          <div class="card" style="margin-top: 5px;">
+            <div class="row">
+              <div class="image-card col-md-3">
+                <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
               </div>
-              <button class="property-button btn btn-primary" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">COTIZAR</button>
+              <div class="col-md-7">
+                <h3>${property.Titulo}</h3>
+                <p>$ ${property.Precio}</p>
+                <div class="property-details">
+                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>${property.Recamaras} Recámaras</span></div>
+                  <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>${property.Baños} Baños</span></div>
+                  <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${property.Area} M² construidos</span></div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Editar</button>
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Pausar</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top: 5px;">
+            <div class="row">
+              <div class="image-card col-md-3">
+                <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
+              </div>
+
+              <div class="col-md-7">
+                <h3>${property.Titulo}</h3>
+                <p>$ ${property.Precio}</p>
+                <div class="property-details">
+                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>${property.Recamaras} Recámaras</span></div>
+                  <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>${property.Baños} Baños</span></div>
+                  <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${property.Area} M² construidos</span></div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Editar</button>
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Pausar</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top: 5px;">
+            <div class="row">
+              <div class="image-card col-md-3">
+                <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
+              </div>
+
+              <div class="col-md-7">
+                <h3>${property.Titulo}</h3>
+                <p>$ ${property.Precio}</p>
+                <div class="property-details">
+                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>${property.Recamaras} Recámaras</span></div>
+                  <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>${property.Baños} Baños</span></div>
+                  <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${property.Area} M² construidos</span></div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Editar</button>
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Pausar</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top: 5px;">
+            <div class="row">
+              <div class="image-card col-md-3">
+                <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
+              </div>
+
+              <div class="col-md-7">
+                <h3>${property.Titulo}</h3>
+                <p>$ ${property.Precio}</p>
+                <div class="property-details">
+                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>${property.Recamaras} Recámaras</span></div>
+                  <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>${property.Baños} Baños</span></div>
+                  <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${property.Area} M² construidos</span></div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Editar</button>
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Pausar</button>
+              </div>
             </div>
           </div>
         </div>
         <!-- ESTADISTICAS -->
-        <div class="property-list hidden" id="pl2">
-          <!-- Contenido principal -->
-          <div class="container mt-4">
-            <div class="row">
-              <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card text-white bg-primary mb-3">
-                  <div class="card-header">Usuarios</div>
-                  <div class="card-body">
-                    <h5 class="card-title">1,024</h5>
-                    <p class="card-text">Número total de usuarios registrados.</p>
-                  </div>
+        <div class="property-list hidden" id="pl2">  
+        <!-- Contenido principal -->
+          <div id="estadisticas-content">
+            <div style="margin-top: 10px;" class="col-12">
+              <div class="row">
+                <div class="card col-4">
+                  <h4>Ventas:</h4>
+                  <p>Ventas totales: X</p>
+                  <p>Última venta: 2023-08-01</p>
+                  <p>Venta más alta: $500,000</p>
+                  <p>Promedio mensual: 5 ventas</p>
                 </div>
-              </div>
-              <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card text-white bg-success mb-3">
-                  <div class="card-header">Ventas</div>
-                  <div class="card-body">
-                    <h5 class="card-title">567</h5>
-                    <p class="card-text">Número total de ventas realizadas.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card text-white bg-warning mb-3">
-                  <div class="card-header">Comentarios</div>
-                  <div class="card-body">
-                    <h5 class="card-title">245</h5>
-                    <p class="card-text">Número total de comentarios recibidos.</p>
-                  </div>
+                <div class="card col-8">
+                  <canvas id="ventas-chart"></canvas>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-12">
-                <canvas id="myChart"></canvas>
+
+            <div style="margin-top: 10px;" class="col-12">
+              <div class="row">
+                <div class="card col-4">
+                  <h4>Comentarios:</h4>
+                  <p>Comentarios totales: X</p>
+                  <p>Último comentario: 'Excelente servicio!'</p>
+                  <p>Mejor puntuación: 5 estrellas</p>
+                  <p>Puntuación promedio: 4.5 estrellas</p>
+                </div>
+                <div class="card col-8">
+                  <canvas id="comentarios-chart"></canvas>
+                </div>
               </div>
             </div>
-          </div>
+
+            <div style="margin-top: 10px;" class="col-12">
+              <div class="row">
+                <div class="card col-4">
+                  <h4>Propiedades verificadas:</h4>
+                  <p>Verificadas: X</p>
+                  <p>Última verificación: 2023-08-01</p>
+                  <p>Verificación más alta: $750,000</p>
+                  <p>Promedio mensual: 6 verificaciones</p>
+                </div>
+                <div class="card col-8">
+                  <canvas id="verificadas-chart"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 10px;" class="col-12">
+              <div class="row">
+                <div class="card col-4">
+                  <h4>Reportes:</h4>
+                  <p>Reportes totales: X</p>
+                  <p>Último reporte: 2023-08-01</p>
+                  <p>Tipo común: Mantenimiento</p>
+                  <p>Promedio mensual: 2 reportes</p>
+                </div>
+                <div class="card col-8">
+                  <canvas id="reportes-chart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>  
         </div>
         <!-- CALENDARIO -->
          <div class="calendario hidden" id="calendario">
@@ -335,35 +470,76 @@
     }
   </script>
 <script>
-  // INVESTIGAR QUE CHUCHA CON ESTA WEA
-  var ctx = document.getElementById('myChart').getContext('2d');
-  var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
-      datasets: [{
-        label: 'Usuarios nuevos',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 1
-      }, {
-        label: 'Ventas',
-        data: [2, 29, 5, 5, 20, 3],
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
-  });
+        // Datos de ejemplo para las estadísticas
+        const ventasData = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+      const comentariosData = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
+      const verificadasData = [5, 4, 6];
+      const totalData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      const reportesData = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30];
+
+      // Crear gráficos con Chart.js
+      new Chart(document.getElementById('ventas-chart'), {
+        type: 'line',
+        data: {
+          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+          datasets: [{
+            label: 'Ventas Totales',
+            data: ventasData,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 2,
+            fill: false
+          }]
+        }
+      });
+
+      new Chart(document.getElementById('comentarios-chart'), {
+        type: 'bar',
+        data: {
+          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+          datasets: [{
+            label: 'Comentarios',
+            data: comentariosData,
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgba(153, 102, 255, 1)',
+            borderWidth: 1
+          }]
+        }
+      });
+
+      new Chart(document.getElementById('verificadas-chart'), {
+        type: 'pie',
+        data: {
+          labels: ['Verificadas', 'PorVerificar', 'NoVerificadas'],
+          datasets: [{
+            label: 'Propiedades Verificadas',
+            data: verificadasData,
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+          }]
+        }
+      });
+
+      new Chart(document.getElementById('reportes-chart'), {
+        type: 'bar',
+        data: {
+          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+          datasets: [{
+            label: 'Reportes',
+            data: reportesData,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+          }]
+        }
+      });
 </script>
 @endsection

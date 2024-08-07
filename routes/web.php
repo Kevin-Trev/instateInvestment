@@ -27,10 +27,6 @@ Route::get('/', function () {
     return view('index');
 })->name('inicio');
 
-Route::get('/eje', function () {
-    return view('hubs.EJEMPLO');
-});
-
 // 
 Route::get('/tuspropiedades', [perfilController::class, 'tuspropiedades'])->name('propiedades.index');
 // 
