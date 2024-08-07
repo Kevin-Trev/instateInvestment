@@ -210,6 +210,30 @@
         font-size: 12px;
     }
 
+    .AddPhotoContainer{
+        margin-left: 7%;
+        width: 800px;
+        border: 2px dashed gray;
+        cursor: pointer;
+        height: 300px;
+    }
+
+    .AddPhotoContainer img{
+        width: 200px;
+        margin: 60px 0 0 300px;
+    }
+
+    .AddPhotoContainer h3{
+        text-align: center;
+        color: #7F7F7F;
+        padding-top: 20px;
+    }
+
+    #Image{
+        display: none;
+    }
+
+
     /* #segundoPaso, #tercerPaso, #cuartoPaso, #quintoPaso{
         display: none;
     } */
@@ -269,11 +293,46 @@
                 <div class="contenedorDatos">
                     <div class="form-group">
                         <label for="Ciudad">Ciudad:</label>
-                        <input type="text" class="form-control" name="Ciudad" id="Ciudad" placeholder="Ingrese la ciudad en la que se ubica su propiedad">
+                        <select class="form-control" name="Ciudad" id="Ciudad">
+                            
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="Estado">Estado:</label>
-                        <input type="text" class="form-control" name="Estado" id="Estado" placeholder="Ingrese el estado en el que se ubica su propiedad">
+                        <select class="form-control" name="Estado" id="Estado">
+                            <option value="DIF">Distrito Federal</option>
+                            <option value="AGS">Aguascalientes</option>
+                            <option value="BCN">Baja California</option>
+                            <option value="BCS">Baja California Sur</option>
+                            <option value="CAM">Campeche</option>
+                            <option value="CHP">Chiapas</option>
+                            <option value="CHI">Chihuahua</option>
+                            <option value="COA">Coahuila</option>
+                            <option value="COL">Colima</option>
+                            <option value="DUR">Durango</option>
+                            <option value="GTO">Guanajuato</option>
+                            <option value="GRO">Guerrero</option>
+                            <option value="HGO">Hidalgo</option>
+                            <option value="JAL">Jalisco</option>
+                            <option value="MEX">Ciudad de México</option>
+                            <option value="MIC">Michoacán</option>
+                            <option value="MOR">Morelos</option>
+                            <option value="NAY">Nayarit</option>
+                            <option value="NLE">Nuevo León</option>
+                            <option value="OAX">Oaxaca</option>
+                            <option value="PUE">Puebla</option>
+                            <option value="QRO">Queretaro</option>
+                            <option value="ROO">Quintana Roo</option>
+                            <option value="SLP">San Luis Potos&iacute;</option>
+                            <option value="SIN">Sinaloa</option>
+                            <option value="SON">Sonora</option>
+                            <option value="TAB">Tabasco</option>
+                            <option value="TAM">Tamaulipas</option>
+                            <option value="TLX">Tlaxcala</option>
+                            <option value="VER">Veracruz</option>
+                            <option value="YUC">Yucatán</option>
+                            <option value="ZAC">Zacatecas</option>
+                        </select>
                     </div>
                 </div>
                 <div class="contenedorDatos">
@@ -527,7 +586,11 @@
                 </div>
                 <div class="form-group">
                     <label>Muestra tu propiedad:</label>
-                    <input type="file" id="Imagen">
+                    <div class="AddPhotoContainer" id="ee">
+                        <img src="{{asset('Imagenes/AgregarImagen-simbolo.png')}}" >
+                        <h3>Haz click aquí para añadir imagenes de tu propiedad</h3>
+                        <input type="file" id="Image">
+                    </div>
                 </div>
                 
                 <h6 class="error">Completa los campos necesarios para continuar</h6>
@@ -622,6 +685,14 @@
             });
         }
 
+        function openFileInput(){
+            
+        }
+
+        function handleFileSelect(){
+            
+        }
+
         let servicios = [];
 
         function enviarForm(){    
@@ -634,7 +705,7 @@
                 data: {Propiedad_id: 1, Servicio_id: 1},
                 success: function(response){
                     console.log(servicios);
-                    // window.location.href = '{{route("filtro")}}'; //cambiar a la ruta del perfil usuario
+                    // window.location.href = '{{route("catalogo")}}'; //cambiar a la ruta del perfil usuario
                 },
                 error: function(error){
                     console.log(error);
@@ -651,6 +722,16 @@
             var cuatro = $('#cuartoPaso');
             var cinco = $('#quintoPaso');
             var error = $('.error');
+
+            $('#ee').on('click', function(){
+                $('#Image').trigger('click');
+
+                const selectedFile = $('#Image').files[0];
+                if (selectedFile){
+                    console.log('archivo seleccionado: ' + selectedFile.name);
+                }
+            });
+            
 
             $('input[type="checkbox"]').on('click', function(){
                 if($(this).is(':checked')){

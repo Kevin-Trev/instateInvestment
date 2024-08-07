@@ -10,7 +10,6 @@ use App\Http\Controllers\servicioController;
 use App\Http\Controllers\propiedadServicioController;
 use App\Http\Controllers\perfilController;
 use App\Http\Controllers\correoController;
-use App\Mail\CorreosMailable;
 
 /*
 |--------------------------------------------------------------------------

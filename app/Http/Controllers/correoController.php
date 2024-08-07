@@ -10,7 +10,7 @@ class correoController extends Controller
     public function enviarCorreo($destinatario){
         $detalles = [
             'titulo' => 'Hola kevin',
-            'cuerpo' => 'Hola io'
+            'cuerpo' => 'Hola io',
         ];
 
         Mail::send('correo.avisosGeneral', ['detalles' => $detalles], function($message) use ($destinatario){
@@ -19,6 +19,5 @@ class correoController extends Controller
         });
 
         return response()->json(['status' => "mensaje enviado chido"]);
-
     }
 }

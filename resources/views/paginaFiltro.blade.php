@@ -149,6 +149,174 @@
       padding: 20px 0 20px 0;
     }
 
+    .propiedad{
+      color: rgb(228, 194, 5);
+      background-color: #FFFFFF;
+      border: 2px solid rgb(228, 194, 5);
+      width: 80px;
+      z-index: 1;
+      border-radius: 6px;
+    }
+
+    @media(max-width: 1200px){
+      /* Filtros */
+      #filtroBusqueda{
+        transform: translateX(-4vw);
+      }
+
+      #filtroBusqueda select{
+        width: 10vw;
+        font-size: 1.8vw;
+        height: 60px;
+        transform: translate(1.5vw, -4px);
+      }
+
+      #filtroBusqueda input[type="text"]{
+        font-size: 2vw;
+        height: 60px;
+        width: 30vw;
+      }
+
+      #filtroBusqueda input[type="submit"]{
+        font-size: 2vw;
+        height: 60px;
+        width: 14vw;
+      }
+
+      #filtroBusqueda .input-groups{
+        transform: translate(7.5vw, -0.3vw);
+      }
+
+      #filtroBusqueda input[type="number"]{
+        font-size: 2vw;
+        width: 16vw;
+        height: 60px;
+        transform: translate(1vw, -4.5px);
+      }
+
+      /* Header de las cartas */
+
+      .container{
+        margin: 1vw;
+      }
+
+      .container h2{
+        font-size: 4vw;
+      }
+
+      .container .text{
+        font-size: 2vw;
+      }
+
+      /* Cartas */
+
+      .card{
+        width: 26vw;
+        margin-bottom: 10px;
+        margin-left: 4.5vw;
+      }
+
+      .propiedad{
+        width: 14vw;
+        font-size: 1.8vw;
+        transform: translate(15vw, -1.5vw);
+      }
+
+      #cards-container{
+        width: 96vw;
+      }
+
+      .card .text{
+        font-size: 1.6vw;
+      }
+
+      .card .image-card img{
+        width: 100%;
+        height: 18vw;
+      }
+
+      .disponible button{
+        margin-top: 20px;
+        font-size: 1.5vw;
+      }
+
+      .disponible .btn-blue, .disponible .btn-white{
+        width: 6vw;
+      }
+
+      .card .footer button{
+        font-size: 1.5vw;
+        margin-left: 0;
+      }
+
+      .footer button{
+        margin-right: 8px;
+      }
+
+      .card h3{
+        margin-top: 5px;
+        font-size: 2.5vw;
+      }
+
+      /* footer */
+
+      #page-footer{
+        margin-top: 80px;
+        width: 100%;
+        gap: 0;
+        padding: 0 0 10px 0;
+        display: inline-block;
+        padding-bottom: 200px;
+      }
+
+      .container-info img{
+        width: 30vw;
+        height: 30vw;
+        transform: translate(-80px, 280px);
+      }
+
+      .container-info p{
+        font-size: 2.8vw;
+        transform: translate(300px, 230px)
+      }
+
+      .container-info b{
+        font-size: 2.5vw;
+      }
+
+      .container-info h2{
+        font-size: 6vw;
+      }
+
+      .container-info .container-social img{
+        width: 4vw;
+        height: 4vw;
+        gap: 50px;
+        transform: translate(0);
+      }
+
+      .container-info{
+        margin-top: -800px;
+      }
+
+      #este{
+        margin: 0 0 10px 55vw;
+        transform: translateY(38vw);
+      }
+
+      .container-info2 h2{
+       font-size: 6vw;
+      }
+
+      .container-info2 a{
+        font-size: 2.5vw;
+      }
+
+      .container-info2{
+        display: inline-block;
+      }
+    }
+
     @media(max-width: 992px){
       /* Filtros */
       #filtroBusqueda{
@@ -313,14 +481,14 @@
       }
     }
 
-    @media(max-width: 576px){
+    @media(max-width: 768px){
       /* Filtros */
       #filtroBusqueda{
-        transform: translateX(-8vw);
+        transform: translateX(-4vw);
       }
 
       #filtroBusqueda select{
-        width: 20vw;
+        width: 15vw;
         font-size: 2.5vw;
         height: 40px;
         transform: translateY(-4px);
@@ -328,23 +496,179 @@
 
       #filtroBusqueda input[type="text"]{
         font-size: 2.5vw;
-        width: 30vw;
+        height: 40px;
+        width: 25vw;
       }
 
       #filtroBusqueda input[type="submit"]{
         font-size: 2.5vw;
+        height: 40px;
         width: 14vw;
       }
 
       #filtroBusqueda .input-groups{
-        transform: translate(-10vw, -1vw);
+        transform: translate(2vw, -0.7vw);
       }
 
       #filtroBusqueda input[type="number"]{
         font-size: 2.5vw;
         width: 22vw;
         height: 40px;
-        transform: translate(-6vw, -4.5px);
+        transform: translate(-2vw, -4.5px);
+      }
+
+      /* Header de las cartas */
+
+      .container h2{
+        font-size: 5vw;
+      }
+
+      .container .text{
+        font-size: 2.5vw;
+      }
+
+      /* Cartas */
+
+      .card{
+        width: 40vw;
+        margin-bottom: 20px;
+      }
+
+      .card .image-card{
+        height: 70px;
+      }
+
+      #cards-container{
+        transform: translateX(-1.7vw);
+      }
+
+      .card .text{
+        font-size: 2vw;
+      }
+
+      .card .image-card img{
+        width: 100%;
+        height: 25vw;
+      }
+
+      .disponible button{
+        margin-top: 80px;
+        font-size: 2vw;
+      }
+
+      .roomsContainer img{
+        width: 3.2vw;
+      }
+
+      .number{
+        font-size: 2.5vw;
+      }
+
+      .card .footer button{
+        font-size: 2vw;
+        margin-left: 0;
+      }
+
+      .footer button{
+        margin-right: 8px;
+      }
+
+      .card h3{
+        margin-top: 5px;
+        font-size: 3.5vw;
+      }
+
+      /* footer */
+
+      #page-footer{
+        margin-top: 80px;
+        width: 100%;
+        gap: 0;
+        padding: 0 0 10px 0;
+        display: block;
+      }
+
+      .container-info img{
+        width: 25vw;
+        height: 25vw;
+        transform: translate(-40px, 230px);
+      }
+
+      .container-info p{
+        font-size: 2.4vw;
+        transform: translate(-90px, 260px)
+      }
+
+      .container-info b{
+        font-size: 2.4vw;
+      }
+
+      .container-info h2{
+        font-size: 5vw;
+      }
+
+      .container-social img{
+        width: 4.5vw;
+        height: 4.5vw;
+        transform: translate(0);
+      }
+
+      .container-info{
+        margin-top: -500px;
+      }
+
+      #este{
+        margin: 0 0 10px 55vw;
+        transform: translateY(-8vw);
+      }
+
+      .container-info2 h2{
+       font-size: 6vw;
+      }
+
+      .container-info2 a{
+        font-size: 2.5vw;
+      }
+
+      .container-info2{
+        display: none;
+      }
+    }
+
+    @media(max-width: 576px){
+      /* Filtros */
+      #filtroBusqueda{
+        transform: translateX(-8vw);
+      }
+
+      #filtroBusqueda select{
+        width: 18vw;
+        font-size: 2.5vw;
+        height: 40px;
+        transform: translateY(-4px);
+      }
+
+      #filtroBusqueda input[type="text"]{
+        font-size: 2.5vw;
+        height: 40px;
+        width: 30vw;
+      }
+
+      #filtroBusqueda input[type="submit"]{
+        font-size: 2.5vw;
+        height: 40px;
+        width: 14vw;
+      }
+
+      #filtroBusqueda .input-groups{
+        transform: translate(-14vw, -1vw);
+      }
+
+      #filtroBusqueda input[type="number"]{
+        font-size: 2.5vw;
+        width: 20vw;
+        height: 40px;
+        transform: translate(-8vw, -4.5px);
       }
 
       /* Header de las cartas */
@@ -369,7 +693,7 @@
       }
 
       #cards-container{
-        transform: translateX(-1.5vw);
+        margin-left: -2.2vw;
       }
 
       .card .text{
@@ -473,28 +797,32 @@
 
       #filtroBusqueda select{
         width: 22vw;
-        font-size: 3.5vw;
+        height: 30px;
+        font-size: 3vw;
       }
 
       #filtroBusqueda input[type="text"]{
-        font-size: 2.8vw;
+        font-size: 3vw;
+        height: 30px;
         width: 30vw;
       }
 
       #filtroBusqueda input[type="submit"]{
-        font-size: 2.8vw;
+        font-size: 3vw;
+        height: 30px;
         width: 16vw;
+
       }
 
       #filtroBusqueda .input-groups{
-        transform: translate(-20vw, -1vw);
+        transform: translate(-24vw, -2.5vw);
       }
 
       #filtroBusqueda input[type="number"]{
-        font-size: 2.8vw;
-        width: 22vw;
-        height: 35px;
-        transform: translateX(-10vw);
+        font-size: 3vw;
+        width: 23vw;
+        height: 30px;
+        transform: translate(-12vw, -4px);
       }
 
       /* Header de las cartas */
@@ -519,7 +847,7 @@
       }
 
       #cards-container{
-        transform: translateX(-1.5vw);
+        margin-left: -2.2vw;
       }
 
       .card .image-card img{
@@ -528,6 +856,7 @@
       }
 
       .disponible button{
+        margin-top: -5px;
         font-size: 2.5vw;
       }
 
@@ -550,11 +879,11 @@
 
       .card h3{
         margin-top: 5px;
-        font-size: 4vw;
+        font-size: 3vw;
       }
 
-      .card p .text{
-        font-size: 1vw;
+      .card .text{
+        font-size: 2.2vw;
       }
 
       /* footer */
@@ -645,22 +974,13 @@
   <p class="text"> Estas son las propiedades que encontramos para ti</p>
   <div id="cards-container">
     <div class="card">
+      <button class="propiedad">Tipo</button>
       <div class="image-card">
         <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
       </div>
       <div class="disponible">
         <button class="btn-white">Venta</button>
         <button class="btn-white">Renta</button>
-      </div>
-      <div class="caracteristicas">
-        <div class="roomsContainer">
-          <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
-          <span class="number">2</span>
-        </div>
-        <div class="roomsContainer">
-          <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
-          <span class="number">2</span>
-        </div>
       </div>
       <h3> Precio de la propiedad </h3>
       <p class="text">Direccion de la propiedad</p>
@@ -670,22 +990,13 @@
       </div>
     </div>
     <div class="card">
+      <button class="propiedad">Tipo</button>
       <div class="image-card">
         <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
       </div>
       <div class="disponible">
         <button class="btn-white">Venta</button>
         <button class="btn-white">Renta</button>
-      </div>
-      <div class="caracteristicas">
-        <div class="roomsContainer">
-          <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
-          <span class="number">2</span>
-        </div>
-        <div class="roomsContainer">
-          <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
-          <span class="number">2</span>
-        </div>
       </div>
       <h3> Precio de la propiedad </h3>
       <p class="text">Direccion de la propiedad</p>
@@ -695,22 +1006,13 @@
       </div>
     </div>
     <div class="card">
+      <button class="propiedad">Tipo</button>
       <div class="image-card">
         <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
       </div>
       <div class="disponible">
         <button class="btn-white">Venta</button>
         <button class="btn-white">Renta</button>
-      </div>
-      <div class="caracteristicas">
-        <div class="roomsContainer">
-          <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
-          <span class="number">2</span>
-        </div>
-        <div class="roomsContainer">
-          <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
-          <span class="number">2</span>
-        </div>
       </div>
       <h3> Precio de la propiedad </h3>
       <p class="text">Direccion de la propiedad</p>
@@ -772,78 +1074,9 @@
 <script>
 
 //  obtener los registros de propiedades desde BD  //
-  $(document).ready(function(){
-    var transaccion = localStorage.getItem('opcion')
-    var ciudad = localStorage.getItem('ciudad')
-
-    if(transaccion && ciudad) {
-      $('#transaccion').val(transaccion);
-      $('#ciudad').val(ciudad);
-      resultadoBusqueda(transaccion, ciudad);
-      console.log("Buscando Propiedades " + transaccion + "s en " + ciudad);
-
-      localStorage.removeItem('opcion');
-      localStorage.removeItem('ciudad');
-    }
-    else{
-      cargarPropiedades(); // agregalo como comentario en caso de diseño front //
-    }
-
-    $('#buscar').on('click', function() {
-      var opcion = $('#transaccion').val();
-      var ciudad = $('#ciudad').val();
-
-      resultadoBusqueda(opcion, ciudad);
-    })
-
-
-  });
-
-  function resultadoBusqueda(transaccion, ciudad){
-    $.ajax({
-      url: `/get/results/propeties/${transaccion}/${ciudad}`,
-      method: `GET`,
-      success: function (data) {
-        console.log(data);
-
-        const listaPropiedades = $('#cards-container'); 
-          listaPropiedades.empty();
-
-          data.forEach(property => {
-          var stockImg = 'stock.png'; /* En caso de no tener ninguna imagen carga la de stock */
-          var precioFormateado = property.Precio.toLocaleString('es-MX') /* Dar Formato al Precio */;
-
-          const propiedad =
-              `<div class="card">
-                  <div class="image-card">
-                    <img src="{{asset('ImagesPublished/${property.main_image ? property.main_image.src_image : stockImg}')}}" alt="propiedad ${property.ID_P}">
-                  </div>
-                  <div class="disponible">
-                    ${property.Vendible === 1 ? '<button class="btn-blue">Venta</button>' : '<button class="btn-white">Venta</button>'}
-                    ${property.Rentable === 1 ? '<button class="btn-blue">Renta</button>' : '<button class="btn-white">Renta</button>'}
-                  </div>
-                  <div class="caracteristicas">
-                    <div class="roomsContainer">
-                      <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
-                      <span class="number">${property.Baños}</span>
-                    </div>
-                    <div class="roomsContainer">
-                      <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
-                      <span class="number">${property.Recamaras}</span>
-                    </div>
-                  </div>
-                  <h3 class="precio">$ ${precioFormateado} MXN</h3>
-                  <p class="text">${property.Calle} #${property.num_exterior}, ${property.Colonia}</p>
-                  <div class="footer">
-                    <button class="btn-white">Contacto</button>
-                    <button href="" class="btn-blue"><a class="nav-link" href="/get/property/${property.ID_P}">Ver más detalles</a></button>
-                  </div>
-                </div>`
-            listaPropiedades.append(propiedad);
-          });
-      }
-    })
-  }
+  // $(document).ready(function(){
+  //   cargarPropiedades(); // agregalo como comentario en caso de diseño front //
+  // });
 
   function cargarPropiedades() {
     $.ajax({
