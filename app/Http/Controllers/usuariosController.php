@@ -46,13 +46,18 @@ class UsuariosController extends Controller
            
             if($user->save()){
                 DB::commit();
+
+                Mail::send('correo.bienvenida', [], function ($message) use ($user){
+                    $message->to($user->email)->subject('Nuevo usuario')->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+
                 Auth::login($user);
+                });
                 return redirect('/views/registro/finalizado');
             }
         }
         catch(\Exception $e){
             DB::rollBack();
-            return redirect('/views/registro')->with('error','Registro incorrecto');
+            return response()->json(['error' => $e->getMessage()]);
         }
 
     }

@@ -51,7 +51,7 @@ Route::post('/add/propiedadServicio', [propiedadServicioController::class, 'stor
 Route::get('/hubs/perfil', function () { return view('hubs.perfil'); });
 Route::get('/hubs/perfi/seguridad', function () { return view('hubs.seguridad'); });
 
-Route::get('/enviar/correo/{destinatario}', [correoController::class, 'enviarCorreo']);
+Route::get('/enviar/correo/{email}', [correoController::class, 'enviarCorreo']);
 
 
 Route::group(['middleware' => ['auth']], function () {
@@ -79,6 +79,6 @@ Route::get('/perfil-administrador', function () {
 
 // vista catalogo del admin en la carpeta admin/catalogo para que Brandon no este ch...
 
-Route::get('catalogo-administrador', function () {
+Route::get('/catalogo-administrador', function () {
     return view('admin.catalogo');
 });

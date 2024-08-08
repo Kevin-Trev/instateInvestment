@@ -275,7 +275,7 @@
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono</label>
-                    <input type="number" id="telefono" class="form-control" name="Telefono" placeholder="Ingresa tu telefono" value="+52" required>
+                    <input type="number" id="telefono" class="form-control" name="Telefono" placeholder="Ingresa tu telefono" required>
                 </div>
                 <p class="error">Ingresa una contraseña válida</p>
                 <div class="center">
