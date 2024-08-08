@@ -92,7 +92,7 @@ class PropiedadController extends Controller
             $propiedad->Precio = $request->input('Precio');
             $propiedad->Recamaras = $request->input('Recamaras');
             $propiedad->Baños = $request->input('Baños');
-            $propiedad->Disponibilidad = $request->input('Disponibilidad');
+            $propiedad->Disponibilidad = 1;
             $propiedad->Codigo_Postal = $request->input('Codigo_Postal');
             $propiedad->num_exterior = $request->input('num_exterior');
             $propiedad->num_interior = $request->input('num_interior');
@@ -106,7 +106,7 @@ class PropiedadController extends Controller
             $propiedad->Verificacion = 0;
             $propiedad->Rentable = $request->input('Rentable');
             $propiedad->Vendible = $request->input('Vendible');
-            $propiedad->users_Id = 1; // cambiar 1 por 'auth()->id();'
+            $propiedad->users_Id = 1; // cambiar 1 por 'auth()->id();
             $propiedad->Tipo_Propiedad_id = $request->input('Tipo_Propiedad_id');
 
             if($propiedad->save()){    

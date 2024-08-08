@@ -51,6 +51,7 @@ class UsuariosController extends Controller
                     $message->to($user->email)->subject('Nuevo usuario')->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
 
                 Auth::login($user);
+                
                 });
                 return redirect('/views/registro/finalizado');
             }

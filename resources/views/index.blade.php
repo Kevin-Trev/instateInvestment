@@ -173,7 +173,7 @@
                 <br>
     
                 <div class="container-social">
-                    <a href="">
+                    <a href="https://www.facebook.com/instatemx">
                         <img src="{{ asset('Imagenes/iconoFacebook.png')}}">
                     </a>
                 </div>
@@ -183,7 +183,7 @@
                     </a>
                 </div>
                 <div class="container-social">
-                    <a href="">
+                    <a href="https://www.instagram.com/instatemx/">
                         <img src="{{ asset('Imagenes/iconoInstagram.png')}}">
                     </a>
                 </div>

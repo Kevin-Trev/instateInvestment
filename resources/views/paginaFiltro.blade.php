@@ -155,7 +155,169 @@
       border: 2px solid rgb(228, 194, 5);
       width: 80px;
       z-index: 1;
+      position: absolute;
       border-radius: 6px;
+    }
+
+    @media(min-width: 1200px){
+      /* Filtros */
+      #filtroBusqueda{
+        transform: translateX(-4vw);
+      }
+
+      #filtroBusqueda select{
+        width: 10vw;
+        font-size: 1.8vw;
+        height: 50px;
+        transform: translate(1.5vw, -4px);
+      }
+
+      #filtroBusqueda input[type="text"]{
+        font-size: 1.8vw;
+        height: 50px;
+        width: 30vw;
+      }
+
+      #filtroBusqueda input[type="submit"]{
+        font-size: 1.8vw;
+        height: 50px;
+        width: 14vw;
+      }
+
+      #filtroBusqueda .input-groups{
+        transform: translate(6.5vw, -0.3vw);
+      }
+
+      #filtroBusqueda input[type="number"]{
+        font-size: 1.8vw;
+        width: 16vw;
+        height: 50px;
+        transform: translate(1vw, -4.5px);
+      }
+
+      /* Header de las cartas */
+
+      .container{
+        margin: 1vw;
+      }
+
+      .container h2{
+        font-size: 4vw;
+      }
+
+      .container .text{
+        font-size: 2vw;
+      }
+
+      /* Cartas */
+
+      .card{
+        width: 26vw;
+        margin-bottom: 25px;
+        margin-left: 4.5vw;
+      }
+
+      .propiedad{
+        width: 14vw;
+        font-size: 1.8vw;
+        transform: translate(15vw, -1.5vw);
+      }
+
+      #cards-container{
+        width: 96vw;
+      }
+
+      .card .text{
+        font-size: 1.5vw;
+      }
+
+      .card .image-card img{
+        width: 100%;
+        height: 18vw;
+      }
+
+      .disponible button{
+        margin-top: 40px;
+        font-size: 1.5vw;
+      }
+
+      .disponible .btn-blue, .disponible .btn-white{
+        width: 6vw;
+      }
+
+      .card .footer button{
+        font-size: 1.5vw;
+        margin-left: 0;
+      }
+
+      .footer button{
+        margin-right: 8px;
+      }
+
+      .card h3{
+        margin-top: 5px;
+        font-size: 2.5vw;
+      }
+
+      /* footer */
+
+      #page-footer{
+        margin-top: 80px;
+        width: 100%;
+        gap: 0;
+        padding: 0 0 10px 0;
+        display: inline-block;
+        padding-bottom: 200px;
+      }
+
+      .container-info img{
+        width: 30vw;
+        height: 30vw;
+        transform: translate(-20px, 320px);
+      }
+
+      .container-info p{
+        font-size: 2.8vw;
+        transform: translate(35vw, 22vw)
+      }
+
+      .container-info b{
+        font-size: 2vw;
+      }
+
+      .container-info h2{
+        font-size: 4vw;
+      }
+
+      .container-info .container-social img{
+        width: 4vw;
+        height: 4vw;
+        gap: 50px;
+        transform: translate(0);
+      }
+
+      .container-info{
+        margin-top: -800px;
+      }
+
+      #este{
+        margin: 0 0 10px 55vw;
+        transform: translate(2vw, 30vw);
+      }
+
+      .container-info2 h2{
+       font-size: 4vw;
+      }
+
+      .container-info2 a{
+        font-size: 2.5vw;
+      }
+
+      .container-info2{
+        transform: translate(-2vw, 8vw);
+        display: inline-block;
+        margin-left: 70px;
+      }
     }
 
     @media(max-width: 1200px){
@@ -1000,7 +1162,7 @@
     <div class="card">
       <button class="propiedad">Tipo</button>
       <div class="image-card">
-        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
+        <img src="https://picsum.photos/300/200">
       </div>
       <div class="disponible">
         <button class="btn-white">Venta</button>
@@ -1016,7 +1178,23 @@
     <div class="card">
       <button class="propiedad">Departamento</button>
       <div class="image-card">
-        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
+        <img src="https://picsum.photos/300/200">
+      </div>
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
+      </div>
+    </div>
+    <div class="card">
+      <button class="propiedad">Departamento</button>
+      <div class="image-card">
+        <img src="https://picsum.photos/300/200">
       </div>
       <div class="disponible">
         <button class="btn-white">Venta</button>
@@ -1032,7 +1210,7 @@
     <div class="card">
       <button class="propiedad">Tipo</button>
       <div class="image-card">
-        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
+        <img src="https://picsum.photos/300/200">
       </div>
       <div class="disponible">
         <button class="btn-white">Venta</button>

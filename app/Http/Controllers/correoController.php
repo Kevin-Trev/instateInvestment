@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Mail;
 
 class correoController extends Controller
 {
-
-    public function enviarCorreo($email){
-        Mail::send('correo')->to($email)->from(ENV('EMAIL_FROM_ADDRESS'), );
+    public function eliminarUsuario(Request $request, $user){
+        $Motivo = $request->input();
     }
 }
