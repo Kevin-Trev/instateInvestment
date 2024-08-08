@@ -12,7 +12,8 @@ use Exception;
 class PropiedadController extends Controller
 {
     public function index () {
-        $propiedades = propiedades::select('ID_P','Calle','num_exterior','Colonia','Precio','Recamaras','Baños','Area','Vendible','Rentable')
+        $propiedades = propiedades::select('ID_P','Calle','num_exterior','Colonia','Precio','Recamaras','Baños','Area','Vendible','Rentable','Tipo_Propiedad_id')
+                                    ->with("tipo_propiedad:ID_T,Tipo")
                                     ->with(['imagenes_propiedad' => function($query) {
                                         $query->select('reg','propiedad_id','src_image');
                                     }])
@@ -25,7 +26,8 @@ class PropiedadController extends Controller
     }
 
     public function propiedadesResultados($transaccion, $ciudad){
-        $propiedades = propiedades::select('ID_P','Calle','num_exterior','Colonia','Precio','Recamaras','Baños','Area','Vendible','Rentable')
+        $propiedades = propiedades::select('ID_P','Calle','num_exterior','Colonia','Precio','Recamaras','Baños','Area','Vendible','Rentable','Tipo_Propiedad_id')
+                                    ->with("tipo_propiedad:ID_T,Tipo")
                                     ->with(['imagenes_propiedad' => function($query) {
                                         $query->select('reg','propiedad_id','src_image');
                                     }])
@@ -40,11 +42,42 @@ class PropiedadController extends Controller
 
     }
 
+    public function propiedadesUsuario ($id) {
+        $propiedades = propiedades::with("tipo_propiedad:ID_T,Tipo")
+                                    ->with(['imagenes_propiedad' => function($query) {
+                                        $query->select('reg','propiedad_id','src_image');
+                                    }])
+                                    ->where('users_Id','=',$id)
+                                    ->get()
+                                    ->map(function($propiedad) {
+                                        $propiedad->main_image = $propiedad->imagenes_propiedad->first() ?: null;
+                                        return $propiedad;
+                                    });
+        return response()->json($propiedades);
+    }
+
     public function getProperty($id){
 
-        $propiedad = propiedades::with("tipo_propiedad:ID_T,Tipo", "users:id,Telefono", "imagenes_propiedad:reg,propiedad_id,src_image")->find($id);
+        $propiedad = propiedades::with(
+            "tipo_propiedad:ID_T,Tipo",
+            "users:id,Telefono",
+            "imagenes_propiedad:reg,propiedad_id,src_image")
+            ->find($id);
 
-        return view('detallesPropiedad', compact('propiedad'));
+        $moreProperties = propiedades::where('ID_P','!=',$id)
+                                    ->with("users:id,Telefono")
+                                    ->with(['imagenes_propiedad' => function($query) {
+                                        $query->select('reg','propiedad_id','src_image');
+                                    }])
+                                    ->inRandomOrder()
+                                    ->take(4)
+                                    ->get()
+                                    ->map(function($propiedad) {
+                                        $propiedad->main_image = $propiedad->imagenes_propiedad->first() ?: null;
+                                        return $propiedad;
+                                    });
+
+        return view('detallesPropiedad', compact('propiedad','moreProperties'));
     }
 
     public function newProperty (Request $request) {    /* agregar request en caso de formulario */
@@ -101,8 +134,6 @@ class PropiedadController extends Controller
                     'propiedad_id' => $id,
                     'src_image' => $fileName,
                 ]);
-
-
             }
         }
     }

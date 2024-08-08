@@ -36,7 +36,7 @@ class UsuariosController extends Controller
             $user->password = Hash::make($request->password);
             $user->Nombre = $request->Nombre;
             $user->Apellido = $request->Apellido;
-            $user->Telefono = $request->Telefono;
+            $user->Telefono = '+52'.$request->Telefono;
             $user->Fecha_Nacimiento = $request->Fecha_Nacimiento;
             $user->Calificacion = 1;
             $user->administrador = 0;

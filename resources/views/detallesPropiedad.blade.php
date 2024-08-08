@@ -395,7 +395,7 @@
 
 @section('body')
     <div class="container">
-        <div class="retroceder" onclick="history.back()">
+        <div class="retroceder" onclick="location.href='{{route('catalogo')}}'">
             <h6>↩ Regresar a la navegación</h6>
         </div>
         <h2>{{$propiedad->Calle}} #{{$propiedad->num_exterior}}</h2> {{-- Domicilio de la Propiedad --}}
@@ -427,10 +427,10 @@
                 </div>
             <div class="disponible">
                 @if ($propiedad->Vendible)  {{-- SI ES VENDIBLE APARECE ETIQUETA --}}
-                    <button class="btn-blue">Venta</button>
+                    <button class="btn-white">Venta</button>
                 @endif
                 @if ($propiedad->Rentable)  {{-- SI ES RENTABLE APARECE ETIQUETA --}}
-                    <button class="btn-blue">Renta</button> 
+                    <button class="btn-white">Renta</button> 
                 @endif
                 <h4>$ {{number_format($propiedad->Precio, 0, '.', ',')}} MXN</h4>
                 <div class="roomsContainer">
@@ -443,7 +443,7 @@
                 </div>
                 <p class="text">C. {{$propiedad->Calle}} #Ext. {{$propiedad->num_exterior ?: 'S/N'}} #Int. {{$propiedad->num_interior ?: 'S/N'}} Col. {{$propiedad->Colonia}} CP. {{$propiedad->Codigo_Postal}}</p>
                 <footer>
-                    <a href="https://wa.me/+52{{$propiedad->users->Telefono}}"><button class="wasa"><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</button></a>
+                    <a href="https://wa.me/{{$propiedad->users->Telefono}}"><button class="wasa"><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</button></a>
                 </footer>
             </div>
         </div>
@@ -480,7 +480,43 @@
         <h3>Explora más propiedades cercanas</h3>
 
         <div class="moreHouses">
+            @foreach ($moreProperties as $sugerencia)
             <div class="card">
+                @if($sugerencia->main_image)
+                <img src="{{asset('ImagesPublished/'.$sugerencia->main_image->src_image)}}" class="image">
+                @else
+                <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" class="image" alt="...">
+                @endif
+                <div class="card-content">
+                    <div class="card-disponible">
+                        @if ($sugerencia->Vendible)  {{-- SI ES VENDIBLE APARECE ETIQUETA --}}
+                            <button class="btn-white">Venta</button>
+                        @endif
+                        @if ($sugerencia->Rentable)  {{-- SI ES RENTABLE APARECE ETIQUETA --}}
+                            <button class="btn-white">Renta</button> 
+                        @endif
+                    </div>
+                    <span class="recamaras">
+                        <img src="{{asset('Imagenes/juanGuarnizo.png')}}">
+                        <p>{{$sugerencia->Recamaras}}</p>
+                    </span>
+                    <span class="recamaras">
+                        <img src="{{asset('Imagenes/bañeraSimbolo.png')}}">
+                        <p>{{$sugerencia->Baños}}</p>
+                    </span>
+                    <div class="datos">
+                        <h4>$ {{number_format($sugerencia->Precio, 0, '.', ',')}} MXN</h4>
+                        <p>{{$sugerencia->Calle}} #{{$sugerencia->num_exterior}}, {{$sugerencia->Colonia}}</p>
+                        <div class="btn">
+                            <button class="btn-blue"><a class="nav-link" href="/get/property/{{$sugerencia->ID_P}}">Ver más detalles</a></button>
+                            <a href="https://wa.me/{{$sugerencia->users->Telefono}}"><button class="wasa"><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+
+            {{-- <div class="card">
                 <img src="https://picsum.photos/300/200" class="image">
                 <div class="card-content">
                     <div class="card-disponible">
@@ -579,7 +615,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 
@@ -626,8 +662,4 @@
             </div>
       
       </footer>
-@endsection
-
-@section('js')
-    
 @endsection

@@ -251,7 +251,9 @@
         <img src="{{asset('Imagenes/LOGO2.png')}}" class="logo">
         <ul class="nav-links">
             <li>
+                @auth
                 <div class="dropdown-center dropstart">
+                    
                     <div class="simboloContainer" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="{{asset('Imagenes/notificacionSimbolo.png')}}">
                     </div>
@@ -259,15 +261,30 @@
 
                     </ul>
                     <div class="perfilContainer" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{asset('Imagenes/iconito.png')}}" alt="" height="50px">
                         {{-- Agregar la imagen del usuario --}}
                     </div>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Mi perfil</a></li>
-                        <li><a class="dropdown-item" href="#">Catálogo</a></li>
+                        <li><label class="dropdown-item">👋 Hola, {{Auth::user()->Nombre}}</label></li>
                         <hr>
-                        <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+                        <li><a class="dropdown-item" href="{{route('perfil')}}">Mi perfil</a></li>
+                        <li><a class="dropdown-item" href="{{route('catalogo')}}">Catálogo</a></li>
+                        <hr>
+                        <li>
+                            <form style="display: inline" action="/logout" method="POST">
+                                @csrf
+                                <a href="#" onclick="this.closest('form').submit()" class="dropdown-item">Cerrar Sesión</a>
+                            </form>
+                        </li>
                     </ul>
                 </div>
+                @endauth
+                @guest
+                <div class="button-container">
+                    <button class="btn btn-outline-primary"><a class="nav-link" href="{{route('registro')}}">Registrate</a></button>
+                    <button class="btn btn-primary"><a class="nav-link" href="{{route('login')}}">Iniciar Sesión</a></button>
+                </div>
+                @endguest
             </li>
         </ul>
     </nav>
