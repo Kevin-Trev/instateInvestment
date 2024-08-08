@@ -120,18 +120,26 @@
         <!-- MENU DE ACCIONES -->
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link active" id="publicaciones-tab" aria-current="page" href="#">Publicaciones</a>
+            <a class="nav-link active" id="publicaciones-tab" aria-current="page">Publicaciones</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="estadisticas-tab" href="#">Estadísticas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="calendario-tab" href="#">Calendario</a>
+            <a class="nav-link" id="estadisticas-tab">Estadísticas</a>
           </li>
         </ul>
         <!-- LISTA DE PROPIEDADES -->
         <div class="property-list" id="pl">
-          <!-- PROPIEDAD 1 -->
+          <!-- BTN DE NUEVA PROPIEDAD -->
+        <div class = "card ">
+          <div class = "row">
+            <div class = "col-sm-4	col-md-6	col-lg-9"></div>
+            <div class = "col-sm-8	col-md-6	col-lg-3">
+              <a href="">
+                <button class="btn btn-primary col-12">Nueva propiedad</button>
+              </a>
+            </div>
+          </div>
+        </div>
+          <!-- PROPIEDADES DE EJEMPLO-->
           <div class="card" style="margin-top: 5px;">
             <div class="row">
               <div class="image-card col-md-3">
@@ -148,14 +156,13 @@
                 </div>
               </div>
               <div class="col-md-2">
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Editar</button>
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal">Editar</button>
                 <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Pausar</button>
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal">Pausar</button>
               </div>
             </div>
           </div>
 
-          <!-- PROPIEDAD 2 -->
           <div class="card" style="margin-top: 5px;">
             <div class="row">
               <div class="image-card col-md-3">
@@ -251,31 +258,35 @@
         <div class="property-list hidden" id="pl2">  
         <!-- Contenido principal -->
           <div id="estadisticas-content">
+
             <div style="margin-top: 10px;" class="col-12">
-              <div class="row">
-                <div class="card col-4">
-                  <h4>Ventas:</h4>
-                  <p>Ventas totales: X</p>
-                  <p>Última venta: 2023-08-01</p>
-                  <p>Venta más alta: $500,000</p>
-                  <p>Promedio mensual: 5 ventas</p>
+                <div class="card">
+                  <div class = "card-title">
+                    EXELENTE
+                  </div>
+                  <div class= "card-body">
+                    <h1>EXELENTE VENDEDOR</h1>
+                  </div>
                 </div>
-                <div class="card col-8">
-                  <canvas id="ventas-chart"></canvas>
-                </div>
-              </div>
             </div>
 
             <div style="margin-top: 10px;" class="col-12">
               <div class="row">
-                <div class="card col-4">
-                  <h4>Comentarios:</h4>
-                  <p>Comentarios totales: X</p>
-                  <p>Último comentario: 'Excelente servicio!'</p>
-                  <p>Mejor puntuación: 5 estrellas</p>
-                  <p>Puntuación promedio: 4.5 estrellas</p>
+                <div class="card col-sm-4	col-md-2	col-lg-2">
+                  <h4>Ventas:</h4>
+                  <p>Ventas totales: X</p>
+                  <p>Última venta: 2023-08-01</p>
+                  <p>Venta más alta: $500,000</p>
                 </div>
-                <div class="card col-8">
+                <div class="card col-sm-8	col-md-4	col-lg-4">
+                  <canvas id="ventas-chart"></canvas>
+                </div>
+
+                <div class="card col-sm-4	col-md-2	col-lg-2">
+                  <h4>Interacciones:</h4>
+                  <p>Comentarios totales: X</p>
+                </div>
+                <div class="card col-sm-8	col-md-4	col-lg-4">
                   <canvas id="comentarios-chart"></canvas>
                 </div>
               </div>
@@ -283,33 +294,26 @@
 
             <div style="margin-top: 10px;" class="col-12">
               <div class="row">
-                <div class="card col-4">
+                <div class="card col-sm-4	col-md-2	col-lg-2">
                   <h4>Propiedades verificadas:</h4>
                   <p>Verificadas: X</p>
                   <p>Última verificación: 2023-08-01</p>
-                  <p>Verificación más alta: $750,000</p>
-                  <p>Promedio mensual: 6 verificaciones</p>
                 </div>
-                <div class="card col-8">
+                <div class="card col-sm-8	col-md-4	col-lg-4">
                   <canvas id="verificadas-chart"></canvas>
                 </div>
-              </div>
-            </div>
 
-            <div style="margin-top: 10px;" class="col-12">
-              <div class="row">
-                <div class="card col-4">
+                <div class="card col-sm-4	col-md-2	col-lg-2">
                   <h4>Reportes:</h4>
                   <p>Reportes totales: X</p>
                   <p>Último reporte: 2023-08-01</p>
-                  <p>Tipo común: Mantenimiento</p>
-                  <p>Promedio mensual: 2 reportes</p>
                 </div>
-                <div class="card col-8">
+                <div class="card col-sm-8	col-md-4	col-lg-4">
                   <canvas id="reportes-chart"></canvas>
                 </div>
               </div>
-            </div>
+            </div> 
+                       
           </div>  
         </div>
         <!-- CALENDARIO -->
