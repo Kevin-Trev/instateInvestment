@@ -70,7 +70,7 @@ Route::get('/views/detalles/propiedad', [viewsController::class, 'detallePropied
 
 
 
- 
+
 // vista perfil del admin en la carpeta admin/perfilAd para que Brandon no este ch...
 Route::get('/perfil-administrador', function () {
     $usuario = auth()->user(); 

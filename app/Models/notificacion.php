@@ -11,7 +11,7 @@ class notificacion extends Model
     protected $table = 'notificacion';
     protected $primaryKey = 'id_noti';
     protected $filiable=[
-      'users_id', 'mensaje', 'fecha', 'reportes_id'
+      'users_id', 'mensaje', 'fecha', 'reportes_id', 'comentarios_id'
     ];
     public function user()
     {
@@ -21,7 +21,12 @@ class notificacion extends Model
 
     public function reporte()
     {
-        return $this->belongsToMany(Notificacion::class, 'id_r','reportes_id');
+        return $this->belongsToMany(reportes::class, 'id_r','reportes_id');
+    }
+
+    public function comentario()
+    {
+        return $this->belongsToMany(comentario::class, 'id_com','comentarios_id');
     }
 }
 

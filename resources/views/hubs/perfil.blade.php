@@ -100,10 +100,10 @@
           <label for="fecha-nacimiento" class="form-label">F. Nacimiento</label>
           <input type="text" class="form-control" id="fecha-nacimiento" value="21 de julio de 1963">
         </div>
-        <!-- GENERO -->
+        <!-- correo -->
         <div class="mb-3">
-          <label for="genero" class="form-label">Género</label>
-          <input type="text" class="form-control" id="genero" value="Masculino">
+          <label for="correo" class="form-label">Correo</label>
+          <input type="text" class="form-control" id="correo" value="messigoat@gmail.com">
         </div>
         <!-- TELEFONO -->
         <div class="mb-3">
