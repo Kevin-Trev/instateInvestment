@@ -8,6 +8,7 @@ use App\Http\Controllers\propiedadController;
 use App\Http\Controllers\TipoPropiedadController;
 use App\Http\Controllers\servicioController;
 use App\Http\Controllers\propiedadServicioController;
+use App\Http\Controllers\comentarioController;
 use App\Http\Controllers\perfilController;
 use App\Http\Controllers\correoController;
 use App\Http\Controllers\NotificacionController;
@@ -42,6 +43,8 @@ Route::get('/get/properties',[propiedadController::class, 'index']);
 Route::get('/get/results/propeties/{transaccion}/{ciudad}', [propiedadController::class, 'propiedadesResultados']);
 Route::get('/get/property/{id}', [propiedadController::class, 'getProperty']);
 Route::post('/post/propiedad', [propiedadController::class, 'newProperty']); /* cambiar de GET a POST */
+
+Route::post('/post/comentario/', [comentarioController::class, 'comentar']);
 
 Route::get('/get/typeProperties', [TipoPropiedadController::class, 'index']);
 

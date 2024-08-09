@@ -9,14 +9,14 @@ class comentario extends Model
 {
     use HasFactory;
     protected $table = 'comentario';
-     public $timestamps=false;
-    protected $primaryKey = 'id_com';
+    public $timestamps=false;
+    protected $primaryKey = 'ID_COM';
     protected $filiable=[
          'comentario', 'fecha', 'users_id', 'propiedad_id'
     ];
 
     public function users(){
-        return $this->belongsToMany(users::class, 'id', 'users_id');
+        return $this->belongsTo(User::class, 'users_id', 'id');
     }
     public function propiedad(){
         return $this->belongsToMany(propiedad::class, 'id_p', 'propiedad_id');

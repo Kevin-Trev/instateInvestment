@@ -452,29 +452,40 @@
             <h3>Comentarios</h3>
             <div class="agregarComentario">
                 <img src="https://picsum.photos/300/200">
-                <form action="">
+                <form action="/post/comentario" method="POST">
+                    @csrf
+                    @auth
+                    <input type="number" name="user_id" value="{{Auth::user()->id}}" readonly hidden>
+                    <input type="number" name="propiedad_id" value="{{$propiedad->ID_P}}" readonly hidden>
+                    @endauth
                     <div class="input-group">
-                        <textarea name="" id="" cols="100" rows="1" class="form-control"></textarea>
+                        <textarea name="Comentario" id="comentario" cols="100" rows="1" class="form-control"></textarea>
                         <button class="btn-blue" type="submit">Añadir comentario</button>
                     </div>
                 </form>
             </div>
+            @foreach ($comentarios as $comentario)
             <div class="comentario">
+                <div class="user">
+                    @if ($comentario->users->Foto)
+                    <img src="{{asset('ImagesPublished/'.$comentario->users->Foto)}}">  
+                    @else
+                    <img src="https://picsum.photos/300/200">  
+                    @endif
+                    <p>{{$comentario->users->name}}</p>
+                    <p class="date">{{$comentario->Fecha}}</p>
+                </div>
+                <p class="textContainer">{{$comentario->Comentario}}</p>
+            </div>
+            @endforeach
+            {{-- <div class="comentario">
                 <div class="user">
                     <img src="https://picsum.photos/300/200">
                     <p>Nombre del usuario</p>
                     <p class="date">20/01/2024</p>
                 </div>
                 <p class="textContainer">Este es un comentario de prueba para verificar que funcione correctamente</p>
-            </div>
-            <div class="comentario">
-                <div class="user">
-                    <img src="https://picsum.photos/300/200">
-                    <p>Nombre del usuario</p>
-                    <p class="date">20/01/2024</p>
-                </div>
-                <p class="textContainer">Este es un comentario de prueba para verificar que funcione correctamente</p>
-            </div>
+            </div> --}}
         </div>
 
         <h3>Explora más propiedades cercanas</h3>

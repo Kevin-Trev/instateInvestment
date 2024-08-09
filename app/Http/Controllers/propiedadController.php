@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\propiedades;
+use App\Models\COMENTARIO;
 use App\Models\imagenes_propiedad;
 use Exception;
 
@@ -63,7 +64,7 @@ class PropiedadController extends Controller
             "users:id,Telefono",
             "imagenes_propiedad:reg,propiedad_id,src_image")
             ->find($id);
-
+    
         $moreProperties = propiedades::where('ID_P','!=',$id)
                                     ->with("users:id,Telefono")
                                     ->with(['imagenes_propiedad' => function($query) {
@@ -76,8 +77,14 @@ class PropiedadController extends Controller
                                         $propiedad->main_image = $propiedad->imagenes_propiedad->first() ?: null;
                                         return $propiedad;
                                     });
+        
+        $comentarios = COMENTARIO::where('Propiedad_id','=',$id)
+        ->with("users:id,name,Foto")
+        ->orderBy('Fecha','DESC')
+        ->get();
+    
 
-        return view('detallesPropiedad', compact('propiedad','moreProperties'));
+        return view('detallesPropiedad', compact('propiedad','comentarios','moreProperties'));
     }
 
     public function newProperty (Request $request) {    /* agregar request en caso de formulario */
@@ -110,7 +117,8 @@ class PropiedadController extends Controller
             $propiedad->Tipo_Propiedad_id = $request->input('Tipo_Propiedad_id');
 
             if($propiedad->save()){    
-                
+
+                registrarServicios($request, $propiedad->ID_P);
                 uploadImagesProperty($request, $propiedad->ID_P);
                 DB::commit();
             }
@@ -120,6 +128,10 @@ class PropiedadController extends Controller
             return response()->json(['Error al crear registro: ' . $e->getMessage()], 500);
 
         }
+    }
+
+    private function regServicios(Request $request, $id) {
+
     }
 
     private function uploadImagesProperty (Request $request , $id) {

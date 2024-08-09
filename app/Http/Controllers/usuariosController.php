@@ -43,7 +43,7 @@ class UsuariosController extends Controller
             $user->administrador = 0;
             $user->activo = 1;
             $user->email_verified_at = now();
-            $user->remember_token = Str::random(10);
+            $user->remember_token = Str::random(60);
            
             if($user->save()){
                 DB::commit();
