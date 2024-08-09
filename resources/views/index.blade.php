@@ -4,6 +4,46 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <style>
+        .dropdown-menu{
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-menu a{
+            color: rgb(78, 78, 78);
+        }
+
+        .dropdown-menu{
+            transform: translate(150px, 30px);
+        }
+
+        .dropdown-menu{
+            transform: translate(25vw, 30px);
+        }
+
+        .dropdown-menu a{
+            font-size: 3vw;
+        }
+
+                .dropdown-menu{
+            transform: translate(32vw, 30px);
+        }
+
+        .dropdown-menu a{
+            font-size: 3vw;
+        }
+
+        .dropdown-item{
+            margin-bottom: 5px;
+        }
+
+        .dropdown-menu .dropdown-item:hover{
+            color: black;
+            background-color: transparent;
+            transition: .3s;
+        }
+    </style>
 @endsection
 
 @section('body')
@@ -21,11 +61,36 @@
                             <a href="{{route('login')}}"><button class="bt-blue" type="button">Iniciar Sesión</button></a>
                         @endguest
                         @auth
-                            <button class="bt-blue" type="button">{{Auth::user()->Nombre}}</button>
-                            <form style="display: inline" action="/logout" method="POST">
-                                @csrf
-                                <a href="#" onclick="this.closest('form').submit()" class="btn btn-outline-danger">Log Out</a>
-                            </form>    
+
+                        <div class="dropdown">
+                          <button class="bt-blue dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          {{Auth::user()->Nombre}}
+                          </button>
+                          <ul class="dropdown-menu">
+                            <div style="margin-top:100px"></div>
+                            <li><a class="dropdown-item" href="{{route('perfil')}}">Mi perfil</a></li>
+                            <li><a class="dropdown-item" href="{{route('catalogo')}}">Catálogo</a></li>
+                            <li>
+                                <form style="display: inline" action="/logout" method="POST">
+                                    @csrf
+                                    <a href="#" onclick="this.closest('form').submit()" class="dropdown-item">Cerrar Sesión</a>
+                                </form>
+                            </li>
+                          </ul>
+                        </div>   
+
+
+                        <!-- <div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown link
+  </a>
+
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div> -->
                         @endauth
                     </div>
             </header>
