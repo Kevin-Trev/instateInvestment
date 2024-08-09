@@ -72,7 +72,7 @@ Route::get('/views/recuperar/contraseña', [viewsController::class, 'recuperarCo
 //Rutas que se utilizan para restablecer la contraseña de un usuario
 
 Route::post('/enviar/correo/recuperar', [usuariosController::class, 'correoRestablecer']);
-Route::get('/restablecer/contraseña/{token}', [usuariosController::class, 'formularioActualizar'])->name('formularioActualizar');
+Route::get('/restablecer/contraseña/{token}/{email}', [usuariosController::class, 'formularioActualizar'])->name('formularioActualizar');
 Route::post('/actualizar/contraseña', [usuariosController::class, 'actualizarContraseña']);
 
 

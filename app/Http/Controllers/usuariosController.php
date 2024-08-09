@@ -104,7 +104,7 @@ class UsuariosController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        Mail::send('correo.recuperarContraseña', ['token' => $token,], function($message) use ($request){
+        Mail::send('correo.recuperarContraseña', ['token' => $token, 'email' => $request->email], function($message) use ($request){
             $message->to($request->email);
             $message->subject('Recuperar contraseña');
         });
@@ -113,14 +113,14 @@ class UsuariosController extends Controller
 
     }
 
-    public function formularioActualizar($token){
-        return view('Login-Register.restablecerContraseña', ['token' => $token]);
+    public function formularioActualizar($token, $email){
+        return view('Login-Register.restablecerContraseña', ['token' => $token, 'email' => $email]);
     }
 
     public function actualizarContraseña(Request $request){
         $updatePassword = DB::table('password_reset_tokens')->where([
             'email' => $request->email,
-            'token' => $request->token
+            'token' => $request->token,
         ])->first();
 
         if (!$updatePassword){

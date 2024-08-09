@@ -43,10 +43,10 @@
         <form action="/actualizar/contraseña" method="POST" id="formPassword">
             @csrf
             <input type="hidden" name="token" value="{{ $token }}">
-
+            <input type="text" name="email" value="{{ $email }}">
             <div class="form-group">
                 <label for="Contraseña">Nueva contraseña:</label>
-                <input type="text" class="form-control" id="Contraseña" placeholder="Ingrese la nueva contraseña" name="email">
+                <input type="text" class="form-control" id="Contraseña" placeholder="Ingrese la nueva contraseña">
             </div>
             <div class="form-group">
                 <label for="confirmacionContraseña">Confirmar contraseña:</label>
