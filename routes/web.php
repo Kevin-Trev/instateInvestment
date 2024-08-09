@@ -10,6 +10,7 @@ use App\Http\Controllers\servicioController;
 use App\Http\Controllers\propiedadServicioController;
 use App\Http\Controllers\perfilController;
 use App\Http\Controllers\correoController;
+use App\Http\Controllers\NotificacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,3 +83,5 @@ Route::get('/perfil-administrador', function () {
 Route::get('/catalogo-administrador', function () {
     return view('admin.catalogo');
 });
+
+Route::get('/obtener-notificaciones', [NotificacionController::class, 'obtenerNotificaciones']);

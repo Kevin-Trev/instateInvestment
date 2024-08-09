@@ -295,4 +295,33 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 @yield('js')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetchNotificaciones();
+
+        function fetchNotificaciones() {
+            fetch('/obtener-notificaciones')
+                .then(response => response.json())
+                .then(data => {
+                    const notificacionesList = document.getElementById('notificaciones');
+                    notificacionesList.innerHTML = ''; // Limpiar lista de notificaciones
+                    
+                    data.forEach(notificacion => {
+                        const li = document.createElement('li');
+                        li.className = 'dropdown-item';
+                        li.textContent = notificacion.mensaje + ' - ' + new Date(notificacion.fecha_creacion).toLocaleDateString();
+                        notificacionesList.appendChild(li);
+                    });
+
+                    if (data.length === 0) {
+                        const li = document.createElement('li');
+                        li.className = 'dropdown-item';
+                        li.textContent = 'No hay nuevas notificaciones';
+                        notificacionesList.appendChild(li);
+                    }
+                })
+                .catch(error => console.error('Error al obtener notificaciones:', error));
+        }
+    });
+</script>
 </html>
