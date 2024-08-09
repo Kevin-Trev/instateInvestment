@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Exception;
+use Carbon\Carbon;
 
 
 class UsuariosController extends Controller
@@ -93,5 +94,44 @@ class UsuariosController extends Controller
         return redirect('/');
     }
 
+    public function correoRestablecer(Request $request){
+        $token = Str::random(64);
+        DB::table('password_reset_tokens')->where(['email' => $request->email])->delete();
+
+        DB::table('password_reset_tokens')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => Carbon::now()
+        ]);
+
+        Mail::send('correo.recuperarContraseña', ['token' => $token,], function($message) use ($request){
+            $message->to($request->email);
+            $message->subject('Recuperar contraseña');
+        });
+
+        return back()->with('message', 'Te hemos enviado un email con las instrucciones para que recuperes tu contraseña');
+
+    }
+
+    public function formularioActualizar($token){
+        return view('Login-Register.restablecerContraseña', ['token' => $token]);
+    }
+
+    public function actualizarContraseña(Request $request){
+        $updatePassword = DB::table('password_reset_tokens')->where([
+            'email' => $request->email,
+            'token' => $request->token
+        ])->first();
+
+        if (!$updatePassword){
+            return back()->withInput()->with('error', 'Token inválido');
+        }
+
+        $user = User::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
+
+        DB::table('password_reset_tokens')->where(['email' => $request->email])->delete();
+
+        return redirect()->route('login')->with('message', 'Tu contraseña se ha cambiado correctamente');
+    }
 }
 

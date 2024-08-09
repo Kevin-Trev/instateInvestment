@@ -91,6 +91,10 @@
       font-size: 16px;
       margin: 0 10px;
     }
+
+    #Frente-group{
+        margin-left: 90px;
+    }
     
     .circle-circle-container .circle.blue{
         text-align: center;
@@ -159,6 +163,11 @@
         text-align: center;
         margin: 10px;
     }
+
+    .contenido{
+        padding-top: 20px;  
+        margin-left: 100px
+    }
     
     .contenedorCaracteristicas .form-group 
     input[type="number"]::-webkit-inner-spin-button,
@@ -198,8 +207,8 @@
         gap: 60%;
     }
 
-    #Frente, #Fondo{
-        width: 220px;
+    #Frente, #Fondo, #Area{
+        width: 120px;
         border-radius: 6px;
     }
 
@@ -415,44 +424,57 @@
                     <select id="tipoPropiedad" name="Tipo_Propiedad_id" class="form-control">
 
                     </select>
-                </div>
-                <div class="contenedorCaracteristicas">
-                    <div class="form-group" id="Recamaras-group">
-                        <label for="Recamaras">Recamaras:</label>
-                        <div class="numeros">
-                            <button class="btn-menos" id="button-minus">-</button>
-                            <input type="number" class="form-control" value="1" id="Recamaras" name="Recamaras" readonly>
-                            <button class="btn-mas" id="button-plus">+</button>
+                <div class="contenido">
+                    <div class="contenedorCaracteristicas">
+                        <div class="form-group" id="Recamaras-group">
+                            <label for="Recamaras">Recamaras:</label>
+                            <div class="numeros">
+                                <button class="btn-menos" id="minusRecamaras">-</button>
+                                <input type="number" class="form-control" value="1" id="Recamaras" name="Recamaras" readonly>
+                                <button class="btn-mas" id="plusRecamaras">+</button>
+                            </div>
+                        </div>
+                        <div class="form-group" id="Baños-group">
+                            <label for="Baños">Baños:</label>
+                            <div class="numeros">
+                                <button class="btn-menos" id="minusBaños">-</button>
+                                <input type="number" class="form-control" id="Baños" name="Baños" value="1" readonly>
+                                <button class="btn-mas" id="plusBaños">+</button>
+                            </div>
+                        </div>
+                        <div class="form-group" id="Area-group">
+                            <label for="Area">Area:</label>
+                            <div class="numeros">
+                                <button class="btn-menos" id="minusArea">-</button>
+                                <input type="number" class="form-control" id="Area" name="Area" placeholder="Medida m²">
+                                <button class="btn-mas" id="plusArea">+</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group" id="Baños-group">
-                        <label for="Baños">Baños:</label>
-                        <div class="numeros">
-                            <button class="btn-menos" id="button-minus2">-</button>
-                            <input type="number" class="form-control" id="Baños" name="Baños" value="1" readonly>
-                            <button class="btn-mas" id="button-plus2">+</button>
+                    <div class="contenedorCaracteristicas">
+                        <div class="form-group" id="Frente-group">
+                            <label for="frente">Frente:</label>
+                            <div class="numeros">
+                                <button class="btn-menos" id="minusFrente">-</button>
+                                <input type="number" class="form-control" id="Frente" name="Frente" placeholder="Medida m²">
+                                <button class="btn-mas" id="plusFrente">+</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group" id="Area-group">
-                        <label for="Area">Area:</label>
-                        <input type="text" class="form-control" id="Area" name="Area" placeholder="Ingrese el area de su terreno">
-                    </div>
-                </div>
-                <div class="contenedorCaracteristicas">
-                    <div class="form-group" id="Frente-group">
-                        <label for="frente">Frente:</label>
-                        <input type="number" class="form-control" id="Frente" name="Frente" placeholder="Ingrese el frente del terreno">
-                    </div>
-                    <div class="form-group" id="Fondo-group">
-                        <label for="Fondo">Fondo:</label>
-                        <input type="number" class="form-control" id="Fondo" name="Fondo" placeholder="Ingrese el fondo del terreno">
+                        <div class="form-group" id="Fondo-group">
+                            <label for="Fondo">Fondo:</label>
+                            <div class="numeros">
+                                <button class="btn-menos" id="minusFondo">-</button>
+                                <input type="number" class="form-control" id="Fondo" name="Fondo" placeholder="Medida m²">
+                                <button class="btn-mas" id="plusFondo">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <h6 class="error">Completa los campos necesarios para continuar</h6>
-                <div class="buttonContainer">
-                    <button type="button" id="button2" class="btn-white">Regresar</button>
-                    <button type="button" id="button3" class="btn-blue">Continuar</button>
-                </div>
+                    <div class="buttonContainer">
+                        <button type="button" id="button2" class="btn-white">Regresar</button>
+                        <button type="button" id="button3" class="btn-blue">Continuar</button>
+                    </div>
             </div>
     </div>
 
@@ -721,6 +743,80 @@
             var cuatro = $('#cuartoPaso');
             var cinco = $('#quintoPaso');
             var error = $('.error');
+            var valorRecamaras = parseInt($('#Recamaras').val());
+            var valorBaños = parseInt($('#Baños').val());
+            var valorArea = parseInt($('#Area').val());
+            var valorFrente = parseInt($('#Frente').val());
+            var valorFondo = parseInt($('#Fondo').val());
+            var Area = $('#Area');
+
+            // Para que no se elimine el placeholder de los inputs
+
+            
+
+            // Funciones para aumentar o disminuir el valor con los botones "+", "-"
+
+            $('#minusRecamaras').on('click', function(){
+                if (valorRecamaras > 0){
+                    $('#Recamaras').val(valorRecamaras - 1);
+                    valorRecamaras--;
+                }
+            });
+
+            $('#plusRecamaras').on('click', function(){
+                $('#Recamaras').val(valorRecamaras + 1);
+                valorRecamaras++;
+            })
+
+            $('#minusBaños').on('click', function(){
+                if (valorBaños > 0){
+                    $('#Baños').val(valorBaños - 1);
+                    valorBaños--;
+                }
+            });
+
+            $('#plusBaños').on('click', function(){
+                $('#Baños').val(valorBaños + 1);
+                valorBaños++;
+            });
+            
+            $('#minusArea').on('click', function(){
+                if (valorArea > 0){
+                    $('#Area').val(valorArea - 1);
+                    valorArea--;
+                }
+            });
+
+            $('#plusArea').on('click', function(){
+                $('#Area').val(valorArea + 1);
+                valorArea++;
+            });
+            
+            $('#minusFrente').on('click', function(){
+                if (valorFrente > 0){
+                    $('#Frente').val(valorFrente - 1);
+                    valorFrente--;
+                }
+            });
+
+            $('#plusFrente').on('click', function(){
+                $('#Frente').val(valorFrente + 1);
+                valorFrente++;
+            });
+            
+            $('#minusFondo').on('click', function(){
+                if (valorFondo > 0){
+                    $('#Fondo').val(valorFondo - 1);
+                    valorFondo--;
+                }
+            });
+
+            $('#plusFondo').on('click', function(){
+                $('#Fondo').val(valorFondo + 1);
+                valorFondo++;
+            })   
+
+            // Funcion para agregar imagenes 
 
             $('#ee').on('click', function(){
                 $('#Image').trigger('click');

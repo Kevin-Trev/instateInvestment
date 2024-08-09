@@ -5,6 +5,13 @@
 @section('style')
     <style>
 
+        .restablecer{
+            text-align: center;
+            font-size: 14px;
+        }
+
+        
+
         .container {
         width: 500px;
         margin: 100px auto;
@@ -95,6 +102,9 @@
             <div class="footer">
                 <a href="{{route('registro')}}">Registrate</a>
                 <p>Si aún no tienes cuenta</p>
+            </div>
+            <div class="restablecer">
+                <a href="{{route('restablecer')}}">¿Olvidó su contraseña?</a>
             </div>
         </form>
     </div>

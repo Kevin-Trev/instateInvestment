@@ -49,6 +49,12 @@
             width: 50px;
             height: 50px;
         }
+
+        .perfilContainer img{
+            width: 10vw;
+            height: 10vw;
+        }
+
         .dropdown-item{
             margin-bottom: 5px;
         }
@@ -178,6 +184,11 @@
     }
 
     @media(min-width: 576px){
+        .perfilContainer img{
+            width: 50px;
+            height: 50px;
+        }
+
         .dropdown-menu{
             transform: translate(150px, 30px);
         }
@@ -228,6 +239,10 @@
             transform: translate(8vw, -3px);
         }
 
+        .perfilContainer img{
+
+        }
+
         .simboloContainer img{
             width: 6vw;
             height: 6vw;
@@ -261,7 +276,7 @@
 
                     </ul>
                     <div class="perfilContainer" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{asset('Imagenes/iconito.png')}}" alt="" height="50px">
+                        <img src="{{asset('Imagenes/iconito.png')}}">
                         {{-- Agregar la imagen del usuario --}}
                     </div>
                     <ul class="dropdown-menu">

@@ -219,7 +219,7 @@
             <div class="form-group">
                 <label for="inputCorreo">Correo electrónico</label>
                 <p class="error">Ingresa un correo electrónico válido</p>
-                <input type="email" class="form-control" placeholder="Ingresa tu correo electrónico" id="inputCorreo" name="email" required>
+                <input type="email" class="form-control" placeholder="Ingresa tu correo electrónico" id="inputCorreo" name="email">
             </div>
             <div class="center">
                 <button type="button" id="button1" class="bt-blue">Siguiente</button>
