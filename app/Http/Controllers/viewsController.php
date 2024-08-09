@@ -37,4 +37,10 @@ class viewsController extends Controller
     public function detallePropiedad(){
         return view('detallesPropiedad');
     }
+
+    public function recuperarContraseña(){
+        return view ('Login-Register.recuperarContraseña');
+    }
+
+    
 }

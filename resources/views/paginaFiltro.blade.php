@@ -1223,8 +1223,158 @@
         <button class="btn-blue">Ver más detalles</button>
       </div>
     </div>
+    <div class="card">
+      <button class="propiedad">Tipo</button>
+      <div class="image-card">
+        <img src="https://picsum.photos/300/200">
+      </div>
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
+      </div>
+    </div>
+    <div class="card">
+      <button class="propiedad">Departamento</button>
+      <div class="image-card">
+        <img src="https://picsum.photos/300/200">
+      </div>
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
+      </div>
+    </div>
+    <div class="card">
+      <button class="propiedad">Departamento</button>
+      <div class="image-card">
+        <img src="https://picsum.photos/300/200">
+      </div>
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
+      </div>
+    </div>
+    <div class="card">
+      <button class="propiedad">Tipo</button>
+      <div class="image-card">
+        <img src="https://picsum.photos/300/200">
+      </div>
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
+      </div>
+    </div>
+    <div class="card">
+      <button class="propiedad">Tipo</button>
+      <div class="image-card">
+        <img src="https://picsum.photos/300/200">
+      </div>
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
+      </div>
+    </div>
+    <div class="card">
+      <button class="propiedad">Departamento</button>
+      <div class="image-card">
+        <img src="https://picsum.photos/300/200">
+      </div>
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
+      </div>
+    </div>
+    <div class="card">
+      <button class="propiedad">Departamento</button>
+      <div class="image-card">
+        <img src="https://picsum.photos/300/200">
+      </div>
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
+      </div>
+    </div>
+    <div class="card">
+      <button class="propiedad">Tipo</button>
+      <div class="image-card">
+        <img src="https://picsum.photos/300/200">
+      </div>
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
+      </div>
+    </div>
+    <div class="card">
+      <button class="propiedad">Tipo</button>
+      <div class="image-card">
+        <img src="https://picsum.photos/300/200">
+      </div>
+      <div class="disponible">
+        <button class="btn-white">Venta</button>
+        <button class="btn-white">Renta</button>
+      </div>
+      <h3> Precio de la propiedad </h3>
+      <p class="text">Direccion de la propiedad</p>
+      <div class="footer">
+        <button class="btn-white">Contacto</button>
+        <button class="btn-blue">Ver más detalles</button>
+      </div>
+    </div>
   </div>
 </div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center" id="paginacion">
+    
+  </ul>
+</nav>
 
 <footer id="page-footer">
   <div class="container-info">
@@ -1242,7 +1392,7 @@
       <br>
 
         <div class="container-social">
-            <a href="">
+            <a href="https://www.facebook.com/instatemx" target="_blank">
                 <img src="{{ asset('Imagenes/iconoFacebook.png')}}">
             </a>
         </div>
@@ -1252,7 +1402,7 @@
             </a>
         </div>
         <div class="container-social">
-            <a href="">
+            <a href="https://www.instagram.com/instatemx/" target="_blank">
                 <img src="{{ asset('Imagenes/iconoInstagram.png')}}">
             </a>
         </div>
@@ -1277,30 +1427,69 @@
 
 //  obtener los registros de propiedades desde BD  //
   $(document).ready(function(){
-    var transaccion = localStorage.getItem('opcion')
-    var ciudad = localStorage.getItem('ciudad')
 
-    if(transaccion && ciudad) {
-      $('#transaccion').val(transaccion);
-      $('#ciudad').val(ciudad);
+    // Paginado de la pagina
 
-      resultadoBusqueda(transaccion, ciudad);
-      console.log("Buscando Propiedades " + transaccion + "s en " + ciudad);
+    var datos = $('.card');
+    var elementosPorPagina = 15;
+    var grupos = [];
 
-      localStorage.removeItem('opcion');
-      localStorage.removeItem('ciudad');
-    }
-    else{
-      cargarPropiedades(); // agregalo como comentario en caso de diseño front //
-    }
+    for(var i = 0; i < datos.length; i += elementosPorPagina){
+      grupos.push(datos.slice(i, i + elementosPorPagina));
+    } 
 
-    $('#buscar').on('click', function() {
-      var opcion = $('#transaccion').val();
-      var ciudad = $('#ciudad').val();
-      console.log("Buscando Propiedades " + opcion + "s en " + ciudad);
-      $('#resultado').text("Buscando Propiedades " + opcion + "s en " + ciudad);
-      resultadoBusqueda(opcion, ciudad);
+  function mostrarPagina(pagina){
+    var grupoActual = grupos[pagina - 1];
+    var contenedor = $('#cards-container');
+    var inicio = (pagina - 1) * elementosPorPagina;
+    var fin = inicio + elementosPorPagina;
+    var paginaDatos = datos.slice(inicio, fin);
+
+    contenedor.empty();
+    grupoActual.each(function (){
+      contenedor.append($(this));
     })
+
+    $('#paginacion').empty();
+    for (var i = 1; i <= Math.ceil(datos.length / elementosPorPagina); i++){
+      $('#paginacion').append('<li class="page-item"><a class="page-link" href="' + i + '" data-pagina="' + i + '">' + i + '</a></li>');
+    }
+  }
+
+  $('#paginacion').on('click', 'a', function(e){
+    e.preventDefault();
+    var pagina = $(this).data('pagina');
+    mostrarPagina(pagina);
+    window.scrollTo({ top: 0, behavior: 'smooth'});
+  });
+
+  mostrarPagina(1);
+
+
+  //   var transaccion = localStorage.getItem('opcion')
+  //   var ciudad = localStorage.getItem('ciudad')
+
+  //   if(transaccion && ciudad) {
+  //     $('#transaccion').val(transaccion);
+  //     $('#ciudad').val(ciudad);
+
+  //     resultadoBusqueda(transaccion, ciudad);
+  //     console.log("Buscando Propiedades " + transaccion + "s en " + ciudad);
+
+  //     localStorage.removeItem('opcion');
+  //     localStorage.removeItem('ciudad');
+  //   }
+  //   else{
+  //     cargarPropiedades(); // agregalo como comentario en caso de diseño front //
+  //   }
+
+  //   $('#buscar').on('click', function() {
+  //     var opcion = $('#transaccion').val();
+  //     var ciudad = $('#ciudad').val();
+  //     console.log("Buscando Propiedades " + opcion + "s en " + ciudad);
+  //     $('#resultado').text("Buscando Propiedades " + opcion + "s en " + ciudad);
+  //     resultadoBusqueda(opcion, ciudad);
+  //   })
 
 
   });

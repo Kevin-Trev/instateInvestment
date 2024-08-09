@@ -66,7 +66,13 @@ Route::get('/views/catalogo' , [viewsController::class, 'catalogoPropiedades'])-
 Route::get('/views/politicas/terminos', [viewsController::class, 'terminosCondiciones'])->name('terminosCondiciones');
 Route::get('/views/politicas/avisoPrivacidad', [viewsController::class, 'avisoPrivacidad'])->name('avisoPrivacidad');
 Route::get('/views/detalles/propiedad', [viewsController::class, 'detallePropiedad'])->name('detallesPropiedad');
+Route::get('/views/recuperar/contraseña', [viewsController::class, 'recuperarContraseña'])->name('restablecer');
 
+//Rutas que se utilizan para restablecer la contraseña de un usuario
+
+Route::post('/enviar/correo/recuperar', [usuariosController::class, 'correoRestablecer']);
+Route::get('/restablecer/contraseña/{token}', [usuariosController::class, 'formularioActualizar'])->name('formularioActualizar');
+Route::post('/actualizar/contraseña', [usuariosController::class, 'actualizarContraseña']);
 
 
 
