@@ -142,7 +142,7 @@
             </div>
             <div class="col-md-2">
               <div class="action-buttons">
-                <button class="bt-blue" onclick="window.location.href='#'">REVISAR</button>
+              <button class="bt-blue" onclick="window.location.href='{{ route('revisar') }}'">REVISAR</button>
                 <button class="bt-blue" onclick="window.location.href='#'">VERIFICAR</button>
                 <button class="bt-blue" onclick="window.location.href='#'">ELIMINAR</button>
               </div>

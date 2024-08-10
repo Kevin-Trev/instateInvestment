@@ -92,3 +92,8 @@ Route::get('/catalogo-administrador', function () {
 });
 
 Route::get('/obtener-notificaciones', [NotificacionController::class, 'obtenerNotificaciones']);
+
+Route::get('/revisar', function () {
+    return view('admin.revisar'); 
+})->name('revisar');
+
