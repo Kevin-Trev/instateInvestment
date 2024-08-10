@@ -250,8 +250,6 @@
 
 @section('body')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<form action='/post/propiedad' method="POST" enctype="multipart/form-data" id="formPropiedad">
-    @csrf
     <div class="container" id="primerPaso">
         <input type="hidden" id="propiedadId" name="ID_P">
         <h1>Publica una nueva propiedad</h1>
@@ -301,9 +299,7 @@
                 <div class="contenedorDatos">
                     <div class="form-group">
                         <label for="Ciudad">Ciudad:</label>
-                        <select class="form-control" name="Ciudad" id="Ciudad">
-                            
-                        </select>
+                        <input type="text" class="form-control" name="Ciudad" id="Ciudad">
                     </div>
                     <div class="form-group">
                         <label for="Estado">Estado:</label>
@@ -355,11 +351,11 @@
                 </div>
                 <div class="contenedorDatos">
                     <div class="form-group">
-                        <label for="num_interior">Núm. interior (opcional):</label>
+                        <label for="num_interior">Núm. interior:</label>
                         <input type="text" class="form-control" name="num_interior" id="Num_interior" placeholder="Ingresa la calle">
                     </div>
                     <div class="form-group">
-                        <label for="num_exterior">Núm. exterior (opcional):</label>
+                        <label for="num_exterior">Núm. exterior:</label>
                         <input type="text" class="form-control" name="num_exterior" id="Num_exterior" placeholder="Ingresa la calle">
                     </div>
                 </div>
@@ -588,7 +584,7 @@
                 </div>
                 <div class="form-group">
                     <label for="Precio">Precio:</label>
-                    <input type="text" class="form-control" id="Precio" name="Precio" placeholder="Ingrese un titulo para su propiedad">
+                    <input type="number" class="form-control" id="Precio" name="Precio" placeholder="Ingrese un titulo para su propiedad">
                 </div>
                 <div class="form-group">
                     <label>¿Propiedad disponible para la compra?</label>
@@ -670,16 +666,18 @@
 
                     <div class="buttonContainer">
                         <button type="button" id="button8" class="btn-white">Regresar</button>
-                        <button type="submit" class="btn-blue">Finalizar</button>
+                        <button type="button" id="buttonEnviar" class="btn-blue">Finalizar</button>
                     </div>
             </div>
     </div>
-</form>
 @endsection
 
 @section('js')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
+        let arregloServicios = [];
+        var formData = new FormData();
+
         async function fetchTipoPropiedad(){
             await $.get('/get/typeProperties', function (tipos){
                 var selectTipo = $('#tipoPropiedad');
@@ -693,43 +691,33 @@
         }
 
         async function fetchServicios(){
-            console.log('entre primero')
             await $.get('/get/servicios', function(servicios){
                 var serviciosCheck = $('#servicio');
                 serviciosCheck.empty();
                 servicios.forEach(servicio => {
                     serviciosCheck.append(`
-                        <input type="checkbox" class="btn-check" name="servicio_id" value="${servicio.ID_SERV}" id="${servicio.ID_SERV}" autocomplete="off">
+                        <input type="checkbox" class="btn-check" name="servicio_id[]" id="${servicio.ID_SERV}" value="${servicio.ID_SERV}" autocomplete="off">
                         <label class="btn btn-outline-primary" for="${servicio.ID_SERV}">${servicio.Servicio}</label>
                     `);
                 });
             });
         }
 
-        function openFileInput(){
-            
-        }
-
-        function handleFileSelect(){
-            
-        }
-
-        let servicios = [];
-
-        function enviarForm(){    
+        async function enviarForm(){
             $.ajax({
-                url: '/add/propiedadServicio',
-                headers: {
+                url: '/post/propiedad',
+                method: 'POST',
+                headers :{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                method: 'POST',
-                data: {Propiedad_id: 1, Servicio_id: 1},
+                data: formData,
+                processData: false,
+                contentType: false,
                 success: function(response){
-                    console.log(servicios);
-                    // window.location.href = '{{route("catalogo")}}'; //cambiar a la ruta del perfil usuario
+                    console.log('yei', response);
                 },
                 error: function(error){
-                    console.log(error);
+                    console.log('nonononono', error);
                 }
             });
         }
@@ -750,8 +738,47 @@
             var valorFondo = parseInt($('#Fondo').val());
             var Area = $('#Area');
 
-            // Para que no se elimine el placeholder de los inputs
+            // Formulario 
 
+            $('input[name="servicio_id[]"]').on('change', function(){
+                if($(this).is(':checked')){
+                    arregloServicios.push($(this).val());    
+                }
+                else{
+                    const valor = $(this).val();
+                    const indice = arregloServicios.indexOf(valor);
+                    if (indice !== -1){
+                        arregloServicios.splice(indice, 1);
+                    } 
+                }
+                console.log(arregloServicios);
+            });
+            
+
+            $('#buttonEnviar').on('click', function(){
+
+                formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+                formData.append('Titulo', $('#Titulo').val());
+                formData.append('Precio', $('#Precio').val());
+                formData.append('Recamaras', $('#Recamaras').val());
+                formData.append('Baños', $('#Baños').val());
+                formData.append('Codigo_Postal', $('#Codigo_Postal').val());
+                formData.append('num_exterior', $('#Num_exterior').val());
+                formData.append('num_interior', $('#Num_interior').val());
+                formData.append('Colonia', $('#Colonia').val());
+                formData.append('Calle', $('#Calle').val());
+                formData.append('Ciudad', $('#Ciudad').val());
+                formData.append('Estado', $('#Estado').val());
+                formData.append('Area', $('#Area').val());
+                formData.append('Frente', $('#Frente').val());
+                formData.append('Fondo', $('#Fondo').val());
+                formData.append('Rentable', $('[name="Rentable"]').val());
+                formData.append('Vendible', $('[name="Vendible"]').val());
+                formData.append('servicios', JSON.stringify(arregloServicios));
+                formData.append('Tipo_Propiedad_id', $('#tipoPropiedad').val());
+                
+                enviarForm();
+            });
             
 
             // Funciones para aumentar o disminuir el valor con los botones "+", "-"
@@ -766,7 +793,7 @@
             $('#plusRecamaras').on('click', function(){
                 $('#Recamaras').val(valorRecamaras + 1);
                 valorRecamaras++;
-            })
+            });
 
             $('#minusBaños').on('click', function(){
                 if (valorBaños > 0){
@@ -825,19 +852,6 @@
                 if (selectedFile){
                     console.log('archivo seleccionado: ' + selectedFile.name);
                 }
-            });
-            
-
-            $('input[type="checkbox"]').on('click', function(){
-                if($(this).is(':checked')){
-                    servicios.push($(this).val());
-                }
-                else{
-                    // La casilla ya no está marcada
-                    const valueToRemove = $(this).val();
-                    servicios = servicios.filter(item => item !== valueToRemove);
-                }
-                console.log(servicios); 
             });
 
             $('#button1').on('click', function(){
@@ -916,7 +930,6 @@
                     $('#Baños-group').css("display", "inline-block");
                     $('#Recamaras-group').css("display", "inline-block");
                     $('#Areas-group').css("display", "inline-block");
-                    console.log(servicios);
                 }
                 else if(Tipo === "Quinta"){
                     $('#Frente-group').css("display", "inline-block");
@@ -938,6 +951,7 @@
                     $('#Baños-group').css("display", "none");
                     $('#Recamaras-group').css("display", "none");
                     $('#Areas-group').css("display", "inline-block");
+                    console.log(formData);
                 }
                 else{
                     $('#Frente-group').css("display", "inline-block");
@@ -948,13 +962,8 @@
                 }
             });
 
-            // Envia el formulario de propiedad y consiguiente el formulario de propiedadServicio
-
-            $('#formPropiedad').on('submit', function(event){
-                event.preventDefault();
-                enviarForm();
-            })
-            
         });
+
+            // Envia el formulario de propiedad y consiguiente el formulario de propiedadServicio
     </script>
 @endsection

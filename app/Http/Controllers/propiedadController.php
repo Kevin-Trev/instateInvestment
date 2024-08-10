@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\propiedades;
 use App\Models\COMENTARIO;
 use App\Models\imagenes_propiedad;
+use App\Models\PROPIEDAD_SERVICIO;
+use Illuminate\Support\Facades\Auth;
 use Exception;
 
 class PropiedadController extends Controller
@@ -87,14 +89,21 @@ class PropiedadController extends Controller
         return view('detallesPropiedad', compact('propiedad','comentarios','moreProperties'));
     }
 
-    public function newProperty (Request $request) {    /* agregar request en caso de formulario */
+    public function newProperty (Request $request){   
 
-        DB::beginTransaction();
+    DB::beginTransaction();
 
         try{
+            
+
+            // Decodificacion del array de servicios
+
+            $serviciosArray = $request->input('servicios');
+            $servicios = json_decode($serviciosArray, true);
+
+            // Crear nuevo registro
 
             $propiedad = new propiedades();
-
             $propiedad->Titulo = $request->input('Titulo');
             $propiedad->Precio = $request->input('Precio');
             $propiedad->Recamaras = $request->input('Recamaras');
@@ -103,30 +112,37 @@ class PropiedadController extends Controller
             $propiedad->Codigo_Postal = $request->input('Codigo_Postal');
             $propiedad->num_exterior = $request->input('num_exterior');
             $propiedad->num_interior = $request->input('num_interior');
-            $propiedad->Calle = $request->input('calle');
             $propiedad->Colonia = $request->input('Colonia');
+            $propiedad->Calle = $request->input('Calle');
             $propiedad->Ciudad = $request->input('Ciudad');
             $propiedad->Estado = $request->input('Estado');
+            $propiedad->Area = $request->input('Area');
             $propiedad->Frente = $request->input('Frente');
             $propiedad->Fondo = $request->input('Fondo');
-            $propiedad->Area = $request->input('Area');
             $propiedad->Verificacion = 0;
             $propiedad->Rentable = $request->input('Rentable');
             $propiedad->Vendible = $request->input('Vendible');
-            $propiedad->users_Id = 1; // cambiar 1 por 'auth()->id();
+            $propiedad->users_Id = Auth::user()->id;
             $propiedad->Tipo_Propiedad_id = $request->input('Tipo_Propiedad_id');
 
-            if($propiedad->save()){    
+            if($propiedad->save()){
 
-                registrarServicios($request, $propiedad->ID_P);
-                uploadImagesProperty($request, $propiedad->ID_P);
-                DB::commit();
+                foreach($servicios as $servicio){
+                    PROPIEDAD_SERVICIO::Create([
+                        'Propiedad_id' => $propiedad->ID_P,
+                        'Servicio_id' => $servicio,
+                    ]);
+                }
+
+                DB::Commit();
+
+                return redirect()->route('perfil');
             }
+
         }
         catch(\Exception $e){
             DB::rollback();
             return response()->json(['Error al crear registro: ' . $e->getMessage()], 500);
-
         }
     }
 

@@ -42,5 +42,7 @@ class viewsController extends Controller
         return view ('Login-Register.recuperarContraseña');
     }
 
-    
+    public function perfil(){
+        return view('hubs.perfil');
+    }
 }

@@ -24,17 +24,27 @@ use App\Http\Controllers\NotificacionController;
 |
 */
 
+// Inicio de la pagina
+
 Route::get('/', function () {
     return view('index');
 })->name('inicio');
 
+<<<<<<< Updated upstream
 // 
 
 Route::get('/propiedades/{id}/mapa', [propiedadController::class, 'VerEnMaps'])->name('propiedades.mapa');
 
 // 
+=======
+// Rutas para obtener datos de la BD 
+
+Route::get('/get/typeProperties', [TipoPropiedadController::class, 'index']);
+>>>>>>> Stashed changes
 Route::get('/tuspropiedades', [perfilController::class, 'tuspropiedades'])->name('propiedades.index');
-// 
+Route::get('/get/servicios', [servicioController::class, 'index']);
+
+// Rutas para login y/o gestión del usuario
 
 Route::post('/login', [usuariosController::class, 'login']);
 Route::post('/logout', [usuariosController::class, 'logout']);
@@ -43,29 +53,25 @@ Route::post('/useredit', [usuariosController::class, 'editarUsuario']);
 Route::delete('/userdel', [usuariosController::class, 'eliminarUsuario']);
 Route::get('get/user/{id}', [usuariosController::class, 'datosUsuario']);
 
+// Rutas necesarias para las propiedades
+
 Route::get('/get/properties',[propiedadController::class, 'index']);
 Route::get('/get/results/propeties/{transaccion}/{ciudad}', [propiedadController::class, 'propiedadesResultados']);
 Route::get('/get/property/{id}', [propiedadController::class, 'getProperty']);
 Route::post('/post/propiedad', [propiedadController::class, 'newProperty']); /* cambiar de GET a POST */
 
+// Ruta para publicar un comentario
+
 Route::post('/post/comentario/', [comentarioController::class, 'comentar']);
 
-Route::get('/get/typeProperties', [TipoPropiedadController::class, 'index']);
-
-Route::get('/get/servicios', [servicioController::class, 'index']);
-
-Route::post('/add/propiedadServicio', [propiedadServicioController::class, 'store']);
-
-Route::get('/hubs/perfil', function () { return view('hubs.perfil'); });
-Route::get('/hubs/perfi/seguridad', function () { return view('hubs.seguridad'); });
-
-Route::get('/enviar/correo/{email}', [correoController::class, 'enviarCorreo']);
-
+// Rutas de vistas a las que solo puede acceder un usuario con una sesión iniciada 
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/views/hubs/perfil', function () { return view('hubs.perfil'); })->name('perfil');
+    Route::get('/views/perfil', [viewsController::class, 'perfil'])->name('perfil');
     Route::get('/views/agregar/propiedad', [viewsController::class, 'agregarPropiedad'])->name('agregarPropiedad');
 });
+
+// Rutas relacionadas al inicio de la pagina
 
 Route::get('/views/login',[viewsController::class, 'login'])->name('login');
 Route::get('/views/registro', [viewsController::class, 'registro'])->name('registro');
@@ -74,16 +80,17 @@ Route::get('/views/catalogo' , [viewsController::class, 'catalogoPropiedades'])-
 Route::get('/views/politicas/terminos', [viewsController::class, 'terminosCondiciones'])->name('terminosCondiciones');
 Route::get('/views/politicas/avisoPrivacidad', [viewsController::class, 'avisoPrivacidad'])->name('avisoPrivacidad');
 Route::get('/views/detalles/propiedad', [viewsController::class, 'detallePropiedad'])->name('detallesPropiedad');
-Route::get('/views/recuperar/contraseña', [viewsController::class, 'recuperarContraseña'])->name('restablecer');
 
 //Rutas que se utilizan para restablecer la contraseña de un usuario
 
+Route::get('/views/recuperar/contraseña', [viewsController::class, 'recuperarContraseña'])->name('restablecer');
 Route::post('/enviar/correo/recuperar', [usuariosController::class, 'correoRestablecer']);
 Route::get('/restablecer/contraseña/{token}/{email}', [usuariosController::class, 'formularioActualizar'])->name('formularioActualizar');
 Route::post('/actualizar/contraseña', [usuariosController::class, 'actualizarContraseña']);
 
 
 
+// *Val nmms* 
 
 // vista perfil del admin en la carpeta admin/perfilAd para que Brandon no este ch...
 Route::get('/perfil-administrador', function () {

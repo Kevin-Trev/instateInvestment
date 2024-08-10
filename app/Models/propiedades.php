@@ -14,9 +14,9 @@ class propiedades extends Model
     public $timestamps = false;
 
     protected $fillable=[
-        'titulo', 'precio', 'recamaras','baños', 'disponibilidad', 'direccion','codigo_postal', 'num_exterior','num_interior', 'colonia',
-        'calle','ciudad','estado','area', 'frente', 'fondo', 'rentable', 'vendible',
-        'users_Id', 'Tipo_Propiedad_id', 'verificacion'
+        'Titulo', 'Precio', 'Recamaras','Baños', 'Disponibilidad', 'Direccion','Codigo_Postal', 'num_exterior','num_interior', 'Colonia',
+        'Calle','Ciudad','Estado','Area', 'Frente', 'Fondo', 'Rentable', 'Vendible',
+        'users_Id', 'Tipo_Propiedad_id', 'Verificacion'
     ];
 
     public function tipo_propiedad(){
