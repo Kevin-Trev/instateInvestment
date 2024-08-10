@@ -67,9 +67,7 @@ Route::get('/views/politicas/terminos', [viewsController::class, 'terminosCondic
 Route::get('/views/politicas/avisoPrivacidad', [viewsController::class, 'avisoPrivacidad'])->name('avisoPrivacidad');
 Route::get('/views/detalles/propiedad', [viewsController::class, 'detallePropiedad'])->name('detallesPropiedad');
 
-<<<<<<< Updated upstream
 
-=======
 //Rutas que se utilizan para restablecer la contraseña de un usuario
 
 Route::get('/views/recuperar/contraseña', [viewsController::class, 'recuperarContraseña'])->name('restablecer');
@@ -79,7 +77,6 @@ Route::post('/actualizar/contraseña', [usuariosController::class, 'actualizarCo
 Route::get('/correo/enviado', [viewsController::class, 'enviado'])->name('correoEnviado');
 Route::post('/verificar/token', [usuariosController::class, 'validateToken']);
 Route::get('/error', [viewsController::class, 'error'])->name('error');
->>>>>>> Stashed changes
 
 
 

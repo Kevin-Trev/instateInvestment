@@ -1466,7 +1466,6 @@
   mostrarPagina(1);
 
 
-<<<<<<< Updated upstream
      var transaccion = localStorage.getItem('opcion')
      var ciudad = localStorage.getItem('ciudad')
 
@@ -1491,7 +1490,6 @@
        $('#resultado').text("Buscando Propiedades " + opcion + "s en " + ciudad);
        resultadoBusqueda(opcion, ciudad);
      })
-=======
     var transaccion = localStorage.getItem('opcion')
     var ciudad = localStorage.getItem('ciudad')
 
@@ -1516,7 +1514,6 @@
       $('#resultado').text("Buscando Propiedades " + opcion + "s en " + ciudad);
       resultadoBusqueda(opcion, ciudad);
     })
->>>>>>> Stashed changes
 
 
   });
