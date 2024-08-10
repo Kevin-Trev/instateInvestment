@@ -30,17 +30,13 @@ Route::get('/', function () {
     return view('index');
 })->name('inicio');
 
-<<<<<<< Updated upstream
-// 
+// Ruta para mostrar propiedad en el gugul maps
 
 Route::get('/propiedades/{id}/mapa', [propiedadController::class, 'VerEnMaps'])->name('propiedades.mapa');
 
-// 
-=======
 // Rutas para obtener datos de la BD 
 
 Route::get('/get/typeProperties', [TipoPropiedadController::class, 'index']);
->>>>>>> Stashed changes
 Route::get('/tuspropiedades', [perfilController::class, 'tuspropiedades'])->name('propiedades.index');
 Route::get('/get/servicios', [servicioController::class, 'index']);
 
