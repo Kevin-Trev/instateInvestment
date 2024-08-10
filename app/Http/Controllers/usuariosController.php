@@ -47,13 +47,10 @@ class UsuariosController extends Controller
            
             if($user->save()){
                 DB::commit();
-
                 Mail::send('correo.bienvenida', [], function ($message) use ($user){
                     $message->to($user->email)->subject('Nuevo usuario')->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-
-                Auth::login($user);
-                
                 });
+                Auth::login($user);
                 return redirect('/views/registro/finalizado');
             }
         }
@@ -61,7 +58,6 @@ class UsuariosController extends Controller
             DB::rollBack();
             return response()->json(['error' => $e->getMessage()]);
         }
-
     }
 
     public function login () {
@@ -84,7 +80,7 @@ class UsuariosController extends Controller
 
     public function logout () {
         Auth::logout();
-        return redirect('/');
+        return redirect(url()->previous());
     }
 
     public function eliminarUsuario () {

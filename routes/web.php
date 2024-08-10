@@ -59,6 +59,7 @@ Route::post('/post/propiedad', [propiedadController::class, 'newProperty']); /* 
 // Ruta para publicar un comentario
 
 Route::post('/post/comentario/', [comentarioController::class, 'comentar']);
+Route::get('/delete/comentario/{id}', [comentarioController::class, 'eliminarComentario']);
 
 // Rutas de vistas a las que solo puede acceder un usuario con una sesión iniciada 
 

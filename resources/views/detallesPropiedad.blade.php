@@ -206,6 +206,15 @@
             margin: 10px 0 10px 10px;
         }
 
+        .MsgRegistrate {
+            width: 90%;
+            padding: 5%;
+            margin: 20px 0 20px 60px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
         .user{
             display: flex;
         }
@@ -453,34 +462,49 @@
 
         <div id="comentariosContainer">
             <h3>Comentarios</h3>
-            <div class="agregarComentario">
-                <img src="https://picsum.photos/300/200">
-                <form action="/post/comentario" method="POST">
-                    @csrf
-                    @auth
-                    <input type="number" name="user_id" value="{{Auth::user()->id}}" readonly hidden>
-                    <input type="number" name="propiedad_id" value="{{$propiedad->ID_P}}" readonly hidden>
-                    @endauth
-                    <div class="input-group">
-                        <textarea name="Comentario" id="comentario" cols="100" rows="1" class="form-control"></textarea>
-                        <button class="btn-blue" type="submit">Añadir comentario</button>
-                    </div>
-                </form>
-            </div>
-            @foreach ($comentarios as $comentario)
-            <div class="comentario">
-                <div class="user">
-                    @if ($comentario->users->Foto)
-                    <img src="{{asset('ImagesPublished/'.$comentario->users->Foto)}}">  
-                    @else
-                    <img src="https://picsum.photos/300/200">  
-                    @endif
-                    <p>{{$comentario->users->name}}</p>
-                    <p class="date">{{$comentario->Fecha}}</p>
+            @if (Session::has('comentado'))  {{--Mensaje de comentario enviado--}}
+                <div class="alert alert-success text-center" role="alert">{{ Session::get('comentado') }}</div>
+            @endif
+            @if (Session::has('comentario_eliminado'))   {{--Mensaje de comentario eliminado--}}
+                <div class="alert alert-danger text-center" role="alert">{{ Session::get('comentario_eliminado') }}</div>
+            @endif
+            @auth
+                <div class="agregarComentario">
+                    <img src="https://picsum.photos/300/200">
+                    <form action="/post/comentario" method="POST">
+                        @csrf
+                        <input type="number" name="user_id" value="{{Auth::user()->id}}" readonly hidden>
+                        <input type="number" name="propiedad_id" value="{{$propiedad->ID_P}}" readonly hidden>
+                        <div class="input-group">
+                            <textarea name="Comentario" id="comentario" cols="100" rows="1" class="form-control"></textarea>
+                            <button class="btn-blue" type="submit">Añadir comentario</button>
+                        </div>
+                    </form>
                 </div>
-                <p class="textContainer">{{$comentario->Comentario}}</p>
-            </div>
-            @endforeach
+                @foreach ($comentarios as $comentario)
+                    <div class="comentario">
+                        <div class="user">
+                            @if ($comentario->users->Foto)
+                            <img src="{{asset('ImagesPublished/'.$comentario->users->Foto)}}">  
+                            @else
+                            <img src="https://picsum.photos/300/200">  
+                            @endif
+                            <p>{{$comentario->users->name}}</p>
+                            <p class="date">{{$comentario->Fecha}}</p>
+                            @if (Auth::check() && Auth::user()->id === $comentario->users_id)
+                            <button class="btn btn-danger"><a class="nav-link" href="/delete/comentario/{{$comentario->ID_COM}}">X</a></button>
+                            @endif
+                        </div>
+                        <p class="textContainer">{{$comentario->Comentario}}</p>
+                    </div>
+                @endforeach
+            @endauth
+            @guest
+                <div class="MsgRegistrate">
+                    <h5>Para ver y publicar comentarios</h5><br>
+                    <button class="btn btn-primary mx-auto"><a class="nav-link" href="{{route('login')}}">Iniciar Sesión</a></button>
+                </div>
+            @endguest
             {{-- <div class="comentario">
                 <div class="user">
                     <img src="https://picsum.photos/300/200">
@@ -676,4 +700,13 @@
             </div>
       
       </footer>
+@endsection
+
+@section('js')
+<script>
+
+    function eliminarComentario(id){
+        
+    }
+</script>
 @endsection

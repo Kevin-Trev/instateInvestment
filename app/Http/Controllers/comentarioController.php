@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\COMENTARIO;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Exception;
 
 class comentarioController extends Controller
@@ -18,7 +19,6 @@ class comentarioController extends Controller
     public function comentar(Request $request) {
 
         DB::beginTransaction();
-
         try{
             $comentario = new COMENTARIO();
 
@@ -29,16 +29,19 @@ class comentarioController extends Controller
 
             if($comentario->save()){
                 DB::commit();
-                return redirect('/get/property/'.$request->propiedad_id);
+                return redirect('/get/property/'.$request->propiedad_id)->with('comentado', 'Comentario Registrado ( Fecha: '. now().' )');
             }
         }
         catch (\Exception $e){
             DB::rollback();
             return response()->json('error: revirtiendo cambios');
         }
-
-
-
     }
 
+    public function eliminarComentario($id) {
+        $comentario = COMENTARIO::find($id);
+        $propiedad_id = $comentario->Propiedad_id;
+        $comentario->delete(); 
+        return redirect('/get/property/'.$propiedad_id)->with('comentario_eliminado', 'Comentario Eliminado');
+    }
 }
