@@ -1466,30 +1466,30 @@
   mostrarPagina(1);
 
 
-  //   var transaccion = localStorage.getItem('opcion')
-  //   var ciudad = localStorage.getItem('ciudad')
+     var transaccion = localStorage.getItem('opcion')
+     var ciudad = localStorage.getItem('ciudad')
 
-  //   if(transaccion && ciudad) {
-  //     $('#transaccion').val(transaccion);
-  //     $('#ciudad').val(ciudad);
+     if(transaccion && ciudad) {
+       $('#transaccion').val(transaccion);
+       $('#ciudad').val(ciudad);
 
-  //     resultadoBusqueda(transaccion, ciudad);
-  //     console.log("Buscando Propiedades " + transaccion + "s en " + ciudad);
+       resultadoBusqueda(transaccion, ciudad);
+       console.log("Buscando Propiedades " + transaccion + "s en " + ciudad);
 
-  //     localStorage.removeItem('opcion');
-  //     localStorage.removeItem('ciudad');
-  //   }
-  //   else{
-  //     cargarPropiedades(); // agregalo como comentario en caso de diseño front //
-  //   }
+       localStorage.removeItem('opcion');
+       localStorage.removeItem('ciudad');
+     }
+     else{
+       cargarPropiedades(); // agregalo como comentario en caso de diseño front 
+     }
 
-  //   $('#buscar').on('click', function() {
-  //     var opcion = $('#transaccion').val();
-  //     var ciudad = $('#ciudad').val();
-  //     console.log("Buscando Propiedades " + opcion + "s en " + ciudad);
-  //     $('#resultado').text("Buscando Propiedades " + opcion + "s en " + ciudad);
-  //     resultadoBusqueda(opcion, ciudad);
-  //   })
+     $('#buscar').on('click', function() {
+       var opcion = $('#transaccion').val();
+       var ciudad = $('#ciudad').val();
+       console.log("Buscando Propiedades " + opcion + "s en " + ciudad);
+       $('#resultado').text("Buscando Propiedades " + opcion + "s en " + ciudad);
+       resultadoBusqueda(opcion, ciudad);
+     })
 
 
   });
