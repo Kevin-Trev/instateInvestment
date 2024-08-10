@@ -443,7 +443,10 @@
                 </div>
                 <p class="text">C. {{$propiedad->Calle}} #Ext. {{$propiedad->num_exterior ?: 'S/N'}} #Int. {{$propiedad->num_interior ?: 'S/N'}} Col. {{$propiedad->Colonia}} CP. {{$propiedad->Codigo_Postal}}</p>
                 <footer>
-                    <a href="https://wa.me/{{$propiedad->users->Telefono}}"><button class="wasa"><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</button></a>
+                    <div class = "row btn col-12">
+                      <a href="{{ route('propiedades.mapa', ['id' => $propiedad->ID_P]) }}"><button class="btn btn-primary col-6">Ver En Maps</button></a>
+                      <a href="https://wa.me/{{$propiedad->users->Telefono}}"><button class="wasa"><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</button></a>
+                    </div>
                 </footer>
             </div>
         </div>

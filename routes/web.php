@@ -29,6 +29,10 @@ Route::get('/', function () {
 })->name('inicio');
 
 // 
+
+Route::get('/propiedades/{id}/mapa', [propiedadController::class, 'VerEnMaps'])->name('propiedades.mapa');
+
+// 
 Route::get('/tuspropiedades', [perfilController::class, 'tuspropiedades'])->name('propiedades.index');
 // 
 

@@ -149,4 +149,15 @@ class PropiedadController extends Controller
             }
         }
     }
+
+    public function VerEnMaps($id)
+{
+    $propiedad = Propiedades::findOrFail($id);
+
+    $direccion = $propiedad->Calle . ', ' . $propiedad->num_exterior . ' ' . $propiedad->num_interior . ', ' .
+                 $propiedad->Colonia . ', ' . $propiedad->Ciudad . ', ' . $propiedad->Estado . ', ' . 
+                 $propiedad->Codigo_Postal;
+
+    return view('hubs.Maps', compact('direccion'));
+}
 }
