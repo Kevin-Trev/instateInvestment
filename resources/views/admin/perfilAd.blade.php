@@ -22,6 +22,35 @@
     display: none;
   }
 
+  .bt-blue {
+    background-color: #3370FF;
+    color: #FFFFFF;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    display: block;
+    text-align: center;
+  }
+  .bt-blue:hover {
+    background-color: #002E99;
+    transition: .5s;
+  }
+
+  .card {
+    margin-top: 20px;
+    padding: 15px;
+  }
+
+  .property-details {
+    margin-bottom: 15px;
+  }
+  
+  .property-detail {
+    margin-bottom: 5px;
+  }
+
   .image-card {
     width: 100%;
     height: 150px;
@@ -33,19 +62,16 @@
     object-fit: cover;
     margin-left: 10px;
   }
-
-  .bt-blue {
-    background-color: #3370FF;
-    color: #FFFFFF;
-    padding: 8px 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 5px;
+  
+  .property-detail-icon {
+    margin-right: 5px;
   }
-  .bt-blue:hover {
-    background-color: #002E99;
-    transition: .5s;
+
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
   }
 </style>
 
@@ -81,6 +107,10 @@
         <label for="telefono" class="form-label">Teléfono</label>
         <input type="text" class="form-control" id="telefono" value="8713428967">
       </div>
+      <!-- EDITAR -->
+      <div class="mb-3">
+        <button class="btn btn-primary" onclick="editProfile()">EDITAR</button>
+      </div>
     </div>
 
     <main class="col-md-9 ml-sm-auto col-lg-9 px-md-4">
@@ -89,38 +119,36 @@
         <li class="nav-item">
           <a class="nav-link active" id="publicaciones-tab" aria-current="page" href="#">Publicaciones</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" id="estadisticas-tab" href="#">Estadísticas</a>
-        </li>
       </ul>
       <!-- LISTA DE PROPIEDADES -->
       <div class="property-list" id="pl">
-        <!-- PROPIEDADES -->
-        @if($propiedades->isEmpty())
-            <p>No hay propiedades no verificadas.</p>
-        @else
-            @foreach ($propiedades as $propiedad)
-                <div class="card" style="margin-top: 5px;">
-                    <div class="row">
-                        <div class="image-card col-md-3">
-                            <img src="{{ asset('Imagenes/Fondo-seccion1.png') }}">
-                        </div>
-                        <div class="col-md-7">
-                            <h3>{{ $propiedad->titulo }}</h3>
-                            <p>${{ $propiedad->precio }}</p>
-                            <div class="property-details">
-                                <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{ $propiedad->recamaras }} Recámaras</span></div>
-                                <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>{{ $propiedad->baños }} Baños</span></div>
-                                <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{ $propiedad->area }} M² construidos</span></div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="{{ route('revisarPropiedad', ['id' => $propiedad->id]) }}" class="bt-blue">REVISAR</a>
-                        </div>
-                    </div>
+        <h2> PROPIEDADES NO VERIFICADAS </h2>
+        <!-- PROPIEDAD DE EJEMPLO -->
+        <div class="card">
+          <div class="row no-gutters">
+            <div class="image-card col-md-3">
+              <img src="{{ asset('Imagenes/Fondo-seccion1.png') }}" alt="Imagen de propiedad">
+            </div>
+            <div class="col-md-7">
+              <div class="card-body">
+                <h3 class="card-title">Propiedad</h3>
+                <p class="card-text">$250,000</p>
+                <div class="property-details">
+                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>3 Recámaras</span></div>
+                  <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>2 Baños</span></div>
+                  <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>120 M² construidos</span></div>
                 </div>
-            @endforeach
-        @endif
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="action-buttons">
+                <button class="bt-blue" onclick="window.location.href='#'">REVISAR</button>
+                <button class="bt-blue" onclick="window.location.href='#'">VERIFICAR</button>
+                <button class="bt-blue" onclick="window.location.href='#'">ELIMINAR</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   </div>
@@ -135,22 +163,21 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
       const publicacionesTab = document.getElementById('publicaciones-tab');
-      const estadisticasTab = document.getElementById('estadisticas-tab');
       const publicacionesSection = document.getElementById('pl');
-      const estadisticasSection = document.getElementById('pl2');
+   
       // INICIAR EN PUBLICACIONES
       publicacionesSection.classList.remove('hidden');
-      estadisticasSection.classList.add('hidden');
 
       // VISTA PUBLICACIONES
       publicacionesTab.addEventListener('click', function() {
         publicacionesSection.classList.remove('hidden');
-        estadisticasSection.classList.add('hidden');
         publicacionesTab.classList.add('active');
-        estadisticasTab.classList.remove('active');
       });
-      
-  
     });
+
+    function editProfile() {
+  
+        alert("Editar perfil no jala.");
+    }
 </script>
 @endsection
