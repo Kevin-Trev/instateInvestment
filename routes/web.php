@@ -10,6 +10,7 @@ use App\Http\Controllers\servicioController;
 use App\Http\Controllers\propiedadServicioController;
 use App\Http\Controllers\perfilController;
 use App\Http\Controllers\correoController;
+use App\Http\Controllers\NotificacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,10 +73,8 @@ Route::get('/views/detalles/propiedad', [viewsController::class, 'detallePropied
 
 
 // vista perfil del admin en la carpeta admin/perfilAd para que Brandon no este ch...
-Route::get('/perfil-administrador', function () {
-    $usuario = auth()->user(); 
-    return view('admin.perfilAd', compact('usuario'));
-});
+Route::get('/admin/perfil', [UsuariosController::class, 'mostrarPerfilAdmin'])->name('perfilAdmin');
+
 
 // vista catalogo del admin en la carpeta admin/catalogo para que Brandon no este ch...
 
@@ -83,3 +82,4 @@ Route::get('/catalogo-administrador', function () {
     return view('admin.catalogo');
 });
 
+Route::get('/obtener-notificaciones', [NotificacionController::class, 'obtenerNotificaciones']);

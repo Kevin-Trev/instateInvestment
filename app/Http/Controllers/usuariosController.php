@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Propiedades;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -129,5 +130,13 @@ class UsuariosController extends Controller
 
         return redirect()->route('login')->with('message', 'Tu contraseña se ha cambiado correctamente');
     }
+    public function mostrarPerfilAdmin()
+{
+   
+    $propiedadesNoVerificadas = Propiedades::where('verificacion', false)->get();
+
+    return view('admin.perfilAd', ['propiedades' => $propiedadesNoVerificadas]);
+
+}
 }
 
