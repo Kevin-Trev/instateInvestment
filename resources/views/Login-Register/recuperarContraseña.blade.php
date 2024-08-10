@@ -14,14 +14,19 @@
     margin: 0; 
 }
 
+body{
+    overflow-y: hidden;
+}
+
 .container {
+    text-align: center;
     width: 500px;
     margin: 100px auto;
     padding: 30px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    transform: translateY(20px);
+    transform: translateY(6vw);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 
@@ -35,6 +40,28 @@
     margin-bottom: 5px;
     width: 100%;
 }
+
+.form-group{
+    padding: 10px 0 20px 0;
+}
+
+.bt-blue a{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+#correoEnviado{
+    display: none;
+}
+
+.error{
+    color: red;
+    font-size: 12px;
+    text-align: start;
+    display: none;
+    margin: -15px 0 10px 0;
+}
+
     </style>
 </head>
 <body>
@@ -42,19 +69,47 @@
         <h2>Restablecer contraseña</h2>
         <form action="/enviar/correo/recuperar" method="POST" id="formEmail">
             @csrf
-            <input type="email" id="inputCorreo" placeholder="Ingrese el correo electrónico" name="email">
-            <button type="submit">Enviar correo de recuperación</button>
+            <p>Para restablecer tu contraseña necesitas ingresar un correo electrónico, el correo te llegará en breve.</p>
+            <div class="form-group">
+                <input type="email" id="inputCorreo" class="form-control" placeholder="Ingrese el correo electrónico" name="email">
+            </div>
+            <p class="error">Ingresa un correo electrónico válido</p>
+            <button type="button" id="buttonSubmit" class="bt-blue">Enviar correo de recuperación</button>
         </form>
     </div>
 
-    <div class="container" id="correoEnviado">
-        <h2>¡Correo enviado!</h2>
-        <p>Hemos enviado un correo donde encontraras un enlace para proseguir con este proceso.</p>
-        <button><a href="/">Regresar al inicio</a></button>
-    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-    
+    $(document).ready(function(){
+        let peticion = $('#email');
+        let recibo = $('#correoEnviado');
+        let error = $('.error');
+        var patron = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        $('#buttonSubmit').on('click', function(){
+            if(patron.test($('#inputCorreo').val())){
+                peticion.css("display", "none");
+                recibo.css("display", "block");
+                $('#formEmail').submit();
+            }
+            else{
+                error.css("display", "block");
+            }
+        })
+
+        $('#inputCorreo').on('keyup', function(){
+            error.css("display", "none");
+        })
+
+        $('#formEmail').on('keydown', function (event){
+                if (event.keyCode === 13){
+                    event.preventDefault();
+                    if($('#email').is(':visible')){
+                        $('#buttonSubmit').click();
+                    }
+                }
+            });
+    })
 </script>
 </html>

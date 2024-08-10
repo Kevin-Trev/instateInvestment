@@ -401,7 +401,6 @@
                     event.preventDefault();
                     if(emailContenedor.is(':visible')){
                         $('#button1').click();
-                        console.log("ss")
                     }
                     else if(datosContenedor.is(':visible')){
                         $('#button2').click();

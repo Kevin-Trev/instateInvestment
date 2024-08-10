@@ -91,7 +91,10 @@ class UsuariosController extends Controller
     }
 
     public function correoRestablecer(Request $request){
-        $token = Str::random(64);
+        $user = user::where('email', $request->email)->first();
+
+        if($user){
+            $token = Str::random(64);
         DB::table('password_reset_tokens')->where(['email' => $request->email])->delete();
 
         DB::table('password_reset_tokens')->insert([
@@ -105,7 +108,12 @@ class UsuariosController extends Controller
             $message->subject('Recuperar contraseña');
         });
 
-        return back()->with('message', 'Te hemos enviado un email con las instrucciones para que recuperes tu contraseña');
+        return redirect()->route('correoEnviado');
+        }
+
+        else {
+            return redirect()->back()->with('error', 'El correo electronico no existe');
+        }
 
     }
 
@@ -114,6 +122,13 @@ class UsuariosController extends Controller
     }
 
     public function actualizarContraseña(Request $request){
+
+        $tokenExists = DB::table('password_reset_tokens')->where('token', $request->token)->exists();
+
+        if(!$tokenExists){
+            return redirect()->route('error');
+        }
+
         $updatePassword = DB::table('password_reset_tokens')->where([
             'email' => $request->email,
             'token' => $request->token,

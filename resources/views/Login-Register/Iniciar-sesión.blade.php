@@ -104,7 +104,7 @@
                 <p>Si aún no tienes cuenta</p>
             </div>
             <div class="restablecer">
-                <a href="{{route('restablecer')}}">¿Olvidó su contraseña?</a>
+                <a href="{{route('restablecer')}}">¿Olvidaste tu contraseña?</a>
             </div>
         </form>
     </div>

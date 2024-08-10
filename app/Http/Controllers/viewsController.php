@@ -45,4 +45,12 @@ class viewsController extends Controller
     public function perfil(){
         return view('hubs.perfil');
     }
+
+    public function error(){
+        return view('Login-Register.error');
+    }
+
+    public function enviado(){
+        return view('Login-Register.correoEnviado');
+    }
 }
