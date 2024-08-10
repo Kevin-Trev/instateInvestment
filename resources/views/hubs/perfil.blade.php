@@ -23,33 +23,6 @@
       display: none;
     }
 
-    .calendario {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .calendario th,
-    .calendario td {
-      padding: 10px;
-      text-align: center;
-    }
-
-    .calendario th {
-      background-color: #f2f2f2;
-      font-weight: bold;
-    }
-
-    .calendario .dia {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      border: 1px solid #ccc;
-      border-radius: 50%;
-      line-height: 30px;
-    }
-    .calendario .dia:hover {
-      background-color: #f2f2f2;
-    }
-
     .image-card{
       width: 100%;
       height: 150px;
@@ -316,14 +289,6 @@
                        
           </div>  
         </div>
-        <!-- CALENDARIO -->
-         <div class="calendario hidden" id="calendario">
-          <!-- CONTENIDO -->
-          <div class="container mt-4">
-            <div class="calendario">
-            </div>  
-          </div>
-
       </main>
     </div>
   </div>
@@ -395,45 +360,29 @@
     document.addEventListener('DOMContentLoaded', function() {
       const publicacionesTab = document.getElementById('publicaciones-tab');
       const estadisticasTab = document.getElementById('estadisticas-tab');
-      const calendarioTab = document.getElementById('calendario-tab');
       const publicacionesSection = document.getElementById('pl');
       const estadisticasSection = document.getElementById('pl2');
-      const calendarioSection = document.getElementById('calendario');
 
       // INICIAR EN PUBLICACIONES
       publicacionesSection.classList.remove('hidden');
       estadisticasSection.classList.add('hidden');
-      calendarioSection.classList.add('hidden');
 
       // VISTA PUBLICACIONES
       publicacionesTab.addEventListener('click', function() {
         publicacionesSection.classList.remove('hidden');
         estadisticasSection.classList.add('hidden');
-        calendarioSection.classList.add('hidden');
         publicacionesTab.classList.add('active');
         estadisticasTab.classList.remove('active');
-        calendarioTab.classList.remove('active');
       });
 
       // VISTA ESTADISTICAS
       estadisticasTab.addEventListener('click', function() {
         publicacionesSection.classList.add('hidden');
         estadisticasSection.classList.remove('hidden');
-        calendarioSection.classList.add('hidden');
         publicacionesTab.classList.remove('active');
         estadisticasTab.classList.add('active');
-        calendarioTab.classList.remove('active');
       });
 
-      // VISTA CALENDARIO
-      calendarioTab.addEventListener('click', function() {
-        publicacionesSection.classList.add('hidden');
-        estadisticasSection.classList.add('hidden');
-        calendarioSection.classList.remove('hidden');
-        publicacionesTab.classList.remove('active');
-        estadisticasTab.classList.remove('active');
-        calendarioTab.classList.add('active');
-      });
 
       // Mostrar/ocultar inputs de precio al seleccionar/desseleccionar servicios adicionales
       const services = ['cleaningService', 'mealService', 'transportService'];
