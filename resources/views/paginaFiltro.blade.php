@@ -19,10 +19,6 @@
         align-items: center;
         margin-left: 50px;
     }
-
-    body{
-      border: 2px solid red
-    }
     
     .input-groups input[type="text"]{
         padding: 8px 10px;
@@ -159,7 +155,6 @@
       display: flex;
       flex-wrap: wrap;
       width: 95vw;
-      border: 1px solid black;
     }
 
     #page-footer{
