@@ -243,12 +243,12 @@
             <div class="container-info2">
                 <h2>Legal</h2>
                 <hr>
-                <a href="/legal">Aviso legal</a><br><br><a href="/privacidad">Politica de privacidad </a><br><br><a href="/privacidad">Politica de cookies</a>
+                <a href="/Legal/PoliticasPrivacidad">Términos y Condiciones - Instate Inmuebles</a><br><br><br><br>
             </div>
             <div class="container-info2">
                 <h2>Sobre</h2>
                 <hr>
-                <a href="/nosotros">Nosotros</a><br><br><a href="/mision">Misión</a><br><br><a href="/vision">Visión</a>
+                <a href="/nosotros">Nosotros</a><br><br><br><br>
             </div>
         </div>
     </footer>

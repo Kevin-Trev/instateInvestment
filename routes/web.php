@@ -75,10 +75,10 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get('/views/login',[viewsController::class, 'login'])->name('login');
 Route::get('/views/registro', [viewsController::class, 'registro'])->name('registro');
 Route::get('/views/registro/finalizado', [viewsController::class, 'registro_Finalizar'])->name('registro.finalizar');
-Route::get('/views/politicas/avisoPrivacidad', [viewsController::class, 'avisoPrivacidad'])->name('avisoPrivacidad');
 Route::get('/views/detalles/propiedad', [viewsController::class, 'detallePropiedad'])->name('detallesPropiedad');
 Route::get('/views/catalogo', [viewsController::class, 'catalogoPropiedades'])->name('catalogo');
-
+Route::get('/Legal/PoliticasPrivacidad', [viewsController::class, 'avisoPrivacidad'])->name('avisoPrivacidad');
+Route::get('/nosotros', [viewsController::class, 'nosotros'])->name('nosotros');
 //Rutas que se utilizan para restablecer la contraseña de un usuario
 
 Route::get('/views/recuperar/contraseña', [viewsController::class, 'recuperarContraseña'])->name('restablecer');

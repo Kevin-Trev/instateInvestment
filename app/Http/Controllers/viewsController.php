@@ -18,8 +18,8 @@ class viewsController extends Controller
         return view('info.avisoPrivacidad');
     }
 
-    public function terminosCondiciones(){
-        return view('info.terminosCondiciones');
+    public function nosotros(){
+        return view('info.nosotros');
     }
 
     public function login(){
