@@ -2,6 +2,18 @@
 
 @section('style')
 <style>
+
+  .btn-wasa{
+    color: rgb(130, 203, 20);
+    background-color: #FFFFFF;
+    border: 1px solid rgb(130, 203, 20);
+    border-radius: 6px;
+    cursor: default;
+  }
+
+  body{
+    overflow-x: hidden
+  }
     .input-groups{
         display: flex;
         align-items: center;
@@ -20,12 +32,18 @@
         outline: none;
         width: 250px;
     }
+
+    .disponible img{
+      width: 50px;
+      height: 50px;
+      position: absolute;
+    }
     
-    .input-groups input[type="submit"]{
+    #buscar{
         background-color: #3370FF;
         color: #FFFFFF;
         border: none;
-        border-radius: 0 5px 5px 0;
+        border-radius: 5px;
         padding: 9px 16px;
         width: 120px;
         cursor: pointer;
@@ -41,11 +59,10 @@
       margin-left: 50px;
     }
 
-    
-
     #filtroBusqueda{
       display: flex;
-      margin-right: 10px;
+      flex-direction: row-reverse;
+      min-width: 0;
     }
 
     .form-group input[type="number"]{
@@ -141,6 +158,8 @@
     #cards-container{
       display: flex;
       flex-wrap: wrap;
+      width: 95vw;
+      border: 1px solid black;
     }
 
     #page-footer{
@@ -158,95 +177,111 @@
       position: absolute;
       border-radius: 6px;
     }
-
     @media(min-width: 1200px){
       /* Filtros */
       #filtroBusqueda{
-        transform: translateX(-4vw);
-      }
-
-      #filtroBusqueda select{
-        width: 10vw;
-        font-size: 1.8vw;
-        height: 50px;
-        transform: translate(1.5vw, -4px);
-      }
-
-      #filtroBusqueda input[type="text"]{
-        font-size: 1.8vw;
-        height: 50px;
-        width: 30vw;
-      }
-
-      #filtroBusqueda input[type="submit"]{
-        font-size: 1.8vw;
-        height: 50px;
-        width: 14vw;
-      }
-
-      #filtroBusqueda .input-groups{
-        transform: translate(6.5vw, -0.3vw);
+        transform: translate(-2vw, 10px);
       }
 
       #filtroBusqueda input[type="number"]{
-        font-size: 1.8vw;
-        width: 16vw;
-        height: 50px;
-        transform: translate(1vw, -4.5px);
+        font-size: 1.4vw;
+        width: 14vw;
+        height: 4vw;
+        transform: translate(-61vw, -4px);
+      }
+
+      #filtroBusqueda #transaccion{
+        width: 9vw;
+        height: 4vw;
+        font-size: 1.4vw;
+        transform: translate(-85vw, -4px);
+      }
+
+      #filtroBusqueda #ciudad{
+        font-size: 1.4vw;
+        height: 4vw;
+        width: 24vw;
+        transform: translateY(-4px);
+      }
+
+      #filtroBusqueda #buscar{
+        font-size: 1.4vw;
+        height: 4vw;
+        width: 12vw;
+        transform: translate(35vw, -4px);
+      }
+
+      #filtroBusqueda #tipoPropiedad{
+        width: 14vw;
+        text-align: center;
+        height: 4vw;
+        font-size: 1.4vw;
+        transform: translate(-30vw, -4px);
       }
 
       /* Header de las cartas */
 
-      .container{
-        margin: 1vw;
+      .container h2{
+        font-size: 2.4vw;
       }
 
-      .container h2{
-        font-size: 4vw;
+      .container{
+        margin: 30px 0 0 0;
+      }
+
+      #resultado{
+        margin-left: 10px;
       }
 
       .container .text{
-        font-size: 2vw;
+        margin-left: 12px;
+        font-size: 1.3vw;
       }
+
 
       /* Cartas */
 
       .card{
-        width: 26vw;
-        margin-bottom: 25px;
-        margin-left: 4.5vw;
+        width: 350px;
+        margin: 0 0 40px 6vw;
       }
 
       .propiedad{
-        width: 14vw;
-        font-size: 1.8vw;
-        transform: translate(15vw, -1.5vw);
+        width: 12vw;
+        font-size: 1.5vw;
+        transform: translate(13vw, -15px);
       }
 
-      #cards-container{
-        width: 96vw;
+      .disponible img{
+        width: 3vw;
+        height: 3vw;
+        transform: translate(19.5vw, 125px);
+      }
+
+      .card .image-card{
+        height: 20px;
       }
 
       .card .text{
-        font-size: 1.5vw;
+        font-size: 1.2vw;
       }
 
       .card .image-card img{
         width: 100%;
-        height: 18vw;
+        height: 14vw;
       }
 
       .disponible button{
-        margin-top: 40px;
-        font-size: 1.5vw;
+        margin-top: 160px;
+        font-size: 1.2vw;
       }
 
       .disponible .btn-blue, .disponible .btn-white{
-        width: 6vw;
+        width: 5vw;
       }
 
       .card .footer button{
-        font-size: 1.5vw;
+        font-size: 1.2vw;
         margin-left: 0;
       }
 
@@ -256,7 +291,7 @@
 
       .card h3{
         margin-top: 5px;
-        font-size: 2.5vw;
+        font-size: 2vw;
       }
 
       /* footer */
@@ -266,148 +301,164 @@
         width: 100%;
         gap: 0;
         padding: 0 0 10px 0;
-        display: inline-block;
-        padding-bottom: 200px;
+        display: block;
       }
 
       .container-info img{
-        width: 30vw;
-        height: 30vw;
-        transform: translate(-20px, 320px);
+        width: 18vw;
+        height: 18vw;
+        transform: translate(-40px, 230px);
       }
 
       .container-info p{
-        font-size: 2.8vw;
-        transform: translate(35vw, 22vw)
+        font-size: 1.4vw;
+        transform: translate(-60px, 340px)
       }
 
       .container-info b{
-        font-size: 2vw;
+        font-size: 1.6vw;
       }
 
       .container-info h2{
-        font-size: 4vw;
+        font-size: 2.8vw;
       }
 
-      .container-info .container-social img{
-        width: 4vw;
-        height: 4vw;
-        gap: 50px;
+      #page-footer .container-info .container-social img{
+        width: 2.5vw;
+        height: 2.5vw;
         transform: translate(0);
-      }
-
-      .container-info{
-        margin-top: -800px;
       }
 
       #este{
         margin: 0 0 10px 55vw;
-        transform: translate(2vw, 30vw);
+        transform: translate(-16vw, -2vw);
       }
 
       .container-info2 h2{
-       font-size: 4vw;
+       font-size: 2.8vw;
+      }
+
+      .container-info{
+        margin-top: -200px;
       }
 
       .container-info2 a{
-        font-size: 2.5vw;
+        font-size: 1.7vw;
       }
 
       .container-info2{
-        transform: translate(-2vw, 8vw);
         display: inline-block;
-        margin-left: 70px;
+        margin-left: 30px;
+        transform: translate(65vw, -2.5vw);
+        margin-top: -800px;
       }
     }
 
     @media(max-width: 1200px){
       /* Filtros */
       #filtroBusqueda{
-        transform: translateX(-4vw);
-      }
-
-      #filtroBusqueda select{
-        width: 10vw;
-        font-size: 1.8vw;
-        height: 60px;
-        transform: translate(1.5vw, -4px);
-      }
-
-      #filtroBusqueda input[type="text"]{
-        font-size: 2vw;
-        height: 60px;
-        width: 30vw;
-      }
-
-      #filtroBusqueda input[type="submit"]{
-        font-size: 2vw;
-        height: 60px;
-        width: 14vw;
-      }
-
-      #filtroBusqueda .input-groups{
-        transform: translate(7.5vw, -0.3vw);
+        transform: translate(-2vw, 10px);
       }
 
       #filtroBusqueda input[type="number"]{
-        font-size: 2vw;
+        font-size: 1.6vw;
         width: 16vw;
-        height: 60px;
-        transform: translate(1vw, -4.5px);
+        height: 40px;
+        transform: translate(-61vw, -4px);
+      }
+
+      #filtroBusqueda #transaccion{
+        width: 9vw;
+        height: 40px;
+        font-size: 1.6vw;
+        transform: translate(-85vw, -4px);
+      }
+
+      #filtroBusqueda #ciudad{
+        font-size: 1.8vw;
+        height: 40px;
+        width: 24vw;
+        transform: translate(100px, -4px);
+      }
+
+      #filtroBusqueda #buscar{
+        font-size: 1.6vw;
+        height: 40px;
+        width: 12vw;
+        transform: translate(540px, -4px);
+      }
+
+      #filtroBusqueda #tipoPropiedad{
+        width: 16vw;
+        text-align: center;
+        height: 40px;
+        font-size: 1.8vw;
+        transform: translate(-30vw, -4px);
       }
 
       /* Header de las cartas */
 
-      .container{
-        margin: 1vw;
+      .container h2{
+        font-size: 2.8vw;
       }
 
-      .container h2{
-        font-size: 4vw;
+      .container{
+        margin: 30px 0 0 0;
+      }
+
+      #resultado{
+        margin-left: 10px;
       }
 
       .container .text{
-        font-size: 2vw;
+        margin-left: 12px;
+        font-size: 1.4vw;
       }
+
 
       /* Cartas */
 
       .card{
-        width: 26vw;
-        margin-bottom: 10px;
-        margin-left: 4.5vw;
+        width: 25vw;
+        margin: 30px 0 0 5vw;
+      }
+
+      .disponible img{
+        width: 4vw;
+        height: 4vw;
+        transform: translate(20vw, 110px);
       }
 
       .propiedad{
-        width: 14vw;
-        font-size: 1.8vw;
-        transform: translate(15vw, -1.5vw);
+        width: 16vw;
+        font-size: 2vw;
+        transform: translate(13vw, -15px);
       }
 
-      #cards-container{
-        width: 96vw;
+      .card .image-card{
+        height: 20px;
       }
 
       .card .text{
-        font-size: 1.6vw;
+        font-size: 1.4vw;
       }
 
       .card .image-card img{
         width: 100%;
-        height: 18vw;
+        height: 17vw;
       }
 
       .disponible button{
-        margin-top: 20px;
+        margin-top: 150px;
         font-size: 1.5vw;
       }
 
       .disponible .btn-blue, .disponible .btn-white{
-        width: 6vw;
+        width: 5vw;
       }
 
       .card .footer button{
-        font-size: 1.5vw;
+        font-size: 1.4vw;
         margin-left: 0;
       }
 
@@ -417,7 +468,7 @@
 
       .card h3{
         margin-top: 5px;
-        font-size: 2.5vw;
+        font-size: 2.2vw;
       }
 
       /* footer */
@@ -427,158 +478,164 @@
         width: 100%;
         gap: 0;
         padding: 0 0 10px 0;
-        display: inline-block;
-        padding-bottom: 200px;
+        display: block;
       }
 
       .container-info img{
-        width: 30vw;
-        height: 30vw;
-        transform: translate(-80px, 280px);
+        width: 18vw;
+        height: 18vw;
+        transform: translate(-40px, 230px);
       }
 
       .container-info p{
-        font-size: 2.8vw;
-        transform: translate(300px, 230px)
+        font-size: 1.4vw;
+        transform: translate(-60px, 300px)
       }
 
       .container-info b{
-        font-size: 2.5vw;
+        font-size: 1.6vw;
       }
 
       .container-info h2{
-        font-size: 6vw;
+        font-size: 2.8vw;
       }
 
-      .container-info .container-social img{
-        width: 4vw;
-        height: 4vw;
-        gap: 50px;
+      #page-footer .container-info .container-social img{
+        width: 2.5vw;
+        height: 2.5vw;
         transform: translate(0);
-      }
-
-      .container-info{
-        margin-top: -800px;
       }
 
       #este{
         margin: 0 0 10px 55vw;
-        transform: translateY(38vw);
+        transform: translate(-16vw, -2vw);
       }
 
       .container-info2 h2{
-       font-size: 6vw;
+       font-size: 2.8vw;
+      }
+
+      .container-info{
+        margin-top: -200px;
       }
 
       .container-info2 a{
-        font-size: 2.5vw;
+        font-size: 1.7vw;
       }
 
       .container-info2{
         display: inline-block;
+        margin-left: 30px;
+        transform: translate(65vw, -2.5vw);
+        margin-top: -800px;
       }
     }
 
     @media(max-width: 992px){
       /* Filtros */
       #filtroBusqueda{
-        transform: translateX(-4vw);
-      }
-
-      #filtroBusqueda select{
-        width: 14vw;
-        font-size: 2vw;
-        height: 60px;
-        transform: translateY(-4px);
-      }
-
-      #filtroBusqueda input[type="text"]{
-        font-size: 2vw;
-        height: 60px;
-        width: 30vw;
-      }
-
-      #filtroBusqueda input[type="submit"]{
-        font-size: 2vw;
-        height: 60px;
-        width: 14vw;
-      }
-
-      #filtroBusqueda .input-groups{
-        transform: translate(7.5vw, -0.5vw);
+        transform: translate(-1vw, -20px);
       }
 
       #filtroBusqueda input[type="number"]{
         font-size: 2vw;
+        width: 16vw;
+        height: 40px;
+        transform: translate(-45vw, -4px);
+      }
+
+      #filtroBusqueda #transaccion{
+        width: 11vw;
+        height: 40px;
+        font-size: 2vw;
+        transform: translate(-75vw, -4px);
+      }
+
+      #filtroBusqueda #ciudad{
+        font-size: 2vw;
+        height: 40px;
+        width: 28vw;
+        transform: translate(60px, 40px);
+      }
+
+      #filtroBusqueda #buscar{
+        font-size: 1.8vw;
+        height: 40px;
+        width: 12vw;
+        transform: translate(540px, 20px);
+      }
+
+      #filtroBusqueda #tipoPropiedad{
         width: 20vw;
-        height: 60px;
-        transform: translate(1vw, -4.5px);
+        text-align: center;
+        height: 40px;
+        font-size: 2vw;
+        transform: translate(-32vw, 40px);
       }
 
       /* Header de las cartas */
 
-      .container{
-        margin: 1vw;
+      .container h2{
+        font-size: 3vw;
       }
 
-      .container h2{
-        font-size: 4.5vw;
+      .container{
+        margin: 30px 0 0 0;
+      }
+
+      #resultado{
+        margin-left: 10px;
       }
 
       .container .text{
-        font-size: 2.5vw;
+        margin-left: 12px;
+        font-size: 1.8vw;
       }
+
 
       /* Cartas */
 
       .card{
-        width: 35vw;
-        margin-bottom: 10px;
+        width: 25vw;
+        margin: 0 0 30px 5vw;
       }
 
       .propiedad{
-        width: 18vw;
-        font-size: 2.5vw;
-        transform: translate(20vw, -1.5vw);
+        width: 16vw;
+        font-size: 2vw;
+        transform: translate(13vw, -15px);
+      }
+
+      .disponible img{
+        width: 4vw;
+        height: 4vw;
+        transform: translate(20vw, 80px);
       }
 
       .card .image-card{
-        height: 80px;
-      }
-
-      #cards-container{
-        transform: translateX(3vw);
-        width: 100vw;
+        height: 20px;
       }
 
       .card .text{
-        font-size: 2vw;
+        font-size: 1.4vw;
       }
 
       .card .image-card img{
         width: 100%;
-        height: 25vw;
+        height: 170px;
       }
 
       .disponible button{
-        margin-top: 120px;
-        font-size: 2vw;
+        margin-top: 110px;
+        font-size: 1.5vw;
       }
 
       .disponible .btn-blue, .disponible .btn-white{
-        width: 10vw;
-      }
-
-      .roomsContainer img{
-        width: 3vw;
-      }
-
-      .number{
-        font-size: 2vw;
+        width: 5vw;
       }
 
       .card .footer button{
-        font-size: 2vw;
+        font-size: 1.4vw;
         margin-left: 0;
       }
 
@@ -588,7 +645,7 @@
 
       .card h3{
         margin-top: 5px;
-        font-size: 3.5vw;
+        font-size: 2.2vw;
       }
 
       /* footer */
@@ -602,104 +659,121 @@
       }
 
       .container-info img{
-        width: 30vw;
-        height: 30vw;
-        transform: translate(-80px, 280px);
+        width: 20vw;
+        height: 20vw;
+        transform: translate(-40px, 230px);
       }
 
       .container-info p{
-        font-size: 2.8vw;
-        transform: translate(300px, 230px)
+        font-size: 1.6vw;
+        transform: translate(-70px, 280px)
       }
 
       .container-info b{
-        font-size: 2.5vw;
+        font-size: 1.6vw;
       }
 
       .container-info h2{
-        font-size: 6vw;
+        font-size: 2.6vw;
       }
 
-      .container-info .container-social img{
-        width: 4vw;
-        height: 4vw;
-        gap: 50px;
-        transform: translate(0);
-      }
-
-      .container-info{
-        margin-top: -500px;
+      #page-footer .container-info .container-social img{
+        width: 2.5vw;
+        height: 2.5vw;
       }
 
       #este{
         margin: 0 0 10px 55vw;
-        transform: translateY(38vw);
+        transform: translate(-16vw, -2vw);
       }
 
       .container-info2 h2{
-       font-size: 6vw;
+       font-size: 2.6vw;
+      }
+
+      .container-info{
+        margin-top: -200px;
       }
 
       .container-info2 a{
-        font-size: 2.5vw;
+        font-size: 1.8vw;
       }
 
       .container-info2{
-        display: block;
+        display: inline-block;
+        margin-left: 30px;
+        transform: translate(65vw, -2.5vw);
+        margin-top: -2000px;
       }
     }
 
     @media(max-width: 768px){
       /* Filtros */
+
       #filtroBusqueda{
-        transform: translateX(-4vw);
-      }
-
-      #filtroBusqueda select{
-        width: 15vw;
-        font-size: 2.5vw;
-        height: 40px;
-        transform: translateY(-4px);
-      }
-
-      #filtroBusqueda input[type="text"]{
-        font-size: 2.5vw;
-        height: 40px;
-        width: 25vw;
-      }
-
-      #filtroBusqueda input[type="submit"]{
-        font-size: 2.5vw;
-        height: 40px;
-        width: 14vw;
-      }
-
-      #filtroBusqueda .input-groups{
-        transform: translate(2vw, -0.7vw);
+        transform: translate(-1vw, -20px);
       }
 
       #filtroBusqueda input[type="number"]{
         font-size: 2.5vw;
-        width: 22vw;
+        width: 23vw;
         height: 40px;
-        transform: translate(-2vw, -4.5px);
+        transform: translate(-30vw, -4px);
+      }
+
+      #filtroBusqueda #transaccion{
+        width: 14.5vw;
+        height: 40px;
+        font-size: 2.5vw;
+        transform: translate(-72vw, -4px);
+      }
+
+      #filtroBusqueda #ciudad{
+        font-size: 2.5vw;
+        height: 40px;
+        width: 28vw;
+        transform: translate(130px, 40px);
+      }
+
+      #filtroBusqueda #buscar{
+        font-size: 2.5vw;
+        height: 40px;
+        width: 16vw;
+        transform: translate(540px, 20px);
+      }
+
+      #filtroBusqueda #tipoPropiedad{
+        width: 20vw;
+        text-align: center;
+        height: 40px;
+        font-size: 2.5vw;
+        transform: translate(-25vw, 40px);
       }
 
       /* Header de las cartas */
 
       .container h2{
-        font-size: 5vw;
+        font-size: 4vw;
+      }
+
+      .container{
+        margin: 30px 0 0 0;
+      }
+
+      #resultado{
+        margin-left: 10px;
       }
 
       .container .text{
-        font-size: 2.5vw;
+        margin-left: 12px;
+        font-size: 2.2vw;
       }
 
       /* Cartas */
 
       .card{
         width: 40vw;
-        margin-bottom: 20px;
+        margin: 0 0 30px 5vw;
       }
 
       .propiedad{
@@ -712,21 +786,17 @@
         height: 70px;
       }
 
-      #cards-container{
-        transform: translateX(-1.7vw);
-      }
-
       .card .text{
         font-size: 2vw;
       }
 
       .card .image-card img{
         width: 100%;
-        height: 25vw;
+        height: 200px;
       }
 
       .disponible button{
-        margin-top: 80px;
+        margin-top: 90px;
         font-size: 2vw;
       }
 
@@ -734,8 +804,18 @@
         width: 3.2vw;
       }
 
+      .disponible img{
+        width: 5vw;
+        height: 5vw;
+        transform: translate(34vw, 60px);
+      }
+
       .number{
         font-size: 2.5vw;
+      }
+
+      .disponible .btn-blue, .disponible .btn-white{
+        width: 8vw;
       }
 
       .card .footer button{
@@ -787,10 +867,6 @@
         transform: translate(0);
       }
 
-      .container-info{
-        margin-top: -500px;
-      }
-
       #este{
         margin: 0 0 10px 55vw;
         transform: translateY(-8vw);
@@ -812,58 +888,72 @@
     @media(max-width: 576px){
       /* Filtros */
       #filtroBusqueda{
-        transform: translateX(-8vw);
-      }
-
-      #filtroBusqueda select{
-        width: 18vw;
-        font-size: 2.5vw;
-        height: 40px;
-        transform: translateY(-4px);
-      }
-
-      #filtroBusqueda input[type="text"]{
-        font-size: 2.5vw;
-        height: 40px;
-        width: 30vw;
-      }
-
-      #filtroBusqueda input[type="submit"]{
-        font-size: 2.5vw;
-        height: 40px;
-        width: 14vw;
-      }
-
-      #filtroBusqueda .input-groups{
-        transform: translate(-14vw, -1vw);
+        transform: translate(-1vw, -20px);
       }
 
       #filtroBusqueda input[type="number"]{
-        font-size: 2.5vw;
+        font-size: 3vw;
+        width: 23vw;
+        height: 40px;
+        transform: translate(-25vw, -4px);
+      }
+
+      #filtroBusqueda #transaccion{
         width: 20vw;
         height: 40px;
-        transform: translate(-8vw, -4.5px);
+        font-size: 3vw;
+        transform: translate(-75vw, -4px);
+      }
+
+      #filtroBusqueda #ciudad{
+        font-size: 3vw;
+        height: 40px;
+        width: 35vw;
+        transform: translate(250px, 40px);
+      }
+
+      #filtroBusqueda #buscar{
+        font-size: 2.5vw;
+        height: 40px;
+        width: 16vw;
+        transform: translate(560px, -4px);
+      }
+
+      #filtroBusqueda #tipoPropiedad{
+        width: 26vw;
+        height: 40px;
+        font-size: 3vw;
+        transform: translate(-10vw, 40px);
       }
 
       /* Header de las cartas */
 
       .container h2{
-        font-size: 5.4vw;
+        font-size: 5.5vw;
+      }
+
+      .container{
+        margin-top: 30px;
+      }
+
+      #resultado{
+        margin-left: 10px;
       }
 
       .container .text{
-        font-size: 2.8vw;
+        margin-left: 12px;
+        font-size: 3vw;
       }
 
       /* Cartas */
 
       .card{
         width: 40vw;
-        margin-bottom: 5px;
+        margin: 0 0 20px 4.8vw;
       }
 
       .propiedad{
-        width: 20vw;
+        width: 22vw;
         font-size: 3vw;
         transform: translate(22vw, -1.5vw);
       }
@@ -872,21 +962,24 @@
         height: 70px;
       }
 
-      #cards-container{
-        margin-left: -2.2vw;
-      }
 
       .card .text{
         font-size: 2vw;
       }
 
+      .disponible img{
+        width: 5vw;
+        height: 5vw;
+        transform: translate(33.5vw, 2vw);
+      }
+
       .card .image-card img{
         width: 100%;
-        height: 25vw;
+        height: 140px;
       }
 
       .disponible button{
-        margin-top: 25px;
+        margin-top: 35px;
         font-size: 2vw;
       }
 
@@ -903,6 +996,10 @@
         margin-left: 0;
       }
 
+      .disponible .btn-blue, .disponible .btn-white{
+        width: 8vw;
+      }
+
       .footer button{
         margin-right: 8px;
       }
@@ -913,6 +1010,10 @@
       }
 
       /* footer */
+
+      .page-link{
+        font-size: 3vw;
+      }
 
       #page-footer{
         margin-top: 80px;
@@ -972,46 +1073,61 @@
     @media(max-width: 391px){
       /* Filtros */
       #filtroBusqueda{
-        transform: translateX(-12vw);
-      }
-
-      #filtroBusqueda select{
-        width: 22vw;
-        height: 30px;
-        font-size: 3vw;
-      }
-
-      #filtroBusqueda input[type="text"]{
-        font-size: 3vw;
-        height: 30px;
-        width: 30vw;
-      }
-
-      #filtroBusqueda input[type="submit"]{
-        font-size: 3vw;
-        height: 30px;
-        width: 16vw;
-
-      }
-
-      #filtroBusqueda .input-groups{
-        transform: translate(-24vw, -2.5vw);
+        transform: translate(-1vw, -20px);
       }
 
       #filtroBusqueda input[type="number"]{
         font-size: 3vw;
         width: 23vw;
         height: 30px;
-        transform: translate(-12vw, -4px);
+        transform: translate(-5vw, -4px);
       }
 
+      #filtroBusqueda #transaccion{
+        width: 22vw;
+        height: 30px;
+        font-size: 3vw;
+        transform: translate(-70vw, -4px);
+      }
+
+      #filtroBusqueda #ciudad{
+        font-size: 3vw;
+        height: 30px;
+        width: 35vw;
+        transform: translate(310px, 30px);
+      }
+
+      #filtroBusqueda #buscar{
+        font-size: 2.5vw;
+        height: 30px;
+        width: 16vw;
+        position: fixed;
+        transform: translate(130vw, -4px);
+      }
+
+      #filtroBusqueda #tipoPropiedad{
+        width: 26vw;
+        height: 30px;
+        font-size: 3vw;
+        transform: translate(10vw, 30px);
+      }
+      
       /* Header de las cartas */
 
       .container h2{
         font-size: 5.5vw;
       }
 
+      .container{
+        margin-top: -10px;
+      }
+
+      #resultado{
+        margin-left: 10px;
+      }
+
       .container .text{
+        margin-left: 12px;
         font-size: 3vw;
       }
 
@@ -1019,11 +1135,17 @@
 
       .card{
         width: 38vw;
-        margin-bottom: 5px;
+        margin: 0 0 10px 6vw;
+      }
+
+      .disponible img{
+        width: 5vw;
+        height: 5vw;
+        transform: translate(30.5vw, -8px);
       }
 
       .card .image-card{
-        height: 80px;
+        height: 70px;
       }
 
       .propiedad{
@@ -1032,26 +1154,14 @@
         transform: translate(22vw, -1.5vw);
       }
 
-      #cards-container{
-        margin-left: -2.2vw;
-      }
-
       .card .image-card img{
         width: 100%;
-        height: 30vw;
+        height: 120px;
       }
 
       .disponible button{
-        margin-top: -5px;
-        font-size: 2.5vw;
-      }
-
-      .roomsContainer img{
-        width: 3.5vw;
-      }
-
-      .number{
-        font-size: 3vw;
+        margin-top: 8px;
+        font-size: 2vw;
       }
 
       .card .footer button{
@@ -1063,19 +1173,22 @@
         margin-right: 5px;
       }
 
+      .disponible .btn-blue, .disponible .btn-white{
+        width: 8vw;
+      }
+      
       .card h3{
-        margin-top: 5px;
-        font-size: 3vw;
+        font-size: 3.2vw;
       }
 
       .card .text{
-        font-size: 2.2vw;
+        font-size: 2vw;
       }
 
       /* footer */
 
       #page-footer{
-        margin-top: 80px;
+        margin-top: 40px;
         width: 100%;
         gap: 0;
         padding: 0 0 10px 0;
@@ -1146,8 +1259,16 @@
   <div class="form-group">
     <input type="number" class="form-control" placeholder="Precio MXN">
   </div>
-  <div class="input-groups">
-    <input id="ciudad" type="text" placeholder="Buscar por ciudad..."><input type="submit" id="buscar" value="Buscar">
+  <div class="form-group">
+    <select id="tipoPropiedad" class="form-control">
+
+    </select>
+  </div>
+  <div class="form-group">
+    <input class="form-control" id="ciudad" type="text" placeholder="Buscar por ciudad...">
+  </div>
+  <div class="form-group">
+    <button class="btn-blue" type="submit" id="buscar">Buscar</button>
   </div>
 </div>
 
@@ -1165,45 +1286,14 @@
         <img src="https://picsum.photos/300/200">
       </div>
       <div class="disponible">
+        <img src="{{asset('Imagenes/verificacion.png')}}">
         <button class="btn-white">Venta</button>
         <button class="btn-white">Renta</button>
       </div>
       <h3> Precio de la propiedad </h3>
       <p class="text">Direccion de la propiedad</p>
       <div class="footer">
-        <button class="btn-white">Contacto</button>
-        <button class="btn-blue">Ver más detalles</button>
-      </div>
-    </div>
-    <div class="card">
-      <button class="propiedad">Departamento</button>
-      <div class="image-card">
-        <img src="https://picsum.photos/300/200">
-      </div>
-      <div class="disponible">
-        <button class="btn-white">Venta</button>
-        <button class="btn-white">Renta</button>
-      </div>
-      <h3> Precio de la propiedad </h3>
-      <p class="text">Direccion de la propiedad</p>
-      <div class="footer">
-        <button class="btn-white">Contacto</button>
-        <button class="btn-blue">Ver más detalles</button>
-      </div>
-    </div>
-    <div class="card">
-      <button class="propiedad">Departamento</button>
-      <div class="image-card">
-        <img src="https://picsum.photos/300/200">
-      </div>
-      <div class="disponible">
-        <button class="btn-white">Venta</button>
-        <button class="btn-white">Renta</button>
-      </div>
-      <h3> Precio de la propiedad </h3>
-      <p class="text">Direccion de la propiedad</p>
-      <div class="footer">
-        <button class="btn-white">Contacto</button>
+        <button class="btn-wasa">Contacto</button>
         <button class="btn-blue">Ver más detalles</button>
       </div>
     </div>
@@ -1213,13 +1303,14 @@
         <img src="https://picsum.photos/300/200">
       </div>
       <div class="disponible">
+        <img src="{{asset('Imagenes/verificacion.png')}}">
         <button class="btn-white">Venta</button>
         <button class="btn-white">Renta</button>
       </div>
       <h3> Precio de la propiedad </h3>
       <p class="text">Direccion de la propiedad</p>
       <div class="footer">
-        <button class="btn-white">Contacto</button>
+        <button class="btn-wasa">Contacto</button>
         <button class="btn-blue">Ver más detalles</button>
       </div>
     </div>
@@ -1229,45 +1320,14 @@
         <img src="https://picsum.photos/300/200">
       </div>
       <div class="disponible">
+        <img src="{{asset('Imagenes/verificacion.png')}}">
         <button class="btn-white">Venta</button>
         <button class="btn-white">Renta</button>
       </div>
       <h3> Precio de la propiedad </h3>
       <p class="text">Direccion de la propiedad</p>
       <div class="footer">
-        <button class="btn-white">Contacto</button>
-        <button class="btn-blue">Ver más detalles</button>
-      </div>
-    </div>
-    <div class="card">
-      <button class="propiedad">Departamento</button>
-      <div class="image-card">
-        <img src="https://picsum.photos/300/200">
-      </div>
-      <div class="disponible">
-        <button class="btn-white">Venta</button>
-        <button class="btn-white">Renta</button>
-      </div>
-      <h3> Precio de la propiedad </h3>
-      <p class="text">Direccion de la propiedad</p>
-      <div class="footer">
-        <button class="btn-white">Contacto</button>
-        <button class="btn-blue">Ver más detalles</button>
-      </div>
-    </div>
-    <div class="card">
-      <button class="propiedad">Departamento</button>
-      <div class="image-card">
-        <img src="https://picsum.photos/300/200">
-      </div>
-      <div class="disponible">
-        <button class="btn-white">Venta</button>
-        <button class="btn-white">Renta</button>
-      </div>
-      <h3> Precio de la propiedad </h3>
-      <p class="text">Direccion de la propiedad</p>
-      <div class="footer">
-        <button class="btn-white">Contacto</button>
+        <button class="btn-wasa">Contacto</button>
         <button class="btn-blue">Ver más detalles</button>
       </div>
     </div>
@@ -1277,99 +1337,20 @@
         <img src="https://picsum.photos/300/200">
       </div>
       <div class="disponible">
+        <img src="{{asset('Imagenes/verificacion.png')}}">
         <button class="btn-white">Venta</button>
         <button class="btn-white">Renta</button>
       </div>
       <h3> Precio de la propiedad </h3>
       <p class="text">Direccion de la propiedad</p>
       <div class="footer">
-        <button class="btn-white">Contacto</button>
-        <button class="btn-blue">Ver más detalles</button>
-      </div>
-    </div>
-    <div class="card">
-      <button class="propiedad">Tipo</button>
-      <div class="image-card">
-        <img src="https://picsum.photos/300/200">
-      </div>
-      <div class="disponible">
-        <button class="btn-white">Venta</button>
-        <button class="btn-white">Renta</button>
-      </div>
-      <h3> Precio de la propiedad </h3>
-      <p class="text">Direccion de la propiedad</p>
-      <div class="footer">
-        <button class="btn-white">Contacto</button>
-        <button class="btn-blue">Ver más detalles</button>
-      </div>
-    </div>
-    <div class="card">
-      <button class="propiedad">Departamento</button>
-      <div class="image-card">
-        <img src="https://picsum.photos/300/200">
-      </div>
-      <div class="disponible">
-        <button class="btn-white">Venta</button>
-        <button class="btn-white">Renta</button>
-      </div>
-      <h3> Precio de la propiedad </h3>
-      <p class="text">Direccion de la propiedad</p>
-      <div class="footer">
-        <button class="btn-white">Contacto</button>
-        <button class="btn-blue">Ver más detalles</button>
-      </div>
-    </div>
-    <div class="card">
-      <button class="propiedad">Departamento</button>
-      <div class="image-card">
-        <img src="https://picsum.photos/300/200">
-      </div>
-      <div class="disponible">
-        <button class="btn-white">Venta</button>
-        <button class="btn-white">Renta</button>
-      </div>
-      <h3> Precio de la propiedad </h3>
-      <p class="text">Direccion de la propiedad</p>
-      <div class="footer">
-        <button class="btn-white">Contacto</button>
-        <button class="btn-blue">Ver más detalles</button>
-      </div>
-    </div>
-    <div class="card">
-      <button class="propiedad">Tipo</button>
-      <div class="image-card">
-        <img src="https://picsum.photos/300/200">
-      </div>
-      <div class="disponible">
-        <button class="btn-white">Venta</button>
-        <button class="btn-white">Renta</button>
-      </div>
-      <h3> Precio de la propiedad </h3>
-      <p class="text">Direccion de la propiedad</p>
-      <div class="footer">
-        <button class="btn-white">Contacto</button>
-        <button class="btn-blue">Ver más detalles</button>
-      </div>
-    </div>
-    <div class="card">
-      <button class="propiedad">Tipo</button>
-      <div class="image-card">
-        <img src="https://picsum.photos/300/200">
-      </div>
-      <div class="disponible">
-        <button class="btn-white">Venta</button>
-        <button class="btn-white">Renta</button>
-      </div>
-      <h3> Precio de la propiedad </h3>
-      <p class="text">Direccion de la propiedad</p>
-      <div class="footer">
-        <button class="btn-white">Contacto</button>
+        <button class="btn-wasa">Contacto</button>
         <button class="btn-blue">Ver más detalles</button>
       </div>
     </div>
   </div>
 </div>
-
+<br>
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center" id="paginacion">
     
@@ -1515,8 +1496,20 @@
       resultadoBusqueda(opcion, ciudad);
     })
 
-
+    fetchTipoPropiedad();
   });
+
+  function fetchTipoPropiedad(){
+      $.get('/get/typeProperties', function (tipos){
+          var selectTipo = $('#tipoPropiedad');
+          selectTipo.empty();
+          tipos.forEach(tipo => {
+              selectTipo.append(`
+              <option value="${tipo.ID_T}">${tipo.Tipo}</option>
+              `);
+          });
+      });
+  }
 
   function resultadoBusqueda(transaccion, ciudad){
     $.ajax({

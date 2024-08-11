@@ -606,7 +606,7 @@
                     <div class="AddPhotoContainer" id="ee">
                         <img src="{{asset('Imagenes/AgregarImagen-simbolo.png')}}" >
                         <h3>Haz click aquí para añadir imagenes de tu propiedad</h3>
-                        <input type="file" id="Image">
+                        <input type="file" id="Image" accept="image/*">
                     </div>
                 </div>
                 
@@ -689,6 +689,7 @@
                 });
             });
         }
+        
 
         async function fetchServicios(){
             await $.get('/get/servicios', function(servicios){
