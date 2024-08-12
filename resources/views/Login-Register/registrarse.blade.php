@@ -100,7 +100,7 @@
             width: 150px;
         }
 
-        #Fecha_nacimiento, #tipo_usuario, #telefono, #inputContraseña{
+        #Fecha_nacimiento, #tipo_usuario, #telefono, #inputContraseña, #inputCorreo{
             width: 88%; 
         }
         
@@ -215,6 +215,9 @@
         @csrf
         <div class="container" id="nuevoEmail">
             <h2>Regístrate</h2>
+            <div class="alert alert-warning text-center" id="correo-existente" role="alert">
+                Este Correo esta registrado en Nuestro Sistema
+            </div>
                 <input type="hidden" id="employeeId" name="id">
             <div class="form-group">
                 <label for="inputCorreo">Correo electrónico</label>
@@ -229,7 +232,7 @@
                 <p>Si ya tienes una cuenta</p>
             </footer>
             <div class="terms">
-                <p>Al continuar estás aceptando los <br><a href="{{route('terminosCondiciones')}}">Términos y condiciones</a> y <a href="{{route('avisoPrivacidad')}}">Aviso de privacidad</a></p>
+                <p>Al continuar estás aceptando los <br>Términos y condiciones y <a href="{{route('avisoPrivacidad')}}">Aviso de privacidad</a></p>
             </div>
         </div>
 
@@ -251,7 +254,7 @@
                     <button type="button" id="button3">Atrás</button>
                 </div>
                 <div class="terms">
-                    <p>Al continuar estás aceptando los <br><a href="{{route('terminosCondiciones')}}">Términos y condiciones</a> y <a href="{{route('avisoPrivacidad')}}">Aviso de privacidad</a></p>
+                    <p>Al continuar estás aceptando los <br>Términos y condiciones y <a href="{{route('avisoPrivacidad')}}">Aviso de privacidad</a></p>
                 </div>
         </div>
 
@@ -282,7 +285,7 @@
                     <button type="button" id="button5" class="btn-blue">Finalizar</button>
                     <button type="button" id="button4">Atrás</button>
                 </div>
-            <p class="terms">Al continuar, estas aceptando los <br><a href="{{route('terminosCondiciones')}}">Términos y condiciones</a> y el <a href="{{route('avisoPrivacidad')}}">Aviso de Privacidad</a>.</p>
+            <p class="terms">Al continuar, estas aceptando los <br>Términos y condiciones y el <a href="{{route('avisoPrivacidad')}}">Aviso de Privacidad</a>.</p>
         </div>
     </form>
 
@@ -291,6 +294,7 @@
 @section('js')
     <script>
         $(document).ready(function(){
+            $('#correo-existente').hide();
             var datosContenedor = $('#nuevoDatos');
             var emailContenedor = $('#nuevoEmail');
             var usuarioContenedor = $('#nuevoUsuario');
@@ -302,9 +306,21 @@
 
             $('#button1').on('click', function(){
                 if(patron.test($('#inputCorreo').val())){
-                    datosContenedor.css("display", "block");
-                    emailContenedor.css("display", "none");
-                    error.css("display", "none")
+                    var email = $('#inputCorreo').val();
+
+                    verificarMail(email).then(function(response){
+                        if (response.existe) {
+                            $('#correo-existente').show();
+                        }
+                        else {
+                            $('#correo-existente').hide();
+                            datosContenedor .css("display", "block");
+                            emailContenedor.css("display", "none");
+                        }
+                    }).catch(function(error) {
+                        console.log('Error al verificar el correo:', error);
+                    });
+                    error.css("display", "none");
                 }
                 else{
                     error.css("display", "block");
@@ -411,6 +427,17 @@
                 }
             })
         });
+
+        function verificarMail(email) {
+            return $.ajax({
+                url: '/verificar-correo',
+                type: 'GET',
+                data: {
+                    email: email,
+                },
+                dataType: 'json'
+            });
+        }
 
     </script>
 @endsection
