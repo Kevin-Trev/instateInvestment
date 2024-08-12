@@ -61,14 +61,13 @@
                             <a href="{{route('login')}}"><button class="bt-blue" type="button">Iniciar Sesión</button></a>
                         @endguest
                         @auth
-
                         <div class="dropdown">
                           <button class="bt-blue dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                           {{Auth::user()->Nombre}}
                           </button>
                           <ul class="dropdown-menu">
                             <div style="margin-top:100px"></div>
-                            <li><a class="dropdown-item" href="{{route('perfil')}}">Mi perfil</a></li>
+                            <li><a class="dropdown-item" href="{{route('perfil', Auth::user()->id)}}">Mi perfil</a></li>
                             <li><a class="dropdown-item" href="{{route('catalogo')}}">Catálogo</a></li>
                             <li>
                                 <form style="display: inline" action="/logout" method="POST">

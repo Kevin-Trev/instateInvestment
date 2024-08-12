@@ -60,32 +60,41 @@
         <div class="text-center mb-3">
           <h5 class="card-title">Foto de perfil</h5>
           <div class="profile-img-container mx-auto" style="width: 200px; height: 200px; overflow: hidden;">
-            <img src="{{asset('Imagenes/CarlosTrejo.jpg')}}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
+            @if (Auth::user()->Foto)
+            <img src="{{asset('storage/public/profilePhotos/'.Auth::user()->Foto)}}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
+            @else
+            <img src="{{asset('Imagenes/icono.png')}}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
+            @endif
           </div>
         </div>
+        <!-- USERNAME -->
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre de Usuario</label>
+          <input type="text" class="form-control" id="nombre" value="{{Auth::user()->name}}" readonly>
+        </div>        
         <!-- NOMBRE -->
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre</label>
-          <input type="text" class="form-control" id="nombre" value="Carlos Enrique Trejo Avila">
+          <input type="text" class="form-control" id="nombre" value="{{Auth::user()->Nombre}} {{Auth::user()->Apellido}}" readonly>
         </div>
         <!-- F NACIMIENTO -->
         <div class="mb-3">
           <label for="fecha-nacimiento" class="form-label">F. Nacimiento</label>
-          <input type="text" class="form-control" id="fecha-nacimiento" value="21 de julio de 1963">
+          <input type="text" class="form-control" id="fecha-nacimiento" value="{{Auth::user()->Fecha_Nacimiento}}" readonly>
         </div>
         <!-- correo -->
         <div class="mb-3">
           <label for="correo" class="form-label">Correo</label>
-          <input type="text" class="form-control" id="correo" value="messigoat@gmail.com">
+          <input type="text" class="form-control" id="correo" value="{{Auth::user()->email}}" readonly>
         </div>
         <!-- TELEFONO -->
         <div class="mb-3">
           <label for="telefono" class="form-label">Teléfono</label>
-          <input type="text" class="form-control" id="telefono" value="8713428967">
+          <input type="text" class="form-control" id="telefono" value="{{Auth::user()->Telefono}}" readonly>
         </div>
         <!-- EDITAR -->
-        <div class="mb-3">
-          <button class="property-button btn btn-primary" onclick="infoProperty(${property.id})">EDITAR</button>
+        <div class="mb-3 text-center">
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editUserModal">EDITAR DATOS</button>
         </div>
       </div>
       
@@ -98,34 +107,42 @@
           <li class="nav-item">
             <a class="nav-link" id="estadisticas-tab">Estadísticas</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" id="infoSeguridad-tab">Informacion de Seguridad</a>
+          </li>
         </ul>
-        <!-- LISTA DE PROPIEDADES -->
-        <div class="property-list" id="pl">
+        <div class = "card">
           <!-- BTN DE NUEVA PROPIEDAD -->
-        <div class = "card ">
           <div class = "row">
             <div class = "col-sm-4	col-md-6	col-lg-9"></div>
             <div class = "col-sm-8	col-md-6	col-lg-3">
               <a href="">
-                <button class="btn btn-primary col-12">Nueva propiedad</button>
+                <button class="btn btn-primary col-12"><a class="nav-link" href="{{route('agregarPropiedad')}}">Nueva propiedad</a></button>
               </a>
             </div>
           </div>
         </div>
+        <!-- LISTA DE PROPIEDADES -->
+        <div class="property-list" id="pl">
           <!-- PROPIEDADES DE EJEMPLO-->
+          @foreach ($propiedades as $propiedad)
           <div class="card" style="margin-top: 5px;">
             <div class="row">
               <div class="image-card col-md-3">
-                <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
+                @if ($propiedad->main_image) {{-- Si la Propiedad No tiene Imagen Coloca una de stock--}}
+                <img src="{{asset('ImagesPublished/'.$propiedad->main_image->src_image)}}">
+                @else
+                  <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" alt="...">
+                @endif
               </div>
 
               <div class="col-md-7">
-                <h3>${property.Titulo}</h3>
-                <p>$ ${property.Precio}</p>
+                <h3>{{$propiedad->Titulo}}</h3>
+                <p>$ {{$propiedad->Precio}}</p>
                 <div class="property-details">
-                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>${property.Recamaras} Recámaras</span></div>
-                  <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>${property.Baños} Baños</span></div>
-                  <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${property.Area} M² construidos</span></div>
+                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{$propiedad->Recamaras}} Recámaras</span></div>
+                  <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>{{$propiedad->Baños}} Baños</span></div>
+                  <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Area}} M² construidos</span></div>
                 </div>
               </div>
               <div class="col-md-2">
@@ -135,98 +152,8 @@
               </div>
             </div>
           </div>
+          @endforeach
 
-          <div class="card" style="margin-top: 5px;">
-            <div class="row">
-              <div class="image-card col-md-3">
-                <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
-              </div>
-              <div class="col-md-7">
-                <h3>${property.Titulo}</h3>
-                <p>$ ${property.Precio}</p>
-                <div class="property-details">
-                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>${property.Recamaras} Recámaras</span></div>
-                  <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>${property.Baños} Baños</span></div>
-                  <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${property.Area} M² construidos</span></div>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Editar</button>
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Pausar</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card" style="margin-top: 5px;">
-            <div class="row">
-              <div class="image-card col-md-3">
-                <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
-              </div>
-
-              <div class="col-md-7">
-                <h3>${property.Titulo}</h3>
-                <p>$ ${property.Precio}</p>
-                <div class="property-details">
-                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>${property.Recamaras} Recámaras</span></div>
-                  <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>${property.Baños} Baños</span></div>
-                  <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${property.Area} M² construidos</span></div>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Editar</button>
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Pausar</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card" style="margin-top: 5px;">
-            <div class="row">
-              <div class="image-card col-md-3">
-                <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
-              </div>
-
-              <div class="col-md-7">
-                <h3>${property.Titulo}</h3>
-                <p>$ ${property.Precio}</p>
-                <div class="property-details">
-                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>${property.Recamaras} Recámaras</span></div>
-                  <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>${property.Baños} Baños</span></div>
-                  <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${property.Area} M² construidos</span></div>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Editar</button>
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Pausar</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card" style="margin-top: 5px;">
-            <div class="row">
-              <div class="image-card col-md-3">
-                <img src="{{asset('Imagenes/Fondo-seccion1.png')}}">
-              </div>
-
-              <div class="col-md-7">
-                <h3>${property.Titulo}</h3>
-                <p>$ ${property.Precio}</p>
-                <div class="property-details">
-                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>${property.Recamaras} Recámaras</span></div>
-                  <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>${property.Baños} Baños</span></div>
-                  <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>${property.Area} M² construidos</span></div>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Editar</button>
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Pausar</button>
-              </div>
-            </div>
-          </div>
-        </div>
         <!-- ESTADISTICAS -->
         <div class="property-list hidden" id="pl2">  
         <!-- Contenido principal -->
@@ -348,12 +275,68 @@
     </div>
   </div>
 
+  <!-- MODAL DE EDITAR DATOS USUARIO-->
+  <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar Datos del Usuario</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{ route('user.update', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <div class="modal-body">
+              <div class="form-group">
+                <div class="text-center mb-3">
+                  <h5 class="card-title">Foto de perfil</h5>
+                  <div id="ee" class="profile-img-container mx-auto" style="width: 200px; height: 200px; overflow: hidden;">
+                    <input type="file" name="Foto" id="foto" accept=".jpg,.png" hidden>
+                    @if (Auth::user()->Foto)
+                    <img id="preview" src="{{asset('storage/public/profilePhotos/'.Auth::user()->Foto)}}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
+                    @else
+                    <img id="preview" src="{{asset('Imagenes/icono.png')}}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
+                    @endif
+                  </div>
+                </div>      
+              </div>
+              <div class="form-group">
+                <label for="username">Nombre de Usuario</label>
+                <input class="form-control" type="text" name="name" value="{{Auth::user()->name}}" required>
+              </div>
+              <div class="form-group">
+                <label for="name">Nombre</label>
+                <input class="form-control" type="text" name="Nombre" value="{{Auth::user()->Nombre}}" required>
+              </div>
+              <div class="form-group">
+                <label for="lastname">Apellido(s)</label>
+                <input class="form-control" type="text" name="Apellido" value="{{Auth::user()->Apellido}}" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Telefono</label>
+                <input class="form-control" type="text" name="Telefono" value="{{Auth::user()->Telefono}}" required>
+              </div>
+              <div class="form-group">
+                <label for="birthday">Fecha de Nacimiento</label>
+                <input class="form-control" type="date" name="Fecha_Nacimiento" value="{{Auth::user()->Fecha_Nacimiento}}" required>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+
 
 </body>
 @endsection
 
 @section('js')
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
@@ -362,6 +345,21 @@
       const estadisticasTab = document.getElementById('estadisticas-tab');
       const publicacionesSection = document.getElementById('pl');
       const estadisticasSection = document.getElementById('pl2');
+
+      // cambiar y mostrar previo foto de perfil //
+      document.getElementById('ee').addEventListener('click', function() {
+        document.getElementById('foto').click();
+      });
+      document.getElementById('foto').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+      });
 
       // INICIAR EN PUBLICACIONES
       publicacionesSection.classList.remove('hidden');

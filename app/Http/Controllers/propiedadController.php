@@ -15,11 +15,14 @@ use Exception;
 class PropiedadController extends Controller
 {
     public function index () {
-        $propiedades = propiedades::select('ID_P','Calle','num_exterior','Colonia','Precio','Recamaras','Baños','Area','Vendible','Rentable','Tipo_Propiedad_id')
-                                    ->with("tipo_propiedad:ID_T,Tipo")
+        $propiedades = propiedades::select('ID_P','Calle','num_exterior','Colonia','Precio','Recamaras','Baños','Area','Vendible','Rentable','Tipo_Propiedad_id','users_Id')
+                                    ->with("tipo_propiedad:ID_T,Tipo","users:id,Telefono,Activo")
                                     ->with(['imagenes_propiedad' => function($query) {
                                         $query->select('reg','propiedad_id','src_image');
                                     }])
+                                    ->whereHas('users', function ($query) {
+                                        $query->where('Activo', '=', '1');
+                                    })
                                     ->get()
                                     ->map(function($propiedad) {
                                         $propiedad->main_image = $propiedad->imagenes_propiedad->first() ?: null;
@@ -29,11 +32,14 @@ class PropiedadController extends Controller
     }
 
     public function propiedadesResultados($transaccion, $ciudad){
-        $propiedades = propiedades::select('ID_P','Calle','num_exterior','Colonia','Precio','Recamaras','Baños','Area','Vendible','Rentable','Tipo_Propiedad_id')
-                                    ->with("tipo_propiedad:ID_T,Tipo")
+        $propiedades = propiedades::select('ID_P','Calle','num_exterior','Colonia','Precio','Recamaras','Baños','Area','Vendible','Rentable','Tipo_Propiedad_id','users_Id')
+                                    ->with("tipo_propiedad:ID_T,Tipo","users:id,Telefono,Activo")
                                     ->with(['imagenes_propiedad' => function($query) {
                                         $query->select('reg','propiedad_id','src_image');
                                     }])
+                                    ->whereHas('users', function ($query) {
+                                        $query->where('Activo', '=', '1');
+                                    })
                                     ->where($transaccion,'=','1')
                                     ->where('Ciudad','like',$ciudad . '%')
                                     ->get()
@@ -43,20 +49,6 @@ class PropiedadController extends Controller
                                     });
         return response()->json($propiedades);
 
-    }
-
-    public function propiedadesUsuario ($id) {
-        $propiedades = propiedades::with("tipo_propiedad:ID_T,Tipo")
-                                    ->with(['imagenes_propiedad' => function($query) {
-                                        $query->select('reg','propiedad_id','src_image');
-                                    }])
-                                    ->where('users_Id','=',$id)
-                                    ->get()
-                                    ->map(function($propiedad) {
-                                        $propiedad->main_image = $propiedad->imagenes_propiedad->first() ?: null;
-                                        return $propiedad;
-                                    });
-        return response()->json($propiedades);
     }
 
     public function getProperty($id){

@@ -1465,31 +1465,7 @@
        console.log("Buscando Propiedades " + opcion + "s en " + ciudad);
        $('#resultado').text("Buscando Propiedades " + opcion + "s en " + ciudad);
        resultadoBusqueda(opcion, ciudad);
-     })
-    var transaccion = localStorage.getItem('opcion')
-    var ciudad = localStorage.getItem('ciudad')
-
-    if(transaccion && ciudad) {
-      $('#transaccion').val(transaccion);
-      $('#ciudad').val(ciudad);
-
-      resultadoBusqueda(transaccion, ciudad);
-      console.log("Buscando Propiedades " + transaccion + "s en " + ciudad);
-
-      localStorage.removeItem('opcion');
-      localStorage.removeItem('ciudad');
-    }
-    else{
-      cargarPropiedades(); // agregalo como comentario en caso de diseño front //
-    }
-
-    $('#buscar').on('click', function() {
-      var opcion = $('#transaccion').val();
-      var ciudad = $('#ciudad').val();
-      console.log("Buscando Propiedades " + opcion + "s en " + ciudad);
-      $('#resultado').text("Buscando Propiedades " + opcion + "s en " + ciudad);
-      resultadoBusqueda(opcion, ciudad);
-    })
+     });
 
     fetchTipoPropiedad();
   });
@@ -1535,7 +1511,7 @@
                   <p class="text">${property.Calle} #${property.num_exterior}, ${property.Colonia}</p>
                   <div class="footer">
                     <button class="btn-white">Contacto</button>
-                    <button href="" class="btn-blue"><a class="nav-link" href="/get/property/${property.ID_P}">Ver más detalles</a></button>
+                    <button class="btn-blue"><a class="nav-link" href="/get/property/${property.ID_P}">Ver más detalles</a></button>
                   </div>
                 </div>`
             listaPropiedades.append(propiedad);
@@ -1574,8 +1550,8 @@
                   <h3 class="precio">$ ${precioFormateado} MXN</h3>
                   <p class="text">${property.Calle} #${property.num_exterior}, ${property.Colonia}</p>
                   <div class="footer">
-                    <button class="btn-white">Contacto</button>
-                    <button href="" class="btn-blue"><a class="nav-link" href="/get/property/${property.ID_P}">Ver más detalles</a></button>
+                    <button class="btn-white"><a class="nav-link" href="https://wa.me/${property.users.Telefono}">Contacto</a></button>
+                    <button class="btn-blue"><a class="nav-link" href="/get/property/${property.ID_P}">Ver más detalles</a></button>
                   </div>
                 </div>`
             listaPropiedades.append(propiedad);

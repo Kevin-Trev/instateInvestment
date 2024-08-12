@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Propiedades;
+use App\Models\imagenes_propiedad;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Exception;
@@ -15,14 +17,29 @@ use Carbon\Carbon;
 
 
 class UsuariosController extends Controller
-{
+{   
 
-    public function datosUsuario($id) { //datos usuario para perfil //
-        $datos = User::find($id)
-                      ->select('name','Nombre','Apellido','Fecha_Nacimiento','Telefono','Foto','email')
-                      ->get();
-        
-        return response()->json($datos);
+    public function informacionUsuario($id) { //datos usuario para perfil //
+
+        $user = auth()->user();
+
+        if ($user->id != $id) {
+            return redirect(url()->previous());
+        }
+        else {
+            $propiedades = propiedades::with("tipo_propiedad:ID_T,Tipo")
+            ->with(['imagenes_propiedad' => function($query) {
+            $query->select('reg','propiedad_id','src_image');
+            }])
+            ->where('users_Id','=',$id)
+            ->get()
+            ->map(function($propiedad) {
+            $propiedad->main_image = $propiedad->imagenes_propiedad->first() ?: null;
+            return $propiedad;
+            });
+
+            return view('hubs.perfil', compact('propiedades'));
+        }
     }
 
     public function nuevoUsuario(Request $request) {
@@ -61,6 +78,31 @@ class UsuariosController extends Controller
         }
     }
 
+    public function editarUsuario(Request $request, $id) {
+
+        $user = User::findOrFail($id);
+
+        if ($request->hasFile('Foto')) {
+            $file = $request->file('Foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('public/profilePhotos', $filename); 
+            if ($user->Foto) {
+                Storage::delete('public/profilePhotos/' . $user->Foto);
+            }
+            $user->Foto = $filename;
+        }
+    
+        $user->name = $request->input('name');
+        $user->Nombre = $request->input('Nombre');
+        $user->Apellido = $request->input('Apellido');
+        $user->Telefono = $request->input('Telefono');
+        $user->Fecha_Nacimiento = $request->input('Fecha_Nacimiento');
+
+        $user->save();
+
+        return redirect('/views/hubs/perfil/'.$id);
+    }
+
     public function login () {
         $credenciales = request()->only('email','password');
 
@@ -81,7 +123,7 @@ class UsuariosController extends Controller
 
     public function logout () {
         Auth::logout();
-        return redirect(url()->previous());
+        return redirect('/');
     }
 
     public function eliminarUsuario () {
