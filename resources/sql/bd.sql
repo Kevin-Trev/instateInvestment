@@ -60,7 +60,7 @@ CREATE TABLE Propiedades
   Vendible TINYINT(1) NOT NULL,
   users_Id bigint unsigned NOT NULL,
   CONSTRAINT FK_users_Propiedad FOREIGN KEY (users_Id)
-  REFERENCES users(id),
+  REFERENCES users(id) ON DELETE CASCADE,
   Tipo_Propiedad_id INT NOT NULL,
   CONSTRAINT FK_Tipo_Propiedad FOREIGN KEY (Tipo_Propiedad_id)
   REFERENCES Tipo_Propiedad (ID_T)
@@ -73,7 +73,7 @@ CREATE TABLE IMAGENES_PROPIEDAD
   propiedad_id INT NOT NULL,
   src_image TEXT NULL,
   CONSTRAINT FK_IMAGENES_PROPIEDAD FOREIGN KEY (propiedad_id)
-  REFERENCES Propiedades (ID_P)
+  REFERENCES Propiedades (ID_P) ON DELETE CASCADE
 );
 
 CREATE TABLE Propiedad_Servicio
@@ -94,7 +94,7 @@ CREATE TABLE Comentario
   Fecha DATE NOT NULL,
   users_id bigint unsigned NOT NULL,
   CONSTRAINT FK_users_Comentario FOREIGN KEY(users_id)
-  REFERENCES users (id),
+  REFERENCES users (id) ON DELETE CASCADE,
   Propiedad_id INT NOT NULL,
   CONSTRAINT FK_Propiedad_Comentario FOREIGN KEY (Propiedad_id)
   REFERENCES Propiedades(ID_P)

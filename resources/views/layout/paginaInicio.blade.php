@@ -46,6 +46,13 @@
             width: 50px;
             height: 50px;
         }
+
+        .profile-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        }
+
         .dropdown-item{
             margin-bottom: 5px;
         }
@@ -258,13 +265,17 @@
 
                     </ul>
                     <div class="perfilContainer" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{asset('Imagenes/iconito.png')}}" alt="" height="50px">
+                        @if (Auth::user()->Foto)
+                        <img src="{{asset('storage/profile_photos/'.Auth::user()->Foto)}}" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
+                        @else
+                        <img src="{{asset('Imagenes/iconito.png')}}" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
+                        @endif
                         {{-- Agregar la imagen del usuario --}}
                     </div>
                     <ul class="dropdown-menu">
                         <li><label class="dropdown-item">👋 Hola, {{Auth::user()->Nombre}}</label></li>
                         <hr>
-                        <li><a class="dropdown-item" href="{{route('perfil')}}">Mi perfil</a></li>
+                        <li><a class="dropdown-item" href="{{ route('perfil', Auth::user()->id) }}">Mi perfil</a></li>
                         <li><a class="dropdown-item" href="{{route('catalogo')}}">Catálogo</a></li>
                         <hr>
                         <li>

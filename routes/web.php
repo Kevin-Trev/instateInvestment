@@ -48,7 +48,8 @@ Route::get('/get/servicios', [servicioController::class, 'index']);
 
 Route::post('/login', [usuariosController::class, 'login']);
 Route::post('/logout', [usuariosController::class, 'logout']);
-Route::delete('/userdel', [usuariosController::class, 'eliminarUsuario']);
+Route::post('/useredit/{id}', [usuariosController::class, 'editarUsuario'])->name('user.update');
+Route::delete('/userdel', [usuariosController::class, 'eliminarUsuario'])->name('user.delete');
 Route::get('get/user/{id}', [usuariosController::class, 'datosUsuario']);
 
 // Rutas necesarias para las propiedades
@@ -65,8 +66,7 @@ Route::get('/delete/comentario/{id}', [comentarioController::class, 'eliminarCom
 // Rutas de vistas a las que solo puede acceder un usuario con una sesión iniciada 
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/views/perfil', [viewsController::class, 'perfil'])->name('perfil');
-    Route::get('/views/hubs/perfil', function () { return view('hubs.perfil'); })->name('perfil');
+    Route::get('/views/hubs/perfil/{id}', [usuariosController::class, 'informacionUsuario'])->name('perfil');
     Route::get('/views/agregar/propiedad', [viewsController::class, 'agregarPropiedad'])->name('agregarPropiedad');
 });
 
