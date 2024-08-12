@@ -46,7 +46,7 @@ class PropiedadController extends Controller
     }
 
     public function propiedadesUsuario ($id) {
-        $propiedades = propiedades::with("tipo_propiedad:ID_T,Tipo")
+        $propiedades = propiedades::with("tipo_propiedad_:ID_T,Tipo")
                                     ->with(['imagenes_propiedad' => function($query) {
                                         $query->select('reg','propiedad_id','src_image');
                                     }])
@@ -84,7 +84,6 @@ class PropiedadController extends Controller
         ->with("users:id,name,Foto")
         ->orderBy('Fecha','DESC')
         ->get();
-    
 
         return view('detallesPropiedad', compact('propiedad','comentarios','moreProperties'));
     }
@@ -94,7 +93,6 @@ class PropiedadController extends Controller
     DB::beginTransaction();
 
         try{
-            
 
             // Decodificacion del array de servicios
 

@@ -14,9 +14,6 @@
             padding: 0;
         }
 
-        body{
-            border: 1px solid black;
-        }
         .navbar{
         display: flex;
         justify-content: space-between;
