@@ -1951,7 +1951,7 @@
 
 @section('body')
     <div class="container">
-        <div class="retroceder" onclick="location.href='{{route('catalogo')}}'">
+        <div class="retroceder" onclick="location.href='{{route('admin.perfilAd')}}'">
             <h6>↩ Regresar a la navegación</h6>
         </div>
         <h2>{{$propiedad->Calle}} #{{$propiedad->num_exterior}}</h2> {{-- Domicilio de la Propiedad --}}

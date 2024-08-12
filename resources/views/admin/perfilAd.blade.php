@@ -134,7 +134,7 @@
     </div>
 
     <div class="col-md-2">
-      <button class="bt-blue"><a href="{{route('catalogo')}}" style="margin-bottom: 10px; color:white;">Revisar</a></button>
+      <button class="bt-blue"><a href="/get/property/admin/{{$propiedad->ID_P}}" style="margin-bottom: 10px; color:white;">Revisar</a></button>
       
       <form action="{{ route('propiedad.eliminar', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
     @csrf

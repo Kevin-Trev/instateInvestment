@@ -59,6 +59,7 @@ Route::get('get/user/{id}', [usuariosController::class, 'datosUsuario']);
 Route::get('/get/properties',[propiedadController::class, 'index']);
 Route::get('/get/results/propeties/{transaccion}/{ciudad}', [propiedadController::class, 'propiedadesResultados']);
 Route::get('/get/property/{id}', [propiedadController::class, 'getProperty']);
+Route::get('/get/property/admin/{id}', [propiedadController::class, 'getPropertyadmin']);
 Route::post('/post/propiedad', [propiedadController::class, 'newProperty']); /* cambiar de GET a POST */
 
 // Ruta para publicar un comentario
@@ -95,7 +96,7 @@ Route::get('/error', [viewsController::class, 'error'])->name('error');
 
 // vista perfil del admin en la carpeta admin/perfilAd para que Brandon no este ch...
 
-Route::get('/perfil-administrador', [usuariosController::class, 'mostrarPerfilAdmin']);
+Route::get('/perfil-administrador', [usuariosController::class, 'mostrarPerfilAdmin'])->name('admin.perfilAd');
 Route::get('/publicaciones/no-verificadas', [PropiedadController::class, 'showPublicacionesNoVerificadas']);
 // Ruta en web.php
 Route::post('/propiedad/verificar/{ID_P}', [PropiedadController::class, 'verificar'])->name('propiedad.verificar');

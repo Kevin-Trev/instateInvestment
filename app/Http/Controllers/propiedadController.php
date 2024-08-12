@@ -80,6 +80,35 @@ class PropiedadController extends Controller
         return view('detallesPropiedad', compact('propiedad','comentarios','moreProperties'));
     }
 
+    public function getPropertyadmin($id){
+
+        $propiedad = propiedades::with(
+            "tipo_propiedad:ID_T,Tipo",
+            "users:id,Telefono",
+            "imagenes_propiedad:reg,propiedad_id,src_image")
+            ->find($id);
+    
+        $moreProperties = propiedades::where('ID_P','!=',$id)
+                                    ->with("users:id,Telefono")
+                                    ->with(['imagenes_propiedad' => function($query) {
+                                        $query->select('reg','propiedad_id','src_image');
+                                    }])
+                                    ->inRandomOrder()
+                                    ->take(4)
+                                    ->get()
+                                    ->map(function($propiedad) {
+                                        $propiedad->main_image = $propiedad->imagenes_propiedad->first() ?: null;
+                                        return $propiedad;
+                                    });
+        
+        $comentarios = COMENTARIO::where('Propiedad_id','=',$id)
+        ->with("users:id,name,Foto")
+        ->orderBy('Fecha','DESC')
+        ->get();
+
+        return view('admin.revisar', compact('propiedad','comentarios','moreProperties'));
+    }
+    
     public function newProperty (Request $request){   
 
     DB::beginTransaction();
@@ -199,4 +228,5 @@ public function eliminar($ID_P)
     }
 
     return redirect()->route('propiedad.listar')->with('error', 'Propiedad no encontrada.');
+}
 }
