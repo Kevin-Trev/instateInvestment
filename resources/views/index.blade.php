@@ -243,14 +243,14 @@
         <div class="container-info2">
             <h2>Legal</h2>
             <hr>
-            <a href="/legal">Aviso legal</a><br><br><a href="{{route('avisoPrivacidad')}}">Politica de privacidad </a><br><br><a href="/privacidad">Politica de cookies</a>
+            <a href="/legal">Aviso legal</a><br><br><a href="/legal">Politica de privacidad </a><br><br><a href="/legal">Politica de cookies</a>
         </div>
         <div class="container-info2">
             <h2>Sobre</h2>
             <hr>
-            <a href="/nosotros">Nosotros</a><br><br><a href="/mision">Misión</a><br><br><a href="/vision">Visión</a>
+            <a href="/nosotros">Nosotros</a><br><br><a href="/nosotros">Misión</a><br><br><a href="/nosotros">Visión</a>
         </div>
-  </footer>
+</footer>
 @endsection
 
 @section('js')
