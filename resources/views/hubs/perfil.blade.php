@@ -61,7 +61,7 @@
           <h5 class="card-title">Foto de perfil</h5>
           <div class="profile-img-container mx-auto" style="width: 200px; height: 200px; overflow: hidden;">
             @if (Auth::user()->Foto)
-            <img src="{{asset('storage/public/profilePhotos/'.Auth::user()->Foto)}}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="{{asset('storage/profile_photos/'.Auth::user()->Foto)}}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
             @else
             <img src="{{asset('Imagenes/icono.png')}}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
             @endif
@@ -294,7 +294,7 @@
                   <div id="ee" class="profile-img-container mx-auto" style="width: 200px; height: 200px; overflow: hidden;">
                     <input type="file" name="Foto" id="foto" accept=".jpg,.png" hidden>
                     @if (Auth::user()->Foto)
-                    <img id="preview" src="{{asset('storage/public/profilePhotos/'.Auth::user()->Foto)}}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img id="preview" src="{{asset('storage/profile_photos/'.Auth::user()->Foto)}}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
                     @else
                     <img id="preview" src="{{asset('Imagenes/icono.png')}}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
                     @endif

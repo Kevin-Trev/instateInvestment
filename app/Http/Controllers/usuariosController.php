@@ -85,9 +85,9 @@ class UsuariosController extends Controller
         if ($request->hasFile('Foto')) {
             $file = $request->file('Foto');
             $filename = time() . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('public/profilePhotos', $filename); 
+            $path = $file->storeAs('profile_photos', $filename); 
             if ($user->Foto) {
-                Storage::delete('public/profilePhotos/' . $user->Foto);
+                Storage::delete('profile_photos/' . $user->Foto);
             }
             $user->Foto = $filename;
         }
