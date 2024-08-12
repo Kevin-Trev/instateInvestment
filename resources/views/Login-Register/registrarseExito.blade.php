@@ -77,6 +77,6 @@
     <p>¡Gracias <span id="username">{{Auth::user()->Nombre}}</span> por formar parte de Instate!</p>
     <button class="bt-blue"><a class="nav-link" href="{{Route('catalogo')}}">Empezar a Buscar</a></button>
     <br>
-    <button class="bt-transparent"><a href="{{route('perfil')}}">Continuar a Mi Perfil</a></button>
+    <button class="bt-transparent"><a href="{{route('perfil', Auth::user()->id)}}">Continuar a Mi Perfil</a></button>
 </div>
 @endsection

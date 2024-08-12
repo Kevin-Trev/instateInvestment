@@ -48,6 +48,8 @@ Route::get('/get/servicios', [servicioController::class, 'index']);
 
 Route::post('/login', [usuariosController::class, 'login']);
 Route::post('/logout', [usuariosController::class, 'logout']);
+Route::get('/verificar-correo', [usuariosController::class, 'verificarMail']);
+Route::post('/registrar', [usuariosController::class, 'nuevoUsuario']);
 Route::post('/useredit/{id}', [usuariosController::class, 'editarUsuario'])->name('user.update');
 Route::delete('/userdel', [usuariosController::class, 'eliminarUsuario'])->name('user.delete');
 Route::get('get/user/{id}', [usuariosController::class, 'datosUsuario']);

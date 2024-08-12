@@ -42,6 +42,16 @@ class UsuariosController extends Controller
         }
     }
 
+    public function verificarMail(Request $request){
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+    
+        $correoExiste = User::where('email', $request->input('email'))->exists();
+    
+        return response()->json(['existe' => $correoExiste]);
+    }
+
     public function nuevoUsuario(Request $request) {
 
         DB::beginTransaction();
