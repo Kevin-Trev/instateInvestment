@@ -19,6 +19,8 @@
     cursor: pointer;
     margin-bottom: 5px;
 }
+
+
 .bt-blue:hover{
     background-color: #002E99;
     transition: .5s;
@@ -550,6 +552,9 @@ input[type="radio"]:checked + label{
     #page-footer {
         background-color: #004CFF;
         padding-bottom: 15px;
+        display: flex;
+        gap: 20px;
+        padding: 20px 0 20px 0;
     }
     
     .container-info{
@@ -851,56 +856,61 @@ input[type="radio"]:checked + label{
     /* Footer */
 
     #page-footer{
-        width: 100%; 
-        height: 360px;
-    }
+        margin-top: 80px;
+        width: 100%;
+        gap: 0;
+        padding: 0 0 10px 0;
+        display: block;
+      }
 
-     .container-info img{
-        width: 220px;
-        height: 220px;
-        transform: translate(-50px, 10px);
-    }
+      .container-info img{
+        width: 18vw;
+        height: 18vw;
+        transform: translate(-40px, 230px);
+      }
 
-    .container-info p{
-        font-size: 16px;
-        transform: translate(-65px, 70px);
-    }
+      .container-info p{
+        font-size: 1.4vw;
+        transform: translate(-60px, 360px)
+      }
 
-    .container-info h2{
-        font-size: 2.5vw;
+      .container-info b{
+        font-size: 1.6vw;
+      }
 
-    }
+      .container-info h2{
+        font-size: 2.8vw;
+      }
 
-    .container-info b{
-        font-size: 1.2vw;
-    }
+      #page-footer .container-info .container-social img{
+        width: 2.5vw;
+        height: 2.5vw;
+        transform: translate(0);
+      }
 
-    .container-social{
-        width: 40px;
-    }
+      #este{
+        margin: 0 0 10px 55vw;
+        transform: translate(-16vw, -2vw);
+      }
 
-    .container-social img{
-        width: 25px;
-        height: 25px;
-        transform: translateX(15px);
-    }
+      .container-info2 h2{
+       font-size: 2.8vw;
+      }
 
-    .juntos{
-        transform: translate(22vw, -280px);
-    }
+      .container-info{
+        margin-top: -200px;
+      }
 
-    .container-info2{
-        margin: 3vw;
-    }
+      .container-info2 a{
+        font-size: 1.7vw;
+      }
 
-    .container-info2 h2{
-        font-size: 2.5vw;
-        margin: 10px 0 0 0; 
-    }
-
-    .container-info2 a{
-        font-size: 1.2vw;
-    }
+      .container-info2{
+        display: inline-block;
+        margin-left: 30px;
+        transform: translate(65vw, -2.5vw);
+        margin-top: -800px;
+      }
 }
 
     @media(max-width: 1200px){
@@ -1049,56 +1059,61 @@ input[type="radio"]:checked + label{
     /* Footer */
 
     #page-footer{
-        width: 100%; 
-        height: 360px;
-    }
+        margin-top: 80px;
+        width: 100%;
+        gap: 0;
+        padding: 0 0 10px 0;
+        display: block;
+      }
 
-     .container-info img{
-        width: 220px;
-        height: 220px;
-        transform: translate(-50px, 10px);
-    }
+      .container-info img{
+        width: 18vw;
+        height: 18vw;
+        transform: translate(-40px, 230px);
+      }
 
-    .container-info p{
-        font-size: 16px;
-        transform: translate(-65px, 70px);
-    }
+      .container-info p{
+        font-size: 1.4vw;
+        transform: translate(-60px, 300px)
+      }
 
-    .container-info h2{
-        font-size: 2.5vw;
+      .container-info b{
+        font-size: 1.6vw;
+      }
 
-    }
+      .container-info h2{
+        font-size: 2.8vw;
+      }
 
-    .container-info b{
-        font-size: 1.2vw;
-    }
+      #page-footer .container-info .container-social img{
+        width: 2.5vw;
+        height: 2.5vw;
+        transform: translate(0);
+      }
 
-    .container-social{
-        width: 40px;
-    }
+      #este{
+        margin: 0 0 10px 55vw;
+        transform: translate(-16vw, -2vw);
+      }
 
-    .container-social img{
-        width: 25px;
-        height: 25px;
-        transform: translateX(15px);
-    }
+      .container-info2 h2{
+       font-size: 2.8vw;
+      }
 
-    .juntos{
-        transform: translate(22vw, -280px);
-    }
+      .container-info{
+        margin-top: -200px;
+      }
 
-    .container-info2{
-        margin: 3vw;
-    }
+      .container-info2 a{
+        font-size: 1.7vw;
+      }
 
-    .container-info2 h2{
-        font-size: 2.5vw;
-        margin: 10px 0 0 0; 
-    }
-
-    .container-info2 a{
-        font-size: 1.2vw;
-    }
+      .container-info2{
+        display: inline-block;
+        margin-left: 30px;
+        transform: translate(65vw, -2.5vw);
+        margin-top: -800px;
+      }
 }
 
     /* //TODO Laptops chiquitas */
@@ -1252,54 +1267,61 @@ input[type="radio"]:checked + label{
     /* Footer */
 
     #page-footer{
-        width: 100%; 
-        height: 310px;
-    }
-
-     .container-info img{
-        width: 150px;
-        height: 150px;
-        transform: translate(-70px, 10px);
-    }
-
-    .container-info p{
-        font-size: 12px;
-        transform: translate(-95px, 30px);
-    }
-
-    .container-info h2{
-        font-size: 3vw;
-    }
-
-    .container-info b{
-        font-size: 2vw;
-    }
-
-    .container-social{
-        width: 40px;
-    }
-
-    .container-social img{
-        width: 25px;
-        height: 25px;
-        transform: translateX(15px);
-    }
-
-    .juntos{
-        transform: translate(16vw, -280px);
-    }
-
-    .container-info2{
-        margin: 1vw;
-    }
-
-    .container-info2 h2{
-        font-size: 3vw;
-    }
-
-    .container-info2 a{
-        font-size: 2vw;
-    }
+        margin-top: 80px;
+        width: 100%;
+        gap: 0;
+        padding: 0 0 10px 0;
+        display: block;
+        }
+    
+        .container-info img{
+        width: 20vw;
+        height: 20vw;
+        transform: translate(-40px, 230px);
+        }
+    
+        .container-info p{
+        font-size: 1.6vw;
+        transform: translate(-70px, 280px)
+        }
+    
+        .container-info b{
+        font-size: 1.6vw;
+        }
+    
+        .container-info h2{
+        font-size: 2.6vw;
+        }
+    
+        #page-footer .container-info .container-social img{
+        width: 2.5vw;
+        height: 2.5vw;
+        transform: translate(0);
+        }
+    
+        #este{
+        margin: 0 0 10px 55vw;
+        transform: translate(-16vw, -2vw);
+        }
+    
+        .container-info2 h2{
+        font-size: 2.6vw;
+        }
+    
+        .container-info{
+        margin-top: -200px;
+        }
+    
+        .container-info2 a{
+        font-size: 1.8vw;
+        }
+    
+        .container-info2{
+        display: inline-block;
+        margin-left: 30px;
+        transform: translate(65vw, -2.5vw);
+        margin-top: -500px;
+        }
 }
 
 
@@ -1461,47 +1483,61 @@ input[type="radio"]:checked + label{
     /* Footer */
 
     #page-footer{
-        width: 100%;  
-        height: 300px;
+        margin-top: 80px;
+        width: 100%;
+        gap: 0;
+        padding: 0 0 10px 0;
+        display: block;
+      }
 
-    }
+      .container-info img{
+        width: 30vw;
+        height: 30vw;
+        transform: translate(-80px, 210px);
+      }
 
-     .container-info img{
-        width: 120px;
-        height: 120px;
-        transform: translate(-70px, 20px);
-    }
+      .container-info p{
+        font-size: 2.8vw;
+        transform: translate(-110px, 230px)
+      }
 
-    .container-info p{
-        font-size: 12px;
-        transform: translate(-105px, -5px);
-    }
+      .container-info b{
+        font-size: 2.5vw;
+      }
 
-    .container-info h2{
-        font-size: 18px;
-    }
+      .container-info h2{
+        font-size: 6vw;
+      }
 
-    .container-info b{
-        font-size: 10px;
-    }
+      .container-social{
+        transform: translate(0);
+      }
 
-    .container-social{
-        width: 40px;
-    }
+      #page-footer .container-info .container-social img{
+        width: 5vw;
+        height: 5vw;
+      }
 
-    .container-social img{
-        width: 25px;
-        height: 25px;
-        transform: translateX(15px);
-    }
+      .container-info{
+        margin-top: -500px;
+      }
 
-    .juntos{
-        transform: translate(25vw, -260px);
-    }
+      #este{
+        margin: 0 0 10px 55vw;
+        transform: translateY(-10vw);
+      }
 
-    .container-info2 {
+      .container-info2 h2{
+       font-size: 6vw;
+      }
+
+      .container-info2 a{
+        font-size: 2.5vw;
+      }
+
+      .container-info2{
         display: none;
-    }
+      }
 }
 
 /* //TODO CELULARES GAMA POBRE */
@@ -1651,44 +1687,59 @@ input[type="radio"]:checked + label{
     /* Footer */
 
     #page-footer{
-        width: 100%;  
-        height: 270px;
+        margin-top: 40px;
+        width: 100%;
+        gap: 0;
+        padding: 0 0 10px 0;
+        display: block;
     }
 
-     .container-info img{
-        width: 90px;
-        height: 90px;
-        transform: translate(-90px, -10px);
+    .container-info img{
+        width: 30vw;
+        height: 30vw;
+        transform: translate(-80px, 210px);
     }
 
     .container-info p{
-        font-size: 8px;
-        transform: translate(-105px, -70px);
-    }
-
-    .container-info h2{
-        font-size: 16px;
+        font-size: 2.8vw;
+        transform: translate(-110px, 200px)
     }
 
     .container-info b{
-        font-size: 7px;
+        font-size: 3vw;
+    }
+
+    .container-info h2{
+        font-size: 6vw;
     }
 
     .container-social{
-        width: 40px;
+        transform: translate(0);
     }
 
-    .container-social img{
-        width: 20px;
-        height: 20px;
-        transform: translateX(15px);
+    #page-footer .container-info .container-social a img{
+        width: 5vw;
+        height: 5vw;
     }
 
-    .juntos{
-        transform: translate(10vw, -260px);
+    .container-info{
+        margin-top: -500px;
     }
 
-    .container-info2 {
+    #este{
+        margin: 0 0 10px 55vw;
+        transform: translateY(-13vw);
+    }
+
+    .container-info2 h2{
+    font-size: 6.5vw;
+    }
+
+    .container-info2 a{
+        font-size: 2.5vw;
+    }
+
+    .container-info2{
         display: none;
     }
 }
