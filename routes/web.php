@@ -103,11 +103,6 @@ Route::post('/propiedad/verificar/{ID_P}', [PropiedadController::class, 'verific
 
 Route::get('/obtener-notificaciones', [NotificacionController::class, 'obtenerNotificaciones']);
 
-Route::get('/revisar', function () {
-    return view('admin.revisar'); 
-})->name('revisar');
-
-
 Route::delete('/propiedad/eliminar/{ID_P}', [PropiedadController::class, 'eliminar'])->name('propiedad.eliminar');
 Route::get('/propiedad/listar', [PropiedadController::class, 'listar'])->name('propiedad.listar');
 

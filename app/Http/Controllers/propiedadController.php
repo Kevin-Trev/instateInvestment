@@ -200,5 +200,3 @@ public function eliminar($ID_P)
 
     return redirect()->route('propiedad.listar')->with('error', 'Propiedad no encontrada.');
 }
-
-}
