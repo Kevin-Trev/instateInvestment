@@ -111,48 +111,46 @@
 
 <img src="{{ asset('/Imagenes/Nosequesea.png') }}" id="nosequesea">
 
-    <footer id="page-footer">
-        <div class="container-info">
-            <img src="{{ asset('/Imagenes/LOGO.png') }}">
-            <p>Instate es una marga registrada por <br>Instate Investments S.A de C.V. en <br>alianza con Design Construcciones.</p>
-        </div>
-    
-        <div class="juntos">
-            <div class="container-info">
-                <h2>Contacto</h2>
-                <hr>
-                <b>MINA 330 INT. 5 COL.CENTRO <br>MONTERREY, NUEVO LEÓN. MÉXICO <br>812-433-1672</b>
+<footer style="background-color:#004CFF; width: 100%;">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4 text-center text-md-start mb-4 mb-md-0 my-2">
+                <img src="{{ asset('/Imagenes/LOGO.png') }}" alt="Logo" class="mb-3" style="max-width: 180px;">
+                <p style = "color:white;">Instate es una marca registrada por <br>Instate Investments S.A de C.V. en <br>alianza con Design Construcciones.</p>
+            </div>
+
+            <div class="col-md-4 text-center text-md-start mb-4 mb-md-0 my-5">
+                <h2 style = "color:white;">Contacto</h2>
+                <hr style="border-color: rgb(255, 255, 255);">
+                <b style = "color:white;">MINA 330 INT. 5 COL.CENTRO <br style = "color:white;">MONTERREY, NUEVO LEÓN. MÉXICO <br style = "color:white;">812-433-1672</b>
                 
-                <br>
-    
-                <div class="container-social">
-                    <a href="https://www.facebook.com/instatemx">
-                        <img src="{{ asset('Imagenes/iconoFacebook.png')}}">
+                <div class="d-flex justify-content-center justify-content-md-start mt-3">
+                    <a href="https://www.facebook.com/instatemx" class="me-2">
+                        <img src="{{ asset('Imagenes/iconoFacebook.png') }}" alt="Facebook" style="max-width: 30px;">
                     </a>
-                </div>
-                <div class="container-social">
-                    <a href="">
-                        <img src="{{ asset('Imagenes/iconoTwitter.png')}}">
+                    <a href="#" class="me-2">
+                        <img src="{{ asset('Imagenes/iconoTwitter.png') }}" alt="Twitter" style="max-width: 30px;">
                     </a>
-                </div>
-                <div class="container-social">
                     <a href="https://www.instagram.com/instatemx/">
-                        <img src="{{ asset('Imagenes/iconoInstagram.png')}}">
+                        <img src="{{ asset('Imagenes/iconoInstagram.png') }}" alt="Instagram" style="max-width: 30px;">
                     </a>
                 </div>
             </div>
-            <div class="container-info2">
-                <h2>Legal</h2>
-                <hr>
-                <a href="/Legal/PoliticasPrivacidad">Términos y Condiciones - Instate Inmuebles</a><br><br><br><br>
+
+            <div class="col-md-2 text-center text-md-start my-5">
+                <h2 style = "color:white;">Legal</h2>
+                <hr style="border-color: rgb(255, 255, 255);">
+                <a href="/Legal/PoliticasPrivacidad" style="color: white;">Términos y Condiciones - Instate Inmuebles</a>
             </div>
-            <div class="container-info2">
-                <h2>Sobre</h2>
-                <hr>
-                <a href="/nosotros">Nosotros</a><br><br><br><br>
-             </div>
+
+            <div class="col-md-2 text-center text-md-start my-5">
+                <h2 style = "color:white;">Sobre</h2>
+                <hr style="border-color: rgb(255, 255, 255);">
+                <a href="/nosotros" style="color: white;">Nosotros</a>
+            </div>
         </div>
-    </footer>
+    </div>
+</footer>
 @endsection
 @section('js')
 @endsection
