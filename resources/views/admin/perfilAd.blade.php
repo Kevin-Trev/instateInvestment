@@ -103,10 +103,10 @@
         <ul class="nav nav-tabs">
           <li class="nav-item">
             <a class="nav-link active" id="publicaciones-tab" aria-current="page">Publicaciones</a>
-            <h2> Publicaciones no verificadas </h2>
+          
           </li>
-      
         </ul>
+        <h2> Publicaciones no verificadas </h2>
         <div class = "card">
          
         <!-- LISTA DE PROPIEDADES -->
@@ -134,9 +134,14 @@
     </div>
 
     <div class="col-md-2">
-      <a href="{{route('catalogo')}}" class="bt-blue" style="margin-bottom: 10px;">Revisar</a>
+      <button class="bt-blue"><a href="{{route('catalogo')}}" style="margin-bottom: 10px; color:white;">Revisar</a></button>
       
-      <button style="margin-bottom: 10px;" class="bt-blue">Eliminar</button>
+      <form action="{{ route('propiedad.eliminar', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="bt-blue">Eliminar</button>
+</form>
+
 
 
       <!-- Formulario para Verificar -->
