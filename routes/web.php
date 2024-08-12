@@ -93,9 +93,13 @@ Route::get('/error', [viewsController::class, 'error'])->name('error');
 
 // vista perfil del admin en la carpeta admin/perfilAd para que Brandon no este ch...
 
-Route::get('/perfil-administrador', function () {
-    return view('admin.catalogo');
-});
+Route::get('/perfil-administrador', [usuariosController::class, 'mostrarPerfilAdmin']);
+Route::get('/publicaciones/no-verificadas', [PropiedadController::class, 'showPublicacionesNoVerificadas']);
+// Ruta en web.php
+Route::post('/propiedad/verificar/{ID_P}', [PropiedadController::class, 'verificar'])->name('propiedad.verificar');
+
+
+
 
 Route::get('/obtener-notificaciones', [NotificacionController::class, 'obtenerNotificaciones']);
 

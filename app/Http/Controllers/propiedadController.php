@@ -166,4 +166,26 @@ class PropiedadController extends Controller
 
     return view('hubs.Maps', compact('direccion'));
 }
+
+public function showPublicacionesNoVerificadas()
+{
+
+    $propiedades = Propiedades::where('verificacion', false)->get();
+
+  
+    return view('admin.perfilAd', compact('propiedades'));
+}
+public function verificar($ID_P)
+{
+    $propiedades = Propiedades::find($ID_P);
+
+    if ($propiedades) {
+        $propiedades->verificacion = 1;
+        $propiedades->save();
+
+        return redirect()->back()->with('success', 'Propiedad verificada con éxito.');
+    }
+
+    return redirect()->back()->with('error', 'Propiedad no encontrada.');
+}
 }
