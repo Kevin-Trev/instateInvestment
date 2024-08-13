@@ -118,8 +118,14 @@ class UsuariosController extends Controller
 
         if(Auth::attempt($credenciales)){
             if(Auth::user()->activo) {
-                request()->session()->regenerate();
-                return redirect('/views/catalogo');
+                if(Auth::user()->administrador){
+                    request()->session()->regenerate();
+                    return redirect('/perfil-administrador');
+                }
+                else{
+                    request()->session()->regenerate();
+                    return redirect('/views/catalogo');    
+                }
             }
             else {
                 Auth::logout();
