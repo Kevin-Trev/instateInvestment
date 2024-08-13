@@ -16,7 +16,7 @@ use Exception;
 use Carbon\Carbon;
 
 
-class UsuariosController extends Controller
+class usuariosController extends Controller
 {   
 
     public function informacionUsuario($id) { //datos usuario para perfil //
@@ -46,9 +46,12 @@ class UsuariosController extends Controller
         $request->validate([
             'email' => 'required|email',
         ]);
-    
         $correoExiste = User::where('email', $request->input('email'))->exists();
-    
+        return response()->json(['existe' => $correoExiste]);
+    }
+
+    public function verificarTelefono (Request $request){
+        $telefonoExistente = User::where('Telefono', $request->input('Telefono'))->exists();
         return response()->json(['existe' => $correoExiste]);
     }
 

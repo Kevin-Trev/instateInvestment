@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\COMENTARIO;
+use App\Models\comentario;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Exception;
@@ -12,7 +12,7 @@ use Exception;
 class comentarioController extends Controller
 {
     public function index () {
-        $comentarios = COMENTARIO::All();
+        $comentarios = comentario::All();
         return response()->json($comentarios);
     }
 
@@ -20,7 +20,7 @@ class comentarioController extends Controller
 
         DB::beginTransaction();
         try{
-            $comentario = new COMENTARIO();
+            $comentario = new comentario();
 
             $comentario->Comentario = $request->Comentario;
             $comentario->Fecha = today(); // toma SOLO la fecha de HOY //
@@ -39,7 +39,7 @@ class comentarioController extends Controller
     }
 
     public function eliminarComentario($id) {
-        $comentario = COMENTARIO::find($id);
+        $comentario = comentario::find($id);
         $propiedad_id = $comentario->Propiedad_id;
         $comentario->delete(); 
         return redirect('/get/property/'.$propiedad_id)->with('comentario_eliminado', 'Comentario Eliminado');

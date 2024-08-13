@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\SERVICIO;
+use App\Models\servicio;
 
-class servicioController extends Controller
+class ServicioController extends Controller
 {
     public function index () {
-        $servicios = SERVICIO::All();
+        $servicios = servicio::All();
         return response()->json($servicios);
     }
 }
