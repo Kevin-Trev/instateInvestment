@@ -154,7 +154,25 @@
         display: inline-block;
         margin-right: 100px;
     }
-    
+
+    #ee{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 45px;
+        padding: 8px;
+        height: auto;
+    }
+
+    .btn-remove{
+        width: 20px;
+        position: absolute;
+        transform: translate(-10px, -5px);
+        color: #007bff;
+        border: 1px solid #007bff;
+        background-color: #FFFFFF;
+        border-radius: 8px;
+    }
+
     .contenedorCaracteristicas .form-group input[type="number"]{
         border-radius: 40%;
         width: 50px;
@@ -164,9 +182,8 @@
         margin: 10px;
     }
 
-    .contenido{
-        padding-top: 20px;  
-        margin-left: 100px
+    .contenido{  
+        margin: 0 0 30px 160px
     }
     
     .contenedorCaracteristicas .form-group 
@@ -219,26 +236,70 @@
     }
 
     .AddPhotoContainer{
-        margin-left: 7%;
+        margin: 20px 0 20px 7%;
         width: 800px;
-        border: 2px dashed gray;
-        cursor: pointer;
+        border: 2px dashed rgba(128, 128, 128, 0.473);
         height: 300px;
+        border-radius: 8px;
     }
 
-    .AddPhotoContainer img{
-        width: 200px;
-        margin: 60px 0 0 300px;
+    .photoContainer img{
+        width: 120px;
+        height: 120px;
+        border-radius: 8px;
     }
 
-    .AddPhotoContainer h3{
-        text-align: center;
-        color: #7F7F7F;
-        padding-top: 20px;
+    .postal{
+        margin-left: 8px;
     }
 
-    #Image{
-        display: none;
+    .postal input{
+        width: 220px;
+    }
+
+    #Image {
+  display: none;
+}
+
+.contenedorDatos{
+    margin-left: 10px;
+}
+
+#Precio{
+    width: 300px;
+    -moz-appearance: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.radio-group{
+    display: inline-block;
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-left: 90px;
+}
+
+.radio-group .btn{
+    margin-left: 20px;
+}
+
+/* Estilo para el label personalizado */
+.custom-file-label {
+  background-color: #007bff;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+    #Area-group{
+        transform: translateY(12px);
     }
 
 
@@ -282,12 +343,7 @@
                         <div class="transparent">0</div>
                     </div>
 
-                    <div class="line"></div>
-
-                    <div class="circle-circle-container">
-                        <div class="circle">5</div>
-                        <div class="transparent">0</div>
-                    </div>
+                    
                 </div>
 
                 <br><br>
@@ -299,7 +355,7 @@
                 <div class="contenedorDatos">
                     <div class="form-group">
                         <label for="Ciudad">Ciudad:</label>
-                        <input type="text" class="form-control" name="Ciudad" id="Ciudad">
+                        <input type="text" class="form-control" name="Ciudad" id="Ciudad" placeholder="Ingrese la ciudad donde se encuentra la propiedad">
                     </div>
                     <div class="form-group">
                         <label for="Estado">Estado:</label>
@@ -342,7 +398,7 @@
                 <div class="contenedorDatos">
                     <div class="form-group">
                         <label for="calle">Calle:</label>
-                        <input type="text" class="form-control" name="calle" id="Calle" placeholder="Ingresa la calle">
+                        <input type="text" class="form-control" name="calle" id="Calle" placeholder="Ingrese la calle de la propiedad">
                     </div>
                     <div class="form-group">
                         <label for="Colonia">Colonia:</label>
@@ -351,17 +407,19 @@
                 </div>
                 <div class="contenedorDatos">
                     <div class="form-group">
-                        <label for="num_interior">Núm. interior:</label>
-                        <input type="text" class="form-control" name="num_interior" id="Num_interior" placeholder="Ingresa la calle">
+                        <label for="num_interior">Núm. interior (opcional):</label>
+                        <input type="text" class="form-control" name="num_interior" id="Num_interior" placeholder="Ingrese número interior de la propiedad">
                     </div>
                     <div class="form-group">
-                        <label for="num_exterior">Núm. exterior:</label>
-                        <input type="text" class="form-control" name="num_exterior" id="Num_exterior" placeholder="Ingresa la calle">
+                        <label for="num_exterior">Núm. exterior (opcional):</label>
+                        <input type="text" class="form-control" name="num_exterior" id="Num_exterior" placeholder="Ingrese número exterior de la propiedad">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="Codigo_Postal">Codigo postal:</label>
-                    <input type="number" class="form-control" id="Codigo_Postal" name="Codigo_Postal" placeholder="Ingrese el código postal">
+                    <div class="postal">
+                        <label for="Codigo_Postal">Codigo postal:</label>
+                        <input type="number" class="form-control" id="Codigo_Postal" name="Codigo_Postal" placeholder="Ingrese el código postal">
+                    </div>
                 </div>
                 <h6 class="error">Completa los campos necesarios para continuar</h6>
                 <div class="buttonContainer">
@@ -401,12 +459,6 @@
                         <div class="transparent">0</div>
                     </div>
                     
-                    <div class="line"></div>
-
-                    <div class="circle-circle-container">
-                        <div class="circle">5</div>
-                        <div class="transparent">0</div>
-                    </div>
                 </div>
 
                 <br><br>
@@ -415,18 +467,20 @@
                     <div class="circle blue">2</div><h3>Caracteristicas</h3>
                 </div>
 
-                <div class="form-group row">
-                    <label for="tipoPropiedad" class="col-sm-2 col-form-label">Tipo de propiedad:</label>
+                <div class="form-group">
+                    <label for="tipoPropiedad" class="col-form-label">Tipo de propiedad:</label>
                     <select id="tipoPropiedad" name="Tipo_Propiedad_id" class="form-control">
 
                     </select>
+                </div>
+
                 <div class="contenido">
                     <div class="contenedorCaracteristicas">
                         <div class="form-group" id="Recamaras-group">
                             <label for="Recamaras">Recamaras:</label>
                             <div class="numeros">
                                 <button class="btn-menos" id="minusRecamaras">-</button>
-                                <input type="number" class="form-control" value="1" id="Recamaras" name="Recamaras" readonly>
+                                <input type="number" class="form-control" value="0" id="Recamaras" name="Recamaras" readonly>
                                 <button class="btn-mas" id="plusRecamaras">+</button>
                             </div>
                         </div>
@@ -434,16 +488,14 @@
                             <label for="Baños">Baños:</label>
                             <div class="numeros">
                                 <button class="btn-menos" id="minusBaños">-</button>
-                                <input type="number" class="form-control" id="Baños" name="Baños" value="1" readonly>
+                                <input type="number" class="form-control" id="Baños" name="Baños" value="0" readonly>
                                 <button class="btn-mas" id="plusBaños">+</button>
                             </div>
                         </div>
                         <div class="form-group" id="Area-group">
                             <label for="Area">Area:</label>
                             <div class="numeros">
-                                <button class="btn-menos" id="minusArea">-</button>
                                 <input type="number" class="form-control" id="Area" name="Area" placeholder="Medida m²">
-                                <button class="btn-mas" id="plusArea">+</button>
                             </div>
                         </div>
                     </div>
@@ -451,17 +503,13 @@
                         <div class="form-group" id="Frente-group">
                             <label for="frente">Frente:</label>
                             <div class="numeros">
-                                <button class="btn-menos" id="minusFrente">-</button>
                                 <input type="number" class="form-control" id="Frente" name="Frente" placeholder="Medida m²">
-                                <button class="btn-mas" id="plusFrente">+</button>
                             </div>
                         </div>
                         <div class="form-group" id="Fondo-group">
                             <label for="Fondo">Fondo:</label>
                             <div class="numeros">
-                                <button class="btn-menos" id="minusFondo">-</button>
                                 <input type="number" class="form-control" id="Fondo" name="Fondo" placeholder="Medida m²">
-                                <button class="btn-mas" id="plusFondo">+</button>
                             </div>
                         </div>
                     </div>
@@ -505,12 +553,6 @@
                         <div class="transparent">0</div>
                     </div>
 
-                    <div class="line"></div>
-
-                    <div class="circle-circle-container">
-                        <div class="circle">5</div>
-                        <div class="transparent">0</div>
-                    </div>
                 </div>
 
                 <br><br>
@@ -564,12 +606,6 @@
                         <div class="text">Detalles de la publicación</div>
                     </div>
 
-                    <div class="line"></div>
-
-                    <div class="circle-circle-container">
-                        <div class="circle">5</div>
-                        <div class="transparent">0</div>
-                    </div>
                 </div>
 
                 <br><br>
@@ -579,34 +615,47 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="Titulo">Titulo:</label>
-                    <input type="text" class="form-control" id="Titulo" name="Titulo" placeholder="Ingrese un titulo para su propiedad">
-                </div>
-                <div class="form-group">
                     <label for="Precio">Precio:</label>
-                    <input type="number" class="form-control" id="Precio" name="Precio" placeholder="Ingrese un titulo para su propiedad">
+                    <input type="number" class="form-control" id="Precio" name="Precio" placeholder="Ingresa el precio MXN de tu inmueble">
                 </div>
                 <div class="form-group">
-                    <label>¿Propiedad disponible para la compra?</label>
-                    <input type="radio" value="1" name="Disponibilidad"> Si
-                    <input type="radio" value="0" name="Disponibilidad"> No
+                    <div class="radio-group">
+                        <label>¿Propiedad en venta?</label>
+                        <br>
+                        <input type="radio" name="Vendible" value="1" id="P1" class="btn-check" checked>
+                        <label class="btn" for="P1">Si</label>
+                        <input type="radio" name="Vendible" value="0" id="P2" class="btn-check">
+                        <label class="btn" for="P2">No</label>
+                    </div>
+                    <div class="radio-group">
+                        <label>¿Propiedad en renta?</label>
+                        <br>
+                        <input type="radio" name="Rentable" value="1" id="P3" class="btn-check" checked>
+                        <label class="btn" for="P3">Si</label>
+                        <input type="radio" name="Rentable" value="0" id="P4" class="btn-check">
+                        <label class="btn" for="P4">No</label>
+                    </div>
+                    <div class="radio-group">
+                        <label>Muestra tu propiedad:</label>
+                        <br>
+                        <input type="file" class="custom-file-label" id="Image" accept="image/*" multiple>
+                        <label for="Image" class="custom-file-label">Agregar Imagenes</label>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label>¿Propiedad en venta?</label>
-                    <input type="radio" value="1" name="Vendible"> Si
-                    <input type="radio" value="0" name="Vendible"> No
-                </div>
-                <div class="form-group">
-                    <label>¿Propiedad en renta?</label>
-                    <input type="radio" value="1" name="Rentable"> Si
-                    <input type="radio" value="0" name="Rentable"> No
-                </div>
-                <div class="form-group">
-                    <label>Muestra tu propiedad:</label>
                     <div class="AddPhotoContainer" id="ee">
-                        <img src="{{asset('Imagenes/AgregarImagen-simbolo.png')}}" >
-                        <h3>Haz click aquí para añadir imagenes de tu propiedad</h3>
-                        <input type="file" id="Image" accept="image/*" multiple>
+                        <div class="photoContainer" id="imagenEs">
+                            {{-- <img src="{{asset('Imagenes/CarlosTrejo.jpg')}}">
+                            <button type="button" class="btn-remove">X</button>
+                        </div>
+                        <div class="photoContainer">
+                            <img src="{{asset('Imagenes/CarlosTrejo.jpg')}}">
+                            <button type="button" class="btn-remove">X</button>
+                        </div>
+                        <div class="photoContainer">
+                            <img src="{{asset('Imagenes/CarlosTrejo.jpg')}}">
+                            <button type="button" class="btn-remove">X</button> --}}
+                        </div>
                     </div>
                 </div>
                 
@@ -614,61 +663,10 @@
 
                 <div class="buttonContainer">
                     <button type="button" id="button6" class="btn-white">Regresar</button>
-                    <button type="button" id="button7" class="btn-blue">Continuar</button>
+                    <button type="button" id="buttonEnviar" class="btn-blue">Continuar</button>
                 </div>
             </div>
         </div>
-
-        <div class="container" id="quintoPaso">
-            <h1>Publica una nueva propiedad</h1>
-            <p>Sigue los siguientes pasos para publicar tu propiedad</p>
-                <div class="card">
-                    <div class="circle-container">
-                        <div>
-                            <div class="circle blue">1</div>
-                            <div class="transparent">0</div>
-                        </div>
-
-                        <div class="line"></div>
-
-                        <div class="circle-circle-container">
-                            <div class="circle blue">2</div>
-                            <div class="transparent">0</div>
-                        </div>
-
-                        <div class="line"></div>
-
-                        <div class="circle-circle-container">
-                            <div class="circle blue">3</div>
-                            <div class="transparent">0</div>
-                        </div>
-                        
-                        <div class="line"></div>
-
-                        <div class="circle-circle-container">
-                            <div class="circle blue">4</div>
-                            <div class="transparent">0</div>
-                        </div>
-
-                        <div class="line"></div>
-
-                        <div class="circle-circle-container">
-                            <div class="circle blue">5</div>
-                            <div class="text">Finalizar registro</div>
-                        </div>
-                    </div>
-
-                    <br><br>
-
-                    <div class="section-title">
-                        <div class="circle blue">5</div><h2>Terminar</h2>
-                    </div>
-
-                    <div class="buttonContainer">
-                        <button type="button" id="button8" class="btn-white">Regresar</button>
-                        <button type="button" id="buttonEnviar" class="btn-blue">Finalizar</button>
-                    </div>
-            </div>
     </div>
 @endsection
 
@@ -677,6 +675,7 @@
     
     <script>
         let arregloServicios = [];
+        let selectedFiles = [];
         var formData = new FormData();
         let input = document.querySelector('input[type="file"]');
 
@@ -762,7 +761,6 @@
             $('#buttonEnviar').on('click', function(){
 
                 formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
-                formData.append('Titulo', $('#Titulo').val());
                 formData.append('Precio', $('#Precio').val());
                 formData.append('Recamaras', $('#Recamaras').val());
                 formData.append('Baños', $('#Baños').val());
@@ -816,59 +814,51 @@
                 valorBaños++;
             });
             
-            $('#minusArea').on('click', function(){
-                if (valorArea > 0){
-                    $('#Area').val(valorArea - 1);
-                    valorArea--;
-                }
-            });
-
-            $('#plusArea').on('click', function(){
-                $('#Area').val(valorArea + 1);
-                valorArea++;
-            });
-            
-            $('#minusFrente').on('click', function(){
-                if (valorFrente > 0){
-                    $('#Frente').val(valorFrente - 1);
-                    valorFrente--;
-                }
-            });
-
-            $('#plusFrente').on('click', function(){
-                $('#Frente').val(valorFrente + 1);
-                valorFrente++;
-            });
-            
-            $('#minusFondo').on('click', function(){
-                if (valorFondo > 0){
-                    $('#Fondo').val(valorFondo - 1);
-                    valorFondo--;
-                }
-            });
-
-            $('#plusFondo').on('click', function(){
-                $('#Fondo').val(valorFondo + 1);
-                valorFondo++;
-            })   
-
             // Funcion para agregar imagenes 
 
-            $('#ee').on('click', function(){
-                document.getElementById('Image').click(); 
-            });
 
-            $('#Image').on('change', function() {
-                const files = this.files; 
-                console.log(files);
-                let container = document.getElementById('ee'); 
+            document.getElementById('Image').addEventListener('change', function() {
+                const files = Array.from(this.files);
+                const container = document.getElementById('imagenEs');
 
-                for (const file of files) {
+                // Guardar los archivos seleccionados previos en un array
+                let selectedFiles = Array.from(container.querySelectorAll('img')).map(img => img.src)
+                    .map(src => files.find(file => URL.createObjectURL(file) === src));
+
+                // Procesar los nuevos archivos
+                files.forEach(file => {
+                    // Crear el elemento img para la vista previa
                     const imgElement = document.createElement('img');
-                    imgElement.src = URL.createObjectURL(file); 
+                    imgElement.src = URL.createObjectURL(file);
 
-                    container.append(imgElement);
-                }
+                    // Crear el botón de eliminación
+                    const remove = document.createElement('button');
+                    remove.textContent = 'X';
+                    remove.type = 'button';
+                    remove.className = 'btn-remove';
+
+                    // Manejar la eliminación del archivo
+                    remove.addEventListener('click', function() {
+                        // Eliminar la imagen del contenedor
+                        imgElement.remove();
+                        remove.remove();
+
+                        // Liberar la memoria de la URL creada
+                        URL.revokeObjectURL(imgElement.src);
+
+                        // Actualizar la lista de archivos seleccionados
+                        selectedFiles = selectedFiles.filter(f => f !== file);
+
+                        // Actualizar el input de archivos
+                        const dataTransfer = new DataTransfer();
+                        selectedFiles.forEach(f => dataTransfer.items.add(f));
+                        document.getElementById('Image').files = dataTransfer.files;
+                    });
+
+                    // Añadir el botón de eliminación y la imagen al contenedor
+                    container.appendChild(imgElement);
+                    container.appendChild(remove);
+                });
             });
 
             $('#button1').on('click', function(){
@@ -920,7 +910,7 @@
                 var precio = $('#Precio').val();
                 var imagen = $('#Imagen').val();
 
-                if(titulo && precio){ //agregar la variable imagen para cuando se implemente el subir imagenes al proyecto
+                if(titulo && precio && imagen){ //agregar la variable imagen para cuando se implemente el subir imagenes al proyecto
                     cuatro.css("display", "none");
                     cinco.css("display", "block");
                     error.css("display", "none");
@@ -940,6 +930,11 @@
 
             $('#tipoPropiedad').on('change', function(){
                 var Tipo = $(this).find('option:selected').text();
+                $('#Recamaras').val(0);
+                $('#Baños').val(0);
+                $('#Frente').val('');
+                $('#Fondo').val('');
+                $('#Area').val('');
 
                 if(Tipo === "Departamento"){
                     $('#Frente-group').css("display", "none");

@@ -125,10 +125,15 @@ class PropiedadController extends Controller
 
             $imagenes = $request->file('Imagenes');
 
+            //Mayusculas al inicio
+            $ciudad = $request->input('Ciudad');
+            $Ciudad = Str::ucfirst($ciudad);
+            $calle = $request->input('Calle');
+            $Calle = Str::ucfirst($calle);
+
             // Crear nuevo registro
 
             $propiedad = new propiedades();
-            $propiedad->Titulo = $request->input('Titulo');
             $propiedad->Precio = $request->input('Precio');
             $propiedad->Recamaras = $request->input('Recamaras');
             $propiedad->Baños = $request->input('Baños');
@@ -137,8 +142,8 @@ class PropiedadController extends Controller
             $propiedad->num_exterior = $request->input('num_exterior');
             $propiedad->num_interior = $request->input('num_interior');
             $propiedad->Colonia = $request->input('Colonia');
-            $propiedad->Calle = $request->input('Calle');
-            $propiedad->Ciudad = $request->input('Ciudad');
+            $propiedad->Calle = $Calle;
+            $propiedad->Ciudad = $Ciudad;
             $propiedad->Estado = $request->input('Estado');
             $propiedad->Area = $request->input('Area');
             $propiedad->Frente = $request->input('Frente');
