@@ -48,6 +48,11 @@
     background-color: #002E99;
     transition: .5s;
     }
+
+    .verificacion{
+      width: 10px;
+      height: 10px;
+    }
   </style>
   
 </head>
@@ -102,7 +107,13 @@
         <!-- MENU DE ACCIONES -->
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link active" id="publicaciones-tab" aria-current="page">Publicaciones</a>
+            <a class="nav-link active" id="publicacionesv-tab" aria-current="page">Publicaciones verificadas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="publicacionesnv-tab" aria-current="page">Publicaciones no verificadas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="publicacionesr-tab" aria-current="page">Publicaciones reportadas</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="estadisticas-tab">Estadísticas</a>
@@ -122,10 +133,48 @@
             </div>
           </div>
         </div>
-        <!-- LISTA DE PROPIEDADES -->
-        <div class="property-list" id="pl">
-          <!-- PROPIEDADES DE EJEMPLO-->
+        <!-- LISTA DE PROPIEDADES VERIFICADAS -->
+        <div class="property-list" id="plv">
+          <!-- LISTA-->
           @foreach ($propiedades as $propiedad)
+          @if($propiedad->Verificacion)
+          <div class="card" style="margin-top: 5px;">
+            <div class="row">
+              <div class="image-card col-md-3">
+              <span class="position-absolute bottom-0 start-50 translate-middle-x badge">
+                <img class="verificacion" src="{{asset('Imagenes/verificacion.png')}}">
+              </span>
+                @if ($propiedad->main_image) {{-- Si la Propiedad No tiene Imagen Coloca una de stock--}}
+                <img src="{{asset('ImagesPublished/'.$propiedad->main_image->src_image)}}">
+                @else
+                  <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" alt="...">
+                @endif
+              </div>
+              <div class="col-md-7">
+                <h3>{{$propiedad->Titulo}}</h3>
+                <p>$ {{$propiedad->Precio}}</p>
+                <div class="property-details">
+                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{$propiedad->Recamaras}} Recámaras</span></div>
+                  <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>{{$propiedad->Baños}} Baños</span></div>
+                  <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Area}} M² construidos</span></div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal">Editar</button>
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal">Pausar</button>
+              </div>
+            </div>
+          </div>
+          @endif
+          @endforeach
+        </div>
+
+        <!-- LISTA DE PROPIEDADES NO VERIFICADAS-->
+        <div class="property-list" id="plnv">
+          <!-- LISTA-->
+          @foreach ($propiedades as $propiedad)
+          @if(!$propiedad->Verificacion)
           <div class="card" style="margin-top: 5px;">
             <div class="row">
               <div class="image-card col-md-3">
@@ -152,11 +201,13 @@
               </div>
             </div>
           </div>
+          @endif
           @endforeach
+        </div>
 
         <!-- ESTADISTICAS -->
         <div class="property-list hidden" id="pl2">  
-        <!-- Contenido principal -->
+          <!-- Contenido principal -->
           <div id="estadisticas-content">
 
             <div style="margin-top: 10px;" class="col-12">
@@ -216,6 +267,7 @@
                        
           </div>  
         </div>
+
       </main>
     </div>
   </div>
@@ -330,8 +382,6 @@
     </div>
   </div>
   
-
-
 </body>
 @endsection
 
@@ -341,10 +391,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const publicacionesTab = document.getElementById('publicaciones-tab');
+      const publicacionesvTab = document.getElementById('publicacionesv-tab');
+      const publicacionesnvTab = document.getElementById('publicacionesnv-tab');
       const estadisticasTab = document.getElementById('estadisticas-tab');
-      const publicacionesSection = document.getElementById('pl');
+      const publicacionesvSection = document.getElementById('plv');
       const estadisticasSection = document.getElementById('pl2');
+      const publicacionesnvSection = document.getElementById('plnv');
 
       // cambiar y mostrar previo foto de perfil //
       document.getElementById('ee').addEventListener('click', function() {
@@ -362,22 +414,37 @@
       });
 
       // INICIAR EN PUBLICACIONES
-      publicacionesSection.classList.remove('hidden');
+      publicacionesvSection.classList.remove('hidden');
+      publicacionesnvSection.classList.add('hidden');
       estadisticasSection.classList.add('hidden');
 
-      // VISTA PUBLICACIONES
-      publicacionesTab.addEventListener('click', function() {
-        publicacionesSection.classList.remove('hidden');
+        // VISTA PUBLICACIONES
+        publicacionesvTab.addEventListener('click', function() {
+        publicacionesvSection.classList.remove('hidden');
+        publicacionesnvSection.classList.add('hidden');
         estadisticasSection.classList.add('hidden');
-        publicacionesTab.classList.add('active');
+        publicacionesvTab.classList.add('active');
+        publicacionesnvTab.classList.remove('active');
+        estadisticasTab.classList.remove('active');
+      });
+
+        // VISTA PUBLICACIONES NO VERIFICADAS
+        publicacionesnvTab.addEventListener('click', function() {
+        publicacionesnvSection.classList.remove('hidden');
+        publicacionesvSection.classList.add('hidden');
+        estadisticasSection.classList.add('hidden');
+        publicacionesnvTab.classList.add('active');
+        publicacionesvTab.classList.remove('active');
         estadisticasTab.classList.remove('active');
       });
 
       // VISTA ESTADISTICAS
       estadisticasTab.addEventListener('click', function() {
-        publicacionesSection.classList.add('hidden');
+        publicacionesvSection.classList.add('hidden');
+        publicacionesnvSection.classList.add('hidden');
         estadisticasSection.classList.remove('hidden');
-        publicacionesTab.classList.remove('active');
+        publicacionesvTab.classList.remove('active');
+        publicacionesnvTab.classList.remove('active');
         estadisticasTab.classList.add('active');
       });
 
