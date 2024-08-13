@@ -10,6 +10,7 @@ use App\Models\COMENTARIO;
 use App\Models\imagenes_propiedad;
 use App\Models\PROPIEDAD_SERVICIO;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Exception;
 
 class PropiedadController extends Controller
@@ -120,6 +121,10 @@ class PropiedadController extends Controller
             $serviciosArray = $request->input('servicios');
             $servicios = json_decode($serviciosArray, true);
 
+            // Imagenes
+
+            $imagenes = $request->file('Imagenes');
+
             // Crear nuevo registro
 
             $propiedad = new propiedades();
@@ -153,9 +158,19 @@ class PropiedadController extends Controller
                     ]);
                 }
 
+                foreach ($imagenes as $file) {
+                    $fileName = Str::random(20) . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path('ImagesPublished'), $fileName);
+    
+                    imagenes_propiedad::create([
+                        'propiedad_id' => $propiedad->ID_P,
+                        'src_image' => $fileName,
+                    ]);
+                }
+
                 DB::Commit();
 
-                return redirect()->route('perfil');
+                return redirect()->route('perfil', ['id' => Auth::user()->id]);
             }
 
         }
@@ -169,66 +184,52 @@ class PropiedadController extends Controller
 
     }
 
-    private function uploadImagesProperty (Request $request , $id) {
-        
-        if($request->hasFile('imagenes')) {
-
-            foreach ($request->file('imagenes') as $file) {
-                $fileName = Str::random(20 . '.' . $file->getClientOriginalExtension());
-                $file->move(public_path('ImagesPublished'), $fileName);
-
-                imagenes_propiedad::create([
-                    'propiedad_id' => $id,
-                    'src_image' => $fileName,
-                ]);
-            }
-        }
-    }
-
     public function VerEnMaps($id)
-{
-    $propiedad = Propiedades::findOrFail($id);
+    {
+        $propiedad = Propiedades::findOrFail($id);
 
-    $direccion = $propiedad->Calle . ', ' . $propiedad->num_exterior . ' ' . $propiedad->num_interior . ', ' .
-                 $propiedad->Colonia . ', ' . $propiedad->Ciudad . ', ' . $propiedad->Estado . ', ' . 
-                 $propiedad->Codigo_Postal;
+        $direccion = $propiedad->Calle . ', ' . $propiedad->num_exterior . ' ' . $propiedad->num_interior . ', ' .
+                    $propiedad->Colonia . ', ' . $propiedad->Ciudad . ', ' . $propiedad->Estado . ', ' . 
+                    $propiedad->Codigo_Postal;
 
-    return view('hubs.Maps', compact('direccion'));
-}
-
-public function showPublicacionesNoVerificadas()
-{
-
-    $propiedades = Propiedades::where('verificacion', false)->get();
-
-  
-    return view('admin.perfilAd', compact('propiedades'));
-}
-public function verificar($ID_P)
-{
-    $propiedades = Propiedades::find($ID_P);
-
-    if ($propiedades) {
-        $propiedades->verificacion = 1;
-        $propiedades->save();
-
-        return redirect()->back()->with('success', 'Propiedad verificada con éxito.');
+        return view('hubs.Maps', compact('direccion'));
     }
 
-    return redirect()->back()->with('error', 'Propiedad no encontrada.');
-}
-public function eliminar($ID_P)
-{
-  
-    $propiedad = Propiedades::find($ID_P);
+    public function showPublicacionesNoVerificadas()
+    {
+
+        $propiedades = Propiedades::where('verificacion', false)->get();
+
     
-    if ($propiedad) {
-        $propiedad->delete();
-        return redirect()->route('propiedad.listar')->with('success', 'Propiedad eliminada con éxito.');
+        return view('admin.perfilAd', compact('propiedades'));
     }
+        public function verificar($ID_P)
+    {
+        $propiedades = Propiedades::find($ID_P);
 
-    return redirect()->route('propiedad.listar')->with('error', 'Propiedad no encontrada.');
+        if ($propiedades) {
+            $propiedades->verificacion = 1;
+            $propiedades->save();
+
+            return redirect()->back()->with('success', 'Propiedad verificada con éxito.');
+        }
+
+        return redirect()->back()->with('error', 'Propiedad no encontrada.');
+    }
+    public function eliminar($ID_P)
+    {
+    
+        $propiedad = Propiedades::find($ID_P);
+        
+        if ($propiedad) {
+            $propiedad->delete();
+            return redirect()->route('propiedad.listar')->with('success', 'Propiedad eliminada con éxito.');
+        }
+
+        return redirect()->route('propiedad.listar')->with('error', 'Propiedad no encontrada.');
+    }
 }
+<<<<<<< HEAD
 
 /* */
 public function verificarDetalles($ID_P)
@@ -259,3 +260,5 @@ public function eliminarDetalles($ID_P)
 
 
 }
+=======
+>>>>>>> e3e38a613a87eff5a59dbe1d37acf8d7a88fb746

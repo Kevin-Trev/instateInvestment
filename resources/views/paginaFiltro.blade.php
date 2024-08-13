@@ -1288,8 +1288,8 @@
   <h2 id="resultado"> Todos Los Inmuebles Publicados</h2> {{--Agregar al principio de esta etiqueta el número de registros que se encontraron cerca y tambien la ciudad al lado derecho--}}
   <p class="text"> Estas son las propiedades que encontramos para ti</p>
   <div id="cards-container">
-    <div class="card">
-      <button class="propiedad">Tipo</button>
+    {{-- <div class="card">
+      <button class="propiedad">juan</button>
       <div class="image-card">
         <img src="https://picsum.photos/300/200">
       </div>
@@ -1355,7 +1355,7 @@
         <button class="btn-wasa">Contacto</button>
         <button class="btn-blue">Ver más detalles</button>
       </div>
-    </div>
+    </div> --}}
   </div>
 </div>
 <br>
@@ -1414,164 +1414,164 @@
     <!-- EJEMPLO DE FUNCION PARA AGREGAR LAS TARJETAS DE PROPIEDADES() -->
 <script>
 
+  var datos = $('.card');
+  var elementosPorPagina = 2;
+  var grupos = [];
+  
 //  obtener los registros de propiedades desde BD  //
-  $(document).ready(function(){
+$(document).ready(function(){
+    var transaccion = localStorage.getItem('opcion')
+    var ciudad = localStorage.getItem('ciudad')
+    console.log(datos)
 
-    // Paginado de la pagina
+    if(transaccion && ciudad) {
+      $('#transaccion').val(transaccion);
+      $('#ciudad').val(ciudad);
 
-    var datos = $('.card');
-    var elementosPorPagina = 15;
-    var grupos = [];
+      resultadoBusqueda(transaccion, ciudad);
+      console.log("Buscando Propiedades " + transaccion + "s en " + ciudad);
 
-    for(var i = 0; i < datos.length; i += elementosPorPagina){
+      localStorage.removeItem('opcion');
+      localStorage.removeItem('ciudad');
+    }
+    else{
+      cargarPropiedades(); // agregalo como comentario en caso de diseño front 
+    }
+
+    $('#buscar').on('click', function() {
+      var opcion = $('#transaccion').val();
+      var ciudad = $('#ciudad').val();
+      console.log("Buscando Propiedades " + opcion + "s en " + ciudad);
+      $('#resultado').text("Buscando Propiedades " + opcion + "s en " + ciudad);
+      resultadoBusqueda(opcion, ciudad);
+    });
+
+    fetchTipoPropiedad();
+
+    for(let i = 0; i < datos.length; i += elementosPorPagina){
       grupos.push(datos.slice(i, i + elementosPorPagina));
     } 
 
-  function mostrarPagina(pagina){
-    var grupoActual = grupos[pagina - 1];
-    var contenedor = $('#cards-container');
-    var inicio = (pagina - 1) * elementosPorPagina;
-    var fin = inicio + elementosPorPagina;
-    var paginaDatos = datos.slice(inicio, fin);
+    mostrarPagina(1);
 
-    contenedor.empty();
-    grupoActual.each(function (){
-      contenedor.append($(this));
-    })
+    $('#paginacion').on('click', 'a', function(e){
+      e.preventDefault();
+      var pagina = $(this).data('pagina');
+      mostrarPagina(pagina);
+      window.scrollTo({ top: 0, behavior: 'smooth'});
+    });
+   
+});
 
-    $('#paginacion').empty();
-    for (var i = 1; i <= Math.ceil(datos.length / elementosPorPagina); i++){
-      $('#paginacion').append('<li class="page-item"><a class="page-link" href="' + i + '" data-pagina="' + i + '">' + i + '</a></li>');
-    }
+function mostrarPagina(pagina){
+  var grupoActual = grupos[pagina - 1];
+  var contenedor = $('#cards-container');
+  var inicio = (pagina - 1) * elementosPorPagina;
+  var fin = inicio + elementosPorPagina;
+  var paginaDatos = datos.slice(inicio, fin);
+
+  contenedor.empty();
+  grupoActual.each(function (){
+    contenedor.append($(this));
+  });
+
+  $('#paginacion').empty();
+  for (var i = 1; i <= Math.ceil(datos.length / elementosPorPagina); i++){
+    $('#paginacion').append('<li class="page-item"><a class="page-link" href="' + i + '" data-pagina="' + i + '">' + i + '</a></li>');
   }
+  
+}
 
-  $('#paginacion').on('click', 'a', function(e){
-    e.preventDefault();
-    var pagina = $(this).data('pagina');
-    mostrarPagina(pagina);
-    window.scrollTo({ top: 0, behavior: 'smooth'});
-  });
-
-  mostrarPagina(1);
-
-
-     var transaccion = localStorage.getItem('opcion')
-     var ciudad = localStorage.getItem('ciudad')
-
-     if(transaccion && ciudad) {
-       $('#transaccion').val(transaccion);
-       $('#ciudad').val(ciudad);
-
-       resultadoBusqueda(transaccion, ciudad);
-       console.log("Buscando Propiedades " + transaccion + "s en " + ciudad);
-
-       localStorage.removeItem('opcion');
-       localStorage.removeItem('ciudad');
-     }
-     else{
-       cargarPropiedades(); // agregalo como comentario en caso de diseño front 
-     }
-
-     $('#buscar').on('click', function() {
-       var opcion = $('#transaccion').val();
-       var ciudad = $('#ciudad').val();
-       console.log("Buscando Propiedades " + opcion + "s en " + ciudad);
-       $('#resultado').text("Buscando Propiedades " + opcion + "s en " + ciudad);
-       resultadoBusqueda(opcion, ciudad);
-     });
-
-    fetchTipoPropiedad();
-  });
-
-  function fetchTipoPropiedad(){
-      $.get('/get/typeProperties', function (tipos){
-          var selectTipo = $('#tipoPropiedad');
-          selectTipo.empty();
-          tipos.forEach(tipo => {
-              selectTipo.append(`
-              <option value="${tipo.ID_T}">${tipo.Tipo}</option>
-              `);
-          });
+function fetchTipoPropiedad(){
+  $.get('/get/typeProperties', function (tipos){
+      var selectTipo = $('#tipoPropiedad');
+      selectTipo.empty();
+      tipos.forEach(tipo => {
+          selectTipo.append(`
+          <option value="${tipo.ID_T}">${tipo.Tipo}</option>
+          `);
       });
-  }
+  });
+}
 
-  function resultadoBusqueda(transaccion, ciudad){
-    $.ajax({
-      url: `/get/results/propeties/${transaccion}/${ciudad}`,
-      method: `GET`,
-      success: function (data) {
+function resultadoBusqueda(transaccion, ciudad){
+  $.ajax({
+    url: `/get/results/propeties/${transaccion}/${ciudad}`,
+    method: `GET`,
+    success: function (data) {
+      console.log(data);
+
+      const listaPropiedades = $('#cards-container'); 
+        listaPropiedades.empty();
+        var cantidad = 0;
+
+        data.forEach(property => {
+        var stockImg = 'stock.png'; /* En caso de no tener ninguna imagen carga la de stock */
+        var precioFormateado = property.Precio.toLocaleString('es-MX') /* Dar Formato al Precio */;
+
+        const propiedad =
+            `<div class="card">
+                <button class="propiedad">${property.tipo_propiedad.Tipo}</button>
+                <div class="image-card">
+                  <img src="{{asset('ImagesPublished/${property.main_image ? property.main_image.src_image : stockImg}')}}" alt="propiedad ${property.ID_P}">
+                </div>
+                <div class="disponible">
+                  ${property.Verificacion === 1 ? '<img src="{{asset("Imagenes/verificacion.png")}}">' : ''}
+                  ${property.Vendible === 1 ? '<button class="btn-blue">Venta</button>' : '<button class="btn-white">Venta</button>'}
+                  ${property.Rentable === 1 ? '<button class="btn-blue">Renta</button>' : '<button class="btn-white">Renta</button>'}
+                </div>
+                <h3>$ ${precioFormateado} MXN</h3>
+                <p class="text">${property.Calle} #${property.num_exterior}, ${property.Colonia}</p>
+                <div class="footer">
+                  <button class="btn-wasa">Contacto</button>
+                  <button class="btn-blue"><a class="nav-link" href="/get/property/${property.ID_P}">Ver más detalles</a></button>
+                </div>
+              </div>`
+          listaPropiedades.append(propiedad);
+          cantidad = cantidad + 1;
+          $('#resultado').text(cantidad + " Propiedades " + transaccion + "s en " + ciudad);
+        });
+      }
+  })
+}
+
+function cargarPropiedades() {
+  $.ajax({
+    url: `/get/properties`,
+    method: `GET`,
+    success: function(data) {
         console.log(data);
 
         const listaPropiedades = $('#cards-container'); 
-          listaPropiedades.empty();
-          var cantidad = 0;
+        listaPropiedades.empty();
 
-          data.forEach(property => {
-          var stockImg = 'stock.png'; /* En caso de no tener ninguna imagen carga la de stock */
-          var precioFormateado = property.Precio.toLocaleString('es-MX') /* Dar Formato al Precio */;
+        data.forEach(property => {
+        var stockImg = 'stock.png'; /* En caso de no tener ninguna imagen carga la de stock */
+        var precioFormateado = property.Precio.toLocaleString('es-MX') /* Dar Formato al Precio */;
 
-          const propiedad =
-              `<div class="card">
-                  <button class="propiedad">${property.tipo_propiedad.Tipo}</button>
-                  <div class="image-card">
-                    <img src="{{asset('ImagesPublished/${property.main_image ? property.main_image.src_image : stockImg}')}}" alt="propiedad ${property.ID_P}">
-                  </div>
-                  <div class="disponible">
-                    ${property.Verificacion === 1 ? '<img src="{{asset("Imagenes/verificacion.png")}}">' : null} 
-                    ${property.Vendible === 1 ? '<button class="btn-blue">Venta</button>' : '<button class="btn-white">Venta</button>'}
-                    ${property.Rentable === 1 ? '<button class="btn-blue">Renta</button>' : '<button class="btn-white">Renta</button>'}
-                  </div>
-                  <h3 class="precio">$ ${precioFormateado} MXN</h3>
-                  <p class="text">${property.Calle} #${property.num_exterior}, ${property.Colonia}</p>
-                  <div class="footer">
-                    <button class="btn-white">Contacto</button>
-                    <button class="btn-blue"><a class="nav-link" href="/get/property/${property.ID_P}">Ver más detalles</a></button>
-                  </div>
-                </div>`
-            listaPropiedades.append(propiedad);
-            cantidad = cantidad + 1;
-            $('#resultado').text(cantidad + " Propiedades " + transaccion + "s en " + ciudad);
+        const propiedad =
+            `<div class="card">
+                <button class="propiedad">${property.tipo_propiedad.Tipo}</button>
+                <div class="image-card">
+                  <img src="{{asset('ImagesPublished/${property.main_image ? property.main_image.src_image : stockImg}')}}" alt="propiedad ${property.ID_P}">
+                </div>
+                <div class="disponible">
+                  ${property.Verificacion === 1 ? '<img src="{{asset("Imagenes/verificacion.png")}}">' : ''}
+                  ${property.Vendible === 1 ? '<button class="btn-blue">Venta</button>' : '<button class="btn-white">Venta</button>'}
+                  ${property.Rentable === 1 ? '<button class="btn-blue">Renta</button>' : '<button class="btn-white">Renta</button>'}
+                </div>
+                <h3 class="precio">$ ${precioFormateado} MXN</h3>
+                <p class="text">${property.Calle} #${property.num_exterior}, ${property.Colonia}</p>
+                <div class="footer">
+                  <button class="btn-wasa"><a class="nav-link" href="https://wa.me/${property.users.Telefono}">Contacto</a></button>
+                  <button class="btn-blue"><a class="nav-link" href="/get/property/${property.ID_P}">Ver más detalles</a></button>
+                </div>
+              </div>`
+          listaPropiedades.append(propiedad);
+        });
+    }
+  });
+}
 
-          });
-      }
-    })
-  }
-
-  function cargarPropiedades() {
-    $.ajax({
-      url: `/get/properties`,
-      method: `GET`,
-      success: function(data) {
-          console.log(data);
-
-          const listaPropiedades = $('#cards-container'); 
-          listaPropiedades.empty();
-
-          data.forEach(property => {
-          var stockImg = 'stock.png'; /* En caso de no tener ninguna imagen carga la de stock */
-          var precioFormateado = property.Precio.toLocaleString('es-MX') /* Dar Formato al Precio */;
-
-          const propiedad =
-              `<div class="card">
-                  <button class="propiedad">${property.tipo_propiedad.Tipo}</button>
-                  <div class="image-card">
-                    <img src="{{asset('ImagesPublished/${property.main_image ? property.main_image.src_image : stockImg}')}}" alt="propiedad ${property.ID_P}">
-                  </div>
-                  <div class="disponible">
-                    ${property.Vendible === 1 ? '<button class="btn-blue">Venta</button>' : '<button class="btn-white">Venta</button>'}
-                    ${property.Rentable === 1 ? '<button class="btn-blue">Renta</button>' : '<button class="btn-white">Renta</button>'}
-                  </div>
-                  <h3 class="precio">$ ${precioFormateado} MXN</h3>
-                  <p class="text">${property.Calle} #${property.num_exterior}, ${property.Colonia}</p>
-                  <div class="footer">
-                    <button class="btn-white"><a class="nav-link" href="https://wa.me/${property.users.Telefono}">Contacto</a></button>
-                    <button class="btn-blue"><a class="nav-link" href="/get/property/${property.ID_P}">Ver más detalles</a></button>
-                  </div>
-                </div>`
-            listaPropiedades.append(propiedad);
-          });
-      }
-    });
-  }
 </script>
 @endsection
