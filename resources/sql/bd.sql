@@ -40,7 +40,6 @@ CREATE TABLE Servicio
 CREATE TABLE Propiedades
 (
   ID_P INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  Titulo NVARCHAR(60) NOT NULL, 
   Precio FLOAT NOT NULL,
   Recamaras INT ,
   Baños INT, 

@@ -233,37 +233,32 @@ class PropiedadController extends Controller
 
         return redirect()->route('propiedad.listar')->with('error', 'Propiedad no encontrada.');
     }
-}
-<<<<<<< HEAD
 
-/* */
-public function verificarDetalles($ID_P)
-{
-    $propiedades = Propiedades::find($ID_P);
+    /* */
+    public function verificarDetalles($ID_P){
+        $propiedades = Propiedades::find($ID_P);
 
-    if ($propiedades) {
-        $propiedades->verificacion = 1;
-        $propiedades->save();
+        if ($propiedades) {
+            $propiedades->verificacion = 1;
+            $propiedades->save();
 
-        return redirect()->back()->with('success', 'Propiedad verificada con éxito.');
+            return redirect()->back()->with('success', 'Propiedad verificada con éxito.');
+        }
+
+        return redirect()->back()->with('error', 'Propiedad no encontrada.');
     }
 
-    return redirect()->back()->with('error', 'Propiedad no encontrada.');
-}
-public function eliminarDetalles($ID_P)
-{
-  
-    $propiedad = Propiedades::find($ID_P);
+    public function eliminarDetalles($ID_P){
     
-    if ($propiedad) {
-        $propiedad->delete();
-        return redirect()->route('propiedad.listarDetalles')->with('success', 'Propiedad eliminada con éxito.');
+        $propiedad = Propiedades::find($ID_P);
+        
+        if ($propiedad) {
+            $propiedad->delete();
+            return redirect()->route('propiedad.listarDetalles')->with('success', 'Propiedad eliminada con éxito.');
+        }
+
+        return redirect()->route('propiedad.listarDetalles')->with('error', 'Propiedad no encontrada.');
     }
 
-    return redirect()->route('propiedad.listarDetalles')->with('error', 'Propiedad no encontrada.');
 }
 
-
-}
-=======
->>>>>>> e3e38a613a87eff5a59dbe1d37acf8d7a88fb746
