@@ -110,3 +110,8 @@ Route::delete('/propiedad/eliminar/{ID_P}', [PropiedadController::class, 'elimin
 Route::get('/propiedad/listar', [PropiedadController::class, 'listar'])->name('propiedad.listar');
 
 
+Route::post('/propiedad/verificar/detalles/{ID_P}', [PropiedadController::class, 'verificarDetalles'])->name('propiedad.verificarDetalles');
+Route::delete('/propiedad/eliminar/detalles/{ID_P}', [PropiedadController::class, 'eliminarDetalles'])->name('propiedad.eliminarDetalles');
+Route::get('/propiedad/detalles/listar', [PropiedadController::class, 'listarDetalles'])->name('propiedad.listarDetalles');
+
+

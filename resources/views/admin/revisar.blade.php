@@ -1934,6 +1934,7 @@
             transform: translateY(-13vw);
         }
 
+      
         .container-info2 h2{
         font-size: 6.5vw;
         }
@@ -1945,211 +1946,209 @@
         .container-info2{
             display: none;
         }
-    }
+
+       
+    
+
+}
     </style>
 @endsection
 
 @section('body')
-    <div class="container">
-        <div class="retroceder" onclick="location.href='{{route('admin.perfilAd')}}'">
-            <h6>↩ Regresar a la navegación</h6>
-        </div>
-        <h2>{{$propiedad->Calle}} #{{$propiedad->num_exterior}}</h2> {{-- Domicilio de la Propiedad --}}
-        <p>Ubicacion : {{$propiedad->Ciudad}} , {{$propiedad->Estado}}</p> {{-- Ciudad , Estado --}}
-        <div class="propiedadContainer">
-            <button class="propiedad">{{$propiedad->tipo_propiedad->Tipo}}</button>
-                <div id="carouselExample" class="carousel carousel-fade">
-                    <div class="carousel-inner">
-                        @if ($propiedad->imagenes_propiedad->isEmpty()) {{-- Si la Propiedad No tiene Imagen Coloca una de stock--}}
-                            <div class="carousel-item active">
-                                <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" class="carrousel-img" alt="...">
-                            </div>    
-                        @endif
-                        @foreach ($propiedad->imagenes_propiedad as $item => $image) {{-- Carga todas las imagenes de la propiedad --}}
-                            <div class="carousel-item {{$item === 0 ? 'active' : ''}}">
-                                <img src="{{asset('ImagesPublished/'.$image->src_image)}}" class="carrousel-img" alt="...">
-                            </div>    
-                        @endforeach
-                    </div>
-                    @if ($propiedad->imagenes_propiedad->count() > 1)  {{-- SI HAY MAS DE UNA IMAGEN APARECEN LOS BOTONES --}}
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    @endif
-                </div>
-            <div class="disponible">
-                @if($propiedad->Verificacion)
-                <img class="verificacion" src="{{asset('Imagenes/verificacion.png')}}">
-                @endif
-                @if ($propiedad->Vendible)  {{-- SI ES VENDIBLE APARECE ETIQUETA --}}
-                    <button class="btn-blue">Venta</button>
-                @else
-                    <button class="btn-white">Venta</button>
-                @endif
-                @if ($propiedad->Rentable)  {{-- SI ES RENTABLE APARECE ETIQUETA --}}
-                    <button class="btn-blue">Renta</button> 
-                @else
-                    <button class="btn-white">Renta</button> 
-                @endif
-                <h4>$ {{number_format($propiedad->Precio, 0, '.', ',')}} MXN</h4>
-                <div class="roomsContainer">
-                    <span><img src="{{asset('Imagenes/Room.png')}}"> {{$propiedad->Recamaras}}</span>
-                </div>
-                <div class="roomsContainer">
-                    <span><img src="{{asset('Imagenes/Baño.png')}}"> {{$propiedad->Baños}}</span>
-                </div>
-                <div class="roomsContainer">
-                    <span><img src="{{asset('Imagenes/Area.png')}}"> {{$propiedad->Area}} m²</span>
-                </div>
-                <p class="text">C. {{$propiedad->Calle}} #Ext. {{$propiedad->num_exterior ?: 'S/N'}} #Int. {{$propiedad->num_interior ?: 'S/N'}} Col. {{$propiedad->Colonia}} CP. {{$propiedad->Codigo_Postal}}</p>
-                <footer>
-                    <div class = "btn-container">
-                        <button class="bt-google"><a href="{{ route('propiedades.mapa', ['id' => $propiedad->ID_P]) }}"><img src="{{asset('Imagenes/Maps.png')}}">Ver En Maps</a></button>
-                        <button class="wasa"><a href="https://wa.me/{{$propiedad->users->Telefono}}"><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</a></button>
-                    </div>
-                </footer>
-            </div>
-        </div>
+<div class="container">
+    <div class="retroceder" onclick="location.href='{{route('admin.perfilAd')}}'">
+        <h6>↩ Regresar a la navegación</h6>
+    </div>
+    <h2>{{$propiedad->Calle}} #{{$propiedad->num_exterior}}</h2>
+    <p>Ubicación : {{$propiedad->Ciudad}} , {{$propiedad->Estado}}</p>
+    <div class="propiedadContainer">
+        <button class="propiedad">{{$propiedad->tipo_propiedad->Tipo}}</button>
 
-        <div id="comentariosContainer">
-            <h3>Comentarios</h3>
-            @if (Session::has('comentado'))  {{--Mensaje de comentario enviado--}}
-                <div class="alert alert-success text-center" role="alert">{{ Session::get('comentado') }}</div>
-            @endif
-            @if (Session::has('comentario_eliminado'))   {{--Mensaje de comentario eliminado--}}
-                <div class="alert alert-danger text-center" role="alert">{{ Session::get('comentario_eliminado') }}</div>
-            @endif
-            @auth
-                <div class="agregarComentario">
-                    <img src="https://picsum.photos/300/200">
-                    <form action="/post/comentario" method="POST">
-                        @csrf
-                        <input type="number" name="user_id" value="{{Auth::user()->id}}" readonly hidden>
-                        <input type="number" name="propiedad_id" value="{{$propiedad->ID_P}}" readonly hidden>
-                        <div class="input-group">
-                            <textarea name="Comentario" id="comentario" cols="100" rows="1" class="form-control"></textarea>
-                            <button class="btn-blue" type="submit">Añadir comentario</button>
-                        </div>
-                    </form>
+        <div id="carouselExample" class="carousel carousel-fade">
+            <div class="carousel-inner">
+                @if ($propiedad->imagenes_propiedad->isEmpty())
+                <div class="carousel-item active">
+                    <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" class="carrousel-img" alt="...">
                 </div>
-                @foreach ($comentarios as $comentario)
-                    <div class="comentario">
-                        <div class="user">
-                            @if ($comentario->users->Foto)
-                            <img src="{{asset('ImagesPublished/'.$comentario->users->Foto)}}">  
-                            @else
-                            <img src="https://picsum.photos/300/200">  
-                            @endif
-                            <p>{{$comentario->users->name}}</p>
-                            <p class="date">{{$comentario->Fecha}}</p>
-                            @if (Auth::check() && Auth::user()->id === $comentario->users_id)
-                            <button class="eliminar"><a style="color: white; text-decoration:none;" href="/delete/comentario/{{$comentario->ID_COM}}">X</a></button>
-                            @endif
-                        </div>
-                        <p class="textContainer">{{$comentario->Comentario}}</p>
-                    </div>
+                @endif
+                @foreach ($propiedad->imagenes_propiedad as $item => $image)
+                <div class="carousel-item {{$item === 0 ? 'active' : ''}}">
+                    <img src="{{asset('ImagesPublished/'.$image->src_image)}}" class="carrousel-img" alt="...">
+                </div>
                 @endforeach
-            @endauth
-            @guest
-                <div class="MsgRegistrate">
-                    <h5>Para ver y publicar comentarios</h5><br>
-                    <button class="btn btn-primary mx-auto"><a class="nav-link" href="{{route('login')}}">Iniciar Sesión</a></button>
-                </div>
-            @endguest
-            {{-- <div class="comentario">
-                <div class="user">
-                    <img src="https://picsum.photos/300/200">
-                    <p>Nombre del usuario</p>
-                    <p class="date">20/01/2024</p>
-                </div>
-                <p class="textContainer">Este es un comentario de prueba para verificar que funcione correctamente</p>
-            </div> --}}
+            </div>
+            @if ($propiedad->imagenes_propiedad->count() > 1)
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            @endif
         </div>
-
-        <h3>Explora más propiedades cercanas</h3>
-
-        <div class="moreHouses">
-            @foreach ($moreProperties as $sugerencia)
-                <button class="cardPropiedad">{{$sugerencia->tipo_propiedad->Tipo}}</button>
-                <div class="card">
-                    @if($sugerencia->main_image)
-                    <img src="{{asset('ImagesPublished/'.$sugerencia->main_image->src_image)}}" class="image">
+        <div class="disponible">
+            @if($propiedad->Verificacion)
+            <img class="verificacion" src="{{asset('Imagenes/verificacion.png')}}">
+            @endif
+            @if ($propiedad->Vendible)
+            <button class="btn-blue">Venta</button>
+            @else
+            <button class="btn-white">Venta</button>
+            @endif
+            @if ($propiedad->Rentable)
+            <button class="btn-blue">Renta</button>
+            @else
+            <button class="btn-white">Renta</button>
+            @endif
+            <h4>$ {{number_format($propiedad->Precio, 0, '.', ',')}} MXN</h4>
+            <div class="roomsContainer">
+                <span><img src="{{asset('Imagenes/Room.png')}}"> {{$propiedad->Recamaras}}</span>
+            </div>
+            <div class="roomsContainer">
+                <span><img src="{{asset('Imagenes/Baño.png')}}"> {{$propiedad->Baños}}</span>
+            </div>
+            <div class="roomsContainer">
+                <span><img src="{{asset('Imagenes/Area.png')}}"> {{$propiedad->Area}} m²</span>
+            </div>
+            <p class="text">C. {{$propiedad->Calle}} #Ext. {{$propiedad->num_exterior ?: 'S/N'}} #Int. {{$propiedad->num_interior ?: 'S/N'}} Col. {{$propiedad->Colonia}} CP. {{$propiedad->Codigo_Postal}}</p>
+            <footer>
+                <div class="btn-container">
+                    <button class="bt-google">
+                        <a href="{{ route('propiedades.mapa', ['id' => $propiedad->ID_P]) }}">
+                            <img src="{{asset('Imagenes/Maps.png')}}">Ver En Maps
+                        </a>
+                    </button>
+                    <button class="wasa">
+                        <a href="https://wa.me/{{$propiedad->users->Telefono}}">
+                            <img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje
+                        </a>
+                    </button>
+                    <form action="{{ route('propiedad.eliminarDetalles', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn-blue">Eliminar</button>
+                    </form>
+                    @if(isset($propiedad->ID_P))
+                    <form action="{{ route('propiedad.verificarDetalles', ['ID_P' => $propiedad->ID_P]) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn-blue">Verificar</button>
+                    </form>
                     @else
-                    <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" class="image" alt="...">
+                    <button class="btn-blue" style="margin-bottom: 10px;">Verificar</button>
                     @endif
-                    <div class="card-content">
-                        <div class="card-disponible">
-                            @if($sugerencia->Verificacion)
-                            <img class="cardVerificacion" src="{{asset('Imagenes/verificacion.png')}}">
-                            @endif
-                            @if ($sugerencia->Vendible)  {{-- SI ES VENDIBLE APARECE ETIQUETA --}}
-                                <button class="btn-white">Venta</button>
-                            @endif
-                            @if ($sugerencia->Rentable)  {{-- SI ES RENTABLE APARECE ETIQUETA --}}
-                                <button class="btn-white">Renta</button> 
-                            @endif
-                        </div>
-                        <div class="datos">
-                            <h4>$ {{number_format($sugerencia->Precio, 0, '.', ',')}} MXN</h4>
-                            <p>{{$sugerencia->Calle}} #{{$sugerencia->num_exterior}}, {{$sugerencia->Colonia}}</p>
-                            <div class="footer">
-                                <button class="btn-blue"><a href="/get/property/{{$sugerencia->ID_P}}">Ver más detalles</a></button>
-                                <button class="wasa"><a href="https://wa.me/{{$sugerencia->users->Telefono}}"><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</a></button>
-                            </div>
-                        </div> 
-                    </div>
                 </div>
-            @endforeach
+            </footer>
+            </div>
         </div>
     </div>
 
-    <footer id="page-footer">
-        <div class="container-info">
-            <img src="{{ asset('/Imagenes/LOGO.png') }}">
-            <p>Instate es una marca registrada por <br>Instate Investments S.A de C.V. en <br>alianza con Design Construcciones.</p>
+    <div id="comentariosContainer">
+        <h3>Comentarios</h3>
+        @if (Session::has('comentado'))
+        <div class="alert alert-success text-center" role="alert">{{ Session::get('comentado') }}</div>
+        @endif
+        @if (Session::has('comentario_eliminado'))
+        <div class="alert alert-danger text-center" role="alert">{{ Session::get('comentario_eliminado') }}</div>
+        @endif
+        @auth
+        <div class="agregarComentario">
+            <img src="https://picsum.photos/300/200">
+            <form action="/post/comentario" method="POST">
+                @csrf
+                <input type="number" name="user_id" value="{{Auth::user()->id}}" readonly hidden>
+                <input type="number" name="propiedad_id" value="{{$propiedad->ID_P}}" readonly hidden>
+                <div class="input-group">
+                    <textarea name="Comentario" id="comentario" cols="100" rows="1" class="form-control"></textarea>
+                    <button class="btn-blue" type="submit">Añadir comentario</button>
+                </div>
+            </form>
         </div>
-      
+        @foreach ($comentarios as $comentario)
+        <div class="comentario">
+            <div class="user">
+                @if ($comentario->users->Foto)
+                <img src="{{asset('ImagesPublished/'.$comentario->users->Foto)}}">
+                @else
+                <img src="https://picsum.photos/300/200">
+                @endif
+                <p>{{$comentario->users->name}}</p>
+                <p class="date">{{$comentario->Fecha}}</p>
+                @if (Auth::check() && Auth::user()->id === $comentario->users_id)
+                <button class="eliminar"><a style="color: white; text-decoration:none;" href="/delete/comentario/{{$comentario->ID_COM}}">X</a></button>
+                @endif
+            </div>
+            <p class="textContainer">{{$comentario->Comentario}}</p>
+        </div>
+        @endforeach
+        @endauth
+        @guest
+        <div class="MsgRegistrate">
+            <h5>Para ver y publicar comentarios</h5><br>
+            <button class="btn btn-primary mx-auto"><a class="nav-link" href="{{route('login')}}">Iniciar Sesión</a></button>
+        </div>
+        @endguest
+    </div>
+</div>
+
+<div id="perfil-propietario">
+    <h3>Datos del Propietario</h3>
+    <p>Nombre: {{$propiedad->users->Nombre}} {{$propiedad->users->Apellido}}</p>
+    <p>Email: {{$propiedad->users->email}}</p>
+    <p>Teléfono: {{$propiedad->users->Telefono}}</p>
+    @if ($propiedad->users->Foto)
+        <img src="{{ asset('ImagesPublished/'.$propiedad->users->Foto) }}" alt="Foto de perfil">
+    @else
+        <img src="https://picsum.photos/300/200" alt="Foto de perfil por defecto">
+    @endif
+</div>
+
+<footer id="page-footer">
+    <div class="container-info">
+        <img src="{{ asset('/Imagenes/LOGO.png') }}">
+        <p>Instate es una marca registrada por <br>Instate Investments S.A de C.V. en <br>alianza con Design Construcciones.</p>
+    </div>
+
+    <br>
+
+    <div class="container-info" id="este">
+        <h2>Contacto</h2>
+        <hr>
+        <b>MINA 330 INT. 5 COL.CENTRO <br>MONTERREY, NUEVO LEÓN. MÉXICO <br>812-433-1672</b>
+
         <br>
-      
-        <div class="container-info" id="este">
-            <h2>Contacto</h2>
-            <hr>
-            <b>MINA 330 INT. 5 COL.CENTRO <br>MONTERREY, NUEVO LEÓN. MÉXICO <br>812-433-1672</b>
-                
-            <br>
-      
-              <div class="container-social">
-                  <a href="https://www.facebook.com/instatemx" target="_blank">
-                      <img src="{{ asset('Imagenes/iconoFacebook.png')}}">
-                  </a>
-              </div>
-              <div class="container-social">
-                  <a href="">
-                      <img src="{{ asset('Imagenes/iconoTwitter.png')}}">
-                  </a>
-              </div>
-              <div class="container-social">
-                  <a href="https://www.instagram.com/instatemx/" target="_blank">
-                      <img src="{{ asset('Imagenes/iconoInstagram.png')}}">
-                  </a>
-              </div>
+
+        <div class="container-social">
+            <a href="https://www.facebook.com/instatemx" target="_blank">
+                <img src="{{ asset('Imagenes/iconoFacebook.png')}}">
+            </a>
         </div>
-            <div class="container-info2">
-                <h2>Legal</h2>
-                <hr>
-                <a href="/legal">Aviso legal</a><br><br><a href="{{route('avisoPrivacidad')}}">Politica de privacidad </a><br><br><a href="/privacidad">Politica de cookies</a>
-            </div>
-            <div class="container-info2">
-                <h2>Sobre</h2>
-                <hr>
-                <a href="/nosotros">Nosotros</a><br><br><a href="/mision">Misión</a><br><br><a href="/vision">Visión</a>
-            </div>
-      </footer>
+        <div class="container-social">
+            <a href="">
+                <img src="{{ asset('Imagenes/iconoTwitter.png')}}">
+            </a>
+        </div>
+        <div class="container-social">
+            <a href="https://www.instagram.com/instatemx/" target="_blank">
+                <img src="{{ asset('Imagenes/iconoInstagram.png')}}">
+            </a>
+        </div>
+    </div>
+    <div class="container-info2">
+        <h2>Legal</h2>
+        <hr>
+        <a href="/legal">Aviso legal</a><br><br><a href="{{route('avisoPrivacidad')}}">Política de privacidad </a><br><br><a href="/privacidad">Política de cookies</a>
+    </div>
+    <div class="container-info2">
+        <h2>Sobre</h2>
+        <hr>
+        <a href="/nosotros">Nosotros</a><br><br><a href="/mision">Misión</a><br><br><a href="/vision">Visión</a>
+    </div>
+</footer>
+
+
+
 @endsection
 
 @section('js')
