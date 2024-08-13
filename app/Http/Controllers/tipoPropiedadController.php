@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\TIPO_PROPIEDAD;
+use App\Models\tipo_propiedad;
 
-class TipoPropiedadController extends Controller
+class tipoPropiedadController extends Controller
 {
     public function index() {
-        $tipos = TIPO_PROPIEDAD::All();
+        $tipos = tipo_propiedad::All();
         return response()->json($tipos);
     }
 

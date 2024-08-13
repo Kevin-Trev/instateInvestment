@@ -5,7 +5,7 @@
     /* Estilos para el contenedor principal */
     
     .container {
-      padding-left: 12%; 
+      padding: 12%;
     }
     
     .container h1 {
@@ -302,10 +302,26 @@ input[type="number"]::-webkit-outer-spin-button {
         transform: translateY(12px);
     }
 
+    #primerPaso{
+        transform: translateY(-230px);
+    }
 
-    /* #segundoPaso, #tercerPaso, #cuartoPaso, #quintoPaso{
+    #segundoPaso{
+        transform: translateY(-230px);
+    }
+
+    #tercerPaso{
+        transform: translateY(-80px);
+    }
+
+    #cuartoPaso{
+        transform: translateY(-190px);
+    }
+
+    #segundoPaso, #tercerPaso, #cuartoPaso{
         display: none;
-    } */
+        height: 0;
+    }
         </style>
 @endsection
 
@@ -418,7 +434,7 @@ input[type="number"]::-webkit-outer-spin-button {
                 <div class="form-group">
                     <div class="postal">
                         <label for="Codigo_Postal">Codigo postal:</label>
-                        <input type="number" class="form-control" id="Codigo_Postal" name="Codigo_Postal" placeholder="Ingrese el código postal">
+                        <input type="number" class="form-control" id="Codigo_Postal" name="Codigo_Postal" placeholder="Ingrese el código postal" min="0" max="5">
                     </div>
                 </div>
                 <h6 class="error">Completa los campos necesarios para continuar</h6>
@@ -520,6 +536,7 @@ input[type="number"]::-webkit-outer-spin-button {
                         <button type="button" id="button3" class="btn-blue">Continuar</button>
                     </div>
             </div>
+        </div>      
     </div>
 
     <div class="container" id="tercerPaso">
@@ -639,7 +656,7 @@ input[type="number"]::-webkit-outer-spin-button {
                         <label>Muestra tu propiedad:</label>
                         <br>
                         <input type="file" class="custom-file-label" id="Image" accept="image/*" multiple>
-                        <label for="Image" class="custom-file-label">Agregar Imagenes</label>
+                        <label for="Image" class="custom-file-label">¡Agrega Imagenes!</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -732,7 +749,6 @@ input[type="number"]::-webkit-outer-spin-button {
             var dos = $('#segundoPaso');
             var tres = $('#tercerPaso');
             var cuatro = $('#cuartoPaso');
-            var cinco = $('#quintoPaso');
             var error = $('.error');
             var valorRecamaras = parseInt($('#Recamaras').val());
             var valorBaños = parseInt($('#Baños').val());
@@ -759,32 +775,38 @@ input[type="number"]::-webkit-outer-spin-button {
             
 
             $('#buttonEnviar').on('click', function(){
+                const imageFiles = $('#Image')[0].files
 
-                formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
-                formData.append('Precio', $('#Precio').val());
-                formData.append('Recamaras', $('#Recamaras').val());
-                formData.append('Baños', $('#Baños').val());
-                formData.append('Codigo_Postal', $('#Codigo_Postal').val());
-                formData.append('num_exterior', $('#Num_exterior').val());
-                formData.append('num_interior', $('#Num_interior').val());
-                formData.append('Colonia', $('#Colonia').val());
-                formData.append('Calle', $('#Calle').val());
-                formData.append('Ciudad', $('#Ciudad').val());
-                formData.append('Estado', $('#Estado').val());
-                formData.append('Area', $('#Area').val());
-                formData.append('Frente', $('#Frente').val());
-                formData.append('Fondo', $('#Fondo').val());
-                formData.append('Rentable', $('[name="Rentable"]').val());
-                formData.append('Vendible', $('[name="Vendible"]').val());
+                if($('#Precio').val() && imageFiles.length > 0){
+                    formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+                    formData.append('Precio', $('#Precio').val());
+                    formData.append('Recamaras', $('#Recamaras').val());
+                    formData.append('Baños', $('#Baños').val());
+                    formData.append('Codigo_Postal', $('#Codigo_Postal').val());
+                    formData.append('num_exterior', $('#Num_exterior').val());
+                    formData.append('num_interior', $('#Num_interior').val());
+                    formData.append('Colonia', $('#Colonia').val());
+                    formData.append('Calle', $('#Calle').val());
+                    formData.append('Ciudad', $('#Ciudad').val());
+                    formData.append('Estado', $('#Estado').val());
+                    formData.append('Area', $('#Area').val());
+                    formData.append('Frente', $('#Frente').val());
+                    formData.append('Fondo', $('#Fondo').val());
+                    formData.append('Rentable', $('[name="Rentable"]').val());
+                    formData.append('Vendible', $('[name="Vendible"]').val());
 
-                for(let file of input.files){
-                    formData.append('Imagenes[]', file);
+                    for(let file of input.files){
+                        formData.append('Imagenes[]', file);
+                    }
+                    
+                    formData.append('servicios', JSON.stringify(arregloServicios));
+                    formData.append('Tipo_Propiedad_id', $('#tipoPropiedad').val());
+                    
+                    enviarForm();
                 }
-                
-                formData.append('servicios', JSON.stringify(arregloServicios));
-                formData.append('Tipo_Propiedad_id', $('#tipoPropiedad').val());
-                
-                enviarForm();
+                else{
+                    error.css("display", "block");
+                }
             });
             
 
@@ -815,7 +837,6 @@ input[type="number"]::-webkit-outer-spin-button {
             });
             
             // Funcion para agregar imagenes 
-
 
             document.getElementById('Image').addEventListener('change', function() {
                 const files = Array.from(this.files);
@@ -862,13 +883,12 @@ input[type="number"]::-webkit-outer-spin-button {
             });
 
             $('#button1').on('click', function(){
-                var ciudad = $('#Ciudad').val();
-                var estado = $('#Estado').val();
-                var calle = $('#Calle').val();
-                var colonia = $('#Colonia').val();
-                var codigo = $('#Codigo_Postal').val();
+                const ciudad = $('#Ciudad').val();
+                const estado = $('#Estado').val();
+                const calle = $('#Calle').val();
+                const colonia = $('#Colonia').val();
 
-                if(ciudad && estado && calle && colonia && codigo){
+                if(ciudad && estado && calle && colonia && $('#Codigo_Postal').val().length === 5){
                     uno.css("display", "none");
                     dos.css("display", "block");
                     error.css("display", "none");
@@ -905,26 +925,7 @@ input[type="number"]::-webkit-outer-spin-button {
                 tres.css("display", "block");
             });
 
-            $('#button7').on('click', function(){
-                var titulo = $('#Titulo').val();
-                var precio = $('#Precio').val();
-                var imagen = $('#Imagen').val();
 
-                if(titulo && precio && imagen){ //agregar la variable imagen para cuando se implemente el subir imagenes al proyecto
-                    cuatro.css("display", "none");
-                    cinco.css("display", "block");
-                    error.css("display", "none");
-                }
-                else{
-                    error.css("display", "block");
-                }
-            });
-
-            $('#button8').on('click', function(){
-                cinco.css("display", "none");
-                cuatro.css("display", "block");
-                error.css("display", "none");
-            });
 
             //Aparecer o desaparecer inputs dependiendo de la propiedad seleccionada
 

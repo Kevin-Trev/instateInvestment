@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\propiedades;
-use App\Models\COMENTARIO;
+use App\Models\comentario;
 use App\Models\imagenes_propiedad;
-use App\Models\PROPIEDAD_SERVICIO;
+use App\Models\propiedad_servicio;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Exception;
@@ -16,8 +16,7 @@ use Exception;
 class PropiedadController extends Controller
 {
     public function index () {
-        $propiedades = propiedades::select('ID_P','Calle','num_exterior','Colonia','Precio','Recamaras','Baños','Area','Vendible','Rentable','Tipo_Propiedad_id','users_Id')
-                                    ->with("tipo_propiedad:ID_T,Tipo","users:id,Telefono,Activo")
+        $propiedades = propiedades::with("tipo_propiedad:ID_T,Tipo","users:id,Telefono,Activo")
                                     ->with(['imagenes_propiedad' => function($query) {
                                         $query->select('reg','propiedad_id','src_image');
                                     }])
@@ -73,7 +72,7 @@ class PropiedadController extends Controller
                                         return $propiedad;
                                     });
         
-        $comentarios = COMENTARIO::where('Propiedad_id','=',$id)
+        $comentarios = comentario::where('Propiedad_id','=',$id)
         ->with("users:id,name,Foto")
         ->orderBy('Fecha','DESC')
         ->get();
@@ -102,7 +101,7 @@ class PropiedadController extends Controller
                                         return $propiedad;
                                     });
         
-        $comentarios = COMENTARIO::where('Propiedad_id','=',$id)
+        $comentarios = comentario::where('Propiedad_id','=',$id)
         ->with("users:id,name,Foto")
         ->orderBy('Fecha','DESC')
         ->get();
@@ -157,7 +156,7 @@ class PropiedadController extends Controller
             if($propiedad->save()){
 
                 foreach($servicios as $servicio){
-                    PROPIEDAD_SERVICIO::Create([
+                    propiedad_servicio::Create([
                         'Propiedad_id' => $propiedad->ID_P,
                         'Servicio_id' => $servicio,
                     ]);
@@ -191,7 +190,7 @@ class PropiedadController extends Controller
 
     public function VerEnMaps($id)
     {
-        $propiedad = Propiedades::findOrFail($id);
+        $propiedad = propiedades::findOrFail($id);
 
         $direccion = $propiedad->Calle . ', ' . $propiedad->num_exterior . ' ' . $propiedad->num_interior . ', ' .
                     $propiedad->Colonia . ', ' . $propiedad->Ciudad . ', ' . $propiedad->Estado . ', ' . 
@@ -202,15 +201,13 @@ class PropiedadController extends Controller
 
     public function showPublicacionesNoVerificadas()
     {
-
-        $propiedades = Propiedades::where('verificacion', false)->get();
-
-    
+        $propiedades = propiedades::where('verificacion', false)->get();
         return view('admin.perfilAd', compact('propiedades'));
     }
-        public function verificar($ID_P)
+
+    public function verificar($ID_P)
     {
-        $propiedades = Propiedades::find($ID_P);
+        $propiedades = propiedades::find($ID_P);
 
         if ($propiedades) {
             $propiedades->verificacion = 1;
@@ -221,10 +218,11 @@ class PropiedadController extends Controller
 
         return redirect()->back()->with('error', 'Propiedad no encontrada.');
     }
+
     public function eliminar($ID_P)
     {
     
-        $propiedad = Propiedades::find($ID_P);
+        $propiedad = propiedades::find($ID_P);
         
         if ($propiedad) {
             $propiedad->delete();
@@ -234,9 +232,8 @@ class PropiedadController extends Controller
         return redirect()->route('propiedad.listar')->with('error', 'Propiedad no encontrada.');
     }
 
-    /* */
     public function verificarDetalles($ID_P){
-        $propiedades = Propiedades::find($ID_P);
+        $propiedades = propiedades::find($ID_P);
 
         if ($propiedades) {
             $propiedades->verificacion = 1;
@@ -244,13 +241,12 @@ class PropiedadController extends Controller
 
             return redirect()->back()->with('success', 'Propiedad verificada con éxito.');
         }
-
         return redirect()->back()->with('error', 'Propiedad no encontrada.');
     }
 
     public function eliminarDetalles($ID_P){
     
-        $propiedad = Propiedades::find($ID_P);
+        $propiedad = propiedades::find($ID_P);
         
         if ($propiedad) {
             $propiedad->delete();
@@ -259,6 +255,6 @@ class PropiedadController extends Controller
 
         return redirect()->route('propiedad.listarDetalles')->with('error', 'Propiedad no encontrada.');
     }
-
 }
+
 

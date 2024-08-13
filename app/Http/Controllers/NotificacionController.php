@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Notificacion;
+use App\Models\notificacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class NotificacionController extends Controller
+class notificacionController extends Controller
 {
     public function crear(Request $request)
     {
-        $notificacion = Notificacion::create([
+        $notificacion = notificacion::create([
             'users_id' => $request->input('users_id'),
             'mensaje' => $request->input('mensaje'),
             'fecha_creacion' => now(),
@@ -27,7 +27,7 @@ class NotificacionController extends Controller
     {
         $userId = Auth::id(); // Obtiene el ID del usuario autenticado
 
-        $notificaciones = Notificacion::where('users_id', $userId)
+        $notificaciones = notificacion::where('users_id', $userId)
                                       ->orderBy('fecha_creacion', 'desc')
                                       ->get();
 
@@ -37,7 +37,7 @@ class NotificacionController extends Controller
     // Método para listar todas las notificaciones (opcional, para administración)
     public function listar()
     {
-        $notificaciones = Notificacion::all();
+        $notificaciones = notificacion::all();
         return view('notificaciones.index', compact('notificaciones'));
     }
 }

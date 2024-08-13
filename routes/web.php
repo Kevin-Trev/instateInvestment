@@ -5,12 +5,12 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\viewsController;
 use App\Http\Controllers\usuariosController;
 use App\Http\Controllers\propiedadController;
-use App\Http\Controllers\TipoPropiedadController;
+use App\Http\Controllers\tipoPropiedadController;
 use App\Http\Controllers\servicioController;
 use App\Http\Controllers\propiedadServicioController;
 use App\Http\Controllers\perfilController;
 use App\Http\Controllers\correoController;
-use App\Http\Controllers\NotificacionController;
+use App\Http\Controllers\notificacionController;
 use App\Http\Controllers\comentarioController;
 
 /*
@@ -40,7 +40,7 @@ Route::get('/propiedades/{id}/mapa', [propiedadController::class, 'VerEnMaps'])-
 
 // Rutas para obtener datos de la BD 
 
-Route::get('/get/typeProperties', [TipoPropiedadController::class, 'index']);
+Route::get('/get/typeProperties', [tipoPropiedadController::class, 'index']);
 Route::get('/tuspropiedades', [perfilController::class, 'tuspropiedades'])->name('propiedades.index');
 Route::get('/get/servicios', [servicioController::class, 'index']);
 
@@ -100,21 +100,21 @@ Route::get('/error', [viewsController::class, 'error'])->name('error');
 
 // vista perfil del admin en la carpeta admin/perfilAd para que Brandon no este ch...
 
-Route::get('/publicaciones/no-verificadas', [PropiedadController::class, 'showPublicacionesNoVerificadas']);
+Route::get('/publicaciones/no-verificadas', [propiedadController::class, 'showPublicacionesNoVerificadas']);
 // Ruta en web.php
-Route::post('/propiedad/verificar/{ID_P}', [PropiedadController::class, 'verificar'])->name('propiedad.verificar');
+Route::post('/propiedad/verificar/{ID_P}', [propiedadController::class, 'verificar'])->name('propiedad.verificar');
 
 
 
 
-Route::get('/obtener-notificaciones', [NotificacionController::class, 'obtenerNotificaciones']);
+Route::get('/obtener-notificaciones', [notificacionController::class, 'obtenerNotificaciones']);
 
-Route::delete('/propiedad/eliminar/{ID_P}', [PropiedadController::class, 'eliminar'])->name('propiedad.eliminar');
-Route::get('/propiedad/listar', [PropiedadController::class, 'listar'])->name('propiedad.listar');
+Route::delete('/propiedad/eliminar/{ID_P}', [propiedadController::class, 'eliminar'])->name('propiedad.eliminar');
+Route::get('/propiedad/listar', [propiedadController::class, 'listar'])->name('propiedad.listar');
 
 
-Route::post('/propiedad/verificar/detalles/{ID_P}', [PropiedadController::class, 'verificarDetalles'])->name('propiedad.verificarDetalles');
-Route::delete('/propiedad/eliminar/detalles/{ID_P}', [PropiedadController::class, 'eliminarDetalles'])->name('propiedad.eliminarDetalles');
-Route::get('/propiedad/detalles/listar', [PropiedadController::class, 'listarDetalles'])->name('propiedad.listarDetalles');
+Route::post('/propiedad/verificar/detalles/{ID_P}', [propiedadController::class, 'verificarDetalles'])->name('propiedad.verificarDetalles');
+Route::delete('/propiedad/eliminar/detalles/{ID_P}', [propiedadController::class, 'eliminarDetalles'])->name('propiedad.eliminarDetalles');
+Route::get('/propiedad/detalles/listar', [propiedadController::class, 'listarDetalles'])->name('propiedad.listarDetalles');
 
 

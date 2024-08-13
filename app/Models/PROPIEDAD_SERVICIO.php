@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PROPIEDAD_SERVICIO extends Model
+class propiedad_servicio extends Model
 {
     use HasFactory;
     protected $table = 'propiedad_servicio';
@@ -19,6 +19,6 @@ class PROPIEDAD_SERVICIO extends Model
         return $this->belongsToMany(servicio::class,'id_p', 'propiedad_id');
     }
     public function propiedad(){
-        return $this->belongsToMany(propiedad::class, 'id_serv', 'servicio_id');
+        return $this->belongsToMany(propiedades::class, 'id_serv', 'servicio_id');
     }
 }

@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\COTIZACION;
+use App\Models\cotizacion;
 
-class Cotizacion_Controller extends Controller
+class cotizacionController extends Controller
 {
     public function index () {
-        $cotizaciones = COTIZACION::All();
+        $cotizaciones = cotizacion::All();
         return response()->json($cotizaciones);
     }
 

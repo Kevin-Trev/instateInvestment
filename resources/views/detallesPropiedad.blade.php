@@ -2008,10 +2008,12 @@
                 </div>
                 <p class="text">C. {{$propiedad->Calle}} #Ext. {{$propiedad->num_exterior ?: 'S/N'}} #Int. {{$propiedad->num_interior ?: 'S/N'}} Col. {{$propiedad->Colonia}} CP. {{$propiedad->Codigo_Postal}}</p>
                 <footer>
+                    @if (Auth::check())
                     <div class = "btn-container">
                         <button class="bt-google"><a href="{{ route('propiedades.mapa', ['id' => $propiedad->ID_P]) }}"><img src="{{asset('Imagenes/Maps.png')}}">Ver En Maps</a></button>
                         <button class="wasa"><a href="https://wa.me/{{$propiedad->users->Telefono}}"><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</a></button>
                     </div>
+                    @endif
                 </footer>
             </div>
         </div>
