@@ -231,8 +231,17 @@
     .btn-blue{
         padding: 6px;
         font-size: 12px;
+       
     }
-
+    .btn-blue el ver{
+        padding: 6px;
+        font-size: 12px;
+        width: 10px;
+        height: 15px;
+        margin: 5px;
+        
+       
+    }
     .datos h4{
         font-size: 36px;
     }
@@ -323,7 +332,7 @@
     .footer{
         display: flex;
         justify-content: flex-end;
-        gap: 10px;
+        gap: 20px;
     }
 
 
@@ -1963,19 +1972,21 @@
     <p>Ubicación : {{$propiedad->Ciudad}} , {{$propiedad->Estado}}</p>
     <div class="propiedadContainer">
         <button class="propiedad">{{$propiedad->tipo_propiedad->Tipo}}</button>
-
         <div id="carouselExample" class="carousel carousel-fade">
+            
             <div class="carousel-inner">
                 @if ($propiedad->imagenes_propiedad->isEmpty())
                 <div class="carousel-item active">
                     <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" class="carrousel-img" alt="...">
                 </div>
+                
                 @endif
                 @foreach ($propiedad->imagenes_propiedad as $item => $image)
                 <div class="carousel-item {{$item === 0 ? 'active' : ''}}">
                     <img src="{{asset('ImagesPublished/'.$image->src_image)}}" class="carrousel-img" alt="...">
                 </div>
                 @endforeach
+                
             </div>
             @if ($propiedad->imagenes_propiedad->count() > 1)
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -1989,6 +2000,10 @@
             @endif
         </div>
         <div class="disponible">
+            
+
+
+
             @if($propiedad->Verificacion)
             <img class="verificacion" src="{{asset('Imagenes/verificacion.png')}}">
             @endif
@@ -2014,35 +2029,37 @@
             </div>
             <p class="text">C. {{$propiedad->Calle}} #Ext. {{$propiedad->num_exterior ?: 'S/N'}} #Int. {{$propiedad->num_interior ?: 'S/N'}} Col. {{$propiedad->Colonia}} CP. {{$propiedad->Codigo_Postal}}</p>
             <footer>
-                <div class="btn-container">
+                <div class=" col-12">
                     <button class="bt-google">
                         <a href="{{ route('propiedades.mapa', ['id' => $propiedad->ID_P]) }}">
                             <img src="{{asset('Imagenes/Maps.png')}}">Ver En Maps
                         </a>
                     </button>
-                    <button class="wasa">
-                        <a href="https://wa.me/{{$propiedad->users->Telefono}}">
-                            <img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje
-                        </a>
-                    </button>
-                    <form action="{{ route('propiedad.eliminarDetalles', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn-blue">Eliminar</button>
-                    </form>
-                    @if(isset($propiedad->ID_P))
-                    <form action="{{ route('propiedad.verificarDetalles', ['ID_P' => $propiedad->ID_P]) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn-blue">Verificar</button>
-                    </form>
-                    @else
-                    <button class="btn-blue" style="margin-bottom: 10px;">Verificar</button>
-                    @endif
-                </div>
+                </div>   
             </footer>
             </div>
         </div>
     </div>
+
+    <div class="row">
+    <div class="col-6">
+        <form action="{{ route('propiedad.eliminarDetalles', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn-blue el ver">Eliminar</button>
+        </form>
+    </div>
+    <div class="col-6">
+        @if(isset($propiedad->ID_P))
+        <form action="{{ route('propiedad.verificarDetalles', ['ID_P' => $propiedad->ID_P]) }}" method="POST">
+            @csrf
+            <button type="submit" class="btn-blue el ver">Verificar</button>
+        </form>
+        @else
+        <button class="btn-blue el ver" style="margin-bottom: 10px;">Verificar</button>
+        @endif
+    </div>
+</div> 
 
     <div id="comentariosContainer">
         <h3>Comentarios</h3>

@@ -214,5 +214,7 @@ class usuariosController extends Controller
     return view('admin.perfilAd', ['propiedades' => $propiedadesNoVerificadas]);
 
 }
+
+
 }
 

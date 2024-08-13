@@ -48,6 +48,10 @@
     background-color: #002E99;
     transition: .5s;
     }
+
+    .suspendida {
+    border: 7px solid grey; 
+}
   </style>
   
 </head>
@@ -111,8 +115,11 @@
          
         <!-- LISTA DE PROPIEDADES -->
         <div class="property-list" id="pl">
+          
           <!-- PROPIEDADES DE EJEMPLO-->
           @foreach ($propiedades as $propiedad)
+          @if ($propiedad->Disponibilidad)
+          <div id="publicacion-{{ $propiedad->ID_P }}" class="publicacion">
 <div class="card" style="margin-top: 5px;">
   <div class="row">
     <div class="image-card col-md-3">
@@ -153,10 +160,11 @@
 @else
     <button class="bt-blue" style="margin-bottom: 10px;">Verificar</button>
 @endif
-
-      <button style="margin-bottom: 10px;" class="bt-blue">Suspender</button>
-    </div>
-  
+<form id="suspender-form-{{ $propiedad->ID_P }}" action="{{ route('propiedad.suspender', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirmarSuspension({{ $propiedad->ID_P }});">
+    @csrf
+    <button style="margin-bottom: 10px;" class="bt-blue">Suspender</button>
+</form>
+  @endif
 @endforeach
 
 
@@ -446,5 +454,40 @@
           }]
         }
       });
+
+
+
+
+      function confirmarSuspension(ID_P) {
+        if (confirm('¿Estás seguro de que deseas suspender esta propiedad?')) {
+            // Enviar la solicitud de suspensión por AJAX
+            var form = document.getElementById('suspender-form-' + ID_P);
+            var formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Cambiar el contorno de la publicación a gris
+                    document.getElementById('publicacion-' + ID_P).classList.add('suspendida');
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Prevenir el envío normal del formulario
+        return false;
+    }
+
+
 </script>
 @endsection

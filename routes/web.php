@@ -74,7 +74,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::group(['middleware' => ['auth','admin']], function () {
-    Route::get('/perfil-administrador', [usuariosController::class, 'mostrarPerfilAdmin']);
+    Route::get('/perfil-administrador', [usuariosController::class, 'mostrarPerfilAdmin'])->name('admin.perfilAd');
 });
 
 // Rutas relacionadas al inicio de la pagina
@@ -110,11 +110,10 @@ Route::post('/propiedad/verificar/{ID_P}', [propiedadController::class, 'verific
 Route::get('/obtener-notificaciones', [notificacionController::class, 'obtenerNotificaciones']);
 
 Route::delete('/propiedad/eliminar/{ID_P}', [propiedadController::class, 'eliminar'])->name('propiedad.eliminar');
-Route::get('/propiedad/listar', [propiedadController::class, 'listar'])->name('propiedad.listar');
 
 
 Route::post('/propiedad/verificar/detalles/{ID_P}', [propiedadController::class, 'verificarDetalles'])->name('propiedad.verificarDetalles');
 Route::delete('/propiedad/eliminar/detalles/{ID_P}', [propiedadController::class, 'eliminarDetalles'])->name('propiedad.eliminarDetalles');
-Route::get('/propiedad/detalles/listar', [propiedadController::class, 'listarDetalles'])->name('propiedad.listarDetalles');
 
+Route::post('/propiedad/supender/{ID_P}', [propiedadController::class, 'suspender'])->name('propiedad.suspender');
 

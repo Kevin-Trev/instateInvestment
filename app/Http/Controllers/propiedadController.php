@@ -220,17 +220,19 @@ class PropiedadController extends Controller
     }
 
     public function eliminar($ID_P)
-    {
-    
-        $propiedad = propiedades::find($ID_P);
-        
-        if ($propiedad) {
-            $propiedad->delete();
-            return redirect()->route('propiedad.listar')->with('success', 'Propiedad eliminada con éxito.');
-        }
+{
+    $propiedad = Propiedades::find($ID_P);
 
-        return redirect()->route('propiedad.listar')->with('error', 'Propiedad no encontrada.');
+    if ($propiedad) {
+        $propiedad->delete();
+        // Redirige de vuelta a la misma página
+        return redirect()->back()->with('success', 'Propiedad eliminada con éxito.');
     }
+
+    return redirect()->back()->with('error', 'Propiedad no encontrada.');
+}
+
+  
 
     public function verificarDetalles($ID_P){
         $propiedades = propiedades::find($ID_P);
@@ -244,17 +246,36 @@ class PropiedadController extends Controller
         return redirect()->back()->with('error', 'Propiedad no encontrada.');
     }
 
-    public function eliminarDetalles($ID_P){
-    
-        $propiedad = propiedades::find($ID_P);
-        
-        if ($propiedad) {
-            $propiedad->delete();
-            return redirect()->route('propiedad.listarDetalles')->with('success', 'Propiedad eliminada con éxito.');
-        }
+    public function eliminarDetalles($ID_P)
+{
+    $propiedad = Propiedades::find($ID_P);
 
-        return redirect()->route('propiedad.listarDetalles')->with('error', 'Propiedad no encontrada.');
+    if ($propiedad) {
+        $propiedad->delete();
+     
+        return redirect()->route('admin.perfilAd')->with('success', 'Propiedad eliminada con éxito.');
     }
+
+    return redirect()->back()->with('error', 'Propiedad no encontrada.');
+}
+
+
+
+public function suspender($ID_P)
+{
+    $propiedades = propiedades::find($ID_P);
+
+    if ($propiedades) {
+        $propiedades->disponibilidad = 0;
+        $propiedades->save();
+
+        return response()->json(['success' => true, 'ID_P' => $ID_P]);
+    }
+
+    return response()->json(['success' => false, 'message' => 'Propiedad no encontrada.']);
+}
+
+
 }
 
 
