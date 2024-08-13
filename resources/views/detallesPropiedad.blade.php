@@ -2043,7 +2043,7 @@
                     <div class="comentario">
                         <div class="user">
                             @if ($comentario->users->Foto)
-                            <img src="{{asset('ImagesPublished/'.$comentario->users->Foto)}}">  
+                            <img src="{{asset('storage/profile_photos/'.$comentario->users->Foto)}}">  
                             @else
                             <img src="https://picsum.photos/300/200">  
                             @endif
