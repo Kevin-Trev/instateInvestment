@@ -606,7 +606,7 @@
                     <div class="AddPhotoContainer" id="ee">
                         <img src="{{asset('Imagenes/AgregarImagen-simbolo.png')}}" >
                         <h3>Haz click aquí para añadir imagenes de tu propiedad</h3>
-                        <input type="file" id="Image" accept="image/*">
+                        <input type="file" id="Image" accept="image/*" multiple>
                     </div>
                 </div>
                 
@@ -674,9 +674,11 @@
 
 @section('js')
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
     <script>
         let arregloServicios = [];
         var formData = new FormData();
+        let input = document.querySelector('input[type="file"]');
 
         async function fetchTipoPropiedad(){
             await $.get('/get/typeProperties', function (tipos){
@@ -715,7 +717,7 @@
                 processData: false,
                 contentType: false,
                 success: function(response){
-                    console.log('yei', response);
+                    console.log('yei');
                 },
                 error: function(error){
                     console.log('nonononono', error);
@@ -724,6 +726,7 @@
         }
 
         $(document).ready(async function(){
+            
             await fetchTipoPropiedad();
             await fetchServicios();
             var uno = $('#primerPaso');
@@ -775,6 +778,11 @@
                 formData.append('Fondo', $('#Fondo').val());
                 formData.append('Rentable', $('[name="Rentable"]').val());
                 formData.append('Vendible', $('[name="Vendible"]').val());
+
+                for(let file of input.files){
+                    formData.append('Imagenes[]', file);
+                }
+                
                 formData.append('servicios', JSON.stringify(arregloServicios));
                 formData.append('Tipo_Propiedad_id', $('#tipoPropiedad').val());
                 
@@ -847,11 +855,19 @@
             // Funcion para agregar imagenes 
 
             $('#ee').on('click', function(){
-                $('#Image').trigger('click');
+                document.getElementById('Image').click(); 
+            });
 
-                const selectedFile = $('#Image').files[0];
-                if (selectedFile){
-                    console.log('archivo seleccionado: ' + selectedFile.name);
+            $('#Image').on('change', function() {
+                const files = this.files; 
+                console.log(files);
+                let container = document.getElementById('ee'); 
+
+                for (const file of files) {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = URL.createObjectURL(file); 
+
+                    container.append(imgElement);
                 }
             });
 

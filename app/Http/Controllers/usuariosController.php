@@ -75,10 +75,10 @@ class UsuariosController extends Controller
            
             if($user->save()){
                 DB::commit();
+                Auth::login($user);
                 Mail::send('correo.bienvenida', [], function ($message) use ($user){
                     $message->to($user->email)->subject('Nuevo usuario')->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
                 });
-                Auth::login($user);
                 return redirect('/views/registro/finalizado');
             }
         }

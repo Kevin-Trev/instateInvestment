@@ -1324,7 +1324,57 @@ input[type="radio"]:checked + label{
         }
 }
 
-
+@media(max-width: 768px){
+    #page-footer{
+        margin-top: 80px;
+        width: 100%;
+        gap: 0;
+        padding: 0 0 10px 0;
+        display: block;
+          }
+    
+          .container-info img{
+            width: 25vw;
+            height: 25vw;
+            transform: translate(-40px, 230px);
+          }
+    
+          .container-info p{
+            font-size: 2.4vw;
+            transform: translate(-90px, 260px)
+          }
+    
+          .container-info b{
+            font-size: 2.4vw;
+          }
+    
+          .container-info h2{
+            font-size: 5vw;
+          }
+    
+          .container-social img{
+            width: 4.5vw;
+            height: 4.5vw;
+            transform: translate(0);
+          }
+    
+          #este{
+            margin: 0 0 10px 55vw;
+            transform: translateY(-8vw);
+          }
+    
+          .container-info2 h2{
+           font-size: 6vw;
+          }
+    
+          .container-info2 a{
+            font-size: 2.5vw;
+          }
+    
+          .container-info2{
+            display: none;
+          }
+}
 
 /* //TODO CELULARES/TABLETAS */
 @media (max-width:576px){
