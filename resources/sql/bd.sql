@@ -62,7 +62,7 @@ CREATE TABLE Propiedades
   REFERENCES users(id) ON DELETE CASCADE,
   Tipo_Propiedad_id INT NOT NULL,
   CONSTRAINT FK_Tipo_Propiedad FOREIGN KEY (Tipo_Propiedad_id)
-  REFERENCES Tipo_Propiedad (ID_T)
+  REFERENCES Tipo_Propiedad (ID_T)ON DELETE CASCADE
  
 );
 
@@ -80,10 +80,10 @@ CREATE TABLE Propiedad_Servicio
   ID_PS INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   Propiedad_id INT NOT NULL,
   CONSTRAINT FK_Propiedad_Servicio FOREIGN KEY (Propiedad_id)
-  REFERENCES Propiedades (ID_P),
+  REFERENCES Propiedades (ID_P) ON DELETE CASCADE,
   Servicio_id INT NOT NULL,
   CONSTRAINT FK_Servicio FOREIGN KEY (Servicio_id)
-  REFERENCES Servicio(ID_SERV)
+  REFERENCES Servicio(ID_SERV)ON DELETE CASCADE
 );
 
 CREATE TABLE Comentario
@@ -96,7 +96,7 @@ CREATE TABLE Comentario
   REFERENCES users (id) ON DELETE CASCADE,
   Propiedad_id INT NOT NULL,
   CONSTRAINT FK_Propiedad_Comentario FOREIGN KEY (Propiedad_id)
-  REFERENCES Propiedades(ID_P)
+  REFERENCES Propiedades(ID_P) ON DELETE CASCADE
 );
 
 
@@ -108,10 +108,10 @@ CREATE TABLE Cotizacion
   MetodoPago ENUM ('Credito', 'Credito Infonavit', 'Contado', 'A Plazos'),
   users_id bigint unsigned NOT NULL,
   CONSTRAINT FK_users_Cotizacion FOREIGN KEY(users_id)
-  REFERENCES users (id),
+  REFERENCES users (id) ON DELETE CASCADE,
   Propiedad_id INT NOT NULL,
   CONSTRAINT FK_Propiedad_Cotizacion FOREIGN KEY (Propiedad_id)
-  REFERENCES Propiedades(ID_P)
+  REFERENCES Propiedades(ID_P) ON DELETE CASCADE
 );
 
 CREATE TABLE reportes(
@@ -119,22 +119,22 @@ id_r INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
  users_id bigint unsigned NOT NULL,
  comentarios text,
   CONSTRAINT FK_users_reportes FOREIGN KEY(users_id)
-  REFERENCES users (id),
+  REFERENCES users (id)ON DELETE CASCADE,
   Propiedad_id INT NOT NULL,
   CONSTRAINT FK_Propiedad_reportes FOREIGN KEY (Propiedad_id)
-  REFERENCES Propiedades(ID_P)
+  REFERENCES Propiedades(ID_P)ON DELETE CASCADE
 );
 
 CREATE TABLE notificacion(
 id_noti INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
 users_id bigint unsigned NOT NULL,
-  CONSTRAINT FK_users_not FOREIGN KEY(users_id) REFERENCES users (id),
+  CONSTRAINT FK_users_not FOREIGN KEY(users_id) REFERENCES users (id)ON DELETE CASCADE,
   mensaje TEXT,
   fecha_creacion DATE NOT NULL,
   reportes_id int  NOT NULL,
-  CONSTRAINT FK_reportes_not FOREIGN KEY(reportes_id) REFERENCES reportes (id_r),
+  CONSTRAINT FK_reportes_not FOREIGN KEY(reportes_id) REFERENCES reportes (id_r)ON DELETE CASCADE,
     comentarios_id int  NOT NULL,
-     CONSTRAINT FK_comentarios_not FOREIGN KEY(comentarios_id)REFERENCES comentario (id_com)
+     CONSTRAINT FK_comentarios_not FOREIGN KEY(comentarios_id)REFERENCES comentario (id_com)ON DELETE CASCADE
   );
 
 /* Tablas que necesita Laravel para Funcionar */
