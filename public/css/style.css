@@ -111,7 +111,7 @@ input[type="radio"]:checked + label{
     
     #seccion1{
         position: relative;
-        margin-bottom: 12%;
+        margin-bottom: 20%;
     }
     
     #seccion1::before{
@@ -131,6 +131,10 @@ input[type="radio"]:checked + label{
     .button-container{
         float: right;
         margin: 10px 20px;
+    }
+
+    .filtro .input-container, .filtro .input-groups{
+        display: none;
     }
     
     .filtro h2{
@@ -1593,6 +1597,12 @@ input[type="radio"]:checked + label{
 /* //TODO CELULARES GAMA POBRE */
 @media (max-width:391px){
     /* Seccion 1 */
+   
+
+    .dropdown-menu a{
+        font-size: 1vw;
+    }
+
     #seccion1{
         margin-bottom: 1vw;
     }

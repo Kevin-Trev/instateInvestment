@@ -1160,7 +1160,7 @@
     /* Inicio */
 
     .retroceder h6{
-        font-size: 3vw;
+        font-size: 2.4vw;
     }
 
     .container{
@@ -1168,40 +1168,40 @@
     }
 
     .container h2{
-        font-size: 5.5vw;
+        font-size: 5.2vw;
     }
 
     .container p{
-        font-size: 2.8vw;
+        font-size: 2vw;
     }
 
     /* Cartas */
 
     .propiedadContainer{
-        width: 77vw;
+        width: 65vw;
         display: block;
         height: auto;
-        margin-left: 8vw;
+        margin-left: 14vw;
     }
 
     .propiedad{
         width: 30vw;
-        font-size: 4vw;
-        transform: translate(55vw, -20px);
+        font-size: 3.2vw;
+        transform: translate(40vw, -20px);
     }
 
     #carouselExample{
         width: 100%;
-        height: 330px;   
+        height: 250px;   
     }
 
     .carrousel-img{
         width: 100%;
-        height: 400px;
+        height: 300px;
     }
     
     .disponible button{
-        font-size: 4vw;
+        font-size: 3vw;
         transform: translate(-15px, 5px);
     }
 
@@ -1210,53 +1210,53 @@
     }
 
     .disponible{
-        padding: 0 0 0 6vw;
+        padding: 0 0 0 7vw;
     }
 
     .disponible h4{
-        font-size: 5.5vw;
+        font-size: 5vw;
     }
 
     .disponible .text{
-        font-size: 3vw;
+        font-size: 2.5vw;
     }
 
     .roomsContainer span{
         margin-left: 5vw;
-        font-size: 4vw;
+        font-size: 3vw;
     }
 
     .roomsContainer span img{
-        width: 4vw;
-        height: 4vw;
+        width: 2.9vw;
+        height: 2.9vw;
         margin-right: 5px;
     }
 
     .propiedadContainer .wasa{
-        font-size: 3vw;
-        transform: translate(15vw, -10px);
+        font-size: 2.5vw;
+        transform: translate(12vw, -10px);
     }
 
     .verificacion{
-        width: 9vw;
-        height: 9vw;
-        transform: translate(68vw, 20px)
+        width: 8vw;
+        height: 8vw;
+        transform: translate(58vw, 20px)
     }
 
     .wasa img{
-        width: 5vw;
-        height: 5vw;
+        width: 4vw;
+        height: 4vw;
         margin: 5px;
     }
 
     .bt-google img{
-        width: 4vw;
-        height: 5vw;
+        width: 3vw;
+        height: 4vw;
     }
 
     .propiedadContainer .bt-google{
-        font-size: 3vw;
-        transform: translate(15vw, -10px)
+        font-size: 2.5vw;
+        transform: translate(12vw, -10px)
     }
 
     /* Seccion de comentarios */
@@ -1267,12 +1267,12 @@
     }
 
     .agregarComentario .btn-blue{
-    font-size: 3vw;
-    padding: 8px;
+    font-size: 2vw;
+    padding: 5px;
     }
 
     .comentario{
-    width: 80vw;
+    width: 82vw;
     margin: 0 0 20px 6vw;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -1286,7 +1286,7 @@
     }
 
     .agregarComentario .btn-blue{
-        font-size: 2.8vw;
+        font-size: 2.5vw;
     }
 
     .comentario .user .date{
@@ -1419,7 +1419,7 @@
     @media(max-width: 576px){
         /* Inicio */
         .retroceder h6{
-            font-size: 3vw;
+            font-size: 2.5vw;
         }
 
         .container h2{
@@ -1427,7 +1427,7 @@
         }
 
         .container p{
-            font-size: 2.8vw;
+            font-size: 2.5vw;
         }
 
         /* Cartas */
@@ -1436,12 +1436,12 @@
             width: 77vw;
             display: block;
             height: auto;
-            margin-left: 8.5vw;
+            margin-left: 8vw;
         }
 
         .propiedad{
             width: 30vw;
-            font-size: 4vw;
+            font-size: 3.5vw;
             transform: translate(55vw, -20px);
         }
 
@@ -1456,7 +1456,7 @@
         }
         
         .disponible button{
-            font-size: 4vw;
+            font-size: 3.5vw;
             transform: translateY(-10px);
         }
 
@@ -1469,7 +1469,7 @@
         }
 
         .disponible h4{
-            margin-top: -10px;
+            margin-top: -8px;
             font-size: 6vw;
         }
 
@@ -1479,7 +1479,7 @@
 
         .disponible .text{
             margin-left: 5vw;
-            font-size: 3.5vw;
+            font-size: 2.5vw;
         }
         
         .roomsContainer span{
@@ -1499,8 +1499,8 @@
         }
 
         .verificacion{
-            width: 10vw;
-            height: 10vw;
+            width: 9vw;
+            height: 9vw;
             transform: translate(68vw, -5px)
         }
 
@@ -1527,6 +1527,11 @@
             padding: 0;
         }
 
+        .agregarComentario img{
+            width: 7vw;
+            height: 7vw;
+        }
+
         .agregarComentario .btn-blue{
         font-size: 3vw;
         padding: 8px;
@@ -1540,16 +1545,20 @@
         }
 
         .comentario img{
-        width: 9vw;
-        height: 9vw;
+        width: 6vw;
+        height: 6vw;
         border-radius: 100%;
         margin: 10px 0 10px 10px;
         }
 
+        .comentario{
+            width: 82vw;
+        }
+
         .comentario .user .date{
-        margin-left: 36vw;
+        margin-left: 38vw;
         color: black;
-        font-size: 2.5vw;
+        font-size: 2vw;
         }
 
         .agregarComentario .btn-blue{
@@ -1557,7 +1566,7 @@
         }
 
         .user p{
-        font-size: 3vw;
+        font-size: 2.5vw;
         }
 
         .comentario .textContainer{
@@ -1686,7 +1695,7 @@
     @media(max-width: 391px){
         /* Inicio */
         .retroceder h6{
-            font-size: 3.5vw;
+            font-size: 3.6vw;
         }
 
         .container h2{
@@ -1694,7 +1703,7 @@
         }
 
         .container p{
-            font-size: 3.2vw;
+            font-size: 3vw;
         }
 
         /* Cartas */
@@ -1713,7 +1722,7 @@
 
         #carouselExample{
             width: 100%;
-            height: 200px;   
+            height: 240px;   
         }
 
         .carrousel-img{
@@ -1736,7 +1745,7 @@
         }
 
         .disponible{
-            margin: 0 0 0 3vw;
+            margin: 0 0 0 1vw;
         }
 
         .disponible h4{
@@ -1757,13 +1766,13 @@
 
         .propiedadContainer .wasa{
             font-size: 3vw;
-            transform: translate(5vw, -10px);
+            transform: translate(5vw, -25px);
         }
 
         .verificacion{
             width: 10vw;
             height: 10vw;
-            transform: translate(72vw, 5px)
+            transform: translate(70vw, 5px)
         }
 
         .wasa img{
@@ -1773,13 +1782,13 @@
         }
 
         .bt-google img{
-            width: 4vw;
+            width: 3.5vw;
             height: 5vw;
         }
 
         .propiedadContainer .bt-google{
             font-size: 3vw;
-            transform: translate(2vw, -10px)
+            transform: translate(2vw, -25px)
         }
 
         /* Seccion de comentarios */
@@ -1794,8 +1803,12 @@
         padding: 8px;
         }
 
+        #comentariosContainer{
+            transform: translateX(-3vw);
+        }
+
         .comentario{
-        width: 80vw;
+        width: 85vw;
         margin: 0 0 20px 6vw;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -1813,13 +1826,17 @@
         }
 
         .comentario .user .date{
-        margin-left: 32vw;
+        margin-left: 28vw;
         color: black;
         font-size: 2.5vw;
         }
 
+        textarea.form-control{
+            font-size: 3vw;
+        }
+
         .user p{
-        font-size: 3.4vw;
+        font-size: 3vw;
         }
 
         .comentario .textContainer{
@@ -1828,9 +1845,13 @@
 
         /* Explorar mas propiedades seccion */
 
+        .container h3{
+            margin: 0 0 20px 0;
+        }
+
         .card{
             width: 40vw;
-            margin-left: 2vw;
+            margin-left: 1vw;
             height: auto;
         }
 

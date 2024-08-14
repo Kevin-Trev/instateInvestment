@@ -93,6 +93,7 @@ Route::get('/views/detalles/propiedad', [viewsController::class, 'detallePropied
 Route::get('/views/catalogo', [viewsController::class, 'catalogoPropiedades'])->name('catalogo');
 Route::get('/legal', [viewsController::class, 'avisoPrivacidad'])->name('avisoPrivacidad');
 Route::get('/nosotros', [viewsController::class, 'nosotros'])->name('nosotros');
+Route::get('/terminos', [viewsController::class, 'terminos'])->name('terminos');
 //Rutas que se utilizan para restablecer la contraseña de un usuario
 
 Route::get('/views/recuperar/contraseña', [viewsController::class, 'recuperarContraseña'])->name('restablecer');

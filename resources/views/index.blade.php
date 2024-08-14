@@ -26,22 +26,44 @@
             font-size: 3vw;
         }
 
-                .dropdown-menu{
+        .dropdown-menu{
             transform: translate(32vw, 30px);
         }
 
         .dropdown-menu a{
             font-size: 14px;
+            margin: 0 0 5px 15px;
         }
 
         .dropdown-item{
+            display: flex;
             margin-bottom: 5px;
+        }
+
+        .dropdown-menu.show{
+            height: 150px;
         }
 
         .dropdown-menu .dropdown-item:hover{
             color: black;
             background-color: transparent;
             transition: .3s;
+        }
+
+        @media(max-width: 391px){
+            .button-container .bt-blue{
+                transform: translate(2vw, -55px);
+            }
+
+            .dropdown-menu.show{
+                width: 1vw;
+            }
+
+            .dropdown-menu a{
+                font-size: 3.5vw;
+                padding: 0 0 5px 0;
+                margin: 0 0 5px 0;
+            }
         }
     </style>
 @endsection
@@ -96,7 +118,7 @@
         </div>
 
     <div id="seccion2">
-        <h2>Comienza a vender con nosotros y <br><span>0</span>obtén GRATIS un diagnóstico de <br> <span>0</span>posibilidades para tu propiedad</h2>
+        <h2><span>0</span>Comienza a vender con nosotros y <br>obtén más alcance para tu propiedad</h2>
             <div class="img-container">
                 <img src="{{ asset('/Imagenes/Image 3.png') }}" class="img1">
                 <img src="{{ asset('/Imagenes/Image 2.png') }}" class="img2">
@@ -111,7 +133,7 @@
             <div class="circle-container">
                 <img src="/Imagenes/glass.png">
             </div>
-            <p>Busca propiedades cercanas de tu ubicación</p>
+            <p>Busca propiedades que sean de tu interes</p>
         </div>
         <div class="steps-container" >
             <div class="circle-container">

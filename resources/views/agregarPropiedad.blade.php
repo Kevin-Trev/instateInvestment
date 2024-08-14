@@ -1907,6 +1907,37 @@ input[type="number"]::-webkit-outer-spin-button {
                 console.log(arregloServicios);
             });
             
+            // Limitadores de input tipo number 
+
+            $('#Codigo_Postal').on('input', function(){
+            const input = event.target;
+            const value = input.value;
+            const maxLength = 5;
+
+                if (value.length > maxLength) {
+                    input.value = value.slice(0, maxLength);
+                }
+            });
+
+            $('#Num_interior').on('input', function(){
+            const input = event.target;
+            const value = input.value;
+            const maxLength = 5;
+
+                if (value.length > maxLength) {
+                    input.value = value.slice(0, maxLength);
+                }
+            });
+
+            $('#Num_exterior').on('input', function(){
+            const input = event.target;
+            const value = input.value;
+            const maxLength = 5;
+
+                if (value.length > maxLength) {
+                    input.value = value.slice(0, maxLength);
+                }
+            });
 
             $('#buttonEnviar').on('click', function(){
                 const imageFiles = $('#Image')[0].files;
@@ -2033,10 +2064,15 @@ input[type="number"]::-webkit-outer-spin-button {
                 const calle = $('#Calle').val();
                 const colonia = $('#Colonia').val();
 
-                if(ciudad && estado && calle && colonia && $('#Codigo_Postal').val().length === 5){
-                    uno.css("display", "none");
-                    dos.css("display", "block");
-                    error.css("display", "none");
+                if(ciudad && estado && calle && colonia){
+                    if($('#Codigo_Postal').val().length === 5){
+                        uno.css("display", "none");
+                        dos.css("display", "block");
+                        error.css("display", "none");
+                    }
+                    else{
+                        error.textContent = 'El código postal debe tener 5 digitos'
+                    }
                 }
                 else{
                     error.css("display", "block");

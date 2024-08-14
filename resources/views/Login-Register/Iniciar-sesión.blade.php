@@ -10,8 +10,6 @@
             font-size: 14px;
         }
 
-        
-
         .container {
         width: 500px;
         margin: 100px auto;

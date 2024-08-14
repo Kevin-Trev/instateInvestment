@@ -4,9 +4,7 @@
 
 @section('style')
     <style>
-        body{
-            overflow-y: hidden;
-        }
+
 
         .container {
         width: 500px;
@@ -232,7 +230,7 @@
                 <p>Si ya tienes una cuenta</p>
             </footer>
             <div class="terms">
-                <p>Al continuar estás aceptando los <br>Términos y condiciones y <a href="{{route('avisoPrivacidad')}}">Aviso de privacidad</a></p>
+                <p>Al continuar estás aceptando los <br><a href="{{route('terminos')}}">Términos y condiciones</a> y <a href="{{route('avisoPrivacidad')}}">Aviso de privacidad</a></p>
             </div>
         </div>
 
@@ -278,15 +276,17 @@
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono</label>
-                    <p class="error" id="verif-tel">Este Numero esta registrado</p>
-                    <p class="error">Ingresa una numero válido</p>
                     <input type="number" id="telefono" class="form-control" name="Telefono" placeholder="Ingresa tu telefono" oninput="limitInputLength(this)"  required >
+                    <p class="error" id="verif-tel">Este número ya esta registrado.</p>
+                    <p class="error">Llena todos los campos correctamente.</p>
                 </div>
                 <div class="center">
                     <button type="button" id="button5" class="btn-blue">Finalizar</button>
                     <button type="button" id="button4">Atrás</button>
                 </div>
-            <p class="terms">Al continuar, estas aceptando los <br>Términos y condiciones y el <a href="{{route('avisoPrivacidad')}}">Aviso de Privacidad</a>.</p>
+            <div class="terms">
+                <p>Al continuar estás aceptando los <br>Términos y condiciones y <a href="{{route('avisoPrivacidad')}}">Aviso de privacidad</a></p>
+            </div>
         </div>
     </form>
 
@@ -364,9 +364,14 @@
                         $('#verif-tel').show();
                     }
                     else {
-                        $('#verif-tel').hide();
-                        $('#formularioRegistro').submit();
-                        error.css("display", "none");
+                        if($('#nombre').val() && $('#nombreUsuario').val() && $('#apellido').val() && $('#Fecha_nacimiento').val()){
+                            $('#verif-tel').hide();
+                            $('#formularioRegistro').submit();
+                            error.css("display", "none");
+                        }
+                        else{
+                            error.css("display", "block");
+                        }
                     }
                 });
             });

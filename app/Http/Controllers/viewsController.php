@@ -55,4 +55,8 @@ class viewsController extends Controller
     public function enviado(){
         return view('Login-Register.correoEnviado');
     }
+
+    public function terminos(){
+        return view('info.terminosCondiciones');
+    }
 }

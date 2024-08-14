@@ -185,29 +185,29 @@
     }
 
     #filtroBusqueda input[type="number"]{
-      font-size: 1.4vw;
+      font-size: 16px;
       width: 14vw;
-      height: 4vw;
+      height: 40px;
       transform: translate(-61vw, -4px);
     }
 
     #filtroBusqueda #transaccion{
       width: 9vw;
-      height: 4vw;
-      font-size: 1.4vw;
+      height: 40px;
+      font-size: 16px;
       transform: translate(-85vw, -4px);
     }
 
     #filtroBusqueda #ciudad{
-      font-size: 1.4vw;
-      height: 4vw;
+      font-size: 16px;
+      height: 40px;
       width: 24vw;
       transform: translateY(-4px);
     }
 
     #filtroBusqueda #buscar{
-      font-size: 1.4vw;
-      height: 4vw;
+      font-size: 16px;
+      height: 40px;
       width: 12vw;
       transform: translate(35vw, -4px);
     }
@@ -215,15 +215,15 @@
     #filtroBusqueda #tipoPropiedad{
       width: 14vw;
       text-align: center;
-      height: 4vw;
-      font-size: 1.4vw;
+      height: 40px;
+      font-size: 16px;
       transform: translate(-30vw, -4px);
     }
 
     /* Header de las cartas */
 
     .container h2{
-      font-size: 2.4vw;
+      font-size: 28px;
     }
 
     .container{
@@ -236,21 +236,25 @@
 
     .container .text{
       margin-left: 12px;
-      font-size: 1.3vw;
+      font-size: 14px;
     }
 
 
     /* Cartas */
 
     .card{
-      width: 350px;
-      margin: 0 0 40px 6vw;
+      width: 25vw;
+      margin: 20px 0 40px 6vw;
+    }
+
+    #cards-container{
+      margin-left: -1vw;
     }
 
     .propiedad{
-      width: 12vw;
-      font-size: 1.5vw;
-      transform: translate(13vw, -15px);
+      width: 150px;
+      font-size: 18px;
+      transform: translate(15vw, -15px);
     }
 
     .disponible img{
@@ -264,17 +268,17 @@
     }
 
     .card .text{
-      font-size: 1.2vw;
+      font-size: 16px;
     }
 
     .card .image-card img{
       width: 100%;
-      height: 14vw;
+      height: 200px;
     }
 
     .disponible button{
       margin-top: 160px;
-      font-size: 1.2vw;
+      font-size: 16px;
     }
 
     .disponible .btn-blue, .disponible .btn-white{
@@ -282,7 +286,7 @@
     }
 
     .card .footer button{
-      font-size: 1.2vw;
+      font-size: 16px;
       margin-left: 0;
     }
 
@@ -292,7 +296,7 @@
 
     .card h3{
       margin-top: 5px;
-      font-size: 2vw;
+      font-size: 26px;
     }
 
     /* footer */
@@ -306,27 +310,27 @@
       }
 
       .container-info img{
-        width: 18vw;
-        height: 18vw;
-        transform: translate(-40px, 230px);
+        width: 210px;
+        height: 210px;
+        transform: translate(-10px, 230px);
       }
 
       .container-info p{
-        font-size: 1.4vw;
-        transform: translate(-60px, 360px)
+        font-size: 20px;
+        transform: translate(-60px, 300px)
       }
 
       .container-info b{
-        font-size: 1.6vw;
+        font-size: 20px;
       }
 
       .container-info h2{
-        font-size: 2.8vw;
+        font-size: 26px;
       }
 
       #page-footer .container-info .container-social img{
-        width: 2.5vw;
-        height: 2.5vw;
+        width: 30px;
+        height: 30px;
         transform: translate(0);
       }
 
@@ -336,7 +340,7 @@
       }
 
       .container-info2 h2{
-       font-size: 2.8vw;
+       font-size: 26px;
       }
 
       .container-info{
@@ -344,13 +348,13 @@
       }
 
       .container-info2 a{
-        font-size: 1.7vw;
+        font-size: 19px;
       }
 
       .container-info2{
         display: inline-block;
         margin-left: 30px;
-        transform: translate(65vw, -2.5vw);
+        transform: translate(810px, -40px);
         margin-top: -800px;
       }
   }
@@ -362,7 +366,7 @@
     }
 
     #filtroBusqueda input[type="number"]{
-      font-size: 1.6vw;
+      font-size: 1.5vw;
       width: 16vw;
       height: 40px;
       transform: translate(-61vw, -4px);
@@ -371,19 +375,19 @@
     #filtroBusqueda #transaccion{
       width: 9vw;
       height: 40px;
-      font-size: 1.6vw;
+      font-size: 1.5vw;
       transform: translate(-85vw, -4px);
     }
 
     #filtroBusqueda #ciudad{
-      font-size: 1.8vw;
+      font-size: 1.5vw;
       height: 40px;
       width: 24vw;
       transform: translate(100px, -4px);
     }
 
     #filtroBusqueda #buscar{
-      font-size: 1.6vw;
+      font-size: 1.5vw;
       height: 40px;
       width: 12vw;
       transform: translate(540px, -4px);
@@ -393,14 +397,14 @@
       width: 16vw;
       text-align: center;
       height: 40px;
-      font-size: 1.8vw;
+      font-size: 1.5vw;
       transform: translate(-30vw, -4px);
     }
 
     /* Header de las cartas */
 
     .container h2{
-      font-size: 2.8vw;
+      font-size: 2.5vw;
     }
 
     .container{
@@ -416,6 +420,9 @@
       font-size: 1.4vw;
     }
 
+    #cards-container{
+      margin-left: 1vw;
+    }
 
     /* Cartas */
 
@@ -717,7 +724,7 @@
     }
 
     #filtroBusqueda input[type="number"]{
-      font-size: 2.5vw;
+      font-size: 2.2vw;
       width: 23vw;
       height: 40px;
       transform: translate(-30vw, -4px);
@@ -726,19 +733,19 @@
     #filtroBusqueda #transaccion{
       width: 14.5vw;
       height: 40px;
-      font-size: 2.5vw;
+      font-size: 2.2vw;
       transform: translate(-72vw, -4px);
     }
 
     #filtroBusqueda #ciudad{
-      font-size: 2.5vw;
+      font-size: 2.2vw;
       height: 40px;
       width: 28vw;
       transform: translate(130px, 40px);
     }
 
     #filtroBusqueda #buscar{
-      font-size: 2.5vw;
+      font-size: 2.2vw;
       height: 40px;
       width: 16vw;
       transform: translate(540px, 20px);
@@ -748,14 +755,14 @@
       width: 20vw;
       text-align: center;
       height: 40px;
-      font-size: 2.5vw;
+      font-size: 2.2vw;
       transform: translate(-25vw, 40px);
     }
 
     /* Header de las cartas */
 
     .container h2{
-      font-size: 4vw;
+      font-size: 3.6vw;
     }
 
     .container{
@@ -768,7 +775,7 @@
 
     .container .text{
       margin-left: 12px;
-      font-size: 2.2vw;
+      font-size: 2vw;
     }
 
     /* Cartas */
@@ -864,9 +871,12 @@
       }
 
       .container-social img{
-        width: 4.5vw;
-        height: 4.5vw;
         transform: translate(0);
+      }
+
+      #page-footer .container-info .container-social img{
+        width: 3vw;
+        height: 3vw;
       }
 
       #este{
@@ -894,44 +904,44 @@
     }
 
     #filtroBusqueda input[type="number"]{
-      font-size: 3vw;
+      font-size: 2.5vw;
       width: 23vw;
-      height: 40px;
-      transform: translate(-25vw, -4px);
+      height: 35px;
+      transform: translate(-15vw, -4px);
     }
 
     #filtroBusqueda #transaccion{
       width: 20vw;
-      height: 40px;
-      font-size: 3vw;
+      height: 35px;
+      font-size: 2.5vw;
       transform: translate(-75vw, -4px);
     }
 
     #filtroBusqueda #ciudad{
-      font-size: 3vw;
-      height: 40px;
+      font-size: 2.5vw;
+      height: 35px;
       width: 35vw;
-      transform: translate(250px, 40px);
+      transform: translate(300px, 40px);
     }
 
     #filtroBusqueda #buscar{
       font-size: 2.5vw;
-      height: 40px;
+      height: 35px;
       width: 16vw;
       transform: translate(560px, -4px);
     }
 
     #filtroBusqueda #tipoPropiedad{
       width: 26vw;
-      height: 40px;
-      font-size: 3vw;
-      transform: translate(-10vw, 40px);
+      height: 35px;
+      font-size: 2.5vw;
+      transform: translate(-2vw, 40px);
     }
 
     /* Header de las cartas */
 
     .container h2{
-      font-size: 5.5vw;
+      font-size: 5vw;
     }
 
     .container{
@@ -944,7 +954,7 @@
 
     .container .text{
       margin-left: 12px;
-      font-size: 3vw;
+      font-size: 2.8vw;
     }
 
     /* Cartas */
@@ -1565,7 +1575,7 @@ function cargarPropiedades() {
                 <h3 class="precio">$ ${precioFormateado} MXN</h3>
                 <p class="text">${property.Calle} #${property.num_exterior}, ${property.Colonia}</p>
                 <div class="footer">
-                ${isAuthenticated ? `<button class="btn-wasa"><a class="nav-link" href="https://wa.me/${property.users.Telefono}">Contacto</a></button>` : ''}
+                ${isAuthenticated ? `<button class="btn-wasa"><a class="nav-link" href="https://wa.me/${property.users.Telefono}?text=Hola%2C%20estoy%20interesado%20en%20comprar%20esta%20propiedad%2C%20%C2%BFme%20podr%C3%ADas%20dar%20m%C3%A1s%20detalles%20por%20favor%3F" target="_blank">Contacto</a></button>` : ''}
                 <button class="btn-blue"><a class="nav-link" href="/get/property/${property.ID_P}">Ver más detalles</a></button>
                 </div>
               </div>`
