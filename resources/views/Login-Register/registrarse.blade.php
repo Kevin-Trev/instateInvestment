@@ -226,11 +226,11 @@
                 <button type="button" id="button1" class="bt-blue">Siguiente</button>
             </div>
             <footer>
-                <a href="{{route('login')}}">Inicia sesión</a>
+                <a href="/views/login">Inicia sesión</a>
                 <p>Si ya tienes una cuenta</p>
             </footer>
             <div class="terms">
-                <p>Al continuar estás aceptando los <br><a href="{{route('terminos')}}">Términos y condiciones</a> y <a href="{{route('avisoPrivacidad')}}">Aviso de privacidad</a></p>
+                <p>Al continuar estás aceptando los <br><a href="/terminos">Términos y condiciones</a> y <a href="/legal">Aviso de privacidad</a></p>
             </div>
         </div>
 
@@ -252,7 +252,7 @@
                     <button type="button" id="button3">Atrás</button>
                 </div>
                 <div class="terms">
-                    <p>Al continuar estás aceptando los <br>Términos y condiciones y <a href="{{route('avisoPrivacidad')}}">Aviso de privacidad</a></p>
+                    <p>Al continuar estás aceptando los <br>Términos y condiciones y <a href="/legal">Aviso de privacidad</a></p>
                 </div>
         </div>
 
@@ -285,7 +285,7 @@
                     <button type="button" id="button4">Atrás</button>
                 </div>
             <div class="terms">
-                <p>Al continuar estás aceptando los <br>Términos y condiciones y <a href="{{route('avisoPrivacidad')}}">Aviso de privacidad</a></p>
+                <p>Al continuar estás aceptando los <br>Términos y condiciones y <a href="/legal">Aviso de privacidad</a></p>
             </div>
         </div>
     </form>
