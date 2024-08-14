@@ -1,254 +1,308 @@
 @extends('layout.paginaInicio')
 
 @section('title', 'perfil')
-@section('title', 'Perfil Administrador')
 @section('style')
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+
 @endsection
 
 @section('body')    
   <style>
-<style>
     .sidebar {
       height: 100vh;
       background-color: #f8f9fa;
-
-@@ -21,6 +19,7 @@
+      padding-top: 20px;
+    }
+    .profile-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
     .hidden {
       display: none;
     }
 
-    .calendario {
+    .image-card{
       width: 100%;
-      border-collapse: collapse;
-
-@@ -30,10 +29,12 @@
-      padding: 10px;
-      text-align: center;
+      height: 150px;
     }
 
-    .calendario th {
-      background-color: #f2f2f2;
-      font-weight: bold;
+    .image-card img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      margin-left: 10px;
     }
 
-    .calendario .dia {
-      display: inline-block;
-      width: 30px;
+    .bt-blue {
+    background-color: #3370FF;
+    color: #FFFFFF;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    }
+    .bt-blue:hover{
+    background-color: #002E99;
+    transition: .5s;
+    }
 
-@@ -46,64 +47,55 @@
-      background-color: #f2f2f2;
+    .verificacion{
+      width: 10px;
+      height: 10px;
+    }
+
+    .btn-eliminar {
+    background-color: red;
+    color: #FFFFFF;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
     }
   </style>
-
-  <div class="container-fluid">
   
 </head>
 <body>
-@section('body')
-<div class="container-fluid">
+  <div class="container-fluid">
     <div class="row">
       <!-- AREA DE PERFIL -->
       <div class="card col-md-3 col-lg-3 mx-auto">
         <!-- FOTO PERFIL -->
-        <div class="text-center mb-3">
-          <h5 class="card-title">Foto de perfil</h5>
+        <div class="text-center mb-3"><br>
           <div class="profile-img-container mx-auto" style="width: 200px; height: 200px; overflow: hidden;">
-            <img src="{{asset('Imagenes/CarlosTrejo.jpg')}}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
+            @if (Auth::user()->Foto)
+            <img src="{{asset('storage/profile_photos/'.Auth::user()->Foto)}}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
+            @else
+            <img src="{{asset('Imagenes/icono.png')}}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
+            @endif
           </div>
         </div>
+        <!-- USERNAME -->
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre de Usuario</label>
+          <input type="text" class="form-control" id="nombre" value="{{Auth::user()->name}}" readonly>
+        </div>        
         <!-- NOMBRE -->
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre</label>
-          <input type="text" class="form-control" id="nombre" value="Carlos Enrique Trejo Avila">
+          <input type="text" class="form-control" id="nombre" value="{{Auth::user()->Nombre}} {{Auth::user()->Apellido}}" readonly>
         </div>
         <!-- F NACIMIENTO -->
         <div class="mb-3">
           <label for="fecha-nacimiento" class="form-label">F. Nacimiento</label>
-          <input type="text" class="form-control" id="fecha-nacimiento" value="21 de julio de 1963">
+          <input type="text" class="form-control" id="fecha-nacimiento" value="{{Auth::user()->Fecha_Nacimiento}}" readonly>
         </div>
-        <!-- GENERO -->
+        <!-- correo -->
         <div class="mb-3">
-          <label for="genero" class="form-label">Género</label>
-          <input type="text" class="form-control" id="genero" value="Masculino">
+          <label for="correo" class="form-label">Correo</label>
+          <input type="text" class="form-control" id="correo" value="{{Auth::user()->email}}" readonly>
         </div>
         <!-- TELEFONO -->
         <div class="mb-3">
           <label for="telefono" class="form-label">Teléfono</label>
-          <input type="text" class="form-control" id="telefono" value="8713428967">
+          <input type="text" class="form-control" id="telefono" value="{{Auth::user()->Telefono}}" readonly>
         </div>
         <!-- EDITAR -->
-        <div class="mb-3">
-          <button class="property-button btn btn-primary">EDITAR</button>
-        <!-- AREA DE PERFIL -->
-        <div class="card col-md-3 col-lg-3 mx-auto">
-            <!-- FOTO PERFIL -->
-            <div class="text-center mb-3">
-                <h5 class="card-title">Foto de perfil</h5>
-                <div class="profile-img-container mx-auto" style="width: 200px; height: 200px; overflow: hidden;">
-                    <img src="{{ asset('Imagenes/CarlosTrejo.jpg') }}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-            </div>
-            <!-- NOMBRE -->
-            <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" value="{{ $usuario->name ?? 'Nombre no disponible' }}" readonly>
-            </div>
-            <!-- F NACIMIENTO -->
-            <div class="mb-3">
-                <label for="fecha-nacimiento" class="form-label">F. Nacimiento</label>
-                <input type="text" class="form-control" id="fecha-nacimiento" value="{{ $usuario->Fecha_Nacimiento ?? 'Fecha no disponible' }}" readonly>
-            </div>
-            <!-- GENERO -->
-            <div class="mb-3">
-                <label for="genero" class="form-label">Género</label>
-                <input type="text" class="form-control" id="genero" value="{{ $usuario->Genero ?? 'Género no disponible' }}" readonly>
-            </div>
-
-
-            <!-- SUSPENDER  -->
-            <div class="mb-3">
-                <button class="btn btn-danger" onclick="alert('no seas boludo, aun no existe el controleishion pibe, messi siuu .');">SUSPENDER</button>
-            </div>
+        <div class="mb-3 text-center">
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editUserModal">suspender cuenta </button>
         </div>
-        <!-- SUSPENDER -->
-        <!-- SUSPENDER -->
-<div class="mb-3">
-  <form action="{{ route('usuarios.suspender', $usuario->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres suspender a este usuario?');">
-    @csrf
-    @method('POST') <!-- Cambiar a POST si la ruta es POST -->
-    <button type="submit" class="btn btn-danger">SUSPENDER</button>
-  </form>
-</div>
       </div>
-      <!-- MENU DE ACCIONES -->
+      
       <main class="col-md-9 ml-sm-auto col-lg-9 px-md-4">
+        <!-- MENU DE ACCIONES -->
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link active" id="publicaciones-tab" aria-current="page" href="#">Publicaciones</a>
+            <a class="nav-link active" id="publicacionesv-tab" aria-current="page">Publicaciones verificadas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="estadisticas-tab" href="#">Estadísticas</a>
+            <a class="nav-link" id="publicacionesnv-tab" aria-current="page">Publicaciones no verificadas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="calendario-tab" href="#">Calendario</a>
+            <a class="nav-link" id="publicacionesr-tab" aria-current="page">Publicaciones reportadas</a>
           </li>
-        <li class="nav-item">
-  <a class="nav-link active" id="publicaciones-tab" aria-current="page" href="#">Publicaciones</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" id="estadisticas-tab" href="#">Estadísticas</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" id="calendario-tab" href="#">Calendario</a>
-</li>
-
+          <li class="nav-item">
+            <a class="nav-link" id="estadisticas-tab">Estadísticas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="infoSeguridad-tab">Informacion de Seguridad</a>
+          </li>
         </ul>
-        <!-- LISTA DE PROPIEDADES -->
-        <div class="property-list" id="pl">
-
-@@ -123,6 +115,7 @@
-              <button class="property-button btn btn-primary" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">COTIZAR</button>
-            </div>
-          </div>
-
-          <!-- PROPIEDAD 2 -->
-          <div class="property-card row" style="margin-top: 5px;">
-            <div class="col-md-4">
-
-
-@@ -164,167 +157,202 @@
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card text-white bg-danger mb-3">
-                  <div class="card-header">Suspendidos</div>
-                <div class="card text-white bg-warning mb-3">
-                  <div class="card-header">Comentarios</div>
-                  <div class="card-body">
-                    <h5 class="card-title">23</h5>
-                    <p class="card-text">Número de usuarios suspendidos.</p>
-                    <h5 class="card-title">245</h5>
-                    <p class="card-text">Número total de comentarios recibidos.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-12">
-                <canvas id="myChart"></canvas>
-              </div>
+        <div class = "card">
+          <!-- BTN DE NUEVA PROPIEDAD -->
+          <div class = "row">
+            <div class = "col-sm-4	col-md-6	col-lg-9"></div>
+            <div class = "col-sm-8	col-md-6	col-lg-3">
+              <a href="">
+                <button class="btn btn-primary col-12"><a class="nav-link" href="{{route('agregarPropiedad')}}">Nueva propiedad</a></button>
+              </a>
             </div>
           </div>
         </div>
-        <!-- CALENDARIO -->
-        <div class="property-list hidden" id="pl3">
-          <!-- Contenido del calendario -->
-          <div class="container">
-            <table class="calendario">
-              <thead>
-                <tr>
-                  <th>Lun</th>
-                  <th>Mar</th>
-                  <th>Mié</th>
-                  <th>Jue</th>
-                  <th>Vie</th>
-                  <th>Sáb</th>
-                  <th>Dom</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="dia">1</td>
-                  <td class="dia">2</td>
-                  <td class="dia">3</td>
-                  <td class="dia">4</td>
-                  <td class="dia">5</td>
-                  <td class="dia">6</td>
-                  <td class="dia">7</td>
-                </tr>
-                <!-- Resto del calendario -->
-              </tbody>
-            </table>
-         <div class="calendario hidden" id="calendario">
-          <!-- CONTENIDO -->
-          <div class="container mt-4">
-            <div class="calendario">
-            </div>  
+        <!-- LISTA DE PROPIEDADES VERIFICADAS -->
+        <div class="property-list" id="plv">
+          <!-- LISTA-->
+          @foreach ($propiedades as $propiedad)
+          @if($propiedad->Verificacion)
+            <div class="card" style="margin-top: 5px;">
+              <div class="row">
+                <div class="image-card col-md-3">
+                <span class="position-absolute bottom-0 start-50 translate-middle-x badge">
+                  <img class="verificacion" src="{{asset('Imagenes/verificacion.png')}}">
+                </span>
+                  @if ($propiedad->main_image) {{-- Si la Propiedad No tiene Imagen Coloca una de stock--}}
+                  <img src="{{asset('ImagesPublished/'.$propiedad->main_image->src_image)}}">
+                  @else
+                    <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" alt="...">
+                  @endif
+                </div>
+                <div class="col-md-7">
+                  <h3>{{$propiedad->Calle}} {{$propiedad->num_exterior}}</h3>
+                  <p>$ {{$propiedad->Precio}}</p>
+                  <div class="property-details">
+                    <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{$propiedad->Recamaras}} Recámaras</span></div>
+                    <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>{{$propiedad->Baños}} Baños</span></div>
+                    <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Area}} M² construidos</span></div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#editPropModal" onclick="datosProp({{$propiedad->ID_P}})">Editar</button>
+                  @if ($propiedad->Rentable)
+                  <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
+                  @endif
+                  <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal">Pausar</button>
+                </div>
+              </div>
+            </div>
+          @endif
+          @endforeach
+        </div>
+
+        <!-- LISTA DE PROPIEDADES NO VERIFICADAS-->
+        <div class="property-list" id="plnv">
+          <!-- LISTA-->
+          @foreach ($propiedades as $propiedad)
+          @if(!$propiedad->Verificacion)
+          <div class="card" style="margin-top: 5px;">
+            <div class="row">
+              <div class="image-card col-md-3">
+                @if ($propiedad->main_image) {{-- Si la Propiedad No tiene Imagen Coloca una de stock--}}
+                <img src="{{asset('ImagesPublished/'.$propiedad->main_image->src_image)}}">
+                @else
+                  <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" alt="...">
+                @endif
+              </div>
+              <div class="col-md-7">
+                <h3>{{$propiedad->Calle}} {{$propiedad->num_exterior}}</h3>
+                <p>$ {{$propiedad->Precio}}</p>
+                <div class="property-details">
+                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{$propiedad->Recamaras}} Recámaras</span></div>
+                  <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>{{$propiedad->Baños}} Baños</span></div>
+                  <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Area}} M² construidos</span></div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal">Editar</button>
+                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
+                <form action="{{ route('propiedad.eliminar', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn-eliminar"  >Eliminar</button>
+</form>
+              </div>
+            </div>
           </div>
+          @endif
+          @endforeach
+        </div>
+
+        <!-- ESTADISTICAS -->
+        <div class="property-list hidden" id="pl2">  
+          <!-- Contenido principal -->
+          <div id="estadisticas-content">
+
+            <div style="margin-top: 10px;" class="col-12">
+                <div class="card">
+                  <div class = "card-title">
+                    EXELENTE
+                  </div>
+                  <div class= "card-body">
+                    <h1>EXELENTE VENDEDOR</h1>
+                  </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 10px;" class="col-12">
+              <div class="row">
+                <div class="card col-sm-4	col-md-2	col-lg-2">
+                  <h4>Ventas:</h4>
+                  <p>Ventas totales: X</p>
+                  <p>Última venta: 2023-08-01</p>
+                  <p>Venta más alta: $500,000</p>
+                </div>
+                <div class="card col-sm-8	col-md-4	col-lg-4">
+                  <canvas id="ventas-chart"></canvas>
+                </div>
+
+                <div class="card col-sm-4	col-md-2	col-lg-2">
+                  <h4>Interacciones:</h4>
+                  <p>Comentarios totales: X</p>
+                </div>
+                <div class="card col-sm-8	col-md-4	col-lg-4">
+                  <canvas id="comentarios-chart"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 10px;" class="col-12">
+              <div class="row">
+                <div class="card col-sm-4	col-md-2	col-lg-2">
+                  <h4>Propiedades verificadas:</h4>
+                  <p>Verificadas: X</p>
+                  <p>Última verificación: 2023-08-01</p>
+                </div>
+                <div class="card col-sm-8	col-md-4	col-lg-4">
+                  <canvas id="verificadas-chart"></canvas>
+                </div>
+
+                <div class="card col-sm-4	col-md-2	col-lg-2">
+                  <h4>Reportes:</h4>
+                  <p>Reportes totales: X</p>
+                  <p>Último reporte: 2023-08-01</p>
+                </div>
+                <div class="card col-sm-8	col-md-4	col-lg-4">
+                  <canvas id="reportes-chart"></canvas>
+                </div>
+              </div>
+            </div> 
+                       
+          </div>  
         </div>
 
       </main>
     </div>
   </div>
-
-  <!-- Modal COTIZAR -->
   
-    </div>
-  </div>
+  <!-- MODAL DE COTIZACION -->
   <div class="modal fade" id="quoteModal" tabindex="-1" role="dialog" aria-labelledby="quoteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="quoteModalLabel">Solicitar Cotización</h5>
           <h5 class="modal-title" id="quoteModalLabel">Calculadora de Cotización de Propiedades</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>Detalles de la propiedad: ${property.Titulo}</p>
           <form id="quoteForm">
             <div class="form-group">
-              <label for="nombre">Nombre</label>
-              <input type="text" class="form-control" id="nombre" name="nombre" required>
               <label for="days">Días hospedados</label>
               <input type="number" class="form-control" id="days" required>
             </div>
             <div class="form-group">
-              <label for="email">Correo Electrónico</label>
-              <input type="email" class="form-control" id="email" name="email" required>
               <label for="services">Servicios adicionales</label>
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="cleaningService">
@@ -273,117 +327,104 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="telefono">Teléfono</label>
-              <input type="tel" class="form-control" id="telefono" name="telefono" required>
               <label for="otherCharges">Otros cargos</label>
               <input type="number" class="form-control" id="otherCharges">
             </div>
-            <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
             <button type="button" class="btn btn-primary" onclick="calculateQuote()">Calcular Cotización</button>
           </form>
+        </div>
+        <div class="modal-footer">
+          <h5>Total: $<span id="total">0.00</span></h5>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
   </div>
 
+
+
+
+</body>
 @endsection
 
-@section('scripts')
-        <div class="modal-footer">
-          <h5>Total: $<span id="total">0.00</span></h5>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        </div>
-        @endsection
-        </body>
-        @section('js') 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+@section('js')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-  document.getElementById('publicaciones-tab').addEventListener('click', function() {
-    document.getElementById('pl').classList.remove('hidden');
-    document.getElementById('pl2').classList.add('hidden');
-    document.getElementById('pl3').classList.add('hidden');
-  });
-document.addEventListener('DOMContentLoaded', function() {
-  const publicacionesTab = document.getElementById('publicaciones-tab');
-  const estadisticasTab = document.getElementById('estadisticas-tab');
-  const calendarioTab = document.getElementById('calendario-tab');
-  const publicacionesSection = document.getElementById('pl');
-  const estadisticasSection = document.getElementById('pl2');
-  const calendarioSection = document.getElementById('calendario');
+    document.addEventListener('DOMContentLoaded', function() {
+      const publicacionesvTab = document.getElementById('publicacionesv-tab');
+      const publicacionesnvTab = document.getElementById('publicacionesnv-tab');
+      const estadisticasTab = document.getElementById('estadisticas-tab');
+      const publicacionesvSection = document.getElementById('plv');
+      const estadisticasSection = document.getElementById('pl2');
+      const publicacionesnvSection = document.getElementById('plnv');
 
-  document.getElementById('estadisticas-tab').addEventListener('click', function() {
-    document.getElementById('pl').classList.add('hidden');
-    document.getElementById('pl2').classList.remove('hidden');
-    document.getElementById('pl3').classList.add('hidden');
-  });
-  // INICIAR EN PUBLICACIONES
-  publicacionesSection.classList.remove('hidden');
-  estadisticasSection.classList.add('hidden');
-  calendarioSection.classList.add('hidden');
-
-  document.getElementById('calendario-tab').addEventListener('click', function() {
-    document.getElementById('pl').classList.add('hidden');
-    document.getElementById('pl2').classList.add('hidden');
-    document.getElementById('pl3').classList.remove('hidden');
-  // VISTA PUBLICACIONES
-  publicacionesTab.addEventListener('click', function() {
-    publicacionesSection.classList.remove('hidden');
-    estadisticasSection.classList.add('hidden');
-    calendarioSection.classList.add('hidden');
-    publicacionesTab.classList.add('active');
-    estadisticasTab.classList.remove('active');
-    calendarioTab.classList.remove('active');
-  });
-
-  // VISTA ESTADISTICAS
-  estadisticasTab.addEventListener('click', function() {
-    publicacionesSection.classList.add('hidden');
-    estadisticasSection.classList.remove('hidden');
-    calendarioSection.classList.add('hidden');
-    publicacionesTab.classList.remove('active');
-    estadisticasTab.classList.add('active');
-    calendarioTab.classList.remove('active');
-  });
-
-  
-  // VISTA CALENDARIO
-  calendarioTab.addEventListener('click', function() {
-    publicacionesSection.classList.add('hidden');
-    estadisticasSection.classList.add('hidden');
-    calendarioSection.classList.remove('hidden');
-    publicacionesTab.classList.remove('active');
-    estadisticasTab.classList.remove('active');
-    calendarioTab.classList.add('active');
-  });
-
-  // Mostrar/ocultar inputs de precio al seleccionar/desseleccionar servicios adicionales
-  const services = ['cleaningService', 'mealService', 'transportService'];
-  services.forEach(service => {
-    const checkbox = document.getElementById(service);
-    const priceInput = document.getElementById(service + 'Price');
-    checkbox.addEventListener('change', function() {
-      if (checkbox.checked) {
-        priceInput.classList.remove('hidden');
-      } else {
-        priceInput.classList.add('hidden');
-        priceInput.value = '';
-      }
+     
     });
-  });
-});
+      // INICIAR EN PUBLICACIONES
+      publicacionesvSection.classList.remove('hidden');
+      publicacionesnvSection.classList.add('hidden');
+      estadisticasSection.classList.add('hidden');
 
-function openModal(propertyId) {
-    $('#quoteModal').modal('show');
-}
+        // VISTA PUBLICACIONES
+        publicacionesvTab.addEventListener('click', function() {
+        publicacionesvSection.classList.remove('hidden');
+        publicacionesnvSection.classList.add('hidden');
+        estadisticasSection.classList.add('hidden');
+        publicacionesvTab.classList.add('active');
+        publicacionesnvTab.classList.remove('active');
+        estadisticasTab.classList.remove('active');
+      });
 
-function calculateQuote() {
-    const days = parseInt(document.getElementById('days').value);
-    const cleaningServicePrice = parseInt(document.getElementById('cleaningServicePrice').value) || 0;
-    const mealServicePrice = parseInt(document.getElementById('mealServicePrice').value) || 0;
-    const transportServicePrice = parseInt(document.getElementById('transportServicePrice').value) || 0;
-    const otherCharges = parseInt(document.getElementById('otherCharges').value) || 0;
+        // VISTA PUBLICACIONES NO VERIFICADAS
+        publicacionesnvTab.addEventListener('click', function() {
+        publicacionesnvSection.classList.remove('hidden');
+        publicacionesvSection.classList.add('hidden');
+        estadisticasSection.classList.add('hidden');
+        publicacionesnvTab.classList.add('active');
+        publicacionesvTab.classList.remove('active');
+        estadisticasTab.classList.remove('active');
+      });
+
+      // VISTA ESTADISTICAS
+      estadisticasTab.addEventListener('click', function() {
+        publicacionesvSection.classList.add('hidden');
+        publicacionesnvSection.classList.add('hidden');
+        estadisticasSection.classList.remove('hidden');
+        publicacionesvTab.classList.remove('active');
+        publicacionesnvTab.classList.remove('active');
+        estadisticasTab.classList.add('active');
+      });
+
+
+
+    function fetchTipoPropiedad() {
+
+    }
+
+    function datosProp (id) {
+      $.ajax({
+        url: `{{ url('/get/data/property') }}/${id}`,
+        method: `GET`,
+        success: function(data){
+          $('#calle').val(data.Calle);
+          $('#num_exterior').val(data.num_exterior);
+          $('#num_interior').val(data.num_interior);
+          $('#colonia').val(data.Colonia);
+          $('$codigo_postal').val(data.Codigo_Postal);
+          $('#ciudad').val(data.Ciudad);
+          $('#estado').val(data.Estado);
+          $('#recamaras').val(data.Recamaras);
+          $('#baños').val(data.Baños);
+          $('#tipo_propiedad').val(data.Tipo_Propiedad_id);
+          $('#area').val(data.Area);
+          $('#frente').val(data.Frente);
+          $('#fondo').val(data.Fondo);
+
+        }
+      });
+    }
 
     function openModal(propertyId) {
       $('#quoteModal').modal('show');
@@ -395,80 +436,89 @@ function calculateQuote() {
       const mealServicePrice = parseInt(document.getElementById('mealServicePrice').value) || 0;
       const transportServicePrice = parseInt(document.getElementById('transportServicePrice').value) || 0;
       const otherCharges = parseInt(document.getElementById('otherCharges').value) || 0;
-    const baseRate = 1500; // PRECIO POR DIA
-    let total = days * baseRate;
 
       const baseRate = 1500; // PRECIO POR DIA
       let total = days * baseRate;
-    total += cleaningServicePrice;
-    total += mealServicePrice;
-    total += transportServicePrice;
-    total += otherCharges;
 
       total += cleaningServicePrice;
       total += mealServicePrice;
       total += transportServicePrice;
       total += otherCharges;
-    document.getElementById('total').innerText = total.toFixed(2);
-}
 
       document.getElementById('total').innerText = total.toFixed(2);
     }
   </script>
 <script>
-  // INVESTIGAR QUE CHUCHA CON ESTA WEA
-  var ctx = document.getElementById('myChart').getContext('2d');
-  var myChart = new Chart(ctx, {
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
-      datasets: [{
-        label: 'Usuarios nuevos',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 1
-      }, {
-        label: 'Ventas',
-        data: [2, 29, 5, 5, 20, 3],
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1
-      }]
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
-        datasets: [{
-            label: 'Usuarios nuevos',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-        }, {
-            label: 'Ventas',
-            data: [2, 29, 5, 5, 20, 3],
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        // Datos de ejemplo para las estadísticas
+        const ventasData = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+      const comentariosData = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
+      const verificadasData = [5, 4, 6];
+      const totalData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      const reportesData = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30];
+
+      // Crear gráficos con Chart.js
+      new Chart(document.getElementById('ventas-chart'), {
+        type: 'line',
+        data: {
+          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+          datasets: [{
+            label: 'Ventas Totales',
+            data: ventasData,
             borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
+            borderWidth: 2,
+            fill: false
+          }]
         }
-    }
-  });
-});
+      });
+
+      new Chart(document.getElementById('comentarios-chart'), {
+        type: 'bar',
+        data: {
+          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+          datasets: [{
+            label: 'Comentarios',
+            data: comentariosData,
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgba(153, 102, 255, 1)',
+            borderWidth: 1
+          }]
+        }
+      });
+
+      new Chart(document.getElementById('verificadas-chart'), {
+        type: 'pie',
+        data: {
+          labels: ['Verificadas', 'PorVerificar', 'NoVerificadas'],
+          datasets: [{
+            label: 'Propiedades Verificadas',
+            data: verificadasData,
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+          }]
+        }
+      });
+
+      new Chart(document.getElementById('reportes-chart'), {
+        type: 'bar',
+        data: {
+          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+          datasets: [{
+            label: 'Reportes',
+            data: reportesData,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+          }]
+        }
+      });
 </script>
 @endsection

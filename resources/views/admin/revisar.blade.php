@@ -2097,6 +2097,7 @@
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger btn-lg btn-block">Eliminar</button>
             </form>
+            
         </div>
         <div class="col-md-3 text-center">
             @if(isset($propiedad->ID_P))
