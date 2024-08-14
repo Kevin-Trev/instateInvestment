@@ -2158,17 +2158,7 @@
     </div>
 </div>
 
-<div id="perfil-propietario">
-    <h3>Datos del Propietario</h3>
-    <p>Nombre: {{$propiedad->users->Nombre}} {{$propiedad->users->Apellido}}</p>
-    <p>Email: {{$propiedad->users->email}}</p>
-    <p>Teléfono: {{$propiedad->users->Telefono}}</p>
-    @if ($propiedad->users->Foto)
-        <img src="{{ asset('ImagesPublished/'.$propiedad->users->Foto) }}" alt="Foto de perfil">
-    @else
-        <img src="https://picsum.photos/300/200" alt="Foto de perfil por defecto">
-    @endif
-</div>
+
 
 <footer id="page-footer">
     <div class="container-info">
