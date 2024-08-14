@@ -209,7 +209,7 @@
 
 @section('body')
 
-    <form action="{{route('user.create')}}" method="POST" id="formularioRegistro">
+    <form action="/registrar" method="POST" id="formularioRegistro">
         @csrf
         <div class="container" id="nuevoEmail">
             <h2>Regístrate</h2>

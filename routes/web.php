@@ -63,7 +63,7 @@ Route::get('/get/property/{id}', [propiedadController::class, 'getProperty']);
 Route::get('/get/data/property/{id}', [propiedadController::class, 'getDataProperty']);
 Route::get('/get/property/admin/{id}', [propiedadController::class, 'getPropertyadmin']);
 Route::post('/post/propiedad', [propiedadController::class, 'newProperty']); /* cambiar de GET a POST */
-Route::post('/edit/propiedad/', [propiedadController::class, 'editarPropiedad'])->name('property.update');
+Route::post('/edit/propiedad', [propiedadController::class, 'editarPropiedad']);
 Route::delete('/propiedad/eliminar/{ID_P}', [propiedadController::class, 'eliminar'])->name('propiedad.eliminar');
 
 
