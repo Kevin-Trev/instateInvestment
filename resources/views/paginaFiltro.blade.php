@@ -1274,14 +1274,14 @@
       <option value="Rentable">Renta</option>
     </select>
   </div>
-  <div class="form-group">
+  {{-- <div class="form-group">
     <input type="number" class="form-control" placeholder="Precio MXN">
   </div>
   <div class="form-group">
     <select id="tipoPropiedad" class="form-control">
 
     </select>
-  </div>
+  </div> --}}
   <div class="form-group">
     <input class="form-control" id="ciudad" type="text" placeholder="Buscar por ciudad...">
   </div>

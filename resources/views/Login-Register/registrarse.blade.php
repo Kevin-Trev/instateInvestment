@@ -359,21 +359,15 @@
                 var telver = '+52' + inputTelefono;
                 $('#verif-tel').hide();
 
-                verificarTelefono(telver).then(function(response){
-                    if (response.existe) {
-                        $('#verif-tel').show();
-                    }
-                    else {
-                        if($('#nombre').val() && $('#nombreUsuario').val() && $('#apellido').val() && $('#Fecha_nacimiento').val()){
-                            $('#verif-tel').hide();
-                            $('#formularioRegistro').submit();
-                            error.css("display", "none");
-                        }
-                        else{
-                            error.css("display", "block");
-                        }
-                    }
-                });
+                if($('#nombre').val() && $('#nombreUsuario').val() && $('#apellido').val() && $('#Fecha_nacimiento').val()){
+                    $('#verif-tel').hide();
+                    $('#formularioRegistro').submit();
+                    error.css("display", "none");
+                }
+                else{
+                    error.css("display", "block");
+                }
+
             });
 
             $('#inputContraseña').on('keyup', function(event){
@@ -457,16 +451,16 @@
             });
         }
 
-        function verificarTelefono(telefono) {
-            return $.ajax({
-                url: '/verificar-telefono',
-                type: 'GET',
-                data: {
-                    Telefono: telefono,
-                },
-                dataType: 'json'
-            });
-        }
+        // function verificarTelefono(telefono) {
+        //     return $.ajax({
+        //         url: '/verificar-telefono',
+        //         type: 'GET',
+        //         data: {
+        //             Telefono: telefono,
+        //         },
+        //         dataType: 'json'
+        //     });
+        // }
 
     </script>
 @endsection
