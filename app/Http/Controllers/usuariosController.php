@@ -27,18 +27,24 @@ class usuariosController extends Controller
             return redirect(url()->previous());
         }
         else {
-            $propiedades = propiedades::with("tipo_propiedad:ID_T,Tipo")
-            ->with(['imagenes_propiedad' => function($query) {
-            $query->select('reg','propiedad_id','src_image');
-            }])
-            ->where('users_Id','=',$id)
-            ->get()
-            ->map(function($propiedad) {
-            $propiedad->main_image = $propiedad->imagenes_propiedad->first() ?: null;
-            return $propiedad;
-            });
 
-            return view('hubs.perfil', compact('propiedades'));
+            if($user->administrador){
+                return redirect('/perfil-administrador');    
+            }
+            else{
+                $propiedades = propiedades::with("tipo_propiedad:ID_T,Tipo")
+                ->with(['imagenes_propiedad' => function($query) {
+                $query->select('reg','propiedad_id','src_image');
+                }])
+                ->where('users_Id','=',$id)
+                ->get()
+                ->map(function($propiedad) {
+                $propiedad->main_image = $propiedad->imagenes_propiedad->first() ?: null;
+                return $propiedad;
+                });
+    
+                return view('hubs.perfil', compact('propiedades'));    
+            }
         }
     }
 
@@ -51,8 +57,9 @@ class usuariosController extends Controller
     }
 
     public function verificarTelefono (Request $request){
-        $telefonoExistente = User::where('Telefono', $request->input('Telefono'))->exists();
-        return response()->json(['existe' => $correoExiste]);
+        $telefono = $request->Telefono;
+        $telefonoExistente = User::where('Telefono',$telefono)->exists();
+        return response()->json(['existe' => $telefonoExistente]);
     }
 
     public function nuevoUsuario(Request $request) {
@@ -79,9 +86,15 @@ class usuariosController extends Controller
             if($user->save()){
                 DB::commit();
                 Auth::login($user);
-                Mail::send('correo.bienvenida', [], function ($message) use ($user){
-                    $message->to($user->email)->subject('Nuevo usuario')->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-                });
+                try {
+                    Mail::send('correo.bienvenida', [], function ($message) use ($user) {
+                        $message->to($user->email)
+                                ->subject('Nuevo usuario')
+                                ->from('instateInvestment@gmail.com' , 'Instate Investment');
+                    });
+                } catch (\Exception $e) {
+                    return response()->json(['error' => 'Error al enviar el correo: ' . $e->getMessage()]);
+                }
                 return redirect('/views/registro/finalizado');
             }
         }
@@ -108,12 +121,11 @@ class usuariosController extends Controller
         $user->name = $request->input('name');
         $user->Nombre = $request->input('Nombre');
         $user->Apellido = $request->input('Apellido');
-        $user->Telefono = $request->input('Telefono');
         $user->Fecha_Nacimiento = $request->input('Fecha_Nacimiento');
 
         $user->save();
 
-        return redirect('/views/hubs/perfil/'.$id);
+        return redirect(url()->previous());
     }
 
     public function login () {
@@ -206,15 +218,14 @@ class usuariosController extends Controller
 
         return redirect()->route('login')->with('message', 'Tu contraseña se ha cambiado correctamente');
     }
+    
     public function mostrarPerfilAdmin()
-{
-   
-    $propiedadesNoVerificadas = Propiedades::where('verificacion', false)->get();
+    {
+    
+        $propiedadesNoVerificadas = Propiedades::where('verificacion', false)->get();
 
-    return view('admin.perfilAd', ['propiedades' => $propiedadesNoVerificadas]);
+        return view('admin.perfilAd', ['propiedades' => $propiedadesNoVerificadas]);
 
-}
-
-
+    }
 }
 

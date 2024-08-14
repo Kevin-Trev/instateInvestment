@@ -3,7 +3,6 @@
 @section('style')
 <style>
     /* Estilos para el contenedor principal */
-    
     .container {
       padding: 12%;
     }
@@ -173,6 +172,10 @@
         border-radius: 8px;
     }
 
+    .form-group #tipoPropiedad{
+        text-align: center;
+    }
+
     .contenedorCaracteristicas .form-group input[type="number"]{
         border-radius: 40%;
         width: 50px;
@@ -221,7 +224,7 @@
 
     .buttonContainer{
         display: flex;
-        gap: 60%;
+        justify-content: flex-end;
     }
 
     #Frente, #Fondo, #Area{
@@ -247,7 +250,9 @@
         width: 120px;
         height: 120px;
         border-radius: 8px;
+        margin: 0 0 10px 12px;
     }
+
 
     .postal{
         margin-left: 8px;
@@ -283,6 +288,7 @@ input[type="number"]::-webkit-outer-spin-button {
     border-radius: 8px;
     padding: 15px;
     margin-left: 90px;
+    text-align: center;
 }
 
 .radio-group .btn{
@@ -293,9 +299,10 @@ input[type="number"]::-webkit-outer-spin-button {
 .custom-file-label {
   background-color: #007bff;
   padding: 5px 10px;
-  border-radius: 8px;
+  border-radius: 4px;
   border: none;
   cursor: pointer;
+  color: #FFFFFF;
 }
 
     #Area-group{
@@ -318,9 +325,1135 @@ input[type="number"]::-webkit-outer-spin-button {
         transform: translateY(-190px);
     }
 
-    #segundoPaso, #tercerPaso, #cuartoPaso{
+    #segundoPaso, #cuartoPaso, #tercerPaso{
         display: none;
         height: 0;
+    }
+
+    @media(min-width: 992px){
+        /* Header */
+
+        .circle-circle-container .circle.blue{
+            margin-left: 40%;
+        }
+
+        .container, .container-sm{
+            max-width: none;
+        }
+
+        .circle.blue{
+            margin-right: 50px;
+        }
+
+        .container h1{
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .container p{
+            font-size: 20px;
+        }
+
+        /* CARTAS */
+
+        .section-title h3{
+            font-size: 30px;
+        }
+
+        /* Primer paso */
+
+        #primerPaso{
+           transform: translateY(-13vw);
+        }
+
+        .card{
+            transform: translateX(-4.5vw);
+            width: 85vw;
+        }
+
+        .circle-circle-container .circle.blue {
+            width: 35px;
+            height: 35px;
+            font-size: 15px;
+        }
+
+        .circle{
+            width: 35px;
+            height: 35px;
+            font-size: 15px;
+        }   
+        
+        .circle-circle-container .text{
+            font-size: 14px;
+            color: #889396;
+            text-align: center;
+        }
+
+        .section-title .circle.blue{
+            display: none;
+        }
+
+        .section-title{
+            margin-top: -20px;
+        }
+
+        .contenedorDatos{
+            margin: 0;
+            display: flex;
+        }
+
+        .contenedorDatos .form-group{
+            font-size: 18px;
+        }
+
+        .contenedorDatos .form-control{
+            width: 35vw;
+            font-size: 16px;
+        }
+
+        .postal {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .postal input{
+            width: 30vw;
+            font-size: 16px;
+        }
+
+        /* Segundo paso */
+
+        #segundoPaso{
+            transform: translateY(-13vw);
+            margin-bottom: 150px;
+        }
+
+        .form-group .col-form-label{
+            font-size: 20px;
+        }
+
+        .form-group #tipoPropiedad{
+            font-size: 17px;
+            width: 13vw;
+        }
+
+        .contenedorCaracteristicas{
+            margin: 0;
+            font-size: 18px;
+        }
+
+        #Area-group{
+            transform: translate(0);
+        }
+
+        .contenido{
+            margin-left: 144px;
+        }
+
+        .contenedorCaracteristicas #Recamaras-group{
+            margin: 0 30px 0 15vw;
+        }
+
+        .contenedorCaracteristicas #Recamaras-group input, #Baños-group input{
+            width: 60px;
+            font-size: 16px;
+            height: 60px;
+        }
+
+        .contenedorCaracteristicas .form-group{
+            margin: 2vw;
+        }
+
+        .contenedorCaracteristicas #Frente-group input, #Fondo-group input, #Area-group input{
+            font-size: 16px;
+            width: 15vw;
+            height: 40px;
+        }
+
+        #Frente-group{
+            margin: 0;
+        }
+
+        .btn-menos, .btn-mas{
+            transform: translateY(20px);
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+        }
+
+        .btn-blue {
+            font-size: 16px;
+            width: 150px;
+            margin-left: 10px;
+        }
+
+        .btn-white{
+            width: 150px;
+            font-size: 16px;
+            margin-left: 30px;
+        }
+
+        .buttonContainer{
+            padding-top: 20px;
+        }
+
+        /* Tercer Paso */
+
+        #tercerPaso{
+            transform: translateY(-11vw);
+        }
+
+        .btn-group label{
+            margin: 20px 0 5px 0;
+            font-size: 20px;
+        }
+
+        /* Cuarto Paso */
+
+        #cuartoPaso{
+            margin-top: 2vw;
+        }
+
+        #cuartoPaso .form-group{
+            font-size: 20px;
+        }
+
+        #cuartoPaso #Precio{
+            font-size: 16px;
+            width: 22vw;
+        }
+
+        .radio-group{
+            margin: 0 8px 5px 4.2vw;
+            width: 30vw;
+        }
+
+        .radio-group .btn{
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .radio-group label{
+            font-size: 20px;
+        }
+
+        .custom-file-label{
+            padding: 4px;
+        }
+
+        #ee{
+            width: 100%;
+            transform: translateX(-5vw);
+        }
+
+        .photoContainer img{
+            width: 180px;
+            height: 180px;
+            margin: 0 0 6px 8px;
+        }
+
+        .imagen-group{
+            font-size: 20px;
+            text-align: center;
+        }
+    }
+
+    @media(max-width: 992px){
+        /* Header */
+
+        .circle-circle-container .circle.blue{
+            margin-left: 40%;
+        }
+
+        .container, .container-sm{
+            max-width: none;
+        }
+
+        .circle.blue{
+            margin-right: 50px;
+        }
+
+        .container h1{
+            font-size: 3vw;
+        }
+
+        .container p{
+            font-size: 1.8vw;
+        }
+
+        /* CARTAS */
+
+        .section-title h3{
+            font-size: 3vw;
+        }
+
+        /* Primer paso */
+
+        #primerPaso{
+           transform: translateY(-110px);
+        }
+
+        .card{
+            transform: translateX(-4.5vw);
+            width: 85vw;
+        }
+
+        .circle-circle-container .circle.blue {
+            width: 4vw;
+            height: 4vw;
+            font-size: 2vw;
+        }
+
+        .circle{
+            width: 4vw;
+            height: 4vw;
+            font-size: 2vw;
+        }   
+        
+        .circle-circle-container .text{
+            font-size: 1.6vw;
+            color: #889396;
+            text-align: center;
+        }
+
+        .section-title .circle.blue{
+            display: none;
+        }
+
+        .section-title{
+            margin-top: -20px;
+        }
+
+        .contenedorDatos{
+            margin: 0;
+            display: flex;
+        }
+
+        .contenedorDatos .form-group{
+            font-size: 1.9vw;
+        }
+
+        .contenedorDatos .form-control{
+            width: 35vw;
+            font-size: 1.8vw;
+        }
+
+        .postal {
+            font-size: 1.9vw;
+            margin: 0;
+        }
+
+        .postal input{
+            width: 30vw;
+            font-size: 1.8vw;
+        }
+
+        /* Segundo paso */
+
+        #segundoPaso{
+            transform: translateY(-125px);
+        }
+
+        .form-group .col-form-label{
+            font-size: 2vw;
+        }
+
+        .form-group #tipoPropiedad{
+            font-size: 1.8vw;
+            width: 16vw;
+        }
+
+        .contenedorCaracteristicas{
+            margin: 0;
+            font-size: 2vw;
+        }
+
+        #Area-group{
+            transform: translate(0);
+        }
+
+        .contenido{
+            margin-left: 6vw;
+        }
+
+        .contenedorCaracteristicas #Recamaras-group{
+            margin: 0 30px 0 15vw;
+        }
+
+        .contenedorCaracteristicas #Recamaras-group input, #Baños-group input{
+            width: 45px;
+            font-size: 1.8vw;
+            height: 45px;
+        }
+
+        .contenedorCaracteristicas .form-group{
+            margin: 2vw;
+        }
+
+        .contenedorCaracteristicas #Frente-group input, #Fondo-group input, #Area-group input{
+            font-size: 1.8vw;
+            width: 16vw;
+            height: 40px;
+        }
+
+        #Frente-group{
+            margin: 0;
+        }
+
+        .btn-menos, .btn-mas{
+            width: 3.5vw;
+            height: 3.5vw;
+            font-size: 2.5vw;
+        }
+
+        .btn-blue {
+            font-size: 1.8vw;
+            width: 20vw;
+            margin-left: 10px;
+        }
+
+        .btn-white{
+            width: 20vw;
+            font-size: 1.8vw;
+            margin-left: 30px;
+        }
+
+        .buttonContainer{
+            padding-top: 20px;
+        }
+
+        /* Tercer Paso */
+
+        #tercerPaso{
+            transform: translateY(-85px);
+        }
+
+        .btn-group label{
+            margin: 20px 0 5px 0;
+            font-size: 2vw;
+        }
+
+        /* Cuarto Paso */
+
+        #cuartoPaso{
+            margin-top: 70px;
+        }
+
+        #cuartoPaso .form-group{
+            font-size: 2vw;
+        }
+
+        #cuartoPaso #Precio{
+            font-size: 1.8vw;
+            width: 34vw;
+        }
+
+        .radio-group{
+            margin: 0 8px 5px 4.2vw;
+            width: 30vw;
+        }
+
+        .radio-group .btn{
+            font-size: 1.8vw;
+            margin: 0;
+        }
+
+        .radio-group label{
+            font-size: 2vw;
+        }
+
+        .custom-file-label{
+            padding: 4px;
+        }
+
+        #ee{
+            width: 100%;
+            transform: translateX(-5vw);
+        }
+
+        .photoContainer img{
+            width: 14vw;
+            height: 14vw;
+            margin: 0 0 6px 8px;
+        }
+
+        .imagen-group{
+            font-size: 2.2vw;
+            text-align: center;
+        }
+    }
+
+    @media(max-width: 768px){
+        /* Header */
+
+        .circle-circle-container .circle.blue{
+            margin-left: 40%;
+        }
+
+        .container, .container-sm{
+            max-width: none;
+        }
+
+        .circle.blue{
+            margin-right: 50px;
+        }
+
+        .container h1{
+            font-size: 4vw;
+        }
+
+        .container p{
+            font-size: 2vw;
+        }
+
+        /* CARTAS */
+
+        .section-title h3{
+            font-size: 3.7vw;
+        }
+
+        /* Primer paso */
+
+        #primerPaso{
+           transform: translateY(-110px);
+        }
+
+        .card{
+            transform: translateX(-4.5vw);
+            width: 85vw;
+        }
+
+        .circle-circle-container .circle.blue {
+            width: 5vw;
+            height: 5vw;
+            font-size: 2.5vw;
+        }
+
+        .circle{
+            width: 5vw;
+            height: 5vw;
+            font-size: 2.5vw;
+        }   
+        
+        .circle-circle-container .text{
+            font-size: 2vw;
+            color: #889396;
+            text-align: center;
+        }
+
+        .section-title .circle.blue{
+            display: none;
+        }
+
+        .section-title{
+            margin-top: -30px;
+        }
+
+        .contenedorDatos{
+            margin: 0;
+            display: flex;
+        }
+
+        .contenedorDatos .form-group{
+            font-size: 2.2vw;
+        }
+
+        .contenedorDatos .form-control{
+            width: 30vw;
+            font-size: 2vw;
+        }
+
+        .postal {
+            font-size: 2.2vw;
+            margin: 0;
+        }
+
+        .postal input{
+            width: 30vw;
+            font-size: 2vw;
+        }
+
+        /* Segundo paso */
+
+        #segundoPaso{
+            transform: translateY(-125px);
+        }
+
+        .form-group .col-form-label{
+            font-size: 2.5vw;
+        }
+
+        .form-group #tipoPropiedad{
+            font-size: 2.2vw;
+            width: 20vw;
+        }
+
+        .contenedorCaracteristicas{
+            margin: 0;
+            font-size: 2.2vw;
+        }
+
+        #Area-group{
+            transform: translate(0);
+        }
+
+        .contenido{
+            margin-left: 5vw;
+        }
+
+        .contenedorCaracteristicas #Recamaras-group{
+            margin: 0 30px 0 12vw;
+        }
+
+        .contenedorCaracteristicas #Recamaras-group input, #Baños-group input{
+            width: 45px;
+            font-size: 2vw;
+            height: 45px;
+        }
+
+        .contenedorCaracteristicas .form-group{
+            margin: 2vw;
+        }
+
+        .contenedorCaracteristicas #Frente-group input, #Fondo-group input, #Area-group input{
+            font-size: 2.2vw;
+            width: 16vw;
+            height: 40px;
+        }
+
+        #Frente-group{
+            margin: 0;
+        }
+
+        .btn-menos, .btn-mas{
+            width: 4vw;
+            height: 4vw;
+            font-size: 2.5vw;
+        }
+
+        .btn-blue {
+            font-size: 1.8vw;
+            width: 20vw;
+            margin-left: 10px;
+        }
+
+        .btn-white{
+            width: 20vw;
+            font-size: 1.8vw;
+            margin-left: 30px;
+        }
+
+        .buttonContainer{
+            padding-top: 20px;
+        }
+
+        /* Tercer Paso */
+
+        #tercerPaso{
+            transform: translateY(-85px);
+        }
+
+        .btn-group label{
+            margin: 20px 0 5px 0;
+            font-size: 2vw;
+        }
+
+        /* Cuarto Paso */
+
+        #cuartoPaso{
+            margin-top: 70px;
+        }
+
+        .h2, h2 {
+            font-size: 5vw;
+        }
+
+        #cuartoPaso .form-group{
+            font-size: 2.2vw;
+        }
+
+        #cuartoPaso #Precio{
+            font-size: 2vw;
+            width: 40vw;
+        }
+
+        .radio-group{
+            margin: 0 8px 5px 4.2vw;
+            width: 30vw;
+        }
+
+        .radio-group .btn{
+            font-size: 2vw;
+            margin: 0;
+        }
+
+        .radio-group label{
+            font-size: 2.2vw;
+        }
+
+        .custom-file-label{
+            padding: 4px;
+        }
+
+        #ee{
+            width: 100%;
+            transform: translateX(-5vw);
+        }
+
+        .photoContainer img{
+            width: 13.5vw;
+            height: 13.5vw;
+            margin: 0 0 5px 6px;
+        }
+
+        .imagen-group{
+            font-size: 2.5vw;
+            text-align: center;
+        }
+    }
+
+    @media(max-width: 576px){
+        /* Header */
+
+        .circle-circle-container .circle.blue{
+            margin-left: 20%;
+        }
+
+        .circle.blue{
+            margin-right: 24px;
+        }
+
+        .container h1{
+            font-size: 4vw;
+        }
+
+        .container p{
+            font-size: 2vw;
+        }
+
+        /* CARTAS */
+
+        .section-title h3{
+            font-size: 4.5vw;
+        }
+
+        /* Primer paso */
+
+        #primerPaso{
+           transform: translateY(-100px);
+        }
+
+        .card{
+            transform: translateX(-4.5vw);
+            width: 85vw;
+        }
+
+        .circle-circle-container .circle.blue {
+            width: 5vw;
+            height: 5vw;
+            font-size: 2.5vw;
+        }
+
+        .circle{
+            width: 5vw;
+            height: 5vw;
+            font-size: 2.5vw;
+        }
+        
+        
+        .circle-circle-container .text{
+            font-size: 0;
+            color: transparent;
+        }
+
+        .section-title .circle.blue{
+            display: none;
+        }
+
+        .section-title{
+            margin-top: -30px;
+        }
+
+        .contenedorDatos{
+            margin: 0;
+            display: flex;
+        }
+
+        .contenedorDatos .form-group{
+            font-size: 2.2vw;
+        }
+
+        .contenedorDatos .form-control{
+            width: 30vw;
+            font-size: 2vw;
+        }
+
+        .postal {
+            font-size: 2.2vw;
+            margin: 0;
+        }
+
+        .postal input{
+            width: 30vw;
+            font-size: 2vw;
+        }
+
+        /* Segundo paso */
+
+        #segundoPaso{
+            transform: translateY(-110px);
+        }
+        
+
+        .form-group .col-form-label{
+            font-size: 2.5vw;
+        }
+
+        .form-group #tipoPropiedad{
+            font-size: 2.2vw;
+            width: 20vw;
+        }
+
+        .contenedorCaracteristicas{
+            margin: 0;
+            font-size: 2.2vw;
+        }
+
+        #Area-group{
+            transform: translate(0);
+        }
+
+        .contenido{
+            margin-left: 5vw;
+        }
+
+        .contenedorCaracteristicas #Recamaras-group{
+            margin: 0 30px 0 8vw;
+        }
+
+        .contenedorCaracteristicas #Recamaras-group input, #Baños-group input{
+            width: 38px;
+            font-size: 2vw;
+            height: 35px;
+        }
+
+        .contenedorCaracteristicas .form-group{
+            margin: 1vw;
+        }
+
+        .contenedorCaracteristicas #Frente-group input, #Fondo-group input, #Area-group input{
+            font-size: 2vw;
+            width: 16vw;
+            height: 30px;
+        }
+
+        #Frente-group{
+            margin: 0;
+        }
+
+        .btn-menos, .btn-mas{
+            width: 5vw;
+            height: 5vw;
+            font-size: 2.5vw;
+        }
+
+        .btn-blue {
+            font-size: 1.8vw;
+            width: 20vw;
+            margin-left: 10px;
+        }
+
+        .btn-white{
+            width: 20vw;
+            font-size: 1.8vw;
+            margin-left: 30px;
+        }
+
+        .buttonContainer{
+            padding-top: 20px;
+            transform: translateX(-4vw);
+        }
+
+        /* Tercer Paso */
+
+        #tercerPaso{
+            transform: translateY(-110px);
+        }
+
+        .btn-group label{
+            margin: 20px 0 5px 0;
+            font-size: 1.8vw;
+        }
+
+        /* Cuarto Paso */
+
+        #cuartoPaso{
+            margin-top: 80px;
+        }
+
+        .h2, h2 {
+            font-size: 5vw;
+        }
+
+        #cuartoPaso .form-group{
+            font-size: 2.2vw;
+        }
+
+        #cuartoPaso #Precio{
+            font-size: 2vw;
+            width: 40vw;
+        }
+
+        .radio-group{
+            margin: 0 8px 5px 4.2vw;
+            width: 30vw;
+        }
+
+        .radio-group .btn{
+            font-size: 2vw;
+            margin: 0;
+        }
+
+        .radio-group label{
+            font-size: 2.2vw;
+        }
+
+        .custom-file-label{
+            padding: 4px;
+        }
+
+        #ee{
+            width: 100%;
+            transform: translateX(-5vw);
+        }
+
+        .imagen-group{
+            font-size: 2.5vw;
+            text-align: center;
+        }
+    }
+
+    @media(max-width: 391px){
+        /* Header */
+
+        .circle-circle-container .circle.blue{
+            margin-left: 28%;
+        }
+
+        .circle.blue{
+            margin-right: 24px;
+        }
+
+        .container h1{
+            font-size: 5vw;
+        }
+
+        .container p{
+            font-size: 3vw;
+        }
+
+        /* CARTAS */
+
+        .section-title h3{
+            font-size: 5vw;
+        }
+
+        /* Primer paso */
+
+        #primerPaso{
+           transform: translateY(-60px);
+        }
+
+        .card{
+            transform: translateX(-4.5vw);
+            width: 85vw;
+        }
+
+        .circle-circle-container .circle.blue {
+            width: 6vw;
+            height: 6vw;
+            font-size: 3vw;
+        }
+
+        .circle{
+            width: 6vw;
+            height: 6vw;
+            font-size: 3vw;
+        }
+        
+        
+        .circle-circle-container .text{
+            font-size: 0;
+            color: transparent;
+        }
+
+        .section-title .circle.blue{
+            display: none;
+        }
+
+        .section-title{
+            margin-top: -30px;
+        }
+
+        .contenedorDatos{
+            margin: 0;
+            display: flex;
+        }
+
+        .contenedorDatos .form-group{
+            font-size: 2.5vw;
+        }
+
+        .contenedorDatos .form-control{
+            width: 25vw;
+            font-size: 2vw;
+        }
+
+        .postal {
+            font-size: 3vw;
+            margin: 0;
+        }
+
+        .postal input{
+            width: 30vw;
+            font-size: 2vw;
+        }
+
+        .btn-blue {
+            font-size: 2vw;
+            width: 25vw;
+            height: 30px; 
+        }
+
+        /* Segundo paso */
+
+        #segundoPaso{
+            transform: translateY(-50px);
+        }
+        
+
+        .form-group .col-form-label{
+            font-size: 3vw;
+        }
+
+        .form-group #tipoPropiedad{
+            font-size: 2.2vw;
+            width: 24vw;
+        }
+
+        .contenedorCaracteristicas{
+            margin: 0;
+            font-size: 2vw;
+        }
+
+        #Area-group{
+            transform: translate(0);
+        }
+
+        .contenido{
+            margin: 0;
+        }
+
+        .contenedorCaracteristicas #Recamaras-group input, #Baños-group input{
+            width: 38px;
+            font-size: 2.5vw;
+            height: 30px;
+        }
+
+        .contenedorCaracteristicas .form-group{
+            margin: 1vw;
+        }
+
+        .contenedorCaracteristicas #Frente-group input, #Fondo-group input, #Area-group input{
+            font-size: 2vw;
+            width: 16vw;
+            height: 30px;
+        }
+
+        #Frente-group{
+            margin: 0;
+        }
+
+        .btn-menos, .btn-mas{
+            width: 6vw;
+            height: 6vw;
+            font-size: 3vw;
+        }
+
+        .btn-white{
+            height: 30px;
+            width: 25vw;
+            font-size: 2vw;
+            margin: 0;
+        }
+
+        .buttonContainer{
+            padding-top: 20px;
+
+        }
+
+        /* Tercer Paso */
+
+        #tercerPaso{
+            transform: translateY(-40px);
+        }
+
+        .btn-group label{
+            font-size: 2.5vw;
+        }
+
+        /* Cuarto Paso */
+
+        #cuartoPaso{
+            margin-top: 100px;
+        }
+
+        .h2, h2 {
+            font-size: 5vw;
+        }
+
+        #cuartoPaso .form-group{
+            font-size: 3vw;
+        }
+
+        #cuartoPaso #Precio{
+            font-size: 3vw;
+            width: 60vw;
+        }
+
+        .radio-group{
+            margin: 0 8px 5px 0;
+            width: 30vw;
+        }
+
+        .radio-group .btn{
+            font-size: 2vw;
+            margin: 0;
+        }
+
+        .radio-group label{
+            font-size: 2.5vw;
+        }
+
+        .custom-file-label{
+            padding: 2px;
+        }
+
+        #ee{
+            width: 100%;
+            transform: translateX(-5vw);
+        }
+
+        .photoContainer img{
+            width: 11vw;
+            height: 11vw;
+            margin: 0 0 5px 6px;
+        }
+
+        .imagen-group{
+            font-size: 3vw;
+            text-align: center;
+        }
     }
         </style>
 @endsection
@@ -371,7 +1504,7 @@ input[type="number"]::-webkit-outer-spin-button {
                 <div class="contenedorDatos">
                     <div class="form-group">
                         <label for="Ciudad">Ciudad:</label>
-                        <input type="text" class="form-control" name="Ciudad" id="Ciudad" placeholder="Ingrese la ciudad donde se encuentra la propiedad">
+                        <input type="text" class="form-control" name="Ciudad" id="Ciudad" placeholder="Ciudad donde se encuentre la propiedad">
                     </div>
                     <div class="form-group">
                         <label for="Estado">Estado:</label>
@@ -414,27 +1547,27 @@ input[type="number"]::-webkit-outer-spin-button {
                 <div class="contenedorDatos">
                     <div class="form-group">
                         <label for="calle">Calle:</label>
-                        <input type="text" class="form-control" name="calle" id="Calle" placeholder="Ingrese la calle de la propiedad">
+                        <input type="text" class="form-control" name="calle" id="Calle" placeholder="Calle de la propiedad">
                     </div>
                     <div class="form-group">
                         <label for="Colonia">Colonia:</label>
-                        <input type="text" class="form-control" name="Colonia" id="Colonia" placeholder="Ingrese la colonia donde se encuentra la propiedad">
+                        <input type="text" class="form-control" name="Colonia" id="Colonia" placeholder="Colonia donde se encuentra">
                     </div>
                 </div>
                 <div class="contenedorDatos">
                     <div class="form-group">
                         <label for="num_interior">Núm. interior (opcional):</label>
-                        <input type="text" class="form-control" name="num_interior" id="Num_interior" placeholder="Ingrese número interior de la propiedad">
+                        <input type="text" class="form-control" name="num_interior" id="Num_interior" placeholder="Número interior de la propiedad">
                     </div>
                     <div class="form-group">
                         <label for="num_exterior">Núm. exterior (opcional):</label>
-                        <input type="text" class="form-control" name="num_exterior" id="Num_exterior" placeholder="Ingrese número exterior de la propiedad">
+                        <input type="text" class="form-control" name="num_exterior" id="Num_exterior" placeholder="Número exterior de la propiedad">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="postal">
                         <label for="Codigo_Postal">Codigo postal:</label>
-                        <input type="number" class="form-control" id="Codigo_Postal" name="Codigo_Postal" placeholder="Ingrese el código postal" min="0" max="5">
+                        <input type="number" class="form-control" id="Codigo_Postal" name="Codigo_Postal" placeholder="Código postal de la propiedad" min="0" max="5">
                     </div>
                 </div>
                 <h6 class="error">Completa los campos necesarios para continuar</h6>
@@ -508,24 +1641,25 @@ input[type="number"]::-webkit-outer-spin-button {
                                 <button class="btn-mas" id="plusBaños">+</button>
                             </div>
                         </div>
+                    </div>
+                    <div class="contenedorCaracteristicas">
+                        
                         <div class="form-group" id="Area-group">
                             <label for="Area">Area:</label>
                             <div class="numeros">
                                 <input type="number" class="form-control" id="Area" name="Area" placeholder="Medida m²">
                             </div>
                         </div>
-                    </div>
-                    <div class="contenedorCaracteristicas">
-                        <div class="form-group" id="Frente-group">
-                            <label for="frente">Frente:</label>
-                            <div class="numeros">
-                                <input type="number" class="form-control" id="Frente" name="Frente" placeholder="Medida m²">
-                            </div>
-                        </div>
                         <div class="form-group" id="Fondo-group">
                             <label for="Fondo">Fondo:</label>
                             <div class="numeros">
                                 <input type="number" class="form-control" id="Fondo" name="Fondo" placeholder="Medida m²">
+                            </div>
+                        </div>
+                        <div class="form-group" id="Frente-group">
+                            <label for="frente">Frente:</label>
+                            <div class="numeros">
+                                <input type="number" class="form-control" id="Frente" name="Frente" placeholder="Medida m²">
                             </div>
                         </div>
                     </div>
@@ -652,12 +1786,12 @@ input[type="number"]::-webkit-outer-spin-button {
                         <input type="radio" name="Rentable" value="0" id="P4" class="btn-check">
                         <label class="btn" for="P4">No</label>
                     </div>
-                    <div class="radio-group">
-                        <label>Muestra tu propiedad:</label>
-                        <br>
-                        <input type="file" class="custom-file-label" id="Image" accept="image/*" multiple>
-                        <label for="Image" class="custom-file-label">¡Agrega Imagenes!</label>
-                    </div>
+                </div>
+                <div class="imagen-group">
+                    <label>Muestra tu propiedad:</label>
+                    <br>
+                    <input type="file" class="custom-file-label" id="Image" accept="image/*" multiple>
+                    <label for="Image" class="custom-file-label">¡Agrega Imagenes!</label>
                 </div>
                 <div class="form-group">
                     <div class="AddPhotoContainer" id="ee">
@@ -680,7 +1814,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
                 <div class="buttonContainer">
                     <button type="button" id="button6" class="btn-white">Regresar</button>
-                    <button type="button" id="buttonEnviar" class="btn-blue">Continuar</button>
+                    <button type="button" id="buttonEnviar" class="btn-blue">Finalizar</button>
                 </div>
             </div>
         </div>
@@ -775,7 +1909,7 @@ input[type="number"]::-webkit-outer-spin-button {
             
 
             $('#buttonEnviar').on('click', function(){
-                const imageFiles = $('#Image')[0].files
+                const imageFiles = $('#Image')[0].files;
 
                 if($('#Precio').val() && imageFiles.length > 0){
                     formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
@@ -795,14 +1929,16 @@ input[type="number"]::-webkit-outer-spin-button {
                     formData.append('Rentable', $('[name="Rentable"]').val());
                     formData.append('Vendible', $('[name="Vendible"]').val());
 
-                    for(let file of input.files){
+                    selectedFiles.forEach(file => {
                         formData.append('Imagenes[]', file);
-                    }
+                        console.log(file);
+                    });
                     
                     formData.append('servicios', JSON.stringify(arregloServicios));
                     formData.append('Tipo_Propiedad_id', $('#tipoPropiedad').val());
                     
                     enviarForm();
+
                 }
                 else{
                     error.css("display", "block");
@@ -838,28 +1974,38 @@ input[type="number"]::-webkit-outer-spin-button {
             
             // Funcion para agregar imagenes 
 
-            document.getElementById('Image').addEventListener('change', function() {
-                const files = Array.from(this.files);
-                const container = document.getElementById('imagenEs');
+        // Manejar la selección de imágenes
+        document.getElementById('Image').addEventListener('change', function() {
+        const newFiles = Array.from(this.files);
+        const container = document.getElementById('imagenEs');
 
-                // Guardar los archivos seleccionados previos en un array
-                let selectedFiles = Array.from(container.querySelectorAll('img')).map(img => img.src)
-                    .map(src => files.find(file => URL.createObjectURL(file) === src));
+        // Obtener los src actuales de las imágenes en el contenedor
+        const existingUrls = new Set(Array.from(container.querySelectorAll('img')).map(img => img.src));
 
-                // Procesar los nuevos archivos
-                files.forEach(file => {
-                    // Crear el elemento img para la vista previa
-                    const imgElement = document.createElement('img');
-                    imgElement.src = URL.createObjectURL(file);
+        // Filtrar y acumular los archivos que no están ya en el contenedor
+        newFiles.forEach(file => {
+            const fileUrl = URL.createObjectURL(file);
 
-                    // Crear el botón de eliminación
-                    const remove = document.createElement('button');
-                    remove.textContent = 'X';
-                    remove.type = 'button';
-                    remove.className = 'btn-remove';
+            if (!existingUrls.has(fileUrl)) {
+                // Añadir el archivo a la lista de archivos seleccionados
+                selectedFiles.push(file);
+
+                // Crear el elemento img para la vista previa
+                const imgElement = document.createElement('img');
+                imgElement.src = fileUrl;
+
+                // Crear el botón de eliminación
+                const remove = document.createElement('button');
+                remove.textContent = 'X';
+                remove.type = 'button';
+                remove.className = 'btn-remove';
 
                     // Manejar la eliminación del archivo
                     remove.addEventListener('click', function() {
+                        // Eliminar el archivo de la lista de archivos seleccionados
+                        selectedFiles = selectedFiles.filter(f => f !== imgElement.file);
+                        selectedFiles.splice(selectedFiles, 1);
+                        
                         // Eliminar la imagen del contenedor
                         imgElement.remove();
                         remove.remove();
@@ -867,20 +2013,19 @@ input[type="number"]::-webkit-outer-spin-button {
                         // Liberar la memoria de la URL creada
                         URL.revokeObjectURL(imgElement.src);
 
-                        // Actualizar la lista de archivos seleccionados
-                        selectedFiles = selectedFiles.filter(f => f !== file);
+                        console.log(selectedFiles);
 
-                        // Actualizar el input de archivos
-                        const dataTransfer = new DataTransfer();
-                        selectedFiles.forEach(f => dataTransfer.items.add(f));
-                        document.getElementById('Image').files = dataTransfer.files;
                     });
 
                     // Añadir el botón de eliminación y la imagen al contenedor
                     container.appendChild(imgElement);
                     container.appendChild(remove);
-                });
+                }
             });
+
+            console.log(selectedFiles);
+        });
+
 
             $('#button1').on('click', function(){
                 const ciudad = $('#Ciudad').val();

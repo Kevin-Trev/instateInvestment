@@ -33,6 +33,8 @@ class viewsController extends Controller
     public function catalogoPropiedades() {
         return view('paginaFiltro');
     }
+    
+    public function catalogoAd(){return view('admin.catalogo');}
 
     public function detallePropiedad(){
         return view('detallesPropiedad');

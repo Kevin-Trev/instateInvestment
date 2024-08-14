@@ -2008,12 +2008,12 @@
                 </div>
                 <p class="text">C. {{$propiedad->Calle}} #Ext. {{$propiedad->num_exterior ?: 'S/N'}} #Int. {{$propiedad->num_interior ?: 'S/N'}} Col. {{$propiedad->Colonia}} CP. {{$propiedad->Codigo_Postal}}</p>
                 <footer>
-                    @if (Auth::check())
+                    @auth
                     <div class = "btn-container">
                         <button class="bt-google"><a href="{{ route('propiedades.mapa', ['id' => $propiedad->ID_P]) }}"><img src="{{asset('Imagenes/Maps.png')}}">Ver En Maps</a></button>
                         <button class="wasa"><a href="https://wa.me/{{$propiedad->users->Telefono}}"><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</a></button>
                     </div>
-                    @endif
+                    @endauth
                 </footer>
             </div>
         </div>
@@ -2028,7 +2028,11 @@
             @endif
             @auth
                 <div class="agregarComentario">
+                    @if (Auth::user()->Foto)
+                    <img src="{{asset('storage/profile_photos/'.Auth::user()->Foto)}}">  
+                    @else
                     <img src="https://picsum.photos/300/200">
+                    @endif
                     <form action="/post/comentario" method="POST">
                         @csrf
                         <input type="number" name="user_id" value="{{Auth::user()->id}}" readonly hidden>
@@ -2073,7 +2077,7 @@
             </div> --}}
         </div>
 
-        <h3>Explora más propiedades cercanas</h3>
+        <h3>Explora más propiedades</h3>
 
         <div class="moreHouses">
             @foreach ($moreProperties as $sugerencia)

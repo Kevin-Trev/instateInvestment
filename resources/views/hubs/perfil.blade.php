@@ -62,8 +62,7 @@
       <!-- AREA DE PERFIL -->
       <div class="card col-md-3 col-lg-3 mx-auto">
         <!-- FOTO PERFIL -->
-        <div class="text-center mb-3">
-          <h5 class="card-title">Foto de perfil</h5>
+        <div class="text-center mb-3"><br>
           <div class="profile-img-container mx-auto" style="width: 200px; height: 200px; overflow: hidden;">
             @if (Auth::user()->Foto)
             <img src="{{asset('storage/profile_photos/'.Auth::user()->Foto)}}" alt="Foto de perfil" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
@@ -138,34 +137,36 @@
           <!-- LISTA-->
           @foreach ($propiedades as $propiedad)
           @if($propiedad->Verificacion)
-          <div class="card" style="margin-top: 5px;">
-            <div class="row">
-              <div class="image-card col-md-3">
-              <span class="position-absolute bottom-0 start-50 translate-middle-x badge">
-                <img class="verificacion" src="{{asset('Imagenes/verificacion.png')}}">
-              </span>
-                @if ($propiedad->main_image) {{-- Si la Propiedad No tiene Imagen Coloca una de stock--}}
-                <img src="{{asset('ImagesPublished/'.$propiedad->main_image->src_image)}}">
-                @else
-                  <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" alt="...">
-                @endif
-              </div>
-              <div class="col-md-7">
-                <h3>{{$propiedad->Titulo}}</h3>
-                <p>$ {{$propiedad->Precio}}</p>
-                <div class="property-details">
-                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{$propiedad->Recamaras}} Recámaras</span></div>
-                  <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>{{$propiedad->Baños}} Baños</span></div>
-                  <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Area}} M² construidos</span></div>
+            <div class="card" style="margin-top: 5px;">
+              <div class="row">
+                <div class="image-card col-md-3">
+                <span class="position-absolute bottom-0 start-50 translate-middle-x badge">
+                  <img class="verificacion" src="{{asset('Imagenes/verificacion.png')}}">
+                </span>
+                  @if ($propiedad->main_image) {{-- Si la Propiedad No tiene Imagen Coloca una de stock--}}
+                  <img src="{{asset('ImagesPublished/'.$propiedad->main_image->src_image)}}">
+                  @else
+                    <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" alt="...">
+                  @endif
+                </div>
+                <div class="col-md-7">
+                  <h3>{{$propiedad->Calle}} {{$propiedad->num_exterior}}</h3>
+                  <p>$ {{$propiedad->Precio}}</p>
+                  <div class="property-details">
+                    <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{$propiedad->Recamaras}} Recámaras</span></div>
+                    <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>{{$propiedad->Baños}} Baños</span></div>
+                    <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Area}} M² construidos</span></div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#editPropModal" onclick="datosProp({{$propiedad->ID_P}})">Editar</button>
+                  @if ($propiedad->Rentable)
+                  <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
+                  @endif
+                  <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal">Pausar</button>
                 </div>
               </div>
-              <div class="col-md-2">
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal">Editar</button>
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal">Pausar</button>
-              </div>
             </div>
-          </div>
           @endif
           @endforeach
         </div>
@@ -184,9 +185,8 @@
                   <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" alt="...">
                 @endif
               </div>
-
               <div class="col-md-7">
-                <h3>{{$propiedad->Titulo}}</h3>
+                <h3>{{$propiedad->Calle}} {{$propiedad->num_exterior}}</h3>
                 <p>$ {{$propiedad->Precio}}</p>
                 <div class="property-details">
                   <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{$propiedad->Recamaras}} Recámaras</span></div>
@@ -366,10 +366,6 @@
                 <input class="form-control" type="text" name="Apellido" value="{{Auth::user()->Apellido}}" required>
               </div>
               <div class="form-group">
-                <label for="phone">Telefono</label>
-                <input class="form-control" type="text" name="Telefono" value="{{Auth::user()->Telefono}}" required>
-              </div>
-              <div class="form-group">
                 <label for="birthday">Fecha de Nacimiento</label>
                 <input class="form-control" type="date" name="Fecha_Nacimiento" value="{{Auth::user()->Fecha_Nacimiento}}" required>
               </div>
@@ -381,7 +377,60 @@
       </div>
     </div>
   </div>
-  
+
+  <!-- MODAL DE EDITAR PROPIEDAD-->
+  <div class="modal fade" id="editPropModal" tabindex="-1" role="dialog" aria-labelledby="editPropModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar Datos de Propiedad</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{ route('property.update') }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <div class="modal-body text-center">
+            <div class="row row-cols-4">
+              <div class="form-group">
+                <label for="name">Calle</label>
+                <input class="form-control" type="text" name="Calle" required>
+              </div>
+              <div class="form-group">
+                <label for="name">Colonia</label>
+                <input class="form-control" type="text" name="Colonia" required>
+              </div>
+            </div>
+            <div class="row row-cols-6">
+              <div class="form-group">
+                <label for="num_exterior">N° Exterior</label>
+                <input class="form-control" type="number" name="num_exterior" placeholder="S/N" required>
+              </div>  
+              <div class="form-group">
+                <label for="num_interior">N° Interior</label>
+                <input class="form-control" type="number" name="num_interior" placeholder="S/N" required>
+              </div>
+              <div class="form-group">
+                <label for="username">Codigo Postal</label>
+                <input class="form-control" type="number" name="Codigo_Postal" required>
+              </div>  
+            </div>
+            <div class="form-group">
+              <label for="lastname">Apellido(s)</label>
+              <input class="form-control" type="text" name="Apellido" value="{{Auth::user()->Apellido}}" required>
+            </div>
+            <div class="form-group">
+              <label for="birthday">Fecha de Nacimiento</label>
+              <input class="form-control" type="date" name="Fecha_Nacimiento" value="{{Auth::user()->Fecha_Nacimiento}}" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
 @endsection
 
@@ -464,6 +513,33 @@
         });
       });
     });
+
+    function fetchTipoPropiedad() {
+
+    }
+
+    function datosProp (id) {
+      $.ajax({
+        url: `{{ url('/get/data/property') }}/${id}`,
+        method: `GET`,
+        success: function(data){
+          $('#calle').val(data.Calle);
+          $('#num_exterior').val(data.num_exterior);
+          $('#num_interior').val(data.num_interior);
+          $('#colonia').val(data.Colonia);
+          $('$codigo_postal').val(data.Codigo_Postal);
+          $('#ciudad').val(data.Ciudad);
+          $('#estado').val(data.Estado);
+          $('#recamaras').val(data.Recamaras);
+          $('#baños').val(data.Baños);
+          $('#tipo_propiedad').val(data.Tipo_Propiedad_id);
+          $('#area').val(data.Area);
+          $('#frente').val(data.Frente);
+          $('#fondo').val(data.Fondo);
+
+        }
+      });
+    }
 
     function openModal(propertyId) {
       $('#quoteModal').modal('show');

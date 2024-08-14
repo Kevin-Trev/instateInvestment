@@ -211,12 +211,12 @@
 
 @section('body')
 
-    <form action="/registrar" method="POST" id="formularioRegistro">
+    <form action="{{route('user.create')}}" method="POST" id="formularioRegistro">
         @csrf
         <div class="container" id="nuevoEmail">
             <h2>Regístrate</h2>
             <div class="alert alert-warning text-center" id="correo-existente" role="alert">
-                Este Correo esta registrado en Nuestro Sistema
+                Este Correo esta registrado en el Sistema
             </div>
                 <input type="hidden" id="employeeId" name="id">
             <div class="form-group">
@@ -278,9 +278,10 @@
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono</label>
-                    <input type="number" id="telefono" class="form-control" name="Telefono" placeholder="Ingresa tu telefono" required>
+                    <p class="error" id="verif-tel">Este Numero esta registrado</p>
+                    <p class="error">Ingresa una numero válido</p>
+                    <input type="number" id="telefono" class="form-control" name="Telefono" placeholder="Ingresa tu telefono" oninput="limitInputLength(this)"  required >
                 </div>
-                <p class="error">Ingresa una contraseña válida</p>
                 <div class="center">
                     <button type="button" id="button5" class="btn-blue">Finalizar</button>
                     <button type="button" id="button4">Atrás</button>
@@ -295,6 +296,7 @@
     <script>
         $(document).ready(function(){
             $('#correo-existente').hide();
+            $('#verif-tel').hide();
             var datosContenedor = $('#nuevoDatos');
             var emailContenedor = $('#nuevoEmail');
             var usuarioContenedor = $('#nuevoUsuario');
@@ -354,15 +356,20 @@
 
             $('#button5').on('click', function(){
                 var inputTelefono = $('#telefono').val();
-                
-                if(inputTelefono.length === 10){
-                    $('#formularioRegistro').submit();
-                    error.css("display", "none");
-                }
-                else{
-                    error.css("display", "block");
-                }
-            })
+                var telver = '+52' + inputTelefono;
+                $('#verif-tel').hide();
+
+                verificarTelefono(telver).then(function(response){
+                    if (response.existe) {
+                        $('#verif-tel').show();
+                    }
+                    else {
+                        $('#verif-tel').hide();
+                        $('#formularioRegistro').submit();
+                        error.css("display", "none");
+                    }
+                });
+            });
 
             $('#inputContraseña').on('keyup', function(event){
                 var valorContraseña = $(this).val();
@@ -428,12 +435,29 @@
             })
         });
 
+        function limitInputLength(input) {
+            if (input.value.length > 10) {
+                input.value = input.value.slice(0, 10);
+            }
+        }
+
         function verificarMail(email) {
             return $.ajax({
                 url: '/verificar-correo',
                 type: 'GET',
                 data: {
                     email: email,
+                },
+                dataType: 'json'
+            });
+        }
+
+        function verificarTelefono(telefono) {
+            return $.ajax({
+                url: '/verificar-telefono',
+                type: 'GET',
+                data: {
+                    Telefono: telefono,
                 },
                 dataType: 'json'
             });
