@@ -457,6 +457,17 @@
             });
         }
 
+        function verificarUsername(username) {
+            return $.ajax({
+                url:'verificar-username'
+                type:`GET`,
+                data: {
+                    name: username,
+                },
+                dataType: `json`
+            });
+        }
+
         function verificarTelefono(telefono) {
             return $.ajax({
                 url: '/verificar-telefono',

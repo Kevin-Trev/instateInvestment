@@ -93,6 +93,16 @@
 .nav-link.active {
     font-weight: bold; /* Destaca la pestaña activa */
 }
+
+.button-container {
+  display: flex;
+  gap: 10px; /* Espacio entre los botones, ajusta según sea necesario */
+  align-items: center; /* Alinea verticalmente los botones en el centro */
+}
+
+.button-container form {
+  margin-bottom: 0; /* Elimina margen inferior en formularios si es necesario */
+}
   </style>
   
 </head>
@@ -146,13 +156,10 @@
       <main class="col-md-9 ml-sm-auto col-lg-9 px-md-4">
         <!-- MENU DE ACCIONES -->
         <ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" id="publicacionesV-tab" aria-current="page">Publicaciones No verificadas</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="publicacionesS-tab" aria-current="page">Publicaciones suspendidas</a>
-  </li>
-</ul>
+          <li class="nav-item">
+            <a class="nav-link active" id="publicacionesV-tab" aria-current="page">Publicaciones No verificadas</a>
+          </li>
+        </ul>
         <h2> Publicaciones no verificadas </h2>
         <div class = "card">
          
@@ -162,108 +169,53 @@
           <!-- PROPIEDADES DE EJEMPLO-->
           @foreach ($propiedades as $propiedad)
           @if ($propiedad->Disponibilidad)
-          <div id="publicacion-{{ $propiedad->ID_P }}" class="publicacion">
-<div class="card" style="margin-top: 5px;">
-  <div class="row">
-    <div class="image-card col-md-3">
-      @if ($propiedad->main_image)
-      <img src="{{asset('ImagesPublished/'.$propiedad->main_image->src_image)}}">
-      @else
-        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" alt="...">
-      @endif
-    </div>
-
-    <div class="col-md-7">
-      <h3>{{$propiedad->Titulo}}</h3>
-      <p>$ {{$propiedad->Precio}}</p>
-      <div class="property-details">
-        <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{$propiedad->Recamaras}} Recámaras</span></div>
-        <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>{{$propiedad->Baños}} Baños</span></div>
-        <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Area}} M² construidos</span></div>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-      <button class="bt-blue"><a href="/get/property/admin/{{$propiedad->ID_P}}" style="margin-bottom: 10px; color:white;">Revisar</a></button>
-      
-      <form action="{{ route('propiedad.eliminar', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
-    @csrf
-    @method('DELETE')
-    <button type="submit" class="btn-eliminar"  >Eliminar</button>
-</form>
-
-
-
-      <!-- Formulario para Verificar -->
-      @if(isset($propiedad->ID_P))
-    <form action="{{ route('propiedad.verificar', ['ID_P' => $propiedad->ID_P]) }}" method="POST">
-        @csrf
-        <button type="submit" class="btn-verificar">Verificar</button>
-    </form>
-@else
-    <button class="btn-verificar" style="margin-bottom: 10px;">Verificar</button>
-@endif
-<form id="suspender-form-{{ $propiedad->ID_P }}" action="{{ route('propiedad.suspender', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirmarSuspension({{ $propiedad->ID_P }});">
-    @csrf
-    <button style="margin-bottom: 10px;" class="btn-suspender">Suspender</button>
-</form>
-  @endif
-@endforeach
+            <div id="publicacion-{{ $propiedad->ID_P }}" class="publicacion">
+              <div class="card" style="margin-top: 5px;">
+                <div class="row">
+                  <div class="image-card col-md-3">
+                  @if ($propiedad->main_image)
+                  <img src="{{asset('ImagesPublished/'.$propiedad->main_image->src_image)}}">
+                  @else
+                  <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" alt="...">
+                  @endif
+                  </div>
+                  <div class="col-md-7">
+                  <h3>{{$propiedad->Titulo}}</h3>
+                  <p>$ {{$propiedad->Precio}}</p>
+                  <div class="property-details">
+                    <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{$propiedad->Recamaras}} Recámaras</span></div>
+                    <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>{{$propiedad->Baños}} Baños</span></div>
+                    <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Area}} M² construidos</span></div>
+                  </div>
+                  </div>
+                  <div class="col-md-2">
+                    <button class="bt-blue"><a href="/get/property/admin/{{$propiedad->ID_P}}" style="margin-bottom: 10px; color:white;">Revisar</a></button>
+                    <form action="{{ route('propiedad.eliminar', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn-eliminar"  >Eliminar</button>
+                    </form>
+                    <!-- Formulario para Verificar -->
+                    @if(isset($propiedad->ID_P))
+                    <form action="{{ route('propiedad.verificar', ['ID_P' => $propiedad->ID_P]) }}" method="POST">
+                      @csrf
+                      <button type="submit" class="btn-verificar">Verificar</button>
+                    </form>
+                    @else
+                    <button class="btn-verificar" style="margin-bottom: 10px;">Verificar</button>
+                    @endif
+                    <form id="suspender-form-{{ $propiedad->ID_P }}" action="{{ route('propiedad.suspender', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirmarSuspension({{ $propiedad->ID_P }});">
+                    @csrf
+                    <button style="margin-bottom: 10px;" class="btn-suspender">Suspender</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endif
+            @endforeach
 
 
-<!-- LSITA 2 -->
-
-        <!-- LISTA DE PROPIEDADES -->
-        <div class="property-list" id="pl2">
-          
-          <!-- PROPIEDADES DE EJEMPLO-->
-          @foreach ($propiedades as $propiedad)
-          @if (!$propiedad->Disponibilidad)
-          <div id="publicacion-{{ $propiedad->ID_P }}" class="publicacion">
-<div class="card" style="margin-top: 5px;">
-  <div class="row">
-    <div class="image-card col-md-3">
-      @if ($propiedad->main_image)
-      <img src="{{asset('ImagesPublished/'.$propiedad->main_image->src_image)}}">
-      @else
-        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" alt="...">
-      @endif
-    </div>
-
-    <div class="col-md-7">
-      <h3>{{$propiedad->Titulo}}</h3>
-      <p>$ {{$propiedad->Precio}}</p>
-      <div class="property-details">
-        <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{$propiedad->Recamaras}} Recámaras</span></div>
-        <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>{{$propiedad->Baños}} Baños</span></div>
-        <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Area}} M² construidos</span></div>
-      </div>
-    </div>
-
-    <div class="col-md-2">
-      <button class="bt-blue"><a href="/get/property/admin/{{$propiedad->ID_P}}" style="margin-bottom: 10px; color:white;">Revisar</a></button>
-      
-      <form action="{{ route('propiedad.eliminar', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
-    @csrf
-    @method('DELETE')
-    <button type="submit" class="btn-eliminar"  >Eliminar</button>
-</form>
-
-
-
-      <!-- Formulario para Verificar -->
-<form id="suspender-form-{{ $propiedad->ID_P }}" action="{{ route('propiedad.suspender', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirmarSuspension({{ $propiedad->ID_P }});">
-    @csrf
-    <button style="margin-bottom: 10px;" class="btn-suspender">Suspender</button>
-</form>
-  @endif
-@endforeach
-
-      </main>
-    </div>
-  </div>
-  
-  
 
   <!-- MODAL DE EDITAR DATOS USUARIO-->
   <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
@@ -338,24 +290,7 @@
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    const tabs = document.querySelectorAll(".nav-link");
 
-    tabs.forEach(tab => {
-        tab.addEventListener("click", function(event) {
-            event.preventDefault();
-
-            // Quitar la clase 'active' de todas las pestañas y contenidos
-            tabs.forEach(t => t.classList.remove("active"));
-            document.querySelectorAll(".tab-pane").forEach(pane => pane.classList.remove("active"));
-
-            // Agregar la clase 'active' a la pestaña y contenido seleccionado
-            this.classList.add("active");
-            const targetPane = document.querySelector(this.getAttribute("data-target"));
-            targetPane.classList.add("active");
-        });
-    });
-});
 /*--- ---*/
     document.addEventListener('DOMContentLoaded', function() {
       const publicacionesTab = document.getElementById('publicacionesV-tab');

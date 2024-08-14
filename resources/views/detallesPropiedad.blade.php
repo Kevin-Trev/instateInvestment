@@ -2036,7 +2036,11 @@
                     @auth
                     <div class = "btn-container">
                         <button class="bt-google"><a href="{{ route('propiedades.mapa', ['id' => $propiedad->ID_P]) }}"><img src="{{asset('Imagenes/Maps.png')}}">Ver En Maps</a></button>
-                        <button class="wasa"><a href="https://wa.me/{{$propiedad->users->Telefono}}text=Hola,%20me%20interesa%20más%20información%20sobre%20el%20producto."><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</a></button>
+                        <button class="wasa">
+                        <a href="https://wa.me/{{ $propiedad->users->Telefono }}?text=Hola%2C+me+interesa+m%C3%A1s+informaci%C3%B3n+sobre+tu+propiedad+en+C.%2C+{{$propiedad->Calle}}%2C+Ext.+{{$propiedad->num_exterior ?: 'S%2FN'}}%2C+Int.+{{$propiedad->num_interior ?: 'S%2FN'}}%2C+Col.+{{$propiedad->Colonia}}%2C+CP.+{{$propiedad->Codigo_Postal}}." target="_blank">
+                                <img src="{{ asset('Imagenes/whatsappLogo.png') }}" alt="WhatsApp Logo"> Enviar mensaje
+                            </a>
+                        </button>
                     </div>
                     @endauth
                 </footer>

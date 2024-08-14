@@ -21,7 +21,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // DIRECCION
-            const address = @json($direccion);
+            const address = 'C.' + @json($direccion);
             const baseUrl = "https://www.google.com/maps/search/?api=1&query=";
             
             // CODIFICAR LA DIRECCION
