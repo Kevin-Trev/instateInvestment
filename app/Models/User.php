@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+ 
     protected $fillable = [
         'name',
         'email',
@@ -34,7 +35,7 @@ class User extends Authenticatable
         return $this->hasOne(suscripcion_vip::class, 'users_id', 'id');
     }
     public function propiedades(){
-        return $this->hasOne(propiedad::class, 'users_id', 'id');
+        return $this->hasMany(Propiedades::class, 'users_Id', 'id');
     }
     public function cotizacion(){
         return $this->hasOne(cotizacion::class, 'users_id', 'id');

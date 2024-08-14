@@ -1957,7 +1957,56 @@
         }
 
        
-    
+        .btn-lg {
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.elemento {
+  transform: translate(50px, 100px);
+}
+
+#perfil-propietario {
+    background-color: #f5f5f5; /* Fondo claro */
+    border: 1px solid #ddd; /* Borde gris claro */
+    border-radius: 10px; /* Esquinas redondeadas */
+    padding: 20px; /* Espaciado interno */
+    max-width: 400px; /* Ancho máximo */
+    margin: 20px auto; /* Centrado con margen */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+    font-family: Arial, sans-serif; /* Tipografía */
+}
+
+#perfil-propietario h3 {
+    color: #3370FF; /* Color azul para el título */
+    margin-bottom: 15px; /* Espacio debajo del título */
+}
+
+#perfil-propietario p {
+    color: #333; /* Color del texto */
+    margin: 5px 0; /* Espaciado entre párrafos */
+}
+
+#perfil-propietario img {
+    width: 100%; /* Imagen ajustada al 100% del contenedor */
+    height: auto; /* Mantener la proporción de la imagen */
+    border-radius: 10px; /* Esquinas redondeadas de la imagen */
+    margin-top: 15px; /* Espaciado superior */
+}
+
 
 }
     </style>
@@ -2041,25 +2090,25 @@
         </div>
     </div>
 
-    <div class="row">
-    <div class="col-6">
-        <form action="{{ route('propiedad.eliminarDetalles', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn-blue el ver">Eliminar</button>
-        </form>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-3 text-center">
+            <form action="{{ route('propiedad.eliminarDetalles', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-lg btn-block">Eliminar</button>
+            </form>
+        </div>
+        <div class="col-md-3 text-center">
+            @if(isset($propiedad->ID_P))
+            <form action="{{ route('propiedad.verificarDetalles', ['ID_P' => $propiedad->ID_P]) }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-success btn-lg btn-block">Verificar</button>
+            </form>
+            @else
+            <button class="elemento" disabled>Verificar</button>
+            @endif
+        </div>
     </div>
-    <div class="col-6">
-        @if(isset($propiedad->ID_P))
-        <form action="{{ route('propiedad.verificarDetalles', ['ID_P' => $propiedad->ID_P]) }}" method="POST">
-            @csrf
-            <button type="submit" class="btn-blue el ver">Verificar</button>
-        </form>
-        @else
-        <button class="btn-blue el ver" style="margin-bottom: 10px;">Verificar</button>
-        @endif
-    </div>
-</div> 
 
     <div id="comentariosContainer">
         <h3>Comentarios</h3>

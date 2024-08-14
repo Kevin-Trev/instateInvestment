@@ -26,7 +26,7 @@ class propiedades extends Model
         return $this->hasMany(imagenes_propiedad::class, 'propiedad_id'); 
     }
     public function users(){
-        return $this->belongsTo(User::class, 'users_Id');
+        return $this->belongsTo(User::class, 'users_Id', 'id');
     }
     public function propiedad_serv(){
         return $this->hasOne(propiedad_servicio::class, 'propiedad_id', 'id_p'); 

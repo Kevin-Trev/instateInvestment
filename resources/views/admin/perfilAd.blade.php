@@ -48,9 +48,50 @@
     background-color: #002E99;
     transition: .5s;
     }
-
+    
     .suspendida {
     border: 7px solid grey; 
+}
+
+.btn-verificar {
+    background-color: green;
+    color: #FFFFFF;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    }
+
+    .btn-eliminar {
+    background-color: red;
+    color: #FFFFFF;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    }
+    .btn-suspender {
+    background-color: #f1c308;
+    color: #FFFFFF;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    }
+
+    .tab-pane {
+    display: none; /* Oculta todas las pestañas por defecto */
+}
+
+.tab-pane.active {
+    display: block; /* Muestra solo la pestaña activa */
+}
+
+.nav-link.active {
+    font-weight: bold; /* Destaca la pestaña activa */
 }
   </style>
   
@@ -105,11 +146,13 @@
       <main class="col-md-9 ml-sm-auto col-lg-9 px-md-4">
         <!-- MENU DE ACCIONES -->
         <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <a class="nav-link active" id="publicaciones-tab" aria-current="page">Publicaciones</a>
-          
-          </li>
-        </ul>
+  <li class="nav-item">
+    <a class="nav-link" id="publicacionesV-tab" data-target="#publicacionesV-pane" aria-current="page">Publicaciones No verificadas</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="publicacionesS-tab" data-target="#publicacionesS-pane" aria-current="page">Publicaciones suspendidas</a>
+  </li>
+</ul>
         <h2> Publicaciones no verificadas </h2>
         <div class = "card">
          
@@ -146,7 +189,7 @@
       <form action="{{ route('propiedad.eliminar', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
     @csrf
     @method('DELETE')
-    <button type="submit" class="bt-blue">Eliminar</button>
+    <button type="submit" class="btn-eliminar"  >Eliminar</button>
 </form>
 
 
@@ -155,14 +198,14 @@
       @if(isset($propiedad->ID_P))
     <form action="{{ route('propiedad.verificar', ['ID_P' => $propiedad->ID_P]) }}" method="POST">
         @csrf
-        <button type="submit" class="bt-blue">Verificar</button>
+        <button type="submit" class="btn-verificar">Verificar</button>
     </form>
 @else
-    <button class="bt-blue" style="margin-bottom: 10px;">Verificar</button>
+    <button class="btn-verificar" style="margin-bottom: 10px;">Verificar</button>
 @endif
 <form id="suspender-form-{{ $propiedad->ID_P }}" action="{{ route('propiedad.suspender', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirmarSuspension({{ $propiedad->ID_P }});">
     @csrf
-    <button style="margin-bottom: 10px;" class="bt-blue">Suspender</button>
+    <button style="margin-bottom: 10px;" class="btn-suspender">Suspender</button>
 </form>
   @endif
 @endforeach
@@ -302,6 +345,33 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const tabs = document.querySelectorAll(".nav-link");
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", function(event) {
+            event.preventDefault();
+
+            // Quitar la clase 'active' de todas las pestañas y contenidos
+            tabs.forEach(t => t.classList.remove("active"));
+            document.querySelectorAll(".tab-pane").forEach(pane => pane.classList.remove("active"));
+
+            // Agregar la clase 'active' a la pestaña y contenido seleccionado
+            this.classList.add("active");
+            const targetPane = document.querySelector(this.getAttribute("data-target"));
+            targetPane.classList.add("active");
+        });
+    });
+});
+/*--- ---*/
     document.addEventListener('DOMContentLoaded', function() {
       const publicacionesTab = document.getElementById('publicaciones-tab');
       const estadisticasTab = document.getElementById('estadisticas-tab');

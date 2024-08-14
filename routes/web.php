@@ -117,3 +117,4 @@ Route::delete('/propiedad/eliminar/detalles/{ID_P}', [propiedadController::class
 
 Route::post('/propiedad/supender/{ID_P}', [propiedadController::class, 'suspender'])->name('propiedad.suspender');
 
+
