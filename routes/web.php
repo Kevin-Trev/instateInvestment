@@ -46,10 +46,11 @@ Route::get('/get/servicios', [servicioController::class, 'index']);
 
 // Rutas para login y/o gestión del usuario
 
-Route::post('/login', [usuariosController::class, 'login']);
-Route::post('/logout', [usuariosController::class, 'logout']);
+Route::post('/login', [usuariosController::class, 'login'])->name('login');
+Route::post('/logout', [usuariosController::class, 'logout'])->name('logout');
 Route::get('/verificar-correo', [usuariosController::class, 'verificarMail']);
-Route::post('/registrar', [usuariosController::class, 'nuevoUsuario']);
+Route::get('/verificar-telefono', [usuariosController::class, 'verificarTelefono']);
+Route::post('/registrar', [usuariosController::class, 'nuevoUsuario'])->name('user.create');
 Route::post('/useredit/{id}', [usuariosController::class, 'editarUsuario'])->name('user.update');
 Route::delete('/userdel', [usuariosController::class, 'eliminarUsuario'])->name('user.delete');
 Route::get('get/user/{id}', [usuariosController::class, 'datosUsuario']);
@@ -59,22 +60,28 @@ Route::get('get/user/{id}', [usuariosController::class, 'datosUsuario']);
 Route::get('/get/properties',[propiedadController::class, 'index']);
 Route::get('/get/results/propeties/{transaccion}/{ciudad}', [propiedadController::class, 'propiedadesResultados']);
 Route::get('/get/property/{id}', [propiedadController::class, 'getProperty']);
+Route::get('/get/data/property/{id}', [propiedadController::class, 'getDataProperty']);
 Route::get('/get/property/admin/{id}', [propiedadController::class, 'getPropertyadmin']);
 Route::post('/post/propiedad', [propiedadController::class, 'newProperty']); /* cambiar de GET a POST */
+Route::post('/edit/propiedad/', [propiedadController::class, 'editarPropiedad'])->name('property.update');
+Route::delete('/propiedad/eliminar/{ID_P}', [propiedadController::class, 'eliminar'])->name('propiedad.eliminar');
+
 
 // Ruta para publicar un comentario
 Route::post('/post/comentario/', [comentarioController::class, 'comentar']);
 Route::get('/delete/comentario/{id}', [comentarioController::class, 'eliminarComentario']);
 
-// Rutas de vistas a las que solo puede acceder un usuario con una sesión iniciada 
 
+// Rutas de vistas a los que solo puede acceder un usuario administrador
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/views/hubs/perfil/{id}', [usuariosController::class, 'informacionUsuario'])->name('perfil');
     Route::get('/views/agregar/propiedad', [viewsController::class, 'agregarPropiedad'])->name('agregarPropiedad');
 });
 
+// Rutas de vistas a las que solo puede acceder un usuario con una sesión iniciada 
 Route::group(['middleware' => ['auth','admin']], function () {
     Route::get('/perfil-administrador', [usuariosController::class, 'mostrarPerfilAdmin'])->name('admin.perfilAd');
+    Route::get('/views/catalogo-Ad', [viewsController::class, 'catalogoAd'])->name('catalogo.Admin');
 });
 
 // Rutas relacionadas al inicio de la pagina
@@ -109,7 +116,6 @@ Route::post('/propiedad/verificar/{ID_P}', [propiedadController::class, 'verific
 
 Route::get('/obtener-notificaciones', [notificacionController::class, 'obtenerNotificaciones']);
 
-Route::delete('/propiedad/eliminar/{ID_P}', [propiedadController::class, 'eliminar'])->name('propiedad.eliminar');
 
 
 Route::post('/propiedad/verificar/detalles/{ID_P}', [propiedadController::class, 'verificarDetalles'])->name('propiedad.verificarDetalles');

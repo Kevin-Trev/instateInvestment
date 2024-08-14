@@ -1413,6 +1413,8 @@
 @section('js')
     <!-- EJEMPLO DE FUNCION PARA AGREGAR LAS TARJETAS DE PROPIEDADES() -->
 <script>
+  
+  var isAuthenticated = {{ Auth::check() ? 'true' : 'false' }};
 
   var datos = $('.card');
   var elementosPorPagina = 2;
@@ -1563,8 +1565,8 @@ function cargarPropiedades() {
                 <h3 class="precio">$ ${precioFormateado} MXN</h3>
                 <p class="text">${property.Calle} #${property.num_exterior}, ${property.Colonia}</p>
                 <div class="footer">
-                  <button class="btn-wasa"><a class="nav-link" href="https://wa.me/${property.users.Telefono}">Contacto</a></button>
-                  <button class="btn-blue"><a class="nav-link" href="/get/property/${property.ID_P}">Ver más detalles</a></button>
+                ${isAuthenticated ? `<button class="btn-wasa"><a class="nav-link" href="https://wa.me/${property.users.Telefono}">Contacto</a></button>` : ''}
+                <button class="btn-blue"><a class="nav-link" href="/get/property/${property.ID_P}">Ver más detalles</a></button>
                 </div>
               </div>`
           listaPropiedades.append(propiedad);

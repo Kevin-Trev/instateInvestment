@@ -270,13 +270,16 @@
                         @else
                         <img src="{{asset('Imagenes/iconito.png')}}" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">
                         @endif
-                        {{-- Agregar la imagen del usuario --}}
                     </div>
                     <ul class="dropdown-menu">
                         <li><label class="dropdown-item">👋 Hola, {{Auth::user()->Nombre}}</label></li>
                         <hr>
                         <li><a class="dropdown-item" href="{{ route('perfil', Auth::user()->id) }}">Mi perfil</a></li>
+                        @if (Auth::user()->administrador)
+                        <li><a class="dropdown-item" href="{{route('catalogo.Admin')}}">Catálogo</a></li>
+                        @else
                         <li><a class="dropdown-item" href="{{route('catalogo')}}">Catálogo</a></li>
+                        @endif
                         <hr>
                         <li>
                             <form style="display: inline" action="/logout" method="POST">
