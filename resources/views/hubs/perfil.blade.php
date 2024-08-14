@@ -53,6 +53,16 @@
       width: 10px;
       height: 10px;
     }
+
+    .btn-eliminar {
+    background-color: red;
+    color: #FFFFFF;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    }
   </style>
   
 </head>
@@ -197,7 +207,11 @@
               <div class="col-md-2">
                 <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal">Editar</button>
                 <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal">Pausar</button>
+                <form action="{{ route('propiedad.eliminar', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn-eliminar"  >Eliminar</button>
+</form>
               </div>
             </div>
           </div>
