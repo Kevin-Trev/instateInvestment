@@ -1867,7 +1867,7 @@ input[type="number"]::-webkit-outer-spin-button {
                 processData: false,
                 contentType: false,
                 success: function(response){
-                    console.log('yei');
+                    window.location.href = "/views/hubs/perfil/" + response.user;
                 },
                 error: function(error){
                     console.log('nonononono', error);
@@ -2050,8 +2050,14 @@ input[type="number"]::-webkit-outer-spin-button {
             });
 
             $('#button3').on('click', function(){
-                dos.css("display", "none");
-                tres.css("display", "block");
+                if($('#Area').val() !== ''){
+                    dos.css("display", "none");
+                    tres.css("display", "block");
+                    error.css("display", "none");
+                }
+                else{
+                    error.css("display", "block");
+                }
             });
 
             $('#button4').on('click', function(){

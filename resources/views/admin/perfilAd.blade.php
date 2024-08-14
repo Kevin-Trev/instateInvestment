@@ -147,10 +147,10 @@
         <!-- MENU DE ACCIONES -->
         <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link" id="publicacionesV-tab" data-target="#publicacionesV-pane" aria-current="page">Publicaciones No verificadas</a>
+    <a class="nav-link active" id="publicacionesV-tab" aria-current="page">Publicaciones No verificadas</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="publicacionesS-tab" data-target="#publicacionesS-pane" aria-current="page">Publicaciones suspendidas</a>
+    <a class="nav-link" id="publicacionesS-tab" aria-current="page">Publicaciones suspendidas</a>
   </li>
 </ul>
         <h2> Publicaciones no verificadas </h2>
@@ -211,69 +211,54 @@
 @endforeach
 
 
+<!-- LSITA 2 -->
 
-        <!-- ESTADISTICAS -->
-        <div class="property-list hidden" id="pl2">  
-        <!-- Contenido principal -->
-          <div id="estadisticas-content">
+        <!-- LISTA DE PROPIEDADES -->
+        <div class="property-list" id="pl2">
+          
+          <!-- PROPIEDADES DE EJEMPLO-->
+          @foreach ($propiedades as $propiedad)
+          @if (!$propiedad->Disponibilidad)
+          <div id="publicacion-{{ $propiedad->ID_P }}" class="publicacion">
+<div class="card" style="margin-top: 5px;">
+  <div class="row">
+    <div class="image-card col-md-3">
+      @if ($propiedad->main_image)
+      <img src="{{asset('ImagesPublished/'.$propiedad->main_image->src_image)}}">
+      @else
+        <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" alt="...">
+      @endif
+    </div>
 
-            <div style="margin-top: 10px;" class="col-12">
-                <div class="card">
-                  <div class = "card-title">
-                    EXCELENTE
-                  </div>
-                  <div class= "card-body">
-                    <h1>EXCELENTE VENDEDOR</h1>
-                  </div>
-                </div>
-            </div>
+    <div class="col-md-7">
+      <h3>{{$propiedad->Titulo}}</h3>
+      <p>$ {{$propiedad->Precio}}</p>
+      <div class="property-details">
+        <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{$propiedad->Recamaras}} Recámaras</span></div>
+        <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>{{$propiedad->Baños}} Baños</span></div>
+        <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Area}} M² construidos</span></div>
+      </div>
+    </div>
 
-            <div style="margin-top: 10px;" class="col-12">
-              <div class="row">
-                <div class="card col-sm-4	col-md-2	col-lg-2">
-                  <h4>Ventas:</h4>
-                  <p>Ventas totales: X</p>
-                  <p>Última venta: 2023-08-01</p>
-                  <p>Venta más alta: $500,000</p>
-                </div>
-                <div class="card col-sm-8	col-md-4	col-lg-4">
-                  <canvas id="ventas-chart"></canvas>
-                </div>
+    <div class="col-md-2">
+      <button class="bt-blue"><a href="/get/property/admin/{{$propiedad->ID_P}}" style="margin-bottom: 10px; color:white;">Revisar</a></button>
+      
+      <form action="{{ route('propiedad.eliminar', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn-eliminar"  >Eliminar</button>
+</form>
 
-                <div class="card col-sm-4	col-md-2	col-lg-2">
-                  <h4>Interacciones:</h4>
-                  <p>Comentarios totales: X</p>
-                </div>
-                <div class="card col-sm-8	col-md-4	col-lg-4">
-                  <canvas id="comentarios-chart"></canvas>
-                </div>
-              </div>
-            </div>
 
-            <div style="margin-top: 10px;" class="col-12">
-              <div class="row">
-                <div class="card col-sm-4	col-md-2	col-lg-2">
-                  <h4>Propiedades verificadas:</h4>
-                  <p>Verificadas: X</p>
-                  <p>Última verificación: 2023-08-01</p>
-                </div>
-                <div class="card col-sm-8	col-md-4	col-lg-4">
-                  <canvas id="verificadas-chart"></canvas>
-                </div>
 
-                <div class="card col-sm-4	col-md-2	col-lg-2">
-                  <h4>Reportes:</h4>
-                  <p>Reportes totales: X</p>
-                  <p>Último reporte: 2023-08-01</p>
-                </div>
-                <div class="card col-sm-8	col-md-4	col-lg-4">
-                  <canvas id="reportes-chart"></canvas>
-                </div>
-              </div>
-            </div> 
-                       
-          </div>  
-        </div>
+      <!-- Formulario para Verificar -->
+<form id="suspender-form-{{ $propiedad->ID_P }}" action="{{ route('propiedad.suspender', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirmarSuspension({{ $propiedad->ID_P }});">
+    @csrf
+    <button style="margin-bottom: 10px;" class="btn-suspender">Suspender</button>
+</form>
+  @endif
+@endforeach
+
       </main>
     </div>
   </div>
@@ -373,8 +358,8 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 /*--- ---*/
     document.addEventListener('DOMContentLoaded', function() {
-      const publicacionesTab = document.getElementById('publicaciones-tab');
-      const estadisticasTab = document.getElementById('estadisticas-tab');
+      const publicacionesTab = document.getElementById('publicacionesV-tab');
+      const estadisticasTab = document.getElementById('publicacionesS-tab');
       const publicacionesSection = document.getElementById('pl');
       const estadisticasSection = document.getElementById('pl2');
 
@@ -453,81 +438,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   </script>
 <script>
-        // Datos de ejemplo para las estadísticas
-        const ventasData = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
-      const comentariosData = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
-      const verificadasData = [5, 4, 6];
-      const totalData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-      const reportesData = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30];
-
-      // Crear gráficos con Chart.js
-      new Chart(document.getElementById('ventas-chart'), {
-        type: 'line',
-        data: {
-          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
-          datasets: [{
-            label: 'Ventas Totales',
-            data: ventasData,
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 2,
-            fill: false
-          }]
-        }
-      });
-
-      new Chart(document.getElementById('comentarios-chart'), {
-        type: 'bar',
-        data: {
-          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
-          datasets: [{
-            label: 'Comentarios',
-            data: comentariosData,
-            backgroundColor: 'rgba(153, 102, 255, 0.2)',
-            borderColor: 'rgba(153, 102, 255, 1)',
-            borderWidth: 1
-          }]
-        }
-      });
-
-      new Chart(document.getElementById('verificadas-chart'), {
-        type: 'pie',
-        data: {
-          labels: ['Verificadas', 'PorVerificar', 'NoVerificadas'],
-          datasets: [{
-            label: 'Propiedades Verificadas',
-            data: verificadasData,
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)'
-            ],
-            borderWidth: 1
-          }]
-        }
-      });
-
-      new Chart(document.getElementById('reportes-chart'), {
-        type: 'bar',
-        data: {
-          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
-          datasets: [{
-            label: 'Reportes',
-            data: reportesData,
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1
-          }]
-        }
-      });
-
-
-
-
       function confirmarSuspension(ID_P) {
         if (confirm('¿Estás seguro de que deseas suspender esta propiedad?')) {
             // Enviar la solicitud de suspensión por AJAX

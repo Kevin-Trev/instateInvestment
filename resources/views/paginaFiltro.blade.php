@@ -1288,7 +1288,7 @@
   <h2 id="resultado"> Todos Los Inmuebles Publicados</h2> {{--Agregar al principio de esta etiqueta el número de registros que se encontraron cerca y tambien la ciudad al lado derecho--}}
   <p class="text"> Estas son las propiedades que encontramos para ti</p>
   <div id="cards-container">
-    {{-- <div class="card">
+    <!-- {{-- <div class="card">
       <button class="propiedad">juan</button>
       <div class="image-card">
         <img src="https://picsum.photos/300/200">
@@ -1355,7 +1355,7 @@
         <button class="btn-wasa">Contacto</button>
         <button class="btn-blue">Ver más detalles</button>
       </div>
-    </div> --}}
+    </div> --}} -->
   </div>
 </div>
 <br>
@@ -1420,8 +1420,8 @@
   var elementosPorPagina = 2;
   var grupos = [];
   
-//  obtener los registros de propiedades desde BD  //
-$(document).ready(function(){
+  //  obtener los registros de propiedades desde BD  //
+  $(document).ready(function(){
     var transaccion = localStorage.getItem('opcion')
     var ciudad = localStorage.getItem('ciudad')
     console.log(datos)
@@ -1465,7 +1465,7 @@ $(document).ready(function(){
    
 });
 
-function mostrarPagina(pagina){
+  function mostrarPagina(pagina){
   var grupoActual = grupos[pagina - 1];
   var contenedor = $('#cards-container');
   var inicio = (pagina - 1) * elementosPorPagina;

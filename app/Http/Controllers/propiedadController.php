@@ -16,15 +16,12 @@ use Exception;
 class PropiedadController extends Controller
 {
     public function index () {
-        $user = auth()->id();
         $propiedades = propiedades::with("tipo_propiedad:ID_T,Tipo","users:id,Telefono,Activo")
                                     ->with(['imagenes_propiedad' => function($query) {
                                         $query->select('reg','propiedad_id','src_image');
                                     }])
-                                    ->where('Disponibilidad','=', 1)
-                                    ->whereHas('users', function ($query) use ($user) {
-                                        $query->where('Activo', '=', '1')
-                                              ->where('id','!=',$user);
+                                    ->whereHas('users', function ($query) {
+                                        $query->where('Activo', '=', '1');
                                     })
                                     ->get()
                                     ->map(function($propiedad) {
@@ -35,16 +32,13 @@ class PropiedadController extends Controller
     }
 
     public function propiedadesResultados($transaccion, $ciudad){
-        $user = auth()->id();
         $propiedades = propiedades::select('ID_P','Calle','num_exterior','Colonia','Precio','Recamaras','Baños','Area','Vendible','Rentable','Tipo_Propiedad_id','users_Id')
                                     ->with("tipo_propiedad:ID_T,Tipo","users:id,Telefono,Activo")
                                     ->with(['imagenes_propiedad' => function($query) {
                                         $query->select('reg','propiedad_id','src_image');
                                     }])
-                                    ->where('Disponibilidad','=', 1)
-                                    ->whereHas('users', function ($query) use ($user) {
-                                        $query->where('Activo', '=', '1')
-                                              ->where('id','!=',$user);
+                                    ->whereHas('users', function ($query) {
+                                        $query->where('Activo', '=', '1');
                                     })
                                     ->where($transaccion,'=','1')
                                     ->where('Ciudad','like',$ciudad . '%')
@@ -54,11 +48,7 @@ class PropiedadController extends Controller
                                         return $propiedad;
                                     });
         return response()->json($propiedades);
-    }
 
-    public function getDataProperty ($id){
-        $propiedad = propiedades::find($id);
-        return response()->json($propiedad);
     }
 
     public function getProperty($id){
@@ -83,9 +73,9 @@ class PropiedadController extends Controller
                                     });
         
         $comentarios = comentario::where('Propiedad_id','=',$id)
-                                    ->with("users:id,name,Foto")
-                                    ->orderBy('Fecha','DESC')
-                                    ->get();
+        ->with("users:id,name,Foto")
+        ->orderBy('Fecha','DESC')
+        ->get();
 
         return view('detallesPropiedad', compact('propiedad','comentarios','moreProperties'));
     }
@@ -119,8 +109,9 @@ class PropiedadController extends Controller
         return view('admin.revisar', compact('propiedad','comentarios','moreProperties'));
     }
     
-    public function newProperty (Request $request){   
+    public function newProperty(Request $request){   
 
+    $usuario = Auth::user()->id;
     DB::beginTransaction();
 
         try{
@@ -180,15 +171,14 @@ class PropiedadController extends Controller
                         'src_image' => $fileName,
                     ]);
                 }
-            }   
+            }  
 
             DB::Commit();
-            return redirect()->route('perfil', ['id' => Auth::user()->id]);
-            
+            return response()->json(['user' => $usuario]);
         }
         catch(\Exception $e){
             DB::rollback();
-            return response()->json(['Error al crear registro: ' . $e->getMessage()], 500);
+            return response()->json(['status' => $e->getMessage()]);
         }
     }
 
@@ -282,9 +272,6 @@ public function suspender($ID_P)
 
     return response()->json(['success' => false, 'message' => 'Propiedad no encontrada.']);
 }
-
-
-
 
 
 }
