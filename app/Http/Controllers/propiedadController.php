@@ -154,7 +154,6 @@ class PropiedadController extends Controller
             $propiedad->Tipo_Propiedad_id = $request->input('Tipo_Propiedad_id');
 
             if($propiedad->save()){
-
                 foreach($servicios as $servicio){
                     propiedad_servicio::Create([
                         'Propiedad_id' => $propiedad->ID_P,
@@ -171,12 +170,11 @@ class PropiedadController extends Controller
                         'src_image' => $fileName,
                     ]);
                 }
+            }   
 
-                DB::Commit();
-
-                return redirect()->route('perfil', ['id' => Auth::user()->id]);
-            }
-
+            DB::Commit();
+            return redirect()->route('perfil', ['id' => Auth::user()->id]);
+            
         }
         catch(\Exception $e){
             DB::rollback();
