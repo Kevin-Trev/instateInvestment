@@ -48,12 +48,6 @@ class usuariosController extends Controller
         }
     }
 
-    public function verificarUsername(Request $request){
-        $username = $request->name;
-        $usernameExiste = User::where('name',$username)->exists();
-        return response()->json(['existe' => $usernameExiste]);
-    }
-
     public function verificarMail(Request $request){
         $request->validate([
             'email' => 'required|email',
