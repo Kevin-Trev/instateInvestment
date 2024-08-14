@@ -50,6 +50,7 @@ Route::post('/login', [usuariosController::class, 'login'])->name('login');
 Route::post('/logout', [usuariosController::class, 'logout'])->name('logout');
 Route::get('/verificar-correo', [usuariosController::class, 'verificarMail']);
 Route::get('/verificar-telefono', [usuariosController::class, 'verificarTelefono']);
+Route::get('/verificar-username', [usuariosController::class, 'verificarUsername']);
 Route::post('/registrar', [usuariosController::class, 'nuevoUsuario'])->name('user.create');
 Route::post('/useredit/{id}', [usuariosController::class, 'editarUsuario'])->name('user.update');
 Route::delete('/userdel', [usuariosController::class, 'eliminarUsuario'])->name('user.delete');
