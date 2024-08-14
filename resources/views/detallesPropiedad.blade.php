@@ -352,7 +352,7 @@
     /* Inicio */
 
     .retroceder h6{
-        font-size: 2vw;
+        font-size: 20px;
     }
 
     .container{
@@ -360,11 +360,11 @@
     }
 
     .container h2{
-        font-size: 4vw;
+        font-size: 40px;
     }
 
     .container p{
-        font-size: 2vw;
+        font-size: 20px;
     }
 
     /* Cartas */
@@ -376,8 +376,8 @@
     }
 
     .propiedad{
-        width: 24vw;
-        font-size: 2.5vw;
+        width: 220px;
+        font-size: 24px;
         transform: translate(64vw, -20px);
     }
 
@@ -388,13 +388,17 @@
 
     .carrousel-img{
         margin: 20px 0 0 20px;
-        width: 550px;
-        height: 350px;
+        width: 480px;
+        height: 380px;
     }
     
     .disponible button{
-        font-size: 2vw;
+        font-size: 20px;
         transform: translate(-15px, 25px);
+    }
+
+    .propiedadContainer .disponible button{
+        padding: 6px;
     }
 
     .propiedadContainer .carousel{
@@ -408,22 +412,22 @@
 
     .disponible h4{
         margin-top: 20px;
-        font-size: 4vw;
+        font-size: 45px;
     }
 
     .roomsContainer span{
         margin-left: 0vw;
-        font-size: 1.5vw;
+        font-size: 20px;
     }
 
     .roomsContainer span img{
-        width: 2vw;
-        height: 2vw;
+        width: 25px;
+        height: 25px;
         margin-right: 5px;
     }
 
     .propiedadContainer .wasa{
-        font-size: 2vw;
+        font-size: 24px;
         transform: translate(17vw, -121px);
     }
 
