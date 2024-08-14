@@ -2011,7 +2011,7 @@
                     @auth
                     <div class = "btn-container">
                         <button class="bt-google"><a href="{{ route('propiedades.mapa', ['id' => $propiedad->ID_P]) }}"><img src="{{asset('Imagenes/Maps.png')}}">Ver En Maps</a></button>
-                        <button class="wasa"><a href="https://wa.me/{{$propiedad->users->Telefono}}"><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</a></button>
+                        <button class="wasa"><a href="https://wa.me/{{$propiedad->users->Telefono}}text=Hola,%20me%20interesa%20más%20información%20sobre%20el%20producto."><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</a></button>
                     </div>
                     @endauth
                 </footer>
