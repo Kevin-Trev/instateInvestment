@@ -258,12 +258,6 @@
                 @auth
                 <div class="dropdown-center dropstart">
                     
-                    <div class="simboloContainer" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{asset('Imagenes/notificacionSimbolo.png')}}">
-                    </div>
-                    <ul class="dropdown-menu" id="notificaciones">
-
-                    </ul>
                     <div class="perfilContainer" data-bs-toggle="dropdown" aria-expanded="false">
                         @if (Auth::user()->Foto)
                         <img src="{{asset('storage/profile_photos/'.Auth::user()->Foto)}}" class="profile-img" style="width: 100%; height: 100%; object-fit: cover;">

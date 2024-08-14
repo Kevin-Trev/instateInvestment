@@ -1867,7 +1867,7 @@ input[type="number"]::-webkit-outer-spin-button {
                 processData: false,
                 contentType: false,
                 success: function(response){
-                    console.log('yei');
+                    window.location.href = "/views/hubs/perfil/" + response.user;
                 },
                 error: function(error){
                     console.log('nonononono', error);
