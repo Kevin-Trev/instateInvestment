@@ -121,7 +121,7 @@
           <li class="nav-item">
             <a class="nav-link" id="publicacionesnv-tab" aria-current="page">Publicaciones no verificadas</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" id="publicacionesr-tab" aria-current="page">Publicaciones reportadas</a>
           </li>
           <li class="nav-item">
@@ -129,7 +129,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" id="infoSeguridad-tab">Informacion de Seguridad</a>
-          </li>
+          </li> -->
         </ul>
         <div class = "card">
           <!-- BTN DE NUEVA PROPIEDAD -->
@@ -205,13 +205,15 @@
                 </div>
               </div>
               <div class="col-md-2">
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal">Editar</button>
-                <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
+                  <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#editPropModal" onclick="datosProp({{$propiedad->ID_P}})">Editar</button>
+                  @if ($propiedad->Rentable)
+                  <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
+                  @endif
                 <form action="{{ route('propiedad.eliminar', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
-    @csrf
-    @method('DELETE')
-    <button type="submit" class="btn-eliminar"  >Eliminar</button>
-</form>
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn-eliminar"  >Eliminar</button>
+                </form>
               </div>
             </div>
           </div>
@@ -220,8 +222,7 @@
         </div>
 
         <!-- ESTADISTICAS -->
-        <div class="property-list hidden" id="pl2">  
-          <!-- Contenido principal -->
+        <!-- <div class="property-list hidden" id="pl2">  
           <div id="estadisticas-content">
 
             <div style="margin-top: 10px;" class="col-12">
@@ -280,7 +281,7 @@
             </div> 
                        
           </div>  
-        </div>
+        </div> -->
 
       </main>
     </div>
