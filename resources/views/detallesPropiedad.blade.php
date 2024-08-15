@@ -382,13 +382,13 @@
     }
 
     #carouselExample{
-        width: 80%;
+        width: 40%;
         height: 330px;   
     }
 
     .carrousel-img{
         margin: 20px 0 0 20px;
-        width: 480px;
+        width: 100%;
         height: 380px;
     }
     
@@ -406,7 +406,7 @@
     }
 
     .disponible{
-        padding: 0 0 0 4vw;
+        padding: 0 0 0 180px;
         transform: translateX(-10vw);
     }
 
