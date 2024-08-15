@@ -403,31 +403,32 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{ route('property.update') }}" method="POST" enctype="multipart/form-data">
+        <form action="/edit/propiedad" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="modal-body text-center">
             <div class="row row-cols-4">
+              <input type="number" id="id_p" name="ID_P" hidden readonly>
               <div class="form-group">
                 <label for="name">Calle</label>
-                <input class="form-control" type="text" name="Calle" required>
+                <input class="form-control" type="text" id="calle" name="Calle" required>
               </div>
               <div class="form-group">
                 <label for="name">Colonia</label>
-                <input class="form-control" type="text" name="Colonia" required>
+                <input class="form-control" type="text" id="colonia" name="Colonia" required>
               </div>
             </div>
             <div class="row row-cols-6">
               <div class="form-group">
                 <label for="num_exterior">N° Exterior</label>
-                <input class="form-control" type="number" name="num_exterior" placeholder="S/N" required>
+                <input class="form-control" type="number" id="num_exterior" name="num_exterior" placeholder="S/N" required>
               </div>  
               <div class="form-group">
                 <label for="num_interior">N° Interior</label>
-                <input class="form-control" type="number" name="num_interior" placeholder="S/N" required>
+                <input class="form-control" type="number" id="num_interior" name="num_interior" placeholder="S/N" required>
               </div>
               <div class="form-group">
                 <label for="username">Codigo Postal</label>
-                <input class="form-control" type="number" name="Codigo_Postal" required>
+                <input class="form-control" type="number" id="cp" name="Codigo_Postal" required>
               </div>  
             </div>
             <div class="form-group">
@@ -538,11 +539,12 @@
         url: `{{ url('/get/data/property') }}/${id}`,
         method: `GET`,
         success: function(data){
+          $('#id_p').val(data.ID_P);
           $('#calle').val(data.Calle);
           $('#num_exterior').val(data.num_exterior);
           $('#num_interior').val(data.num_interior);
           $('#colonia').val(data.Colonia);
-          $('$codigo_postal').val(data.Codigo_Postal);
+          $('#cp').val(data.Codigo_Postal);
           $('#ciudad').val(data.Ciudad);
           $('#estado').val(data.Estado);
           $('#recamaras').val(data.Recamaras);
@@ -551,7 +553,6 @@
           $('#area').val(data.Area);
           $('#frente').val(data.Frente);
           $('#fondo').val(data.Fondo);
-
         }
       });
     }

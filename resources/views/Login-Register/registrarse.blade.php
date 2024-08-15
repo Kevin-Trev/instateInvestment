@@ -209,7 +209,7 @@
 
 @section('body')
 
-    <form action="{{route('user.create')}}" method="POST" id="formularioRegistro">
+    <form action="/registrar" method="POST" id="formularioRegistro">
         @csrf
         <div class="container" id="nuevoEmail">
             <h2>Regístrate</h2>
@@ -226,11 +226,11 @@
                 <button type="button" id="button1" class="bt-blue">Siguiente</button>
             </div>
             <footer>
-                <a href="{{route('login')}}">Inicia sesión</a>
+                <a href="/views/login">Inicia sesión</a>
                 <p>Si ya tienes una cuenta</p>
             </footer>
             <div class="terms">
-                <p>Al continuar estás aceptando los <br><a href="{{route('terminos')}}">Términos y condiciones</a> y <a href="{{route('avisoPrivacidad')}}">Aviso de privacidad</a></p>
+                <p>Al continuar estás aceptando los <br><a href="/terminos">Términos y condiciones</a> y <a href="/legal">Aviso de privacidad</a></p>
             </div>
         </div>
 
@@ -252,7 +252,7 @@
                     <button type="button" id="button3">Atrás</button>
                 </div>
                 <div class="terms">
-                    <p>Al continuar estás aceptando los <br>Términos y condiciones y <a href="{{route('avisoPrivacidad')}}">Aviso de privacidad</a></p>
+                    <p>Al continuar estás aceptando los <br>Términos y condiciones y <a href="/legal">Aviso de privacidad</a></p>
                 </div>
         </div>
 
@@ -285,7 +285,7 @@
                     <button type="button" id="button4">Atrás</button>
                 </div>
             <div class="terms">
-                <p>Al continuar estás aceptando los <br>Términos y condiciones y <a href="{{route('avisoPrivacidad')}}">Aviso de privacidad</a></p>
+                <p>Al continuar estás aceptando los <br>Términos y condiciones y <a href="/legal">Aviso de privacidad</a></p>
             </div>
         </div>
     </form>
@@ -359,21 +359,15 @@
                 var telver = '+52' + inputTelefono;
                 $('#verif-tel').hide();
 
-                verificarTelefono(telver).then(function(response){
-                    if (response.existe) {
-                        $('#verif-tel').show();
-                    }
-                    else {
-                        if($('#nombre').val() && $('#nombreUsuario').val() && $('#apellido').val() && $('#Fecha_nacimiento').val()){
-                            $('#verif-tel').hide();
-                            $('#formularioRegistro').submit();
-                            error.css("display", "none");
-                        }
-                        else{
-                            error.css("display", "block");
-                        }
-                    }
-                });
+                if($('#nombre').val() && $('#nombreUsuario').val() && $('#apellido').val() && $('#Fecha_nacimiento').val()){
+                    $('#verif-tel').hide();
+                    $('#formularioRegistro').submit();
+                    error.css("display", "none");
+                }
+                else{
+                    error.css("display", "block");
+                }
+
             });
 
             $('#inputContraseña').on('keyup', function(event){
@@ -457,16 +451,16 @@
             });
         }
 
-        function verificarTelefono(telefono) {
-            return $.ajax({
-                url: '/verificar-telefono',
-                type: 'GET',
-                data: {
-                    Telefono: telefono,
-                },
-                dataType: 'json'
-            });
-        }
+        // function verificarTelefono(telefono) {
+        //     return $.ajax({
+        //         url: '/verificar-telefono',
+        //         type: 'GET',
+        //         data: {
+        //             Telefono: telefono,
+        //         },
+        //         dataType: 'json'
+        //     });
+        // }
 
     </script>
 @endsection

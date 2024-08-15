@@ -80,6 +80,11 @@ class PropiedadController extends Controller
         return view('detallesPropiedad', compact('propiedad','comentarios','moreProperties'));
     }
 
+    public function getDataProperty($id){
+        $propiedad = propiedades::find($id);
+        return response()->json($propiedad);
+    }
+
     public function getPropertyadmin($id){
 
         $propiedad = propiedades::with(

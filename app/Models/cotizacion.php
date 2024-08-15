@@ -9,7 +9,7 @@ class cotizacion extends Model
 {
     use HasFactory;
     protected $table = 'cotizacion';
-    protected $primaryKey = 'id_c';
+    protected $primaryKey = 'ID_C';
     protected $filiable=[
         'monto', 'periodo', 'fecha', 'metodopago',
         'users_id', 'propiedad_id'
@@ -19,6 +19,6 @@ class cotizacion extends Model
         return $this->belongsToMany(users::class, 'id', 'users_id');
     }
     public function propiedad(){
-        return $this->belongsToMany(propiedad::class, 'id_p', 'propiedad_id');
+        return $this->belongsToMany(propiedad::class, 'ID_P', 'propiedad_id');
     }
 }

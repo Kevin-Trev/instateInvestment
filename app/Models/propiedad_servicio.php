@@ -9,16 +9,16 @@ class propiedad_servicio extends Model
 {
     use HasFactory;
     protected $table = 'propiedad_servicio';
-    protected $primaryKey = 'id_ps';
+    protected $primaryKey = 'ID_PS';
     protected $fillable=[
               'Propiedad_id', 'Servicio_id'
     ];
     public $timestamps = false;
 
     public function servicio(){
-        return $this->belongsToMany(servicio::class,'id_p', 'propiedad_id');
+        return $this->belongsToMany(servicio::class,'ID_P', 'propiedad_id');
     }
     public function propiedad(){
-        return $this->belongsToMany(propiedades::class, 'id_serv', 'servicio_id');
+        return $this->belongsToMany(propiedades::class, 'ID_SERV', 'servicio_id');
     }
 }
