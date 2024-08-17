@@ -1298,7 +1298,7 @@
   <h2 id="resultado"> Todos Los Inmuebles Publicados</h2> {{--Agregar al principio de esta etiqueta el número de registros que se encontraron cerca y tambien la ciudad al lado derecho--}}
   <p class="text"> Estas son las propiedades que encontramos para ti</p>
   <div id="cards-container">
-    <!-- {{-- <div class="card">
+<!-- {{-- <div class="card">
       <button class="propiedad">juan</button>
       <div class="image-card">
         <img src="https://picsum.photos/300/200">
@@ -1365,7 +1365,8 @@
         <button class="btn-wasa">Contacto</button>
         <button class="btn-blue">Ver más detalles</button>
       </div>
-    </div> --}} -->
+    </div> --}} 
+-->
   </div>
 </div>
 <br>

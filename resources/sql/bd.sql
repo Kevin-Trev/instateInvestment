@@ -216,3 +216,15 @@ CREATE TABLE `sessions` (
   KEY `sessions_user_id_index` (`user_id`),
   KEY `sessions_last_activity_index` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+USE instateInvestment;
+ALTER TABLE Propiedades
+ADD COLUMN Interacciones INT DEFAULT 0,
+ADD COLUMN Veces_Comunicado INT DEFAULT 0;
+
+USE instateinvestment;
+ALTER TABLE  reportes
+ADD COLUMN fecha_reporte DATE,
+ADD COLUMN motivo VARCHAR(100);
+
+

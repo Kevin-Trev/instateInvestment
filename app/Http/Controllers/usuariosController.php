@@ -42,8 +42,18 @@ class usuariosController extends Controller
                 $propiedad->main_image = $propiedad->imagenes_propiedad->first() ?: null;
                 return $propiedad;
                 });
-    
-                return view('hubs.perfil', compact('propiedades'));    
+
+                $VizualizacionesT = propiedades::where('users_Id', '=', $id)->sum('Interacciones');
+                $verificacionesT = Propiedades::where('users_Id', '=', $id)
+                ->where('Verificacion', '=', 1)
+                ->count('Verificacion');
+                $NoverificacionesT = Propiedades::where('users_Id', '=', $id)
+                ->where('Verificacion', '=', 0)
+                ->count('Verificacion');
+
+
+
+                return view('hubs.perfil', compact('propiedades','VizualizacionesT','verificacionesT','NoverificacionesT'));    
             }
         }
     }

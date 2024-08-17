@@ -11,6 +11,7 @@ use App\Models\imagenes_propiedad;
 use App\Models\propiedad_servicio;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Models\reportes;
 use Exception;
 
 class PropiedadController extends Controller
@@ -52,13 +53,12 @@ class PropiedadController extends Controller
     }
 
     public function getProperty($id){
-
         $propiedad = propiedades::with(
             "tipo_propiedad:ID_T,Tipo",
             "users:id,Telefono",
             "imagenes_propiedad:reg,propiedad_id,src_image")
             ->find($id);
-    
+            $propiedad->increment('Interacciones');
         $moreProperties = propiedades::where('ID_P','!=',$id)
                                     ->with("users:id,Telefono")
                                     ->with(['imagenes_propiedad' => function($query) {
@@ -111,7 +111,15 @@ class PropiedadController extends Controller
         ->orderBy('Fecha','DESC')
         ->get();
 
-        return view('admin.revisar', compact('propiedad','comentarios','moreProperties'));
+        $reportes = reportes::where('propiedad_id','=',$id)
+        ->with("users:id,name,Foto")
+        ->orderBy('fecha_reporte','DESC')
+        ->get();
+
+        $cantidadreportes = reportes::where('propiedad_id','=',$id)
+        ->get();
+
+        return view('admin.revisar', compact('propiedad','comentarios','reportes','cantidadreportes'));
     }
     
     public function newProperty(Request $request){   
@@ -158,6 +166,8 @@ class PropiedadController extends Controller
             $propiedad->Vendible = $request->input('Vendible');
             $propiedad->users_Id = Auth::user()->id;
             $propiedad->Tipo_Propiedad_id = $request->input('Tipo_Propiedad_id');
+            $propiedad->Interacciones = 0;
+            $propiedad->Veces_contactado = 0;
 
             if($propiedad->save()){
                 foreach($servicios as $servicio){

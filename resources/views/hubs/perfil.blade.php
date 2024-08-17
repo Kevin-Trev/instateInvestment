@@ -121,7 +121,7 @@
           <li class="nav-item">
             <a class="nav-link" id="publicacionesnv-tab" aria-current="page">Publicaciones no verificadas</a>
           </li>
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" id="publicacionesr-tab" aria-current="page">Publicaciones reportadas</a>
           </li>
           <li class="nav-item">
@@ -129,7 +129,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" id="infoSeguridad-tab">Informacion de Seguridad</a>
-          </li> -->
+          </li>
         </ul>
         <div class = "card">
           <!-- BTN DE NUEVA PROPIEDAD -->
@@ -161,11 +161,19 @@
                 </div>
                 <div class="col-md-7">
                   <h3>{{$propiedad->Calle}} {{$propiedad->num_exterior}}</h3>
-                  <p>$ {{$propiedad->Precio}}</p>
+                  <div class="row row-cols-3 ms-2">
+                    <p>$ {{$propiedad->Precio}}</p>
+                    <p>{{$propiedad->Interacciones}} Visualizaciones</p>
+                    <p>{{$propiedad->Veces_Comunicado}} Veces Contactado</p>  
+                  </div>
                   <div class="property-details">
                     <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{$propiedad->Recamaras}} Recámaras</span></div>
                     <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>{{$propiedad->Baños}} Baños</span></div>
                     <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Area}} M² construidos</span></div>
+                    <div class="row">
+                      <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Interacciones}} Visualizaciones</span></div>
+                      <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Veces_Comunicado}} Visualizaciones</span></div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-2">
@@ -197,7 +205,11 @@
               </div>
               <div class="col-md-7">
                 <h3>{{$propiedad->Calle}} {{$propiedad->num_exterior}}</h3>
+                <div class="row row-cols-3 ms-2">
                 <p>$ {{$propiedad->Precio}}</p>
+                <p>{{$propiedad->Interacciones}} Visualizaciones</p>
+                <p>{{$propiedad->Veces_Comunicado}} Veces Contactado</p>  
+                </div>
                 <div class="property-details">
                   <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{$propiedad->Recamaras}} Recámaras</span></div>
                   <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>{{$propiedad->Baños}} Baños</span></div>
@@ -222,27 +234,17 @@
         </div>
 
         <!-- ESTADISTICAS -->
-        <!-- <div class="property-list hidden" id="pl2">  
+        <div class="property-list hidden" id="pl2">  
           <div id="estadisticas-content">
-
-            <div style="margin-top: 10px;" class="col-12">
-                <div class="card">
-                  <div class = "card-title">
-                    EXELENTE
-                  </div>
-                  <div class= "card-body">
-                    <h1>EXELENTE VENDEDOR</h1>
-                  </div>
-                </div>
-            </div>
-
             <div style="margin-top: 10px;" class="col-12">
               <div class="row">
                 <div class="card col-sm-4	col-md-2	col-lg-2">
-                  <h4>Ventas:</h4>
-                  <p>Ventas totales: X</p>
-                  <p>Última venta: 2023-08-01</p>
-                  <p>Venta más alta: $500,000</p>
+                  <label for="telefono" class="form-label">Visitas A tus Publicaciones</label>
+                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i>
+                    <span>
+                    {{ $VizualizacionesT }}
+                    </span>
+                  </div>
                 </div>
                 <div class="card col-sm-8	col-md-4	col-lg-4">
                   <canvas id="ventas-chart"></canvas>
@@ -261,9 +263,9 @@
             <div style="margin-top: 10px;" class="col-12">
               <div class="row">
                 <div class="card col-sm-4	col-md-2	col-lg-2">
-                  <h4>Propiedades verificadas:</h4>
-                  <p>Verificadas: X</p>
-                  <p>Última verificación: 2023-08-01</p>
+                  <h4>Verificaciones:</h4>
+                  <p> Propiedades Verificadas: {{ $verificacionesT }}</p>
+                  <p> Propiedades No Verificadas:{{ $verificacionesT }}</p>
                 </div>
                 <div class="card col-sm-8	col-md-4	col-lg-4">
                   <canvas id="verificadas-chart"></canvas>
@@ -281,7 +283,7 @@
             </div> 
                        
           </div>  
-        </div> -->
+        </div>
 
       </main>
     </div>
@@ -581,22 +583,23 @@
   </script>
 <script>
         // Datos de ejemplo para las estadísticas
-        const ventasData = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+        const VizualizacionesT = [{{ $VizualizacionesT }}];
       const comentariosData = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
-      const verificadasData = [5, 4, 6];
+      const verificadasData = [{{ $verificacionesT }}, {{ $NoverificacionesT }}];
       const totalData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
       const reportesData = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30];
 
       // Crear gráficos con Chart.js
       new Chart(document.getElementById('ventas-chart'), {
-        type: 'line',
+        type: 'bar',
         data: {
           labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
           datasets: [{
             label: 'Ventas Totales',
-            data: ventasData,
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 2,
+            data: VizualizacionesT,
+            backgroundColor: 'rgba(0, 71, 255,0.7)',
+            borderColor: 'rgb(0, 70, 200)',
+            borderWidth: 1,
             fill: false
           }]
         }
@@ -619,18 +622,16 @@
       new Chart(document.getElementById('verificadas-chart'), {
         type: 'pie',
         data: {
-          labels: ['Verificadas', 'PorVerificar', 'NoVerificadas'],
+          labels: ['Verificadas','No Verificadas'],
           datasets: [{
             label: 'Propiedades Verificadas',
             data: verificadasData,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
               'rgba(255, 206, 86, 0.2)'
             ],
             borderColor: [
               'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
               'rgba(255, 206, 86, 1)'
             ],
             borderWidth: 1
