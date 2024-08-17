@@ -151,7 +151,7 @@
               <div class="row">
                 <div class="image-card col-md-3">
                 <span class="position-absolute bottom-0 start-50 translate-middle-x badge">
-                  <img class="verificacion" src="{{asset('Imagenes/verificacion.png')}}">
+                  <img style="width: 30px; height: 30px;" class="verificacion " src="{{asset('Imagenes/verificacion.png')}}">
                 </span>
                   @if ($propiedad->main_image) {{-- Si la Propiedad No tiene Imagen Coloca una de stock--}}
                   <img src="{{asset('ImagesPublished/'.$propiedad->main_image->src_image)}}">
@@ -170,10 +170,6 @@
                     <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{$propiedad->Recamaras}} Recámaras</span></div>
                     <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>{{$propiedad->Baños}} Baños</span></div>
                     <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Area}} M² construidos</span></div>
-                    <div class="row">
-                      <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Interacciones}} Visualizaciones</span></div>
-                      <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Veces_Comunicado}} Visualizaciones</span></div>
-                    </div>
                   </div>
                 </div>
                 <div class="col-md-2">
