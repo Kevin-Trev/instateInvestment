@@ -19,6 +19,12 @@
        .form-group {
             margin-bottom: 15px;
             margin-left:48px;
+            padding-right: 50px;
+        }
+
+        .alert{
+            --bs-alert-padding-x: 5px;
+            --bs-alert-padding-y: 10px;
         }
         
        footer{
@@ -26,13 +32,7 @@
         font-size: 13px;
         margin-top: 20px;
        }
-        
-       .form-group input[type="text"]{
-            width: 88%;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-        
+                
        .terms {
             font-size: 12px;
             color: #666;
@@ -79,10 +79,24 @@
 
         .error{
             color: red;
-            font-size: 10px;
+            font-size: 12px;
             transform: translateY(5px);
             display: none;
         }
+
+        .errorInput{
+            border: 1px solid red;
+            background: #f6dee0;
+
+        }
+
+        .errorVerif{
+            color: red;
+            font-size: 12px;
+            transform: translateY(5px);
+            display: none;
+        }
+
 
         #nuevoDatos .terms{
             padding-top: 80px
@@ -96,10 +110,6 @@
             text-align: center;
             border-radius: 8px;
             width: 150px;
-        }
-
-        #Fecha_nacimiento, #tipo_usuario, #telefono, #inputContraseña, #inputCorreo{
-            width: 88%; 
         }
         
         .condicion h6{
@@ -127,22 +137,39 @@
             body{
                 overflow-y: scroll;
             }
+        
+            h2{
+                margin-bottom: 30px;
+            }
 
             .container{
                 width: 80vw;
             }
 
+            .form-control {
+                font-size: 13px; 
+            }
+
             .form-group label{
                 transform: translateX(-5vw);
             }
-            
-            #telefono, #Fecha_nacimiento, #inputContraseña, #nombreUsuario, #nombre, #apellido{
-                transform: translateX(-5vw);
-                width: 95%;
+
+            .error{
+                transform: translate(-20px, 5px);
+                width: 125%;
             }
 
-            #inputCorreo{
-                width: 90%;
+            .alert-warning{
+                font-size: 12px;
+            }
+            
+            #telefono, #Fecha_nacimiento, #nombreUsuario, #nombre, #apellido{
+                transform: translateX(-5vw);
+                width: 120%;
+            }
+
+            #inputCorreo, #inputContraseña{
+                width: 125%;
                 transform: translateX(-5vw);
             }
 
@@ -176,13 +203,13 @@
                 transform: translateX(-5vw);
             }
 
-            #telefono, #Fecha_nacimiento, #inputContraseña, #nombreUsuario, #nombre, #apellido{
+            #telefono, #Fecha_nacimiento, #nombreUsuario, #nombre, #apellido{
                 transform: translateX(-5vw);
-                width: 95%;
+                width: 120%;
             }
 
-            #inputCorreo{
-                width: 95%;
+            #inputCorreo, #inputContraseña{
+                width: 125%;
                 transform: translateX(-5vw);
             }
             
@@ -216,9 +243,8 @@
             <div class="alert alert-warning text-center" id="correo-existente" role="alert">
                 Este Correo esta registrado en el Sistema
             </div>
-                <input type="hidden" id="employeeId" name="id">
             <div class="form-group">
-                <label for="inputCorreo">Correo electrónico</label>
+                <label for="inputCorreo" class="text-center">Correo electrónico</label>
                 <p class="error">Ingresa un correo electrónico válido</p>
                 <input type="email" class="form-control" placeholder="Ingresa tu correo electrónico" id="inputCorreo" name="email">
             </div>
@@ -261,6 +287,7 @@
                 <div class="form-group">
                     <label for="nombreUsuario">Nombre de Usuario</label>
                     <input type="text" class="form-control" id="nombreUsuario" name="name" required>
+                    <p class="errorVerif" id="verif-username">Este nombre de usuario esta en uso.</p>
                 </div>
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
@@ -273,12 +300,13 @@
                 <div class="form-group">
                     <label for="fecha_nacimiento">Fecha de nacimiento</label>
                     <input type="date" class="form-control" id="Fecha_nacimiento" name="Fecha_Nacimiento" required>
+                    <p class="errorVerif" id="verif-edad">Debes ser mayor de edad para registrarte.</p>
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono</label>
                     <input type="number" id="telefono" class="form-control" name="Telefono" placeholder="Ingresa tu telefono" oninput="limitInputLength(this)"  required >
-                    <p class="error" id="verif-tel">Este número ya esta registrado.</p>
-                    <p class="error">Llena todos los campos correctamente.</p>
+                    <p class="errorVerif" id="verif-tel">Este número esta registrado.</p>
+                    <p class="error center">Llena todos los campos correctamente.</p>
                 </div>
                 <div class="center">
                     <button type="button" id="button5" class="btn-blue">Finalizar</button>
@@ -297,6 +325,8 @@
         $(document).ready(function(){
             $('#correo-existente').hide();
             $('#verif-tel').hide();
+            $('#verif-edad').hide();
+            $('#inputCorreo').focus();
             var datosContenedor = $('#nuevoDatos');
             var emailContenedor = $('#nuevoEmail');
             var usuarioContenedor = $('#nuevoUsuario');
@@ -313,21 +343,29 @@
                     verificarMail(email).then(function(response){
                         if (response.existe) {
                             $('#correo-existente').show();
+                            $('#inputCorreo').addClass('errorInput')
                         }
                         else {
                             $('#correo-existente').hide();
                             datosContenedor .css("display", "block");
                             emailContenedor.css("display", "none");
+                            $('#inputContraseña').focus();
                         }
-                    }).catch(function(error) {
-                        console.log('Error al verificar el correo:', error);
                     });
+                    $('#inputCorreo').removeClass('errorInput');
                     error.css("display", "none");
                 }
                 else{
+                    $('#inputCorreo').addClass('errorInput');
                     error.css("display", "block");
                 }
             });
+            $('#inputCorreo').keydown(function() {
+                    $('#inputCorreo').removeClass('errorInput');
+                    error.css("display", "none");
+                    $('#correo-existente').hide();
+            });
+
 
             $('#button2').on('click', function(){
                 var valorContraseña = $('#inputContraseña').val();
@@ -335,39 +373,132 @@
                 if(patronContraseña.test(valorContraseña) && valorContraseña.length >= 8){
                     datosContenedor.css("display", "none");
                     usuarioContenedor.css("display", "block");
+                    $('#nombreUsuario').focus();
+                    $('#inputContraseña').removeClass('errorInput');
                     error.css("display", "none")
                 }
                 else{
+                    $('#inputContraseña').addClass('errorInput');
                     error.css("display", "block");
                 }
-            }),
+            });
 
             $('#button3').on('click', function(){
                 datosContenedor.css("display", "none");
                 emailContenedor.css("display", "block");
+                $('#inputContraseña').removeClass('errorInput');
                 error.css("display", "none")
             });
 
             $('#button4').on('click', function(){
                 usuarioContenedor.css("display", "none");
                 datosContenedor.css("display", "block");
+                $('.form-control').removeClass('errorInput');
                 error.css("display", "none");
             });
 
             $('#button5').on('click', function(){
-                var inputTelefono = $('#telefono').val();
-                var telver = '+52' + inputTelefono;
-                $('#verif-tel').hide();
-
+                $('.form-control').removeClass('errorInput');
                 if($('#nombre').val() && $('#nombreUsuario').val() && $('#apellido').val() && $('#Fecha_nacimiento').val()){
+                    var telVer = '+52' + $('#telefono').val();
+                    var usernameVer = $('#nombreUsuario').val();
+                    let edadVer = $('#Fecha_nacimiento').val();
+                    console.log('verificando... ' +usernameVer+' con numero: ' +telVer+ ' ' + edadVer);
+
                     $('#verif-tel').hide();
-                    $('#formularioRegistro').submit();
+                    $('#verif-username').hide();
+                    $('#verif-edad').hide();
+                    $('#telefono').removeClass('errorInput');
+                    $('#nombreUsuario').removeClass('errorInput');
+                    $('#Fecha_nacimiento').removeClass('errorInput');
+
+                    verificarTelefono(telVer).then(function(responseTel) {
+                        verificarUsername(usernameVer).then(function(responseName) {
+                            if (responseTel.existe && responseName.existe && !verificarEdad(edadVer)) {
+                                $('#verif-tel').show();
+                                $('#telefono').addClass('errorInput');
+                                $('#verif-username').show();
+                                $('#nombreUsuario').addClass('errorInput');
+                                $('#verif-edad').show();
+                                $('#Fecha_nacimiento').addClass('errorInput');
+                                console.log('El usuario debe ser mayor de edad.');
+                                console.log('Ambos datos EXISTEN!!!');
+                            } else if (responseTel.existe && responseName.existe) {
+                                $('#verif-tel').show();
+                                $('#telefono').addClass('errorInput');
+                                $('#verif-nombre').show();
+                                $('#nombreUsuario').addClass('errorInput');
+                                console.log('Ambos datos EXISTEN!!!');
+                            } else if (responseTel.existe && !verificarEdad(edadVer)) {
+                                $('#verif-tel').show();
+                                $('#telefono').addClass('errorInput');
+                                $('#verif-edad').show();
+                                $('#Fecha_nacimiento').addClass('errorInput');
+                                console.log('numero de teleono registrado');
+                                console.log('El usuario debe ser mayor de edad.');
+                            } else if (responseName.existe && !verificarEdad(edadVer)) {
+                                $('#verif-edad').show();
+                                $('#Fecha_nacimiento').addClass('errorInput');
+                                $('#verif-username').show();
+                                $('#nombreUsuario').addClass('errorInput');
+                                console.log('nombre de usuario en uso');
+                                console.log('El usuario debe ser mayor de edad.');
+                            }
+                            else if (responseTel.existe) {
+                                $('#verif-tel').show();
+                                $('#telefono').addClass('errorInput');
+                                console.log('numero de teleono registrado');
+                            }
+                            else if (responseName.existe) {
+                                $('#verif-username').show();
+                                $('#nombreUsuario').addClass('errorInput');
+                                console.log('nombre de usuario en uso');
+                            }
+                            else if (!verificarEdad(edadVer)){
+                                $('#verif-edad').show();
+                                $('#Fecha_nacimiento').addClass('errorInput');
+                                console.log('El usuario debe ser mayor de edad.');
+                            }
+                            else{
+                                console.log('Procediendo con el registro!!!');
+                                $('#formularioRegistro').submit();
+                            }
+                        });
+                    }).catch(function(error) {
+                        console.log(error);
+                    });
                     error.css("display", "none");
+                    
                 }
                 else{
+                    if (!$('#nombre').val()) $('#nombre').addClass('errorInput');
+                    if (!$('#nombreUsuario').val()) $('#nombreUsuario').addClass('errorInput');
+                    if (!$('#apellido').val()) $('#apellido').addClass('errorInput');
+                    if (!$('#Fecha_nacimiento').val()) $('#Fecha_nacimiento').addClass('errorInput');
+                    if (!$('#telefono').val()) $('#telefono').addClass('errorInput');
+
                     error.css("display", "block");
                 }
+            });
 
+            $('#inputContraseña,#nombre, #nombreUsuario, #apellido, #Fecha_nacimiento, #telefono').keydown(function() {
+                $(this).removeClass('errorInput');
+                error.css("display", "none");
+            });
+
+            $('#Fecha_nacimiento').on("change", function() {
+                $(this).removeClass('errorInput');
+                error.css("display", "none");
+            })
+
+            $('#nombreUsuario').keydown(function() {
+                $(this).removeClass('errorInput');
+                $('#verif-username').hide();
+            });
+
+            $('#telefono').keydown(function() {
+                $(this).removeClass('errorInput');
+                $('#verif-tel').hide();
             });
 
             $('#inputContraseña').on('keyup', function(event){
@@ -383,8 +514,8 @@
                     condicionNumero.css("color", "red");
                 }
                 else if(patronNumero.test(valorContraseña)){
-                condicionNumero.text("✔ Un número");
-                condicionNumero.css("color", "green");
+                    condicionNumero.text("✔ Un número");
+                    condicionNumero.css("color", "green");
                 }
                 else{
                     condicionNumero.text("X Un número");
@@ -443,7 +574,7 @@
         function verificarMail(email) {
             return $.ajax({
                 url: '/verificar-correo',
-                type: 'GET',
+                method: 'GET',
                 data: {
                     email: email,
                 },
@@ -451,16 +582,39 @@
             });
         }
 
-        // function verificarTelefono(telefono) {
-        //     return $.ajax({
-        //         url: '/verificar-telefono',
-        //         type: 'GET',
-        //         data: {
-        //             Telefono: telefono,
-        //         },
-        //         dataType: 'json'
-        //     });
-        // }
+        function verificarTelefono(telefono) {
+            return $.ajax({
+                url: '/verificar-telefono',
+                method: 'GET',
+                data: {
+                    Telefono: telefono,
+                },
+                dataType: 'json'
+            });
+        }
 
+        function verificarUsername(name) {
+            return $.ajax({
+                url: `/verificar-username`,
+                method: `GET`,
+                data: {
+                    name: name,
+                },
+                dataType: `json`
+            });
+        }
+
+        function verificarEdad(nacimiento) {
+            const birthdate = new Date(nacimiento);
+            const today = new Date();
+            var age = today.getFullYear() - birthdate.getFullYear();
+            const m = today.getMonth() - birthdate.getMonth();
+
+            if (m < 0 || (m === 0 && today.getDate() < birthdate.getDate())) {
+                age--;
+            }
+
+            return age >= 18;
+        }
     </script>
 @endsection

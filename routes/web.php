@@ -49,6 +49,7 @@ Route::get('/get/servicios', [servicioController::class, 'index']);
 Route::post('/login', [usuariosController::class, 'login'])->name('login');
 Route::post('/logout', [usuariosController::class, 'logout'])->name('logout');
 Route::get('/verificar-correo', [usuariosController::class, 'verificarMail']);
+Route::get('/verificar-username', [usuariosController::class, 'verificarUsername']);
 Route::get('/verificar-telefono', [usuariosController::class, 'verificarTelefono']);
 Route::post('/registrar', [usuariosController::class, 'nuevoUsuario'])->name('user.create');
 Route::post('/useredit/{id}', [usuariosController::class, 'editarUsuario'])->name('user.update');
@@ -59,7 +60,6 @@ Route::get('get/user/{id}', [usuariosController::class, 'datosUsuario']);
 
 Route::get('/get/properties',[propiedadController::class, 'index']);
 Route::get('/get/results/propeties/{transaccion}/{ciudad}', [propiedadController::class, 'propiedadesResultados']);
-Route::get('/get/property/{id}', [propiedadController::class, 'getProperty']);
 Route::get('/get/data/property/{id}', [propiedadController::class, 'getDataProperty']);
 Route::get('/get/property/admin/{id}', [propiedadController::class, 'getPropertyadmin']);
 Route::post('/post/propiedad', [propiedadController::class, 'newProperty']); /* cambiar de GET a POST */
@@ -67,7 +67,7 @@ Route::post('/edit/propiedad/', [propiedadController::class, 'editarPropiedad'])
 Route::delete('/propiedad/eliminar/{ID_P}', [propiedadController::class, 'eliminar'])->name('propiedad.eliminar');
 
 
-// Ruta para publicar un comentario
+// Ruta para publicar un comentario -> reporte
 Route::post('/post/comentario/', [comentarioController::class, 'comentar']);
 Route::get('/delete/comentario/{id}', [comentarioController::class, 'eliminarComentario']);
 
@@ -76,6 +76,8 @@ Route::get('/delete/comentario/{id}', [comentarioController::class, 'eliminarCom
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/views/hubs/perfil/{id}', [usuariosController::class, 'informacionUsuario'])->name('perfil');
     Route::get('/views/agregar/propiedad', [viewsController::class, 'agregarPropiedad'])->name('agregarPropiedad');
+    Route::get('/views/catalogo', [viewsController::class, 'catalogoPropiedades'])->name('catalogo');
+    Route::get('/get/property/{id}', [propiedadController::class, 'getProperty']);
 });
 
 // Rutas de vistas a las que solo puede acceder un usuario con una sesión iniciada 
@@ -90,7 +92,6 @@ Route::get('/views/login',[viewsController::class, 'login'])->name('login');
 Route::get('/views/registro', [viewsController::class, 'registro'])->name('registro');
 Route::get('/views/registro/finalizado', [viewsController::class, 'registro_Finalizar'])->name('registro.finalizar');
 Route::get('/views/detalles/propiedad', [viewsController::class, 'detallePropiedad'])->name('detallesPropiedad');
-Route::get('/views/catalogo', [viewsController::class, 'catalogoPropiedades'])->name('catalogo');
 Route::get('/legal', [viewsController::class, 'avisoPrivacidad'])->name('avisoPrivacidad');
 Route::get('/nosotros', [viewsController::class, 'nosotros'])->name('nosotros');
 //Rutas que se utilizan para restablecer la contraseña de un usuario

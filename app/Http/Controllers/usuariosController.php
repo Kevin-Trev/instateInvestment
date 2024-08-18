@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use App\Models\User;
 use App\Models\propiedades;
 use App\Models\imagenes_propiedad;
@@ -51,11 +52,16 @@ class usuariosController extends Controller
                 ->where('Verificacion', '=', 0)
                 ->count('Verificacion');
 
-
-
                 return view('hubs.perfil', compact('propiedades','VizualizacionesT','verificacionesT','NoverificacionesT'));    
             }
         }
+    }
+
+    // Verificar si existen estos datos //
+    public function verificarUsername(Request $request){
+        $username = $request->name;
+        $userExistente = User::where('name', $username)->exists();
+        return response()->json(['existe' => $userExistente]);
     }
 
     public function verificarMail(Request $request){
@@ -71,6 +77,7 @@ class usuariosController extends Controller
         $telefonoExistente = User::where('Telefono',$telefono)->exists();
         return response()->json(['existe' => $telefonoExistente]);
     }
+    //////////////////////////////////////////
 
     public function nuevoUsuario(Request $request) {
 
@@ -145,20 +152,32 @@ class usuariosController extends Controller
             if(Auth::user()->activo) {
                 if(Auth::user()->administrador){
                     request()->session()->regenerate();
-                    return redirect('/perfil-administrador');
+                    return Response::json([
+                        'status' => 'success',
+                        'redirect' => '/perfil-administrador'
+                    ]);
                 }
                 else{
                     request()->session()->regenerate();
-                    return redirect('/views/catalogo');    
+                    return Response::json([
+                        'status' => 'success',
+                        'redirect' => '/views/catalogo'
+                    ]);
                 }
             }
             else {
                 Auth::logout();
-                return redirect('/views/login')->with('suspendido','Esta cuenta esta suspendida.<br> Ponte en contacto con el administrador del sitio web');
+                return Response::json([
+                    'status' => 'error',
+                    'message' => 'Esta cuenta está suspendida. <br> Ponte en contacto con el administrador del sitio web.'
+                ]);
             }
         }
         else{
-            return redirect('/views/login')->with('error_login','Correo Electronico y/o Contraseña Invalida');
+            return Response::json([
+                'status' => 'error',
+                'message' => 'Direccion de Correo y/o Contraseña Incorrecta.'
+            ]);
         }
     }
 
