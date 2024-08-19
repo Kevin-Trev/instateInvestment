@@ -2,13 +2,13 @@
 
 @section('title', 'perfil')
 @section('style')
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 
 @endsection
 
 @section('body')    
-  <style>
+<style>
     .sidebar {
       height: 100vh;
       background-color: #f8f9fa;
@@ -51,9 +51,9 @@
     
     .suspendida {
     border: 7px solid grey; 
-  }
+    }
 
-  .btn-verificar {
+    .btn-verificar {
     background-color: green;
     color: #FFFFFF;
     padding: 8px 25px;
@@ -84,27 +84,26 @@
 
     .tab-pane {
     display: none; 
-  }
-  .tab-pane.active {
+    }
+    .tab-pane.active {
     display: block; 
-  }
+    }
 
-  .nav-link.active {
+    .nav-link.active {
     font-weight: bold; 
-  }
+    }
 
-  .button-container {
-  display: flex;
-  gap: 10px; 
-  align-items: center; 
-  }
+    .button-container {
+    display: flex;
+    gap: 10px; 
+    align-items: center; 
+    }
 
-  .button-container form {
-  margin-bottom: 0; 
-  }
-  </style>
-  
-</head>
+    .button-container form {
+    margin-bottom: 0; 
+    }
+</style>
+
 <body>
   <div class="container-fluid">
     <div class="row">
@@ -251,14 +250,60 @@
         </div>
         <!-- LISTA DE ESTADISTICAS-->
         <div class="property-list" id="pl3">
+          <!-- INTERACCIONES TOTALES DE LA PAGINA -->
+          <div style="margin-top: 20px;" class="col-12">
+              <div class="row">
+                <div class="card col-sm-4	col-md-4	col-lg-4">
+                  <label for="telefono" class="form-label">Visitas A Las Publicaciones</label>
+                  <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i>
+                    <span>
+                    {{ $InteraccionesT }}
+                    </span>
+                  </div>
+                </div>
+                <div class="card col-sm-8	col-md-8	col-lg-8">
+                  <canvas id="InteraccionesChart"></canvas>
+                </div>
+              </div>
+          </div>
+
+            <!-- VIZUALZACIONES TOTALES -->
+            <div style="margin-top: 20px;" class="col-12">
+              <div class="row">
+                <div class="card col-sm-4	col-md-4	col-lg-4">
+                  <label for="telefono" class="form-label">Veces Contactados</label>
+                  <span>{{ $vecescomunicadoT }}</span>
+                </div>
+                <div class="card col-sm-8	col-md-8	col-lg-8">
+                  <canvas id="comunicacionesChart"></canvas>
+                </div>
+              </div>
+            </div>
+            <!--PROPIEDADES VERIFICADAS TOTALES -->
+            <div style="margin-top: 20px;" class="col-12">
+              <div class="row">
+                <div class="card col-sm-4	col-md-4	col-lg-4">
+                  <h4>Verificaciones:</h4>
+                  <p> Propiedades Verificadas: {{ $propiedadesVT }}</p>
+                  <p> Propiedades No Verificadas:{{ $propiedadesNVT }}</p>
+                </div>
+                <div class="card col-sm-8	col-md-8	col-lg-8">
+                  <canvas id="verificadas-chart"></canvas>
+                </div>
+              </div>
+            </div> 
+
+          <!--PRECIO PROMEDIO DE PROPIEDADES EN UNA CIUDAD ESPECIFICA  -->
           <div style="margin-top: 20px;" class="col-12">
             <div class="row">
 
               <div class="card col-sm-4	col-md-4	col-lg-4">
-                <form id="form-filtrar-ciudad" method="GET">
+                <H3 class="mx-2 my-2">Buscar precio promedio de propiedades por ciudad</H3>
+                <p class="opacity-50">Ejemplo: (Torreon, Monterrey, etc.)</p>
+                <form class="mx-2 my-2" id="form-filtrar-ciudad" method="GET">
                   <label for="ciudad">Ciudad:</label>
                   <input type="text" id="ciudad" name="ciudad" required>
-                  <button type="submit" class="btn btn-primary">Buscar</button>
+                  <button type="submit" class="btn btn-primary mt-2">Buscar</button>
                 </form>
               </div>
 
@@ -268,15 +313,17 @@
 
             </div>
           </div>
-
+          <!--PRECIO PROMEDIO DE PROPIEDADES EN UN ESTADO ESPECIFICA  -->
           <div style="margin-top: 20px;" class="col-12">
             <div class="row">
 
               <div class="card col-sm-4	col-md-4	col-lg-4">
-                <form id="form-filtrar-estado" method="GET">
+              <H3 class="mx-2 my-2">Buscar promedio de propiedades por estado</H3>
+              <p class="opacity-50">Ejemplo: (COA, MEX, etc.)</p>
+                <form class="mx-2 my-2" id="form-filtrar-estado" method="GET">
                   <label for="Estado">Estado:</label>
                   <input type="text" id="estado" name="estado" required maxlength="3">
-                  <button type="submit"class="btn btn-primary">Buscar</button>
+                  <button type="submit"class="btn btn-primary mt-2">Buscar</button>
                 </form>
               </div>
               
@@ -286,6 +333,8 @@
 
             </div>
           </div>
+
+
         </div>
 
 
@@ -352,8 +401,7 @@
 @section('js')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
       const publicacionesTab = document.getElementById('publicaciones-tab');
@@ -493,6 +541,62 @@
 </script>
 
 <script>
+  const InteraccionesTotales = [{{ $InteraccionesT }}];
+  const ComunicacionesTotales = [{{ $vecescomunicadoT }}];
+  const verificadasData = [{{ $propiedadesVT }}, {{ $propiedadesNVT }}];
+  // GRAFICO DE VIZUALIZACIONES
+  new Chart(document.getElementById('InteraccionesChart'), {
+        type: 'bar',
+        data: {
+          labels: ['Interacciones'],
+          datasets: [{
+            label: 'Interacciones Totales',
+            data: InteraccionesTotales,
+            backgroundColor: 'rgba(0, 71, 255,0.7)',
+            borderColor: 'rgb(0, 70, 200)',
+            borderWidth: 1,
+            fill: false
+          }]
+        }
+      });
+
+      new Chart(document.getElementById('comunicacionesChart'), {
+        type: 'bar',
+        data: {
+          labels: ['Comunicaciones'],
+          datasets: [{
+            label: 'Comunicaciones Totales',
+            data: ComunicacionesTotales,
+            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+            borderColor: 'rgba(153, 102, 255, 1)',
+            borderWidth: 1
+          }]
+        }
+      });
+
+      new Chart(document.getElementById('verificadas-chart'), {
+        type: 'pie',
+        data: {
+          labels: ['Verificadas','No Verificadas'],
+          datasets: [{
+            label: 'Propiedades Verificadas',
+            data: verificadasData,
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 206, 86, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+          }]
+        }
+      });
+
+  // GRAFICO DE COMUNICACIONES
+
+
   // GRAFICA DE CIUDADES
   $(document).ready(function() {
       $('#form-filtrar-ciudad').on('submit', function(e) {
@@ -593,8 +697,8 @@
               }
           });
       }
-    });
-  </script>
+  });
+</script>
 
 
 @endsection

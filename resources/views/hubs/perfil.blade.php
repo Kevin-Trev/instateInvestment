@@ -574,7 +574,7 @@
   </script>
 <script>
         // Datos de ejemplo para las estadísticas
-        const VizualizacionesT = [{{ $VizualizacionesT }}];
+      const VizualizacionesT = [{{ $VizualizacionesT }}];
       const comentariosData = [{{ $ComunicacionesT }}];
       const verificadasData = [{{ $verificacionesT }}, {{ $NoverificacionesT }}];
       const totalData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];

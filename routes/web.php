@@ -84,6 +84,7 @@ Route::group(['middleware' => ['auth']], function () {
 // Rutas de vistas a las que solo puede acceder un usuario con una sesión iniciada 
 Route::group(['middleware' => ['auth','admin']], function () {
     Route::get('/perfil-administrador', [usuariosController::class, 'mostrarPerfilAdmin'])->name('admin.perfilAd');
+    Route::get('/admin/infomrmaciongeneral', [AdminController::class, 'informacionPropiedades'])->name('informacionPropiedades');
     Route::get('/views/catalogo-Ad', [viewsController::class, 'catalogoAd'])->name('catalogo.Admin');
 });
 

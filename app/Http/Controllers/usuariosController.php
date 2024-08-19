@@ -252,15 +252,23 @@ class usuariosController extends Controller
     
     public function mostrarPerfilAdmin()
     {
-    
-        $propiedadesNoVerificadas = Propiedades::where('verificacion', false)->get();
 
-        $propiedadesReportadas = Propiedades::whereIn('ID_P', function ($query) {
+        $user = auth()->user();
+        
+        $InteraccionesT = propiedades::all()->sum('Interacciones');
+        $vecescomunicadoT = propiedades::all()->sum('Veces_Comunicado');
+        $propiedadesVT = propiedades::where('Verificacion', '=', 1) ->count('Verificacion');
+        $propiedadesNVT = propiedades::where('Verificacion', '=', 0) ->count('Verificacion');
+        $ReportesT = reportes::all()->count();
+        $propiedadesNoVerificadas = propiedades::where('verificacion', false)->get();
+
+        $propiedadesReportadas = propiedades::whereIn('ID_P', function ($query) {
             $query->select('Propiedad_id')
                   ->from('reportes');
         })->distinct()->get();
 
-        return view('admin.perfilAd',compact('propiedadesReportadas'), ['propiedades' => $propiedadesNoVerificadas]);
+        return view('admin.perfilAd',compact('propiedadesReportadas','ReportesT','InteraccionesT','vecescomunicadoT','propiedadesVT','propiedadesNVT'),
+         ['propiedades' => $propiedadesNoVerificadas]);
 
     }
 }
