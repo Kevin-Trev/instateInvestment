@@ -4,8 +4,6 @@
 
 @section('style')
     <style>
-
-
         .container {
         width: 500px;
         margin: 100px auto;
@@ -87,7 +85,6 @@
         .errorInput{
             border: 1px solid red;
             background: #f6dee0;
-
         }
 
         .errorVerif{

@@ -113,7 +113,7 @@
                 <label for="inputContraseña">Contraseña</label>
                 <input type="password" class="form-control" placeholder= "Ingresa tu contraseña" id="inputContraseña" name="password">
             </div>
-            <p class="error">Introduce los datos necesarios</p>
+            <p class="error">Introduce los datos requeridos</p>
             <button type="submit" class="bt-blue">Ingresar</button>
             <div class="footer">
                 <a href="{{route('registro')}}">Registrate</a>
