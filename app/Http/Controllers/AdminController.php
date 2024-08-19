@@ -20,8 +20,19 @@ use Carbon\Carbon;
 
 class AdminController extends Controller
 {
-    public function informacionUsuario($id) {
-        $propiesporciudad = propiedades::where('users_Id', '=', $id)
-        ->where('ciudad');
+    public function obtenerDatosPorCiudad(Request $request)
+    {
+        $ciudad = $request->input('ciudad');
+        $propiedades = propiedades::where('Ciudad', 'LIKE', '%' . $ciudad . '%')->get();
+        $promedioPrecio = $propiedades->avg('Precio');
+        return response()->json(['promedioPrecio' => $promedioPrecio,'cantidadPropiedades' => $propiedades->count(),]);
+    }
+
+    public function obtenerDatosPorEstado(Request $request)
+    {
+        $estado = $request->input('estado');
+        $propiedades = propiedades::where('Estado', 'LIKE', '%' . $estado . '%')->get();
+        $promedioPrecio = $propiedades->avg('Precio');
+        return response()->json(['promedioPrecioE' => $promedioPrecio,'cantidadPropiedadesE' => $propiedades->count(),]);
     }
 }

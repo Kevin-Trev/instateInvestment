@@ -83,24 +83,24 @@
     }
 
     .tab-pane {
-    display: none; /* Oculta todas las pestañas por defecto */
+    display: none; 
   }
   .tab-pane.active {
-    display: block; /* Muestra solo la pestaña activa */
+    display: block; 
   }
 
   .nav-link.active {
-    font-weight: bold; /* Destaca la pestaña activa */
+    font-weight: bold; 
   }
 
   .button-container {
   display: flex;
-  gap: 10px; /* Espacio entre los botones, ajusta según sea necesario */
-  align-items: center; /* Alinea verticalmente los botones en el centro */
+  gap: 10px; 
+  align-items: center; 
   }
 
   .button-container form {
-  margin-bottom: 0; /* Elimina margen inferior en formularios si es necesario */
+  margin-bottom: 0; 
   }
   </style>
   
@@ -251,7 +251,41 @@
         </div>
         <!-- LISTA DE ESTADISTICAS-->
         <div class="property-list" id="pl3">
+          <div style="margin-top: 20px;" class="col-12">
+            <div class="row">
 
+              <div class="card col-sm-4	col-md-4	col-lg-4">
+                <form id="form-filtrar-ciudad" method="GET">
+                  <label for="ciudad">Ciudad:</label>
+                  <input type="text" id="ciudad" name="ciudad" required>
+                  <button type="submit" class="btn btn-primary">Buscar</button>
+                </form>
+              </div>
+
+              <div class="card col-sm-8	col-md-8	col-lg-8">
+                <canvas id="CprecioPromedioChart"></canvas>
+              </div>
+
+            </div>
+          </div>
+
+          <div style="margin-top: 20px;" class="col-12">
+            <div class="row">
+
+              <div class="card col-sm-4	col-md-4	col-lg-4">
+                <form id="form-filtrar-estado" method="GET">
+                  <label for="Estado">Estado:</label>
+                  <input type="text" id="estado" name="estado" required maxlength="3">
+                  <button type="submit"class="btn btn-primary">Buscar</button>
+                </form>
+              </div>
+              
+              <div class="card col-sm-8	col-md-8	col-lg-8">
+                <canvas id="EprecioPromedioChart"></canvas>
+              </div>
+
+            </div>
+          </div>
         </div>
 
 
@@ -319,6 +353,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
       const publicacionesTab = document.getElementById('publicaciones-tab');
@@ -422,7 +457,7 @@
 
       document.getElementById('total').innerText = total.toFixed(2);
     }
-  </script>
+</script>
 <script>
       function confirmarSuspension(ID_P) {
         if (confirm('¿Estás seguro de que deseas suspender esta propiedad?')) {
@@ -456,4 +491,110 @@
 
 
 </script>
+
+<script>
+  // GRAFICA DE CIUDADES
+  $(document).ready(function() {
+      $('#form-filtrar-ciudad').on('submit', function(e) {
+          e.preventDefault();
+
+          var ciudad = $('#ciudad').val();
+
+          $.ajax({
+              url: '{{ route("obtenerDatosPorCiudad") }}',
+              type: 'GET',
+              data: { ciudad: ciudad },
+              success: function(data) {
+                  actualizarGraficoCiudad(data.promedioPrecio, data.cantidadPropiedades);
+              },
+              error: function(xhr, status, error) {
+                  console.error('Error en la solicitud AJAX:', error);
+              }
+          });
+      });
+
+      function actualizarGraficoCiudad(promedioPrecio, cantidadPropiedades) {
+          var ctx = document.getElementById('CprecioPromedioChart').getContext('2d');
+          var chart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                  labels: ['Promedio de Precio'],
+                  datasets: [{
+                      label: 'Promedio del Precio en ' + $('#ciudad').val(),
+                      data: [promedioPrecio],
+                      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                      borderColor: 'rgba(54, 162, 235, 1)',
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  scales: {
+                      y: {
+                          beginAtZero: true
+                      }
+                  },
+                  plugins: {
+                      title: {
+                          display: true,
+                          text: 'Promedio de Precio de Propiedades en ' + $('#ciudad').val() + ' (' + cantidadPropiedades + ' propiedades)'
+                      }
+                  }
+              }
+          });
+      }
+  });
+
+// GRAFICA DE ESTADOS
+  $(document).ready(function() {
+      $('#form-filtrar-estado').on('submit', function(e) {
+          e.preventDefault();
+
+          var estado = $('#estado').val();
+
+          $.ajax({
+              url: '{{ route("obtenerDatosPorEstado") }}',
+              type: 'GET',
+              data: { estado: estado },
+              success: function(data) {
+                  actualizarGraficoEstado(data.promedioPrecioE, data.cantidadPropiedadesE);
+              },
+              error: function(xhr, status, error) {
+                  console.error('Error en la solicitud AJAX:', error);
+              }
+          });
+      });
+
+      function actualizarGraficoEstado(promedioPrecio, cantidadPropiedades) {
+          var ctx = document.getElementById('EprecioPromedioChart').getContext('2d');
+          var chart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                  labels: ['Promedio de Precio'],
+                  datasets: [{
+                      label: 'Promedio del Precio en ' + $('#estado').val(),
+                      data: [promedioPrecio],
+                      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                      borderColor: 'rgba(54, 162, 235, 1)',
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  scales: {
+                      y: {
+                          beginAtZero: true
+                      }
+                  },
+                  plugins: {
+                      title: {
+                          display: true,
+                          text: 'Promedio de Precio de Propiedades en ' + $('#estado').val() + ' (' + cantidadPropiedades + ' propiedades)'
+                      }
+                  }
+              }
+          });
+      }
+    });
+  </script>
+
+
 @endsection

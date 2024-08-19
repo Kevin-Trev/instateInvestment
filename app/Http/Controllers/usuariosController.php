@@ -54,13 +54,7 @@ class usuariosController extends Controller
                 ->where('Verificacion', '=', 0)
                 ->count('Verificacion');
 
-<<<<<<< Updated upstream
-                return view('hubs.perfil', compact('propiedades','VizualizacionesT','verificacionesT','NoverificacionesT'));    
-=======
-
-
                 return view('hubs.perfil', compact('propiedades','VizualizacionesT','verificacionesT','NoverificacionesT', 'verificacionesT','ComunicacionesT'));    
->>>>>>> Stashed changes
             }
         }
     }

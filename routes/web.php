@@ -12,6 +12,7 @@ use App\Http\Controllers\perfilController;
 use App\Http\Controllers\correoController;
 use App\Http\Controllers\notificacionController;
 use App\Http\Controllers\comentarioController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,5 +124,10 @@ Route::post('/propiedad/verificar/detalles/{ID_P}', [propiedadController::class,
 Route::delete('/propiedad/eliminar/detalles/{ID_P}', [propiedadController::class, 'eliminarDetalles'])->name('propiedad.eliminarDetalles');
 
 Route::post('/propiedad/supender/{ID_P}', [propiedadController::class, 'suspender'])->name('propiedad.suspender');
+
+
+// ESTADISTICAS PARA LOS ADMINISTRADORES
+Route::get('/admin/obtenerDatosPorCiudad', [AdminController::class, 'obtenerDatosPorCiudad'])->name('obtenerDatosPorCiudad');
+Route::get('/admin/obtenerDatosPorEstado', [AdminController::class, 'obtenerDatosPorEstado'])->name('obtenerDatosPorEstado');
 
 
