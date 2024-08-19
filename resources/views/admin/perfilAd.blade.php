@@ -51,9 +51,9 @@
     
     .suspendida {
     border: 7px solid grey; 
-}
+  }
 
-.btn-verificar {
+  .btn-verificar {
     background-color: green;
     color: #FFFFFF;
     padding: 8px 25px;
@@ -84,25 +84,24 @@
 
     .tab-pane {
     display: none; /* Oculta todas las pestañas por defecto */
-}
-
-.tab-pane.active {
+  }
+  .tab-pane.active {
     display: block; /* Muestra solo la pestaña activa */
-}
+  }
 
-.nav-link.active {
+  .nav-link.active {
     font-weight: bold; /* Destaca la pestaña activa */
-}
+  }
 
-.button-container {
+  .button-container {
   display: flex;
   gap: 10px; /* Espacio entre los botones, ajusta según sea necesario */
   align-items: center; /* Alinea verticalmente los botones en el centro */
-}
+  }
 
-.button-container form {
+  .button-container form {
   margin-bottom: 0; /* Elimina margen inferior en formularios si es necesario */
-}
+  }
   </style>
   
 </head>
@@ -157,16 +156,19 @@
         <!-- MENU DE ACCIONES -->
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link active" id="publicacionesV-tab" aria-current="page">Publicaciones No verificadas</a>
+            <a class="nav-link active" id="publicaciones-tab" aria-current="page">Publicaciones No verificadas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " id="PublicacionesReportadas-tab" aria-current="page">Publicaciones Reportadas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " id="Estadisticas-tab" aria-current="page">ESTADISTICAS</a>
           </li>
         </ul>
-        <h2> Publicaciones no verificadas </h2>
         <div class = "card">
          
-        <!-- LISTA DE PROPIEDADES -->
+        <!-- LISTA DE PROPIEDADES NO VERIFICADAS-->
         <div class="property-list" id="pl">
-          
-          <!-- PROPIEDADES DE EJEMPLO-->
           @foreach ($propiedades as $propiedad)
           @if ($propiedad->Disponibilidad)
             <div id="publicacion-{{ $propiedad->ID_P }}" class="publicacion">
@@ -190,11 +192,6 @@
                   </div>
                   <div class="col-md-2">
                     <button class="bt-blue"><a href="/get/property/admin/{{$propiedad->ID_P}}" style="margin-bottom: 10px; color:white;">Revisar</a></button>
-                    <form action="{{ route('propiedad.eliminar', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn-eliminar"  >Eliminar</button>
-                    </form>
                     <!-- Formulario para Verificar -->
                     @if(isset($propiedad->ID_P))
                     <form action="{{ route('propiedad.verificar', ['ID_P' => $propiedad->ID_P]) }}" method="POST">
@@ -214,7 +211,48 @@
             </div>
             @endif
             @endforeach
+        </div>
 
+        <!-- LISTA DE PROPIEDADES REPORTADAS-->
+        <div class="property-list" id="pl2">
+        @foreach ($propiedadesReportadas as $propiedad)
+          @if ($propiedad->Disponibilidad)
+            <div id="publicacion-{{ $propiedad->ID_P }}" class="publicacion">
+              <div class="card" style="margin-top: 5px;">
+                <div class="row">
+                  <div class="image-card col-md-3">
+                  @if ($propiedad->main_image)
+                  <img src="{{asset('ImagesPublished/'.$propiedad->main_image->src_image)}}">
+                  @else
+                  <img src="{{asset('Imagenes/Fondo-seccion1.png')}}" alt="...">
+                  @endif
+                  </div>
+                  <div class="col-md-7">
+                  <h3>{{$propiedad->Titulo}}</h3>
+                  <p>$ {{$propiedad->Precio}}</p>
+                  <div class="property-details">
+                    <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i><span>{{$propiedad->Recamaras}} Recámaras</span></div>
+                    <div class="property-detail"><i class="fas fa-bath property-detail-icon"></i><span>{{$propiedad->Baños}} Baños</span></div>
+                    <div class="property-detail"><i class="fas fa-ruler-combined property-detail-icon"></i><span>{{$propiedad->Area}} M² construidos</span></div>
+                  </div>
+                  </div>
+                  <div class="col-md-2">
+                    <button class="bt-blue"><a href="/get/property/admin/{{$propiedad->ID_P}}" style="margin-bottom: 10px; color:white;">Revisar</a></button>
+                    <form id="suspender-form-{{ $propiedad->ID_P }}" action="{{ route('propiedad.suspender', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirmarSuspension({{ $propiedad->ID_P }});">
+                    @csrf
+                    <button style="margin-bottom: 10px;" class="btn-suspender">Suspender</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endif
+            @endforeach
+        </div>
+        <!-- LISTA DE ESTADISTICAS-->
+        <div class="property-list" id="pl3">
+
+        </div>
 
 
   <!-- MODAL DE EDITAR DATOS USUARIO-->
@@ -282,21 +320,13 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-
-
-
-
-
-
-
-
-
-/*--- ---*/
     document.addEventListener('DOMContentLoaded', function() {
-      const publicacionesTab = document.getElementById('publicacionesV-tab');
-      const estadisticasTab = document.getElementById('publicacionesS-tab');
+      const publicacionesTab = document.getElementById('publicaciones-tab');
+      const publicacionesReportadasTab = document.getElementById('PublicacionesReportadas-tab');
+      const estadisticasTab = document.getElementById('Estadisticas-tab');
       const publicacionesSection = document.getElementById('pl');
-      const estadisticasSection = document.getElementById('pl2');
+      const publicacionesReportadasSection = document.getElementById('pl2');
+      const estadisticasSection = document.getElementById('pl3');
 
       // cambiar y mostrar previo foto de perfil //
       document.getElementById('ee').addEventListener('click', function() {
@@ -315,21 +345,42 @@
 
       // INICIAR EN PUBLICACIONES
       publicacionesSection.classList.remove('hidden');
+      publicacionesReportadasSection.classList.add('hidden');
       estadisticasSection.classList.add('hidden');
 
       // VISTA PUBLICACIONES
       publicacionesTab.addEventListener('click', function() {
+
         publicacionesSection.classList.remove('hidden');
+        publicacionesReportadasSection.classList.add('hidden');
         estadisticasSection.classList.add('hidden');
+
         publicacionesTab.classList.add('active');
+        publicacionesReportadasTab.classList.remove('active');
+        estadisticasTab.classList.remove('active');
+      });
+
+      // VISTA PUBLICACIONES REPORTADAS
+      publicacionesReportadasTab.addEventListener('click', function() {
+
+        publicacionesSection.classList.add('hidden');
+        publicacionesReportadasSection.classList.remove('hidden');
+        estadisticasSection.classList.add('hidden');
+
+        publicacionesTab.classList.remove('active');
+        publicacionesReportadasTab.classList.add('active');
         estadisticasTab.classList.remove('active');
       });
 
       // VISTA ESTADISTICAS
       estadisticasTab.addEventListener('click', function() {
+
         publicacionesSection.classList.add('hidden');
+        publicacionesReportadasSection.classList.add('hidden');
         estadisticasSection.classList.remove('hidden');
+
         publicacionesTab.classList.remove('active');
+        publicacionesReportadasTab.classList.remove('active');
         estadisticasTab.classList.add('active');
       });
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Models\User;
 use App\Models\propiedades;
+use App\Models\reportes;
 use App\Models\imagenes_propiedad;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -45,6 +46,7 @@ class usuariosController extends Controller
                 });
 
                 $VizualizacionesT = propiedades::where('users_Id', '=', $id)->sum('Interacciones');
+                $ComunicacionesT = propiedades::where('users_Id', '=', $id)->sum('Veces_Comunicado');
                 $verificacionesT = Propiedades::where('users_Id', '=', $id)
                 ->where('Verificacion', '=', 1)
                 ->count('Verificacion');
@@ -52,7 +54,13 @@ class usuariosController extends Controller
                 ->where('Verificacion', '=', 0)
                 ->count('Verificacion');
 
+<<<<<<< Updated upstream
                 return view('hubs.perfil', compact('propiedades','VizualizacionesT','verificacionesT','NoverificacionesT'));    
+=======
+
+
+                return view('hubs.perfil', compact('propiedades','VizualizacionesT','verificacionesT','NoverificacionesT', 'verificacionesT','ComunicacionesT'));    
+>>>>>>> Stashed changes
             }
         }
     }
@@ -253,7 +261,12 @@ class usuariosController extends Controller
     
         $propiedadesNoVerificadas = Propiedades::where('verificacion', false)->get();
 
-        return view('admin.perfilAd', ['propiedades' => $propiedadesNoVerificadas]);
+        $propiedadesReportadas = Propiedades::whereIn('ID_P', function ($query) {
+            $query->select('Propiedad_id')
+                  ->from('reportes');
+        })->distinct()->get();
+
+        return view('admin.perfilAd',compact('propiedadesReportadas'), ['propiedades' => $propiedadesNoVerificadas]);
 
     }
 }

@@ -232,9 +232,9 @@
         <!-- ESTADISTICAS -->
         <div class="property-list hidden" id="pl2">  
           <div id="estadisticas-content">
-            <div style="margin-top: 10px;" class="col-12">
+            <div style="margin-top: 20px;" class="col-12">
               <div class="row">
-                <div class="card col-sm-4	col-md-2	col-lg-2">
+                <div class="card col-sm-4	col-md-4	col-lg-4">
                   <label for="telefono" class="form-label">Visitas A tus Publicaciones</label>
                   <div class="property-detail"><i class="fas fa-bed property-detail-icon"></i>
                     <span>
@@ -242,38 +242,33 @@
                     </span>
                   </div>
                 </div>
-                <div class="card col-sm-8	col-md-4	col-lg-4">
+                <div class="card col-sm-8	col-md-8	col-lg-8">
                   <canvas id="ventas-chart"></canvas>
                 </div>
+              </div>
+            </div>
 
-                <div class="card col-sm-4	col-md-2	col-lg-2">
-                  <h4>Interacciones:</h4>
-                  <p>Comentarios totales: X</p>
+            <div style="margin-top: 20px;" class="col-12">
+              <div class="row">
+                <div class="card col-sm-4	col-md-4	col-lg-4">
+                  <label for="telefono" class="form-label">Veces Contactado</label>
+                  <span>{{ $ComunicacionesT }}</span>
                 </div>
-                <div class="card col-sm-8	col-md-4	col-lg-4">
+                <div class="card col-sm-8	col-md-8	col-lg-8">
                   <canvas id="comentarios-chart"></canvas>
                 </div>
               </div>
             </div>
 
-            <div style="margin-top: 10px;" class="col-12">
+            <div style="margin-top: 20px;" class="col-12">
               <div class="row">
-                <div class="card col-sm-4	col-md-2	col-lg-2">
+                <div class="card col-sm-4	col-md-4	col-lg-4">
                   <h4>Verificaciones:</h4>
                   <p> Propiedades Verificadas: {{ $verificacionesT }}</p>
                   <p> Propiedades No Verificadas:{{ $verificacionesT }}</p>
                 </div>
-                <div class="card col-sm-8	col-md-4	col-lg-4">
+                <div class="card col-sm-8	col-md-8	col-lg-8">
                   <canvas id="verificadas-chart"></canvas>
-                </div>
-
-                <div class="card col-sm-4	col-md-2	col-lg-2">
-                  <h4>Reportes:</h4>
-                  <p>Reportes totales: X</p>
-                  <p>Último reporte: 2023-08-01</p>
-                </div>
-                <div class="card col-sm-8	col-md-4	col-lg-4">
-                  <canvas id="reportes-chart"></canvas>
                 </div>
               </div>
             </div> 
@@ -580,7 +575,7 @@
 <script>
         // Datos de ejemplo para las estadísticas
         const VizualizacionesT = [{{ $VizualizacionesT }}];
-      const comentariosData = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
+      const comentariosData = [{{ $ComunicacionesT }}];
       const verificadasData = [{{ $verificacionesT }}, {{ $NoverificacionesT }}];
       const totalData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
       const reportesData = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30];
@@ -589,7 +584,7 @@
       new Chart(document.getElementById('ventas-chart'), {
         type: 'bar',
         data: {
-          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+          labels: ['Ene', 'Feb', 'Mar'],
           datasets: [{
             label: 'Ventas Totales',
             data: VizualizacionesT,
@@ -604,7 +599,7 @@
       new Chart(document.getElementById('comentarios-chart'), {
         type: 'bar',
         data: {
-          labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+          labels: ['Ene', 'Feb', 'Mar'],
           datasets: [{
             label: 'Comentarios',
             data: comentariosData,
