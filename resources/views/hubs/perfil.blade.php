@@ -269,7 +269,7 @@
                 <div class="card col-sm-4	col-md-4	col-lg-4">
                   <h4>Verificaciones:</h4>
                   <p> Propiedades Verificadas: {{ $verificacionesT }}</p>
-                  <p> Propiedades No Verificadas:{{ $verificacionesT }}</p>
+                  <p> Propiedades No Verificadas:{{ $NoverificacionesT }}</p>
                 </div>
                 <div class="card col-sm-8	col-md-8	col-lg-8">
                   <canvas id="verificadas-chart"></canvas>
