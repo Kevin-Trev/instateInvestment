@@ -167,7 +167,7 @@ class PropiedadController extends Controller
             $propiedad->users_Id = Auth::user()->id;
             $propiedad->Tipo_Propiedad_id = $request->input('Tipo_Propiedad_id');
             $propiedad->Interacciones = 0;
-            $propiedad->Veces_contactado = 0;
+            $propiedad->Veces_Comunicado = 0;
 
             if($propiedad->save()){
                 foreach($servicios as $servicio){
@@ -189,7 +189,7 @@ class PropiedadController extends Controller
             }  
 
             DB::Commit();
-            return response()->json(['user' => $usuario]);
+            return response()->json(['success' => true, 'user' => $usuario]);
         }
         catch(\Exception $e){
             DB::rollback();
@@ -286,6 +286,17 @@ public function suspender($ID_P)
     }
 
     return response()->json(['success' => false, 'message' => 'Propiedad no encontrada.']);
+}
+
+
+public function incrementarVecesComunicado($id) {
+    try {
+        $propiedad = propiedades::findOrFail($id);
+        $propiedad->increment('Veces_Comunicado'); // Incrementa el campo Veces_Comunicado en 1
+        return response()->json(['success' => true]);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => $e->getMessage()]);
+    }
 }
 
 

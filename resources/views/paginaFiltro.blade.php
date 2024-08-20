@@ -1267,7 +1267,7 @@
 
 {{-- Fila de filtros --}}
 
-<div id="filtroBusqueda">
+<!-- <div class="col-12" id="filtroBusqueda">
   <div class="form-group">
     <select class="form-select" id="transaccion">
       <option selected value="Vendible">Venta</option>
@@ -1288,7 +1288,7 @@
   <div class="form-group">
     <button class="btn-blue" type="submit" id="buscar">Buscar</button>
   </div>
-</div>
+</div> -->
 
 <br>
 

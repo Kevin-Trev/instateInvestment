@@ -121,15 +121,15 @@
           <li class="nav-item">
             <a class="nav-link" id="publicacionesnv-tab" aria-current="page">Publicaciones no verificadas</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" id="publicacionesr-tab" aria-current="page">Publicaciones reportadas</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" id="estadisticas-tab">Estadísticas</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" id="infoSeguridad-tab">Informacion de Seguridad</a>
-          </li>
+          </li> -->
         </ul>
         <div class = "card">
           <!-- BTN DE NUEVA PROPIEDAD -->
@@ -243,7 +243,7 @@
                   </div>
                 </div>
                 <div class="card col-sm-8	col-md-8	col-lg-8">
-                  <canvas id="ventas-chart"></canvas>
+                  <canvas id="vizualizaciones-chart"></canvas>
                 </div>
               </div>
             </div>
@@ -255,7 +255,7 @@
                   <span>{{ $ComunicacionesT }}</span>
                 </div>
                 <div class="card col-sm-8	col-md-8	col-lg-8">
-                  <canvas id="comentarios-chart"></canvas>
+                  <canvas id="comunicaciones-chart"></canvas>
                 </div>
               </div>
             </div>
@@ -577,16 +577,13 @@
       const VizualizacionesT = [{{ $VizualizacionesT }}];
       const comentariosData = [{{ $ComunicacionesT }}];
       const verificadasData = [{{ $verificacionesT }}, {{ $NoverificacionesT }}];
-      const totalData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-      const reportesData = [3, 6, 9, 12, 15, 18, 21, 24, 27, 30];
 
-      // Crear gráficos con Chart.js
-      new Chart(document.getElementById('ventas-chart'), {
+      new Chart(document.getElementById('vizualizaciones-chart'), {
         type: 'bar',
         data: {
-          labels: ['Ene', 'Feb', 'Mar'],
+          labels: ['Vizualizaciones'],
           datasets: [{
-            label: 'Ventas Totales',
+            label: 'Vizualizaciones Totales',
             data: VizualizacionesT,
             backgroundColor: 'rgba(0, 71, 255,0.7)',
             borderColor: 'rgb(0, 70, 200)',
@@ -596,12 +593,12 @@
         }
       });
 
-      new Chart(document.getElementById('comentarios-chart'), {
+      new Chart(document.getElementById('comunicaciones-chart'), {
         type: 'bar',
         data: {
-          labels: ['Ene', 'Feb', 'Mar'],
+          labels: ['Comunicaciones'],
           datasets: [{
-            label: 'Comentarios',
+            label: 'Comunicaciones',
             data: comentariosData,
             backgroundColor: 'rgba(153, 102, 255, 0.2)',
             borderColor: 'rgba(153, 102, 255, 1)',
@@ -618,12 +615,12 @@
             label: 'Propiedades Verificadas',
             data: verificadasData,
             backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 206, 86, 0.2)'
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(255, 99, 132, 0.2)'
             ],
             borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(255, 206, 86, 1)'
+              'rgba(255, 206, 86, 1)',
+              'rgba(255, 99, 132, 1)'
             ],
             borderWidth: 1
           }]

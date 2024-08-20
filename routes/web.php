@@ -130,5 +130,5 @@ Route::post('/propiedad/supender/{ID_P}', [propiedadController::class, 'suspende
 // ESTADISTICAS PARA LOS ADMINISTRADORES
 Route::get('/admin/obtenerDatosPorCiudad', [AdminController::class, 'obtenerDatosPorCiudad'])->name('obtenerDatosPorCiudad');
 Route::get('/admin/obtenerDatosPorEstado', [AdminController::class, 'obtenerDatosPorEstado'])->name('obtenerDatosPorEstado');
-
+Route::post('/incrementar-veces-comunicado/{id}', [PropiedadController::class, 'incrementarVecesComunicado'])->name('incrementar.vecesComunicado');
 

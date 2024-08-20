@@ -264,46 +264,46 @@
 
     #Image {
   display: none;
-}
+   }
 
-.contenedorDatos{
+    .contenedorDatos{
     margin-left: 10px;
-}
+    }
 
-#Precio{
+    #Precio{
     width: 300px;
     -moz-appearance: none;
-}
+     }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
-}
+    }
 
 
-.radio-group{
+    .radio-group{
     display: inline-block;
     border: 1px solid #007bff;
     border-radius: 8px;
     padding: 15px;
     margin-left: 90px;
     text-align: center;
-}
+    }
 
-.radio-group .btn{
+    .radio-group .btn{
     margin-left: 20px;
-}
+    }
 
-/* Estilo para el label personalizado */
-.custom-file-label {
-  background-color: #007bff;
-  padding: 5px 10px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  color: #FFFFFF;
-}
+    /* Estilo para el label personalizado */
+    .custom-file-label {
+    background-color: #007bff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    color: #FFFFFF;
+    }
 
     #Area-group{
         transform: translateY(12px);
@@ -1773,7 +1773,7 @@ input[type="number"]::-webkit-outer-spin-button {
                     <div class="radio-group">
                         <label>¿Propiedad en venta?</label>
                         <br>
-                        <input type="radio" name="Vendible" value="1" id="P1" class="btn-check" checked>
+                        <input type="radio" name="Vendible" value="1" id="P1" class="btn-check">
                         <label class="btn" for="P1">Si</label>
                         <input type="radio" name="Vendible" value="0" id="P2" class="btn-check">
                         <label class="btn" for="P2">No</label>
@@ -1781,7 +1781,7 @@ input[type="number"]::-webkit-outer-spin-button {
                     <div class="radio-group">
                         <label>¿Propiedad en renta?</label>
                         <br>
-                        <input type="radio" name="Rentable" value="1" id="P3" class="btn-check" checked>
+                        <input type="radio" name="Rentable" value="1" id="P3" class="btn-check">
                         <label class="btn" for="P3">Si</label>
                         <input type="radio" name="Rentable" value="0" id="P4" class="btn-check">
                         <label class="btn" for="P4">No</label>
@@ -1867,6 +1867,7 @@ input[type="number"]::-webkit-outer-spin-button {
                 processData: false,
                 contentType: false,
                 success: function(response){
+                    console.log();
                     window.location.href = "/views/hubs/perfil/" + response.user;
                 },
                 error: function(error){

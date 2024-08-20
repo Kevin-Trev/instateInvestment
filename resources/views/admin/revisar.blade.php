@@ -2111,7 +2111,7 @@
         </div>
     </div>
 
-    <div id="comentariosContainer">
+    <!-- <div id="comentariosContainer">
         <h3>Comentarios</h3>
         @if (Session::has('comentado'))
         <div class="alert alert-success text-center" role="alert">{{ Session::get('comentado') }}</div>
@@ -2156,7 +2156,7 @@
             <button class="btn btn-primary mx-auto"><a class="nav-link" href="{{route('login')}}">Iniciar Sesión</a></button>
         </div>
         @endguest
-    </div>
+    </div> -->
 </div>
 
 

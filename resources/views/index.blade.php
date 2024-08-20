@@ -139,13 +139,13 @@
             <div class="circle-container">
                 <img src="/Imagenes/dollar-currency-symbol.png">
             </div>
-            <p>Conoce el potencial de la propiedad de tu agrado</p>
+            <p>Conoce detalles sobre la propiedad</p>
         </div>
         <div class="steps-container">
             <div class="circle-container">
                 <img src="/Imagenes/clipboard.png" >
             </div>
-            <p>Comienza a planear tu próximo desarrollo inmobiliario</p>
+            <p>Comunicate con los propietarios </p>
         </div>
     </div>
 
@@ -210,7 +210,7 @@
         <h1>$57 USD</h1>
         <p class="pe">Incluye:</p>
         <ul>
-            <li><span>&#10003;</span>Posibilidades de uso de suelo de un terreno específico de acuerdo a la reglamentación del IMPLAN correspondiente.</li>
+            <li><span>&#10003;</span>a</li>
             <br>
             <li><span>&#10003;</span>Hasta 4 opciones de desarrollo con mayor rentabilidad (Si, te digo si te conviene desarrollar una casa, una plaza comercial o una torre de departamentos, por ejemplo).</li>
             <br>

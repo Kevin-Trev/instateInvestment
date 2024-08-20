@@ -2,7 +2,7 @@
 
 @section('title', 'perfil')
 @section('style')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 
 @endsection
@@ -157,9 +157,9 @@
           <li class="nav-item">
             <a class="nav-link active" id="publicaciones-tab" aria-current="page">Publicaciones No verificadas</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link " id="PublicacionesReportadas-tab" aria-current="page">Publicaciones Reportadas</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link " id="Estadisticas-tab" aria-current="page">ESTADISTICAS</a>
           </li>
@@ -213,7 +213,7 @@
         </div>
 
         <!-- LISTA DE PROPIEDADES REPORTADAS-->
-        <div class="property-list" id="pl2">
+        <!-- <div class="property-list" id="pl2">
         @foreach ($propiedadesReportadas as $propiedad)
           @if ($propiedad->Disponibilidad)
             <div id="publicacion-{{ $propiedad->ID_P }}" class="publicacion">
@@ -247,7 +247,7 @@
             </div>
             @endif
             @endforeach
-        </div>
+        </div> -->
         <!-- LISTA DE ESTADISTICAS-->
         <div class="property-list" id="pl3">
           <!-- INTERACCIONES TOTALES DE LA PAGINA -->
@@ -401,14 +401,14 @@
 @section('js')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
       const publicacionesTab = document.getElementById('publicaciones-tab');
-      const publicacionesReportadasTab = document.getElementById('PublicacionesReportadas-tab');
+      // const publicacionesReportadasTab = document.getElementById('PublicacionesReportadas-tab');
       const estadisticasTab = document.getElementById('Estadisticas-tab');
       const publicacionesSection = document.getElementById('pl');
-      const publicacionesReportadasSection = document.getElementById('pl2');
+      // const publicacionesReportadasSection = document.getElementById('pl2');
       const estadisticasSection = document.getElementById('pl3');
 
       // cambiar y mostrar previo foto de perfil //
@@ -428,83 +428,51 @@
 
       // INICIAR EN PUBLICACIONES
       publicacionesSection.classList.remove('hidden');
-      publicacionesReportadasSection.classList.add('hidden');
+      // publicacionesReportadasSection.classList.add('hidden');
       estadisticasSection.classList.add('hidden');
 
       // VISTA PUBLICACIONES
       publicacionesTab.addEventListener('click', function() {
 
         publicacionesSection.classList.remove('hidden');
-        publicacionesReportadasSection.classList.add('hidden');
+        // publicacionesReportadasSection.classList.add('hidden');
         estadisticasSection.classList.add('hidden');
 
         publicacionesTab.classList.add('active');
-        publicacionesReportadasTab.classList.remove('active');
+        // publicacionesReportadasTab.classList.remove('active');
         estadisticasTab.classList.remove('active');
       });
 
-      // VISTA PUBLICACIONES REPORTADAS
-      publicacionesReportadasTab.addEventListener('click', function() {
+      // // VISTA PUBLICACIONES REPORTADAS
+      // publicacionesReportadasTab.addEventListener('click', function() {
 
-        publicacionesSection.classList.add('hidden');
-        publicacionesReportadasSection.classList.remove('hidden');
-        estadisticasSection.classList.add('hidden');
+      //   publicacionesSection.classList.add('hidden');
+      //   // publicacionesReportadasSection.classList.remove('hidden');
+      //   estadisticasSection.classList.add('hidden');
 
-        publicacionesTab.classList.remove('active');
-        publicacionesReportadasTab.classList.add('active');
-        estadisticasTab.classList.remove('active');
-      });
+      //   publicacionesTab.classList.remove('active');
+      //   // publicacionesReportadasTab.classList.add('active');
+      //   estadisticasTab.classList.remove('active');
+      // });
 
       // VISTA ESTADISTICAS
       estadisticasTab.addEventListener('click', function() {
 
         publicacionesSection.classList.add('hidden');
-        publicacionesReportadasSection.classList.add('hidden');
+        // publicacionesReportadasSection.classList.add('hidden');
         estadisticasSection.classList.remove('hidden');
 
         publicacionesTab.classList.remove('active');
-        publicacionesReportadasTab.classList.remove('active');
+        // publicacionesReportadasTab.classList.remove('active');
         estadisticasTab.classList.add('active');
       });
 
-
-      // Mostrar/ocultar inputs de precio al seleccionar/desseleccionar servicios adicionales
-      const services = ['cleaningService', 'mealService', 'transportService'];
-      services.forEach(service => {
-        const checkbox = document.getElementById(service);
-        const priceInput = document.getElementById(service + 'Price');
-        checkbox.addEventListener('change', function() {
-          if (checkbox.checked) {
-            priceInput.classList.remove('hidden');
-          } else {
-            priceInput.classList.add('hidden');
-            priceInput.value = '';
-          }
-        });
-      });
     });
 
     function openModal(propertyId) {
       $('#quoteModal').modal('show');
     }
-    
-    function calculateQuote() {
-      const days = parseInt(document.getElementById('days').value);
-      const cleaningServicePrice = parseInt(document.getElementById('cleaningServicePrice').value) || 0;
-      const mealServicePrice = parseInt(document.getElementById('mealServicePrice').value) || 0;
-      const transportServicePrice = parseInt(document.getElementById('transportServicePrice').value) || 0;
-      const otherCharges = parseInt(document.getElementById('otherCharges').value) || 0;
 
-      const baseRate = 1500; // PRECIO POR DIA
-      let total = days * baseRate;
-
-      total += cleaningServicePrice;
-      total += mealServicePrice;
-      total += transportServicePrice;
-      total += otherCharges;
-
-      document.getElementById('total').innerText = total.toFixed(2);
-    }
 </script>
 <script>
       function confirmarSuspension(ID_P) {
