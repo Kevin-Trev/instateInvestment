@@ -173,11 +173,15 @@
                   </div>
                 </div>
                 <div class="col-md-2">
-                  <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#editPropModal" onclick="datosProp({{$propiedad->ID_P}})">Editar</button>
+                  <!-- <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#editPropModal" onclick="datosProp({{$propiedad->ID_P}})">Editar</button> -->
                   @if ($propiedad->Rentable)
                   <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
                   @endif
-                  <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal">Pausar</button>
+                  <form action="{{ route('propiedad.eliminar', ['ID_P' => $propiedad->ID_P]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta propiedad?');">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn-eliminar"  >Eliminar</button>
+                </form>
                 </div>
               </div>
             </div>
@@ -213,7 +217,7 @@
                 </div>
               </div>
               <div class="col-md-2">
-                  <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#editPropModal" onclick="datosProp({{$propiedad->ID_P}})">Editar</button>
+              <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#editPropModal" onclick="datosProp({{$propiedad->ID_P}})">Editar</button>
                   @if ($propiedad->Rentable)
                   <button style = "margin-bottom: 10px;" class="bt-blue" data-toggle="modal" data-target="#quoteModal" onclick="openModal(${property.id})">Cotizar</button>
                   @endif
@@ -389,57 +393,54 @@
   <!-- MODAL DE EDITAR PROPIEDAD-->
   <div class="modal fade" id="editPropModal" tabindex="-1" role="dialog" aria-labelledby="editPropModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Editar Datos de Propiedad</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Datos de Propiedad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/edit/propiedad" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body text-center">
+                    <div class="row row-cols-4">
+                        <input type="number" id="id_p" name="ID_P" hidden readonly>
+                        <div class="form-group">
+                            <label for="precio">Precio</label>
+                            <input class="form-control" type="number" id="precio" name="Precio" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="calle">Calle</label>
+                            <input class="form-control" type="text" id="calle" name="Calle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="colonia">Colonia</label>
+                            <input class="form-control" type="text" id="colonia" name="Colonia" required>
+                        </div>
+                    </div>
+                    <div class="row row-cols-6">
+                        <div class="form-group">
+                            <label for="num_exterior">N° Exterior</label>
+                            <input class="form-control" type="number" id="num_exterior" name="num_exterior" placeholder="S/N">
+                        </div>
+                        <div class="form-group">
+                            <label for="num_interior">N° Interior</label>
+                            <input class="form-control" type="number" id="num_interior" name="num_interior" placeholder="S/N">
+                        </div>
+                        <div class="form-group">
+                            <label for="codigo_postal">Codigo Postal</label>
+                            <input class="form-control" type="number" id="cp" name="Codigo_Postal" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </form>
         </div>
-        <form action="/edit/propiedad" method="POST" enctype="multipart/form-data">
-          @csrf
-          <div class="modal-body text-center">
-            <div class="row row-cols-4">
-              <input type="number" id="id_p" name="ID_P" hidden readonly>
-              <div class="form-group">
-                <label for="name">Calle</label>
-                <input class="form-control" type="text" id="calle" name="Calle" required>
-              </div>
-              <div class="form-group">
-                <label for="name">Colonia</label>
-                <input class="form-control" type="text" id="colonia" name="Colonia" required>
-              </div>
-            </div>
-            <div class="row row-cols-6">
-              <div class="form-group">
-                <label for="num_exterior">N° Exterior</label>
-                <input class="form-control" type="number" id="num_exterior" name="num_exterior" placeholder="S/N" required>
-              </div>  
-              <div class="form-group">
-                <label for="num_interior">N° Interior</label>
-                <input class="form-control" type="number" id="num_interior" name="num_interior" placeholder="S/N" required>
-              </div>
-              <div class="form-group">
-                <label for="username">Codigo Postal</label>
-                <input class="form-control" type="number" id="cp" name="Codigo_Postal" required>
-              </div>  
-            </div>
-            <div class="form-group">
-              <label for="lastname">Apellido(s)</label>
-              <input class="form-control" type="text" name="Apellido" value="{{Auth::user()->Apellido}}" required>
-            </div>
-            <div class="form-group">
-              <label for="birthday">Fecha de Nacimiento</label>
-              <input class="form-control" type="date" name="Fecha_Nacimiento" value="{{Auth::user()->Fecha_Nacimiento}}" required>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-success">Guardar</button>
-          </div>
-        </form>
-      </div>
     </div>
   </div>
+
 </body>
 @endsection
 
@@ -533,6 +534,7 @@
         method: `GET`,
         success: function(data){
           $('#id_p').val(data.ID_P);
+          $('#precio').val(data.Precio);
           $('#calle').val(data.Calle);
           $('#num_exterior').val(data.num_exterior);
           $('#num_interior').val(data.num_interior);

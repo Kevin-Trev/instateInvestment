@@ -299,6 +299,42 @@ public function incrementarVecesComunicado($id) {
     }
 }
 
+public function editarPropiedad(Request $request)
+{
+    // Validar los datos del formulario
+    $validatedData = $request->validate([
+        'ID_P' => 'required|integer|exists:propiedades,ID_P',
+        'Precio' => 'required|numeric',
+        'Calle' => 'required|string|max:255',
+        'Colonia' => 'required|string|max:255',
+        'num_exterior' => 'nullable|integer',
+        'num_interior' => 'nullable|integer',
+        'Codigo_Postal' => 'required|integer',
+    ]);
+
+    try {
+        // Encontrar la propiedad por su ID
+        $propiedad = propiedades::findOrFail($validatedData['ID_P']);
+
+        // Actualizar los campos de la propiedad
+        $propiedad->Precio = $validatedData['Precio'];
+        $propiedad->Calle = $validatedData['Calle'];
+        $propiedad->Colonia = $validatedData['Colonia'];
+        $propiedad->num_exterior = $validatedData['num_exterior'];
+        $propiedad->num_interior = $validatedData['num_interior'];
+        $propiedad->Codigo_Postal = $validatedData['Codigo_Postal'];
+
+        // Guardar los cambios en la base de datos
+        $propiedad->save();
+
+        // Redirigir a la vista de perfil o mostrar un mensaje de éxito
+        return redirect()->back()->with('success', 'Propiedad actualizada correctamente');
+    } catch (\Exception $e) {
+        // Manejar errores y redirigir con un mensaje de error
+        return redirect()->back()->with('error', 'Ocurrió un error al actualizar la propiedad');
+    }
+}
+
 
 }
 
