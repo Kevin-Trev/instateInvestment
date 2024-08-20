@@ -289,15 +289,15 @@ public function suspender($ID_P)
 }
 
 
-public function incrementarVecesComunicado($id) {
-    try {
-        $propiedad = propiedades::findOrFail($id);
-        $propiedad->increment('Veces_Comunicado'); // Incrementa el campo Veces_Comunicado en 1
-        return response()->json(['success' => true]);
-    } catch (\Exception $e) {
-        return response()->json(['success' => false, 'message' => $e->getMessage()]);
-    }
-}
+// public function incrementarVecesComunicado($id) {
+//     try {
+//         $propiedad = propiedades::findOrFail($id);
+//         $propiedad->increment('Veces_Comunicado'); // Incrementa el campo Veces_Comunicado en 1
+//         return response()->json(['success' => true]);
+//     } catch (\Exception $e) {
+//         return response()->json(['success' => false, 'message' => $e->getMessage()]);
+//     }
+// }
 
 public function editarPropiedad(Request $request)
 {

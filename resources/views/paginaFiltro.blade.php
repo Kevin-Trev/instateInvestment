@@ -1576,7 +1576,8 @@ function cargarPropiedades() {
                 <h3 class="precio">$ ${precioFormateado} MXN</h3>
                 <p class="text">${property.Calle} #${property.num_exterior}, ${property.Colonia}</p>
                 <div class="footer">
-                ${isAuthenticated ? `<button class="btn-wasa"><a class="nav-link" href="https://wa.me/${property.users.Telefono}?text=Hola%2C%20estoy%20interesado%20en%20comprar%20esta%20propiedad%2C%20%C2%BFme%20podr%C3%ADas%20dar%20m%C3%A1s%20detalles%20por%20favor%3F" target="_blank">Contacto</a></button>` : ''}
+                ${isAuthenticated ? `<button class="btn-wasa"><a class="nav-link" href="https://wa.me/${property.users.Telefono}?text=Hola%2C+me+interesa+más+información+sobre+tu+propiedad+en+C+${property.Calle}, Ext.+${property.num_exterior}%2C+Int.+${property.num_interior}%2C+Col.+${property.Colonia}%2C+CP.+${property.Codigo_Postal}">Enviar mensaje</a></button>` : ''}
+                
                 <button class="btn-blue"><a class="nav-link" href="/get/property/${property.ID_P}">Ver más detalles</a></button>
                 </div>
               </div>`

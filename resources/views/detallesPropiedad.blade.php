@@ -2036,8 +2036,8 @@
                     @auth
                     <div class = "btn-container">
                         <button class="bt-google"><a href="{{ route('propiedades.mapa', ['id' => $propiedad->ID_P]) }}"><img src="{{asset('Imagenes/Maps.png')}}">Ver En Maps</a></button>
-                        <button class="wasa" onclick="enviarMensaje({{ $propiedad->ID_P }})">
-                            <img src="{{ asset('Imagenes/whatsappLogo.png') }}" alt="WhatsApp Logo"> Enviar mensaje
+                        <button class="wasa">
+                            <a href="https://wa.me/{{ $propiedad->users->Telefono }}?text=Hola%2C+me+interesa+m%C3%A1s+informaci%C3%B3n+sobre+tu+propiedad+en+C.%2C+{{$propiedad->Calle}}%2C+Ext.+{{$propiedad->num_exterior ?: 'S%2FN'}}%2C+Int.+{{$propiedad->num_interior ?: 'S%2FN'}}%2C+Col.+{{$propiedad->Colonia}}%2C+CP.+{{$propiedad->Codigo_Postal}}."> <img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar Mensaje</a>
                         </button>
                     </div>
                     @endauth
@@ -2132,7 +2132,7 @@
                             <p>{{$sugerencia->Calle}} #{{$sugerencia->num_exterior}}, {{$sugerencia->Colonia}}</p>
                             <div class="footer">
                                 <button class="btn-blue"><a href="/get/property/{{$sugerencia->ID_P}}">Ver más detalles</a></button>
-                                <button class="wasa"><a href="https://wa.me/{{$sugerencia->users->Telefono}}"><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</a></button>
+                                <button class="wasa"><a href="https://wa.me/{{ $propiedad->users->Telefono }}?text=Hola%2C+me+interesa+m%C3%A1s+informaci%C3%B3n+sobre+tu+propiedad+en+C.%2C+{{$propiedad->Calle}}%2C+Ext.+{{$propiedad->num_exterior ?: 'S%2FN'}}%2C+Int.+{{$propiedad->num_interior ?: 'S%2FN'}}%2C+Col.+{{$propiedad->Colonia}}%2C+CP.+{{$propiedad->Codigo_Postal}}."><img src="{{asset('Imagenes/whatsappLogo.png')}}">Enviar mensaje</a></button>
                             </div>
                         </div> 
                     </div>
@@ -2186,28 +2186,4 @@
 @endsection
 
 @section('js')
-<script>
-function enviarMensaje(propiedadId) {
-    // Hacer la petición AJAX para incrementar Veces_Comunicado
-    $.ajax({
-        url: '{{ route("incrementar.vecesComunicado", "") }}/' + propiedadId,
-        method: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function(response) {
-            if (response.success) {
-                // Redirigir al enlace de WhatsApp
-                let url = "https://wa.me/{{ $propiedad->users->Telefono }}?text=Hola%2C+me+interesa+m%C3%A1s+informaci%C3%B3n+sobre+tu+propiedad+en+C.%2C+{{$propiedad->Calle}}%2C+Ext.+{{$propiedad->num_exterior ?: 'S%2FN'}}%2C+Int.+{{$propiedad->num_interior ?: 'S%2FN'}}%2C+Col.+{{$propiedad->Colonia}}%2C+CP.+{{$propiedad->Codigo_Postal}}.";
-                window.open(url, '_blank');
-            } else {
-                alert('Error al registrar la comunicación. Inténtalo nuevamente.');
-            }
-        },
-        error: function(error) {
-            console.error('Error en la petición AJAX:', error);
-        }
-    });
-}
-</script>
 @endsection

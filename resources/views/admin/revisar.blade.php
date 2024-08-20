@@ -624,7 +624,7 @@
         transform: translate(65vw, -2.5vw);
         margin-top: -800px;
       }
-}
+    }
 
     @media(max-width: 1200px){
     /* Inicio */
@@ -894,7 +894,7 @@
         transform: translate(65vw, -2.5vw);
         margin-top: -800px;
       }
-}
+    }
 
     @media(max-width: 992px){
     /* Inicio */
@@ -1163,7 +1163,7 @@
     transform: translate(65vw, -2.5vw);
     margin-top: -500px;
     }
-}
+    }
 
     @media(max-width: 768px){
     /* Inicio */
