@@ -1856,25 +1856,33 @@
             });
         }
 
-        async function enviarForm(){
-            $.ajax({
-                url: '/post/propiedad',
-                method: 'POST',
-                headers :{
+        async function enviarForm() {
+    try {
+        const response = await $.ajax({
+            url: '/post/propiedad',
+            method: 'POST',
+            headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response){
-                    console.log();
-                    window.location.href = "/views/hubs/perfil/" + response.user;
-                },
-                error: function(error){
-                    console.log('nonononono', error);
-                }
-            });
+            },
+            data: formData,
+            processData: false,
+            contentType: false,
+        });
+
+        // Verifica la respuesta del servidor
+        console.log(response);
+        
+        // Redirige solo después de que la respuesta es correcta
+        if (response.success) {
+            window.location.href = "/views/hubs/perfil/" + response.user;
+        } else {
+            console.log('Error en la respuesta del servidor:', response);
         }
+    } catch (error) {
+        console.log('Error en la solicitud AJAX:', error);
+    }
+}
+
 
         $(document).ready(async function(){
             
