@@ -18,6 +18,7 @@ class PropiedadController extends Controller
 {
     public function index () {
         $propiedades = propiedades::with("tipo_propiedad:ID_T,Tipo","users:id,Telefono,Activo")
+                                    ->where('Disponibilidad','=','1')
                                     ->with(['imagenes_propiedad' => function($query) {
                                         $query->select('reg','propiedad_id','src_image');
                                     }])
